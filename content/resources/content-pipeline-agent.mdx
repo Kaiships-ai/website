@@ -1,0 +1,69 @@
+---
+title: "The Content Pipeline Agent"
+description: "A research to draft to schedule pipeline for build-in-public content. This very system wrote the post about itself - meta, and honest about where it stalls."
+type: "Agents"
+tool: "Claude Code"
+date: "2026-06-19"
+readTime: 8
+popular: false
+faq:
+  - q: "Can it post for me automatically?"
+    a: "It can prepare and queue, but I keep the publish button human. The pipeline removes the blank-page and formatting work, not the judgment about whether a thing is worth saying."
+  - q: "Does agent-written content read as slop?"
+    a: "It does if you let it draft from nothing. It does not if you feed it your own raw notes and a real voice guide. The agent shapes your material; it should not invent the material."
+  - q: "Is this the system behind kaiships posts?"
+    a: "A version of it, yes. The post about building this pipeline was drafted by this pipeline. That is the test - if it cannot write about itself honestly, it is not good enough to ship."
+---
+
+Build-in-public dies from friction. You did the work, you have the notes, and then the post never gets written because drafting from a blank page at the end of a build is the last thing you want to do. This pipeline closes that gap: it takes your raw notes and turns them into a research-backed draft, formatted and queued, waiting for your edit.
+
+It is for solo builders who ship real things and want the story to keep up without hiring a writer or drowning in it. The self-referential part is the point - the post announcing this system was drafted by this system, then edited by me.
+
+## What you need
+
+- Claude Code with an agents folder.
+- A place you dump raw build notes (a file, a folder, whatever you already use).
+- A short voice guide - three or four rules for how you sound.
+
+## Setup
+
+1. Define the pipeline agent with three explicit stages: research, draft, schedule. Keeping the stages separate is what keeps the output honest - research produces sources, draft uses only those sources.
+
+<Prompt title="~/.claude/agents/content-pipeline.md">
+---
+name: content-pipeline
+description: Turn my raw build notes into a sourced, formatted draft ready to schedule. Never invents facts.
+---
+
+# Content pipeline
+
+Run in three stages, in order:
+
+1. RESEARCH - read my notes and pull only claims I can back. List each fact with where it came from. If a claim has no source in my notes, drop it.
+2. DRAFT - write in my voice guide. Use only stage-1 facts. No hype, no invented numbers, no fake anecdotes.
+3. SCHEDULE - format for the target platform and output a queue entry with a suggested date. Do not publish.
+
+If stages 1 and 2 disagree, stop and ask.
+</Prompt>
+
+2. Add your voice guide so the draft sounds like you, not like an assistant.
+
+<Prompt title="voice-guide.md">
+# Voice
+- Terse. Cut the throat-clearing intro.
+- Concrete numbers over adjectives. If I cannot source it, cut it.
+- Name the failure, not just the win.
+- One idea per post. End when the point is made.
+</Prompt>
+
+3. Run it on one real build. Read the draft against your notes - every claim should trace back. Fix voice in the guide, fix facts in your notes, then rerun.
+
+4. Queue, do not auto-publish. The human read before publish is the whole quality gate.
+
+## What breaks
+
+<Callout type="warn">
+Where it stalls. Invention: if your notes are thin, the draft stage will pad with generic filler or, worse, plausible-sounding numbers - starve that by refusing any claim without a source in stage one. Context overflow: feeding a week of notes at once blows the context and the draft loses the thread; run it per-build, not per-week. And scheduling APIs drift - platform endpoints and auth change, so treat the schedule stage as the flakiest and keep a manual fallback.
+</Callout>
+
+<PackCta />

@@ -1,0 +1,57 @@
+---
+title: "Agents vs Skills vs MCP: A Decision Guide"
+description: "Plain-English guide to when each one fits. A table, three rules of thumb, and the mistake most people make picking between them."
+type: "Guides"
+tool: "Claude"
+date: "2026-05-15"
+readTime: 7
+popular: false
+faq:
+  - q: "What is the one-line difference?"
+    a: "A skill is knowledge the main agent loads when relevant. An agent is a separate worker you hand a job. MCP is a connection to an outside tool or data source. Knowledge, worker, connection."
+  - q: "Which should I reach for first?"
+    a: "A skill, almost always. It is the cheapest to build and the easiest to verify. Reach for an agent when the job should run on its own, and MCP only when you genuinely need to connect to something external."
+  - q: "Can they work together?"
+    a: "Yes, and they usually do. An agent can use skills, and a skill can tell the agent to call an MCP tool. The point of this guide is picking the right primary tool, not using only one."
+---
+
+People burn a lot of time picking the wrong primitive - building an agent when a skill would do, or bolting on an MCP server for something a local skill handles. The three are not competitors. They solve different problems, and once you see the split it stops being confusing.
+
+This is for solo builders standing at that fork wondering which one this task calls for. No jargon, just the distinction and a table you can decide from.
+
+## What you need
+
+- A specific task in mind - the guide only helps against a real decision.
+- Two minutes and the table below.
+
+## Setup
+
+1. Learn the one-line split. A **skill** is knowledge and instructions the main agent pulls in when the task matches. An **agent** is a separate worker you dispatch to do a job independently. **MCP** is a protocol that connects Claude to an external tool or data source it otherwise cannot reach.
+
+2. Match your task against the table.
+
+| If you want to... | Use | Why |
+| --- | --- | --- |
+| Encode how you do a recurring task | Skill | Loads in context, sharpens the main thread, cheap to build |
+| Enforce a rule (verify, commit style) | Skill | It is guidance, not a separate job |
+| Hand off a whole job to run on its own | Agent | Separate worker, own context, reports back |
+| Run several jobs in parallel | Agent | One per task, independent contexts |
+| Read or write an outside system (DB, API, SaaS) | MCP | The connection layer to external tools |
+| Give Claude live data it cannot otherwise see | MCP | That is exactly what the protocol is for |
+
+3. Apply the three rules of thumb. Start with a skill - it is cheapest and easiest to verify. Escalate to an agent when the work should run independently or in parallel. Add MCP only when the task genuinely requires reaching outside, because every connection is another thing to secure and maintain.
+
+<Prompt title="Ask yourself, in order">
+1. Is this knowledge or a rule I keep re-applying? -> Skill.
+2. Is this a whole job that should run on its own or beside others? -> Agent.
+3. Does this need to touch a system outside Claude? -> MCP.
+Stop at the first yes. Do not add MCP for something local.
+</Prompt>
+
+## What breaks
+
+<Callout type="warn">
+The common mistake is over-engineering. People build an agent for what a five-line skill would do, then wonder why it is slower and harder to debug - a separate worker has its own context to manage and its own failure modes. The opposite trap is bolting an MCP server onto something purely local, adding an auth surface and a dependency for no reason. Every MCP connection is also a security consideration: it is external access, so scope it tightly. Default to a skill and earn your way up.
+</Callout>
+
+<PackCta />

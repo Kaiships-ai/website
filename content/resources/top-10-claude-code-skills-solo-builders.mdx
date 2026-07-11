@@ -1,0 +1,72 @@
+---
+title: "Top 10 Claude Code Skills for Solo Builders"
+description: "The ten skills I actually keep installed, what each one is for, and the one pattern for installing any of them. Curated, not padded."
+type: "Skills"
+tool: "Claude Code"
+date: "2026-07-05"
+readTime: 9
+popular: true
+faq:
+  - q: "What is a skill versus an agent?"
+    a: "A skill is a reusable capability with instructions that Claude Code loads when the task matches. An agent is a separate worker you dispatch to do a job on its own. Skills sharpen the main thread; agents run beside it."
+  - q: "Do skills cost extra tokens?"
+    a: "Only when they load. A skill's body enters context when its trigger matches, so a well-scoped description keeps it dormant until you need it. Ten tight skills cost less than one bloated CLAUDE.md."
+  - q: "Where do I get these ten?"
+    a: "Five of them ship in the free PACK. The rest follow the same folder-and-SKILL.md pattern shown below, so you can build the others yourself or lift them from the drops."
+---
+
+Skill lists are usually padding - forty entries nobody runs. This is the opposite: ten skills I keep installed on a real working machine, sorted by how often they actually fire. If a skill is not here, I removed it because it was not earning its context.
+
+This is for solo builders who want capability without clutter. Install the ones that match how you work, skip the rest, and keep the list short on purpose.
+
+## What you need
+
+- Claude Code with a global `~/.claude/skills` folder.
+- The install pattern below (it is identical for every skill).
+
+## Setup
+
+1. Every skill is a folder containing a `SKILL.md` with frontmatter and instructions. To install one, create the folder and drop the file in. Here is the canonical shape - build any skill from this.
+
+<Prompt title="~/.claude/skills/verify-before-trust/SKILL.md">
+---
+name: verify-before-trust
+description: Use before claiming a task is done. Forces a test, screenshot, or command output as proof.
+---
+
+# Verify before trust
+
+When about to say a task is done, fixed, or passing:
+
+1. Name the claim in one line.
+2. Run the command that proves it and paste the real output.
+3. If you cannot run it, say so and mark the claim UNVERIFIED.
+4. Only then report completion.
+
+Never assert success from reading code alone.
+</Prompt>
+
+2. Restart Claude Code so it re-scans the skills folder. Ask it to list loaded skills to confirm.
+
+### The ten, in order of how often they fire
+
+1. **verify-before-trust** - blocks a done claim without proof. The core anti-slop skill.
+2. **token-budget** - context hygiene and model routing; keeps runs cheap.
+3. **ship-check** - the build, verify, ship, document loop as a checklist.
+4. **commit-clean** - conventional commits with a real, specific message.
+5. **scout** - fast research that returns sources instead of confident guesses.
+6. **plan-first** - forces a short written plan before edits on anything multi-step.
+7. **test-driven** - write the failing test, then the code that passes it.
+8. **security-baseline** - flags secrets, risky permissions, and unsafe auto-approvals.
+9. **doc-diff** - updates the README or docs when behavior changes, not before.
+10. **cleanup** - removes the dead scaffolding an agent leaves behind after a build.
+
+Five of these - verify-before-trust, token-budget, ship-check, commit-clean, and scout - ship in the free PACK. The other five follow the same pattern above.
+
+## What breaks
+
+<Callout type="warn">
+Two things bite. Over-broad triggers: a skill whose description matches everything loads on every task, quietly inflating context and sometimes hijacking a job it should not touch - keep the description narrow and action-specific. Silent skips: a malformed frontmatter or a wrong folder name makes Claude Code ignore the skill with no error, so you think it is running when it is not. After any change, ask it to list loaded skills and confirm the count.
+</Callout>
+
+<PackCta />

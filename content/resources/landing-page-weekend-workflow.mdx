@@ -1,0 +1,60 @@
+---
+title: "Ship a Landing Page in a Weekend"
+description: "The exact agent-driven workflow behind this site's own landing page. Spec Friday, build Saturday, verify and deploy Sunday - honest about the parts that stall."
+type: "Workflows"
+tool: "Claude Code"
+date: "2026-06-14"
+readTime: 7
+popular: false
+faq:
+  - q: "Do I need to be a designer?"
+    a: "No. You need taste enough to reject bad output and a reference or two to point at. The agents do the building; you do the deciding. A clear spec matters more than design skill."
+  - q: "Will it really be done in a weekend?"
+    a: "A real, deployed one-page site, yes, if you keep scope to one page and one goal. Feature creep is what turns a weekend into a month. The workflow's whole job is holding that line."
+  - q: "Is this how kaiships.ai was built?"
+    a: "The method is, yes. This site started as a spec, went through scout agents on reference sites, then a build pass, then verify and deploy. Meta, and repeatable."
+---
+
+A landing page is the perfect weekend project: small enough to finish, real enough to matter, and the fastest way to learn the agent-driven build loop. This is the exact workflow behind this site's own front page - spec, scout, build, verify, deploy - compressed into three sessions.
+
+It is for solo builders who have a thing to launch and keep not launching it. The method is deliberately meta: you are reading the output of the workflow it describes.
+
+## What you need
+
+- Claude Code, and a domain or deploy target ready.
+- One or two reference sites whose structure you like.
+- A single, clear goal for the page - one call to action.
+
+## Setup
+
+1. **Friday - spec.** Do not open a code editor. Write what the page is, who it is for, the one action you want, and the sections in order. Point at your references. Keep it to a page.
+
+<Prompt title="landing-spec.md">
+# Landing page spec
+- Goal: the ONE action a visitor should take.
+- Audience: who they are, in one line.
+- Sections in order: hero, proof, offer, CTA. Cut anything else.
+- References: [url] for structure, [url] for tone.
+- Voice: terse, concrete, no hype.
+- Done means: deployed, loads fast, the CTA works.
+</Prompt>
+
+2. **Saturday - scout, then build.** First send a scout to study your references and report structure and patterns - not to copy, to learn. Then build from the spec, one section at a time, checking each in the browser before the next.
+
+<Prompt title="Scout the references">
+Study the two reference sites in the spec. Report only: section order, what each section does, and any pattern worth borrowing. Do not write code yet. Return a short outline I can approve.
+</Prompt>
+
+3. **Sunday - verify and deploy.** Run it. Click the CTA. Check it on a phone-width screen. Check it loads fast. Only when the done-means line from your spec is literally true do you deploy.
+
+<Prompt title="Verify against the spec">
+Go through the 'done means' checklist in landing-spec.md. For each item run the real check and show the result. Anything not verified, mark UNVERIFIED and stop before deploy.
+</Prompt>
+
+## What breaks
+
+<Callout type="warn">
+The weekend dies from scope. You add a second page, a blog, an animation, and suddenly it is a month - hold to one page and one action, ruthlessly. The build stalls when the spec is vague, so if the agent keeps guessing, your spec is the problem, not the agent. And do not skip Sunday's verify to ship faster on a high: an unchecked landing page with a broken CTA is worse than no page. Deploy on proof, not on excitement.
+</Callout>
+
+<PackCta />

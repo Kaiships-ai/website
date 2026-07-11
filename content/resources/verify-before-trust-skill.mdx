@@ -1,0 +1,67 @@
+---
+title: "The Verify-Before-Trust Skill"
+description: "A skill that blocks any 'done' claim until there is proof - a test, a screenshot, a receipt. The core of no-slop, installable in five minutes."
+type: "Skills"
+tool: "Claude Code"
+date: "2026-06-24"
+readTime: 6
+popular: false
+faq:
+  - q: "Why do I need a skill for this?"
+    a: "Because agents claim success from reading code, not running it. Left alone they say 'this should work' and move on. The skill turns that soft claim into a hard requirement: show the output or mark it unverified."
+  - q: "Does it slow me down?"
+    a: "A little, on purpose, and it saves far more than it costs. Thirty seconds of proof beats an hour chasing a bug that shipped because nobody ran the thing."
+  - q: "What counts as proof?"
+    a: "Real command output, a passing test, a screenshot, or a receipt from the actual system. Reading the diff and reasoning that it looks right does not count. Evidence, not confidence."
+---
+
+This is the most on-brand file on the site. The entire no-slop position comes down to one habit: nothing is done until it is proven done. Agents are confident narrators - they will tell you a fix works because the code looks correct. This skill makes that unacceptable and forces evidence instead.
+
+It is for solo builders who have been burned by a done that was not - a feature that broke in front of a user, a fix that never fixed. Install this once and every task ends in proof or an honest unverified.
+
+## What you need
+
+- Claude Code with a skills folder.
+- Two minutes to install, then it runs itself.
+
+## Setup
+
+1. Install the skill. Its whole job is to intercept the moment before a completion claim and demand proof.
+
+<Prompt title="~/.claude/skills/verify-before-trust/SKILL.md">
+---
+name: verify-before-trust
+description: Use before claiming any task is done, fixed, or passing. Requires real evidence, not a reading of the code.
+---
+
+# Verify before trust
+
+When about to report a task as done, fixed, working, or passing:
+
+1. State the claim in one line.
+2. Run the command that proves it and paste the actual output.
+3. For UI, capture a screenshot and reference the path.
+4. If you cannot run the check, do NOT claim success - report the claim as UNVERIFIED and say exactly what is needed to verify it.
+5. Only after proof is shown, report completion.
+
+Confidence from reading code is not proof. No evidence, no done.
+</Prompt>
+
+2. Reinforce it in CLAUDE.md so the rule is stated at the project level too.
+
+<Prompt title="CLAUDE.md - one line that matters">
+## Rules
+- Never claim done without running it. Show the output or mark it UNVERIFIED.
+</Prompt>
+
+3. Watch it work. Finish a real task and notice the agent now pauses to run the check and paste output. When it cannot verify, it will say so instead of bluffing - that honest unverified is the whole win.
+
+4. Trust the pattern, not the vibe. Over a week you will catch several done claims that were not true. That is the skill earning its place.
+
+## What breaks
+
+<Callout type="warn">
+Two soft spots. The agent may try to satisfy the rule with a weak proof - a test that does not actually exercise the change, or output that does not prove the claim. Read the evidence, not just that evidence exists. Second, on environments where the check genuinely cannot run, the honest path is UNVERIFIED, and you have to accept that instead of pressuring for a fake green - a truthful unverified is worth more than a confident lie. The skill only works if you respect its refusals.
+</Callout>
+
+<PackCta />

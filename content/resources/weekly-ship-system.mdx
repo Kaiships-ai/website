@@ -1,0 +1,62 @@
+---
+title: "The Weekly Ship System"
+description: "The build, verify, ship, document loop as an installable skill plus a calendar ritual. How I turn a week of agent work into one thing that actually shipped."
+type: "Workflows"
+tool: "Claude Code"
+date: "2026-06-05"
+readTime: 6
+popular: false
+faq:
+  - q: "Why weekly?"
+    a: "A week is long enough to build something real and short enough that you cannot hide from not shipping. Daily is too noisy; monthly lets things rot. One verified ship a week is a pace a solo builder can hold."
+  - q: "What counts as shipped?"
+    a: "Something a user could touch, verified with your own eyes, and written down. A branch that builds is not shipped. A feature you tested and documented is."
+  - q: "Is the skill doing the work or am I?"
+    a: "You are. The skill enforces the loop so you do not skip the verify and document steps when you are tired on Friday - which is exactly when you skip them."
+---
+
+The gap between busy and shipped is where solo projects die. You spent the week in Claude Code, you have twelve half-branches, and nothing a user could touch. The weekly ship system is the ritual that fixes that: one loop, run every week, that ends in one verified, documented thing.
+
+It is for solo builders who want a repeatable cadence instead of vibes. The loop is build, verify, ship, document - and the skill exists to stop you skipping the last two when Friday energy runs low.
+
+## What you need
+
+- Claude Code with a skills folder.
+- A recurring hour on your calendar - same slot every week.
+- One clear target for the week, chosen up front.
+
+## Setup
+
+1. Install the ship-check skill. It walks the loop and refuses to call anything done without proof.
+
+<Prompt title="~/.claude/skills/ship-check/SKILL.md">
+---
+name: ship-check
+description: Run at the end of a build to enforce the build-verify-ship-document loop before calling anything done.
+---
+
+# Ship check
+
+Before this week's work counts as shipped, complete every step:
+
+1. BUILD - state what was built in one line.
+2. VERIFY - run it and paste the real output or a screenshot path. No proof, not done.
+3. SHIP - merge or deploy the smallest working slice. A branch is not a ship.
+4. DOCUMENT - update the README and write one honest build-log line, including what is NOT done.
+
+If any step is incomplete, report it as UNSHIPPED and list what remains.
+</Prompt>
+
+2. Set the ritual. Put a fixed weekly slot on the calendar - mine is Friday - and protect it. That hour is only for closing the loop: verify, ship, document. Not new building.
+
+3. Choose one target on Monday. Write it as a single checkable sentence. The week's job is to make that sentence true, not to touch twelve things.
+
+4. On Friday, run ship-check against the week. Whatever passes all four steps shipped. Whatever did not carries to next week, named honestly.
+
+## What breaks
+
+<Callout type="warn">
+The loop breaks at verify and document, always. When you are tired, it is tempting to merge on a build that compiles and call it shipped - that is how unverified slop reaches users, so the skill blocks a done claim without real output. Documenting slips because it feels optional; it is not, it is how build-in-public and future-you both survive. And scope creep inside the week quietly guarantees nothing ships - one target, one sentence, hold the line.
+</Callout>
+
+<PackCta />

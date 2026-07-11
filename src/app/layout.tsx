@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { sans, serif, mono } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site.config";
+import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
+import { LenisProvider } from "@/components/lenis-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,7 +51,13 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LenisProvider>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LenisProvider>
+      </body>
     </html>
   );
 }

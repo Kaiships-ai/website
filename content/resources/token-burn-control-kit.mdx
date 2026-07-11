@@ -1,0 +1,54 @@
+---
+title: "The Token-Burn Control Kit"
+description: "Cut Claude Code costs with context hygiene, caching, and model routing. Real numbers from my last run, framed as examples - not a guarantee."
+type: "Systems"
+tool: "Claude Code"
+date: "2026-07-02"
+readTime: 7
+popular: true
+faq:
+  - q: "What actually drives most of the cost?"
+    a: "Input tokens on long sessions. A big CLAUDE.md, a stuffed context, and re-reading the same files every turn add up faster than the output you actually want. Trim the input and the bill follows."
+  - q: "Does model routing hurt quality?"
+    a: "Only if you route badly. Use the cheaper, faster model for search, triage, and mechanical edits; save the strongest model for planning and gnarly logic. Most turns do not need the top model."
+  - q: "Are your numbers a promise?"
+    a: "No. The figures below are from one of my runs on my machine. Your workload, files, and habits differ. Treat them as a direction, not a quote."
+---
+
+Claude Code gets expensive quietly. Not from the work you asked for, but from the context you drag along every turn - the oversized CLAUDE.md, the whole file re-read for a one-line change, the agent that keeps the entire repo in mind for a typo fix. This kit is the handful of habits that cut my spend the most.
+
+It is for solo builders watching usage climb and wondering where it went. None of this is exotic. It is hygiene, and it compounds.
+
+## What you need
+
+- A real project where you have felt the cost.
+- The three levers below: context, caching, routing.
+
+## Setup
+
+1. **Context hygiene.** Keep the standing context small. Trim CLAUDE.md to true rules, and tell the agent to read only what it needs. Add a routing rule to your global config so cheap work goes to a cheap model.
+
+<Prompt title="~/.claude/CLAUDE.md - cost rules">
+# Cost discipline
+- Read the smallest slice that answers the question, not whole files by default.
+- For search, triage, renames, and formatting: use the fast, cheap model.
+- Reserve the strongest model for planning and hard logic.
+- Do not re-read a file you just edited to 'confirm' - trust the edit.
+- Clear or compact context between unrelated tasks.
+</Prompt>
+
+2. **Caching.** Keep the stable stuff stable. Prompt caching rewards you for not reshuffling the front of your context every turn - so pin durable rules up top and let the churn happen lower down. Starting a fresh session for a genuinely new task is cheaper than dragging a bloated old one along.
+
+3. **Routing.** Match the model to the turn. Do the exploration and mechanical edits on the fast model, switch up only when the task earns it. Most of a build is not the hard part.
+
+### A real example, framed as an example
+
+On my last content-pipeline run, the naive version - top model for everything, whole files re-read each turn, one long session - cost about 42 dollars on my machine. After the three levers above, the same job on a later run came in around 6 dollars. Same output, different habits. Yours will differ; the point is the direction, not the dollar figure.
+
+## What breaks
+
+<Callout type="warn">
+Two ways this backfires. Routing too aggressively: push planning or subtle logic onto the cheap model and you pay it back in wrong turns and rework, which costs more than you saved - route by task difficulty, not by reflex. Cache thrash: reordering or rewriting the top of your context every turn defeats caching entirely, so keep the durable rules pinned and stop editing CLAUDE.md mid-session. And watch for rate limits on long autonomous runs - they will interrupt a job midway, so checkpoint your work.
+</Callout>
+
+<PackCta />

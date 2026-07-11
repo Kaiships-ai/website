@@ -1,0 +1,55 @@
+---
+title: "Running a Multi-Agent Team in Panes"
+description: "Parallel agent teammates in split panes for research and build. When it genuinely helps, when it is overkill, and how to keep it from becoming chaos."
+type: "Systems"
+tool: "Multi-tool"
+date: "2026-07-08"
+readTime: 8
+popular: false
+faq:
+  - q: "Is more agents always faster?"
+    a: "No. Parallel agents help when tasks are truly independent - two scouts on two references, a build and a doc pass. When work shares state or must happen in order, parallelism just adds coordination cost and merge pain."
+  - q: "What is the failure mode?"
+    a: "Agents stepping on the same files, or you losing track of what each one did. Give each a lane it owns and a written brief, and make them report back before you merge anything."
+  - q: "Do I need a special tool?"
+    a: "You need a way to run and watch several agents at once - split panes in a terminal multiplexer or a multi-pane tool. The pattern matters more than the specific app; any layout that lets you supervise in parallel works."
+---
+
+Running several agents at once looks impressive and is sometimes exactly right - and often it is theater that costs more than it saves. The skill is knowing which. This is how I run a parallel agent team when the work actually splits, and how I decide when a single focused agent is the better call.
+
+It is for solo builders tempted by the multi-agent screenshots who want the honest version: when panes of parallel agents earn their keep, and when they are just more things to babysit.
+
+## What you need
+
+- A multi-pane setup - a terminal multiplexer or a multi-pane agent tool.
+- Tasks that are genuinely independent.
+- A clear brief and an owned lane for each agent.
+
+## Setup
+
+1. Split the work by independence, not by ambition. The test: could two people do these tasks without talking? If yes, parallel fits. If they would constantly sync, keep it one agent. Good parallel jobs: two scouts on two references, or a build in one lane and docs in another.
+
+2. Give each agent a written brief and a lane it alone owns. Overlapping file ownership is where multi-agent runs turn into merge chaos.
+
+<Prompt title="Per-agent brief">
+You are Scout A. Lane: reference site #1 only.
+Task: report its section order and any pattern worth borrowing.
+Do NOT touch files outside your lane. Do NOT write code.
+Return a short outline, then stop and wait.
+</Prompt>
+
+3. Supervise in parallel. Keep each agent in its own pane so you can watch all of them. Your job shifts from doing to reviewing - read each report as it lands.
+
+4. Merge deliberately. Bring the outputs together yourself, resolve any overlap, and verify the combined result. The parallel part saved time only if the merge is clean.
+
+### When it is overkill
+
+For a single feature, a linear build, or anything where the tasks depend on each other, one focused agent beats a team. Parallelism has a fixed coordination tax - briefs, lanes, merging, supervision. If the tax is bigger than the time saved, do not pay it.
+
+## What breaks
+
+<Callout type="warn">
+Three ways a team turns into a mess. Collisions: two agents editing the same files produce conflicts and lost work - enforce owned lanes, no exceptions. Supervision overload: past three or four panes you cannot actually watch them, and unwatched agents drift, so keep the team small. Cost: several agents running at once multiplies token spend, so the job has to be big enough to justify it. When in doubt, run one agent well instead of four badly.
+</Callout>
+
+<PackCta />

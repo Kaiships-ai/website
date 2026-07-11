@@ -1,0 +1,66 @@
+---
+title: "Claude Code Setup: Zero to Shipping"
+description: "Install, authenticate, start your first project, and ship your first real feature - written for non-devs who have never touched a terminal."
+type: "Guides"
+tool: "Claude Code"
+date: "2026-05-08"
+readTime: 8
+popular: false
+faq:
+  - q: "I have never used a terminal. Can I still do this?"
+    a: "Yes. You need to paste a few commands and press enter. The terminal looks intimidating and is mostly boring. This guide assumes zero prior experience."
+  - q: "Do I need to know how to code?"
+    a: "No, but you should be able to read what the agent wrote and check that it did what you asked. Shipping without checking is how slop happens - the last step here exists to prevent that."
+  - q: "What will this cost me?"
+    a: "There is usage-based cost once you are working on real tasks. A first small project is cheap. Keep an eye on it and read the token-burn kit before you start long sessions."
+---
+
+Most Claude Code guides assume you already live in a terminal. This one does not. It takes you from nothing installed to one real feature shipped and verified, in the order you actually do it. No skipped steps, no hand-waving at the scary parts.
+
+It is for the solo builder or non-dev who has heard Claude Code is powerful and wants a clean on-ramp that ends in something real, not a hello-world you throw away.
+
+## What you need
+
+- A computer and about an hour.
+- Node.js installed (the installer walks you through it).
+- A folder where your project will live.
+
+## Setup
+
+1. Install Claude Code. Open your terminal and paste the install command, then confirm it is there.
+
+<Prompt title="Install and check">
+npm install -g @anthropic-ai/claude-code
+claude --version
+</Prompt>
+
+2. Authenticate. Start Claude Code in your project folder and follow the login prompt in your browser. This links your account so requests are billed to you.
+
+<Prompt title="Start it up">
+cd path/to/your/project
+claude
+</Prompt>
+
+3. Give it a first project with a clear, small goal. Do not ask for an app. Ask for one thing you can check. A single working page, a script that renames files, a form that validates an email. Small enough to verify by looking.
+
+4. Add a tiny CLAUDE.md so the agent knows the rules from turn one. Even four lines helps.
+
+<Prompt title="CLAUDE.md - starter">
+# Project: my first ship
+
+## Rules
+- Explain what you are about to do in one line before doing it.
+- After a change, tell me exactly how to check it worked.
+- Keep it small. One thing at a time.
+- If something might fail, say so instead of guessing.
+</Prompt>
+
+5. Ship and verify. When the agent says it is done, do not take its word. Run it, open it, click it. If it works, you shipped. If it does not, tell the agent what you actually saw and let it fix the specific thing. That loop - build, check, correct - is the whole job.
+
+## What breaks
+
+<Callout type="warn">
+The common first-week snags. Auth loops: if the browser login does not complete, close Claude Code fully and rerun the start command - a stale session is the usual cause. Wrong folder: if the agent seems to have no context, you are probably not in your project directory; check with pwd. And the big one - trusting the done claim. The agent will sound certain about work it did not verify. Your only job at the end is to look with your own eyes before you call it shipped.
+</Callout>
+
+<PackCta />

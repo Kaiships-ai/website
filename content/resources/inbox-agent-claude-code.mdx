@@ -1,0 +1,61 @@
+---
+title: "The Inbox Agent"
+description: "An email triage and draft agent for Claude Code. Labels what matters, drafts replies in your voice, and I am honest about the OAuth pain."
+type: "Agents"
+tool: "Claude Code"
+date: "2026-06-10"
+readTime: 7
+popular: false
+faq:
+  - q: "Does this send email on its own?"
+    a: "No, and it should not. It triages and drafts. Sending stays manual until you have watched it long enough to trust it. Auto-send is how one bad draft becomes a real problem."
+  - q: "What is the hardest part?"
+    a: "The OAuth setup, honestly. Getting API access to your mailbox with the right scopes and consent screen is fiddly and provider-specific. The agent logic is easy; the auth is the tax."
+  - q: "Will it read all my email?"
+    a: "It reads what you scope it to. Start with a single label or the last day of mail, not the whole archive. Narrow scope is cheaper, safer, and easier to verify."
+---
+
+Email is where a solo builder's day quietly disappears. This agent does not clear your inbox for you - it does the two jobs that eat the most time: deciding what actually needs you, and writing the first draft so you are editing instead of starting from a blank reply.
+
+It is for people getting more mail than they can triage well, who want a first pass that respects their voice and never sends anything without a human look. I will be straight about the setup: the agent is simple, the OAuth is the part that will test your patience.
+
+## What you need
+
+- Claude Code with an agents folder.
+- API access to your mailbox (Gmail or your provider) with read and draft scopes.
+- A few example replies you have actually written, for voice.
+
+## Setup
+
+1. Define the agent. It is a Markdown file with frontmatter and instructions. Drop this in and tune the rules to your inbox.
+
+<Prompt title="~/.claude/agents/inbox-triage.md">
+---
+name: inbox-triage
+description: Triage recent email and draft replies. Never sends. Flags anything needing a human decision.
+---
+
+# Inbox triage
+
+You process recent, scoped email only. For each message:
+
+1. Classify: needs-reply, FYI, or ignore.
+2. For needs-reply, write a draft in my voice: terse, warm, no filler.
+3. Flag anything about money, legal, or commitments as NEEDS-HUMAN and do not draft a decision.
+4. Never send. Leave every reply as a draft.
+5. Report a short list: sender, classification, one-line reason.
+</Prompt>
+
+2. Wire up mailbox access. This is the OAuth step. Create app credentials with your provider, grant read and draft scopes, and complete the consent flow. Keep the token out of the repo - store it where your other secrets live, never in a file the agent can commit.
+
+3. Scope it small on the first run. Point it at one label or the last 24 hours, not your whole inbox. Read every draft it writes. Correct the voice by editing the examples, not by arguing with the agent.
+
+4. Once the drafts are consistently good, widen the scope. Keep sending manual.
+
+## What breaks
+
+<Callout type="warn">
+Expect friction here. OAuth is the wall: scopes get denied, consent screens need verification, and tokens expire - budget an afternoon and do not be surprised. Voice drift: the agent will sound like a generic assistant until you feed it real examples of your own replies, so seed it before you judge it. And cost: pointing it at a huge archive burns tokens fast and is slow to verify - keep the scope narrow. Above all, do not enable auto-send; one confidently wrong reply to the wrong person is not worth the saved minute.
+</Callout>
+
+<PackCta />
