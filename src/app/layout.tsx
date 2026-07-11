@@ -41,6 +41,33 @@ export const metadata: Metadata = {
   },
 };
 
+const siteLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      description: siteConfig.bio,
+      publisher: { "@id": `${siteConfig.url}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: "Kai",
+      url: siteConfig.url,
+      description: siteConfig.bio,
+      sameAs: [
+        siteConfig.socials.instagram,
+        siteConfig.socials.tiktok,
+        siteConfig.socials.x,
+        siteConfig.socials.youtube,
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,6 +79,10 @@ export default function RootLayout({
       className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
+        />
         <LenisProvider>
           <Nav />
           <main className="flex-1">{children}</main>

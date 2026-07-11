@@ -1,13 +1,7 @@
 import { siteConfig } from "@/lib/site.config";
 import { SectionHeading } from "@/components/section-heading";
 import { RevealStagger, RevealItem } from "@/components/reveal";
-
-const icons: Record<string, string> = {
-  bot: "🤖",
-  zap: "⚡",
-  file: "📄",
-  ship: "🚀",
-};
+import { shipIcons } from "@/components/icons";
 
 export function Ship() {
   const { ship } = siteConfig;
@@ -24,8 +18,12 @@ export function Ship() {
           {ship.items.map((item) => (
             <RevealItem key={item.title}>
               <article className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(20,18,16,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-16px_rgba(20,18,16,0.18)] sm:p-7">
-                <span aria-hidden className="text-2xl">
-                  {icons[item.icon] ?? "▸"}
+                <span className="inline-flex size-11 items-center justify-center rounded-xl border border-line bg-paper-2 text-accent-ink">
+                  {(() => {
+                    const Icon =
+                      shipIcons[item.icon as keyof typeof shipIcons];
+                    return Icon ? <Icon /> : null;
+                  })()}
                 </span>
                 <h3 className="mt-4 text-xl font-medium tracking-tight text-ink">
                   {item.title}
