@@ -8,7 +8,7 @@ export const sans = Inter({
 
 export const serif = Newsreader({
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  style: ["italic"],
   variable: "--font-serif",
   display: "swap",
 });

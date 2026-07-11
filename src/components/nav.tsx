@@ -37,7 +37,7 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="flex items-center font-mono text-sm font-semibold tracking-tight text-ink"
+          className="flex items-center py-3 font-mono text-sm font-semibold tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
           kaiships.ai
@@ -52,7 +52,7 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-ink-2 transition-colors hover:text-ink"
+              className="py-2.5 text-sm text-ink-2 transition-colors hover:text-ink"
             >
               {item.label}
             </Link>

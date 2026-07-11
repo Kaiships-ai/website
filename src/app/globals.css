@@ -17,7 +17,7 @@
   --terminal-fg: #e7e5e4;
   --terminal-muted: #8d857e;
   --success: #4ade80;
-  --success-ink: #15803d;
+  --success-ink: #166534;
   --amber: #f59e0b;
 }
 
@@ -65,6 +65,44 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* CSS-only entrance for above-the-fold content (no JS dependency → fast LCP) */
+@keyframes enter {
+  from {
+    opacity: 0.01;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-enter {
+  animation: enter 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+}
+.animate-enter-late {
+  animation: enter 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98) 0.15s both;
+}
+
+/* scroll reveals — JS toggles .reveal-in / .stagger-in */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98),
+    transform 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+.reveal.reveal-in,
+.stagger.stagger-in > .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
+.stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
+.stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
+.stagger > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.stagger > .reveal:nth-child(6) { transition-delay: 0.4s; }
 
 /* blinking cursor block */
 @keyframes blink {

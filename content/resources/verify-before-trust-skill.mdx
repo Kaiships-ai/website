@@ -29,6 +29,8 @@ It is for solo builders who have been burned by a done that was not - a feature 
 1. Install the skill. Its whole job is to intercept the moment before a completion claim and demand proof.
 
 <Prompt title="~/.claude/skills/verify-before-trust/SKILL.md">
+
+```text
 ---
 name: verify-before-trust
 description: Use before claiming any task is done, fixed, or passing. Requires real evidence, not a reading of the code.
@@ -45,13 +47,19 @@ When about to report a task as done, fixed, working, or passing:
 5. Only after proof is shown, report completion.
 
 Confidence from reading code is not proof. No evidence, no done.
+```
+
 </Prompt>
 
 2. Reinforce it in CLAUDE.md so the rule is stated at the project level too.
 
 <Prompt title="CLAUDE.md - one line that matters">
+
+```text
 ## Rules
 - Never claim done without running it. Show the output or mark it UNVERIFIED.
+```
+
 </Prompt>
 
 3. Watch it work. Finish a real task and notice the agent now pauses to run the check and paste output. When it cannot verify, it will say so instead of bluffing - that honest unverified is the whole win.

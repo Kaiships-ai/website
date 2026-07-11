@@ -30,7 +30,11 @@ It is for solo builders who opened Claude Code, got a burst of magic, then watch
 1. Create your global skills and agents folders if they do not exist. Everything Claude Code loads globally lives under `~/.claude`.
 
 <Prompt title="Create the folders">
+
+```text
 mkdir -p ~/.claude/skills ~/.claude/agents
+```
+
 </Prompt>
 
 2. Copy the five skill folders and two agent folders from the PACK into those directories. Each skill is a folder with a SKILL.md; each agent is a Markdown file with frontmatter. Restart Claude Code so it re-scans.
@@ -38,6 +42,8 @@ mkdir -p ~/.claude/skills ~/.claude/agents
 3. Drop the curated `CLAUDE.md` into your project root. Start from this skeleton and cut anything that does not apply - a short, true CLAUDE.md beats a long, aspirational one.
 
 <Prompt title="CLAUDE.md skeleton (project root)">
+
+```text
 # Project: [name]
 
 ## What this is
@@ -56,6 +62,8 @@ List the real versions. Point to the config files, do not restate them.
 - Build: [command]
 - Test: [command]
 - Run locally: [command]
+```
+
 </Prompt>
 
 4. Verify the install. Ask Claude Code to list what it loaded. If a skill or agent is missing, the folder is in the wrong place or the frontmatter is malformed.

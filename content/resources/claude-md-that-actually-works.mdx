@@ -29,6 +29,8 @@ It is for solo builders who have felt the agent drift mid-task, re-explain the s
 1. Start from a skeleton with four sections and nothing else. Facts, rules, commands, and a short map of the code. Paste this into your project root.
 
 <Prompt title="CLAUDE.md skeleton">
+
+```text
 # Project: [name]
 
 ## Facts
@@ -52,16 +54,22 @@ It is for solo builders who have felt the agent drift mid-task, re-explain the s
 - Where the entry point is.
 - Where the tests live.
 - Where NOT to touch without asking.
+```
+
 </Prompt>
 
 2. Move personal preferences out. Anything that is true across all your projects - tone, commit style, tools you always want - belongs in your global file, not here.
 
 <Prompt title="~/.claude/CLAUDE.md (global personal rules)">
+
+```text
 # My defaults
 - Be terse. No preamble, no summary of what you are about to do.
 - Prefer editing existing files over creating new ones.
 - When you finish, tell me what you did NOT do or verify.
 - Never push, deploy, or delete without an explicit go.
+```
+
 </Prompt>
 
 3. Cut every line that is a wish, not a rule. "Write clean code" does nothing. "Match the error-handling pattern in the nearest sibling file" does. If you cannot picture the agent obeying it, delete it.

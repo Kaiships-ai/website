@@ -29,12 +29,16 @@ It is for solo builders watching usage climb and wondering where it went. None o
 1. **Context hygiene.** Keep the standing context small. Trim CLAUDE.md to true rules, and tell the agent to read only what it needs. Add a routing rule to your global config so cheap work goes to a cheap model.
 
 <Prompt title="~/.claude/CLAUDE.md - cost rules">
+
+```text
 # Cost discipline
 - Read the smallest slice that answers the question, not whole files by default.
 - For search, triage, renames, and formatting: use the fast, cheap model.
 - Reserve the strongest model for planning and hard logic.
 - Do not re-read a file you just edited to 'confirm' - trust the edit.
 - Clear or compact context between unrelated tasks.
+```
+
 </Prompt>
 
 2. **Caching.** Keep the stable stuff stable. Prompt caching rewards you for not reshuffling the front of your context every turn - so pin durable rules up top and let the churn happen lower down. Starting a fresh session for a genuinely new task is cheaper than dragging a bloated old one along.

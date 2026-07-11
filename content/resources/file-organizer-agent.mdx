@@ -30,6 +30,8 @@ It is for solo builders who want to learn how agents actually work by shipping a
 1. Define the agent. Move and rename only - never delete. Anything it cannot classify goes to a review folder for you, not to the trash.
 
 <Prompt title="~/.claude/agents/file-organizer.md">
+
+```text
 ---
 name: file-organizer
 description: Sort files in a target folder into a clean structure by type and date. Moves and renames only, never deletes.
@@ -44,12 +46,18 @@ Given a target folder:
 3. Rename screenshots to a readable date-time form.
 4. Anything you cannot classify goes to a _review folder. Never delete, never overwrite.
 5. Report a summary: how many moved, into what, and what landed in _review.
+```
+
 </Prompt>
 
 2. Dry-run it first. Ask the agent to list what it would move before it moves anything. Read the plan. This habit - preview, then act - is worth building on your very first agent.
 
 <Prompt title="Preview before acting">
+
+```text
 Run the file-organizer on ~/Downloads but only PRINT the planned moves. Do not move anything yet. I will approve.
+```
+
 </Prompt>
 
 3. Approve and run for real. Open the folders and check. If the scheme is wrong, fix the rules in the agent file, not the files by hand.

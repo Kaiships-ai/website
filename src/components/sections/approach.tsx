@@ -43,12 +43,12 @@ export function Approach() {
               className={`grid gap-4 rounded-2xl border p-6 transition-all duration-500 sm:grid-cols-[100px_1fr_auto] sm:items-center sm:gap-8 sm:p-8 ${
                 active === i
                   ? "border-accent/30 bg-white shadow-[0_16px_40px_-24px_rgba(224,83,47,0.35)]"
-                  : "border-transparent bg-transparent opacity-60"
+                  : "border-transparent bg-transparent"
               }`}
             >
               <span
                 className={`font-mono text-4xl font-semibold tracking-tight transition-colors duration-500 sm:text-5xl ${
-                  active === i ? "text-accent" : "text-ink-2/40"
+                  active === i ? "text-accent" : "text-ink-2/70"
                 }`}
               >
                 {step.num}

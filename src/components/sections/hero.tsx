@@ -1,7 +1,6 @@
 import { siteConfig } from "@/lib/site.config";
 import { Button } from "@/components/ui/button";
 import { TerminalPlayer } from "@/components/terminal-player";
-import { Reveal } from "@/components/reveal";
 import type { TermLine } from "@/components/terminal";
 
 export function Hero() {
@@ -17,7 +16,7 @@ export function Hero() {
         className="glow absolute bottom-[-20%] left-[-15%] h-[420px] w-[420px] rounded-full opacity-60"
       />
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <Reveal className="flex flex-col items-start gap-6">
+        <div className="animate-enter flex flex-col items-start gap-6">
           <p className="rounded-full border border-line bg-paper px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2">
             {hero.eyebrow}
           </p>
@@ -49,15 +48,15 @@ export function Hero() {
             <span className="text-success-ink">✓</span> installable files&ensp;
             <span className="text-success-ink">✓</span> built in public
           </p>
-        </Reveal>
-        <Reveal delay={0.15}>
+        </div>
+        <div className="animate-enter-late">
           <TerminalPlayer
             title={hero.terminal.title}
             command={hero.terminal.command}
             lines={hero.terminal.lines as unknown as TermLine[]}
             prompt={hero.terminal.prompt}
           />
-        </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -1,18 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import { useRef, type ReactNode, type MouseEvent } from "react";
 
 const styles = {
   primary:
     "bg-ink text-paper hover:bg-terminal-2 shadow-[0_1px_0_rgba(0,0,0,0.05),0_8px_24px_-12px_rgba(20,18,16,0.5)]",
   accent:
-    "bg-accent text-white hover:bg-accent-hover shadow-[0_8px_24px_-12px_rgba(224,83,47,0.6)]",
+    "bg-accent-ink text-white hover:bg-[#9a2f13] shadow-[0_8px_24px_-12px_rgba(178,58,29,0.6)]",
   ghost:
     "border border-line bg-transparent text-ink hover:border-ink/40 hover:bg-paper-2",
-  terminal:
-    "bg-terminal-fg text-terminal hover:bg-white",
+  terminal: "bg-terminal-fg text-terminal hover:bg-white",
 } as const;
 
 export type ButtonVariant = keyof typeof styles;
@@ -30,7 +28,6 @@ export function Button({
   magnetic?: boolean;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const external = href.startsWith("http");
 
@@ -46,11 +43,12 @@ export function Button({
     </Link>
   );
 
-  if (!magnetic || reduced) return link;
+  if (!magnetic) return link;
 
   const onMove = (e: MouseEvent) => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const r = el.getBoundingClientRect();
     const x = ((e.clientX - r.left - r.width / 2) / r.width) * 12;
     const y = ((e.clientY - r.top - r.height / 2) / r.height) * 10;
@@ -62,13 +60,13 @@ export function Button({
   };
 
   return (
-    <motion.div
+    <div
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className="inline-block transition-transform duration-200 ease-out will-change-transform"
     >
       {link}
-    </motion.div>
+    </div>
   );
 }

@@ -30,15 +30,23 @@ It is for the solo builder or non-dev who has heard Claude Code is powerful and 
 1. Install Claude Code. Open your terminal and paste the install command, then confirm it is there.
 
 <Prompt title="Install and check">
+
+```text
 npm install -g @anthropic-ai/claude-code
 claude --version
+```
+
 </Prompt>
 
 2. Authenticate. Start Claude Code in your project folder and follow the login prompt in your browser. This links your account so requests are billed to you.
 
 <Prompt title="Start it up">
+
+```text
 cd path/to/your/project
 claude
+```
+
 </Prompt>
 
 3. Give it a first project with a clear, small goal. Do not ask for an app. Ask for one thing you can check. A single working page, a script that renames files, a form that validates an email. Small enough to verify by looking.
@@ -46,6 +54,8 @@ claude
 4. Add a tiny CLAUDE.md so the agent knows the rules from turn one. Even four lines helps.
 
 <Prompt title="CLAUDE.md - starter">
+
+```text
 # Project: my first ship
 
 ## Rules
@@ -53,6 +63,8 @@ claude
 - After a change, tell me exactly how to check it worked.
 - Keep it small. One thing at a time.
 - If something might fail, say so instead of guessing.
+```
+
 </Prompt>
 
 5. Ship and verify. When the agent says it is done, do not take its word. Run it, open it, click it. If it works, you shipped. If it does not, tell the agent what you actually saw and let it fix the specific thing. That loop - build, check, correct - is the whole job.

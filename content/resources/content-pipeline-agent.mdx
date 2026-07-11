@@ -30,6 +30,8 @@ It is for solo builders who ship real things and want the story to keep up witho
 1. Define the pipeline agent with three explicit stages: research, draft, schedule. Keeping the stages separate is what keeps the output honest - research produces sources, draft uses only those sources.
 
 <Prompt title="~/.claude/agents/content-pipeline.md">
+
+```text
 ---
 name: content-pipeline
 description: Turn my raw build notes into a sourced, formatted draft ready to schedule. Never invents facts.
@@ -44,16 +46,22 @@ Run in three stages, in order:
 3. SCHEDULE - format for the target platform and output a queue entry with a suggested date. Do not publish.
 
 If stages 1 and 2 disagree, stop and ask.
+```
+
 </Prompt>
 
 2. Add your voice guide so the draft sounds like you, not like an assistant.
 
 <Prompt title="voice-guide.md">
+
+```text
 # Voice
 - Terse. Cut the throat-clearing intro.
 - Concrete numbers over adjectives. If I cannot source it, cut it.
 - Name the failure, not just the win.
 - One idea per post. End when the point is made.
+```
+
 </Prompt>
 
 3. Run it on one real build. Read the draft against your notes - every claim should trace back. Fix voice in the guide, fix facts in your notes, then rerun.

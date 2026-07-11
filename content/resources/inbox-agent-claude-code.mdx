@@ -30,6 +30,8 @@ It is for people getting more mail than they can triage well, who want a first p
 1. Define the agent. It is a Markdown file with frontmatter and instructions. Drop this in and tune the rules to your inbox.
 
 <Prompt title="~/.claude/agents/inbox-triage.md">
+
+```text
 ---
 name: inbox-triage
 description: Triage recent email and draft replies. Never sends. Flags anything needing a human decision.
@@ -44,6 +46,8 @@ You process recent, scoped email only. For each message:
 3. Flag anything about money, legal, or commitments as NEEDS-HUMAN and do not draft a decision.
 4. Never send. Leave every reply as a draft.
 5. Report a short list: sender, classification, one-line reason.
+```
+
 </Prompt>
 
 2. Wire up mailbox access. This is the OAuth step. Create app credentials with your provider, grant read and draft scopes, and complete the consent flow. Keep the token out of the repo - store it where your other secrets live, never in a file the agent can commit.

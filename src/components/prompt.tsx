@@ -38,9 +38,9 @@ export function Prompt({
           {copied ? "copied ✓" : "copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto whitespace-pre-wrap p-4 font-mono text-[13px] leading-6 text-terminal-fg">
+      <div className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-terminal-fg [&_pre]:m-0 [&_pre]:whitespace-pre-wrap [&_pre]:bg-transparent [&_pre]:p-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_p]:m-0 [&_p]:whitespace-pre-wrap">
         {children}
-      </pre>
+      </div>
     </div>
   );
 }

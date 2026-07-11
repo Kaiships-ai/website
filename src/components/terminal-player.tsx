@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "motion/react";
 import { TerminalShell, TermLineView, type TermLine } from "./terminal";
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+  return reduced;
+}
 
 /**
  * Looping terminal animation: types the command, prints result lines,
@@ -20,7 +27,7 @@ export function TerminalPlayer({
   lines: TermLine[];
   prompt: string;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const [mounted, setMounted] = useState(false);
   const [cmdChars, setCmdChars] = useState(command.length);
   const [shown, setShown] = useState(lines.length);

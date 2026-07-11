@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# kaiships.ai
 
-## Getting Started
+Marketing + content site for **kaiships.ai** — "Real Claude Code agents. No slop."
 
-First, run the development server:
+Built with Next.js 16 (App Router, fully static), Tailwind v4, MDX. No CMS, no database, no client-side tracking.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build      # static production build
+pnpm start      # serve production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Edit content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+|---|---|
+| All site copy, links, PACK keyword, socials, Skool URL | `src/lib/site.config.ts` |
+| Resources (library articles) | `content/resources/*.mdx` |
+| Ship log posts | `content/blog/*.mdx` |
+| Theme (colors, fonts, radii) | `src/app/globals.css` `:root` block |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Resource frontmatter
 
-## Learn More
+```yaml
+title: ""
+description: ""
+type: Skills | Agents | Systems | Workflows | Guides
+tool: Claude Code | Claude | Multi-tool
+date: "2026-07-11"
+readTime: 7
+popular: true      # optional
+faq:               # optional, drives FAQPage JSON-LD
+  - q: ""
+    a: ""
+```
 
-To learn more about Next.js, take a look at the following resources:
+MDX components available in content: `<Prompt title="">` (fence the payload in ```text blocks), `<Callout type="warn|note">`, `<PackCta />`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Editorial rules (hard)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+No invented member counts, no fake testimonials, no revenue flexes. Numbers are examples from real runs, framed as such. Every resource documents failure modes ("What breaks").
 
-## Deploy on Vercel
+## Deploy (Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx vercel login          # once
+npx vercel                # preview deploy
+npx vercel --prod         # production
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Attach the kaiships.ai domain (after registering it)
+
+1. Vercel dashboard → project → Settings → Domains → add `kaiships.ai` + `www.kaiships.ai`.
+2. At the registrar, point the apex A record to `76.76.21.21` and `www` CNAME to `cname.vercel-dns.com`.
+3. `src/lib/site.config.ts` already uses `https://kaiships.ai` as canonical.
+
+## Built-in SEO/AEO
+
+Per-page metadata + canonical, static OG images per route (`opengraph-image.tsx`), JSON-LD (WebSite, Person, Article, BlogPosting, FAQPage), `sitemap.xml`, `robots.txt`, `rss.xml`, `llms.txt`, security headers in `next.config.ts`.

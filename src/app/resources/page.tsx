@@ -33,6 +33,7 @@ export default function ResourcesPage() {
           </p>
         </Reveal>
         <div className="mt-12">
+          <h2 className="sr-only">All resources</h2>
           <ResourcesExplorer resources={resources} />
         </div>
       </div>

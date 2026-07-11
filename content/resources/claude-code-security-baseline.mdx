@@ -41,20 +41,28 @@ It is for solo builders who let the agent run with some autonomy and want that a
 2. Add rules to CLAUDE.md so the intent is stated, not just enforced. Belt and suspenders.
 
 <Prompt title="CLAUDE.md - security rules">
+
+```text
 # Never without an explicit go
 - Do not delete files or directories - propose the command, let me run it.
 - Do not force-push, reset hard, or rewrite history.
 - Do not read, print, or commit anything under .env or secrets paths.
 - Do not run a command piped from the internet into a shell.
 - Do not touch production or deploy without me saying the word.
+```
+
 </Prompt>
 
 3. Quarantine secrets. Keep them in env vars or a manager, and make them uncommittable.
 
 <Prompt title="Keep secrets out of the repo">
+
+```text
 echo ".env" >> .gitignore
 echo "*.pem" >> .gitignore
 echo "secrets/" >> .gitignore
+```
+
 </Prompt>
 
 4. Sandbox risky work. When you let an agent run more freely, do it in a throwaway branch or a container, not on main and not on the only copy of anything you cannot lose.

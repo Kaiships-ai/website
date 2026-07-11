@@ -21,7 +21,7 @@ export function Footer() {
               $ built in public with Claude Code agents —{" "}
               <Link
                 href="/blog/building-this-site-with-agent-teams"
-                className="text-accent-ink underline-offset-4 hover:underline"
+                className="text-accent-ink underline underline-offset-4"
               >
                 this site is one of the receipts
               </Link>
@@ -39,7 +39,7 @@ export function Footer() {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-sm text-ink-2 transition-colors hover:text-ink"
+                        className="inline-block py-1 text-sm text-ink-2 transition-colors hover:text-ink"
                         {...(external
                           ? { target: "_blank", rel: "noopener noreferrer" }
                           : {})}

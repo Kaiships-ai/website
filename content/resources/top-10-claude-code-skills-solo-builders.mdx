@@ -29,6 +29,8 @@ This is for solo builders who want capability without clutter. Install the ones 
 1. Every skill is a folder containing a `SKILL.md` with frontmatter and instructions. To install one, create the folder and drop the file in. Here is the canonical shape - build any skill from this.
 
 <Prompt title="~/.claude/skills/verify-before-trust/SKILL.md">
+
+```text
 ---
 name: verify-before-trust
 description: Use before claiming a task is done. Forces a test, screenshot, or command output as proof.
@@ -44,6 +46,8 @@ When about to say a task is done, fixed, or passing:
 4. Only then report completion.
 
 Never assert success from reading code alone.
+```
+
 </Prompt>
 
 2. Restart Claude Code so it re-scans the skills folder. Ask it to list loaded skills to confirm.

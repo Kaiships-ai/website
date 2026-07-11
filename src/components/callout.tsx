@@ -4,7 +4,7 @@ const kinds = {
   warn: {
     cls: "border-amber/40 bg-amber/8",
     label: "what breaks",
-    labelCls: "text-amber",
+    labelCls: "text-[#92400e]",
   },
   note: {
     cls: "border-line bg-paper-2",
