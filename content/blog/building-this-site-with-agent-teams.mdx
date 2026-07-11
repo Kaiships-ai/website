@@ -1,0 +1,47 @@
+---
+title: "Building This Site With Agent Teams"
+description: "How kaiships.ai went from a one-line requirement to deployed in a single day - requirements, two scout agents in parallel panes, spec, build, deploy. The concrete, replicable version."
+date: "2026-07-11"
+readTime: 6
+tag: "build-log"
+---
+
+This site was built in a day with a small team of agents. Not "an AI wrote my website" in the magic-button sense - a deliberate, staged workflow where I stayed the editor and the agents did the labor. Here is exactly how, in the order it happened, so you can copy it.
+
+## Start with the requirement, not the code
+
+The first hour had no code in it. I wrote down what this site had to be: a marketing and content site for the Claude Code niche, one clear funnel - free PACK to community - and a design that reads as substance, not hype. One tagline, locked. A short list of sections. The audience, in a sentence.
+
+That document did more work than anything else all day. Every agent that touched this project got pointed at it. A vague requirement is where agent builds go to die; a tight one is what lets you move fast without babysitting every decision.
+
+## Two scouts, two panes, in parallel
+
+Next I needed to learn from reference sites - one for structure, one for the resources library pattern. This is the part people skip, and it is where the day could have doubled.
+
+I ran two scout agents at once, each in its own pane, each with a lane it owned. Scout A studied the structure reference and reported section order and organization. Scout B crawled a resources library and captured how it handled search, filters, and per-item pages. Neither wrote code. Neither touched the other's lane. Both came back with a short outline I could approve or reject.
+
+Parallel worked here for one reason: the two jobs were genuinely independent. Two references, no shared state, nothing that had to happen in order. That is the only time splitting into panes actually saves time - when the work would not need to sync anyway. If the tasks had depended on each other, one agent would have been faster.
+
+## Spec, then build
+
+With the requirement and the two scout reports in hand, I wrote the spec - information architecture, the design system, the funnel wiring, honesty constraints carried into every line of copy. Approved it. Only then did building start.
+
+The build ran as a plan of discrete tasks - scaffold and tokens, content pipeline, UI primitives, homepage, resources library, ship log, SEO, polish. Each task produced something checkable before the next began. When content needed writing, that ran as its own parallel track with the schema handed over verbatim, so the words and the components were built to the same contract.
+
+## Verify, then deploy
+
+Nothing shipped on vibes. Each stage ended with a real check - the build passing, the pages rendering, the filters working, the copy buttons copying. Where a claim could not be verified, it got marked unverified and did not count as done. Then a preview deploy, a review, and only after that a production push.
+
+## The replicable version
+
+Strip it to the pattern and it is five moves:
+
+1. **Requirement first.** One tight document. Everything points at it.
+2. **Scout in parallel only when the work is independent.** Two references, two lanes, two panes. Not for one linear job.
+3. **Spec before build.** Turn the reports into a plan you approve.
+4. **Build in checkable tasks.** Each one ends in proof, not a promise.
+5. **Verify, then deploy.** Preview, review, production - in that order.
+
+None of this needs a big team or a big budget. It needs a clear requirement, agents kept in their lanes, and a human who refuses to call anything done without looking. That last part is the whole method. The agents are fast; the judgment is yours.
+
+And yes - the post you are reading came out of the same content system the site ships. If it could not write about itself honestly, it would not be good enough to publish.

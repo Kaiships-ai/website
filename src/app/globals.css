@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ————— kaiships design tokens — edit theme here ————— */
 :root {
