@@ -1,0 +1,80 @@
+---
+title: "The Claude Code Starter PACK"
+description: "The exact CLAUDE.md, five skills, and two agents I install on every new machine. Free, tested, and you read every file before it runs."
+type: "Systems"
+tool: "Claude Code"
+date: "2026-07-11"
+readTime: 8
+popular: true
+faq:
+  - q: "Is the PACK a package I have to install and trust?"
+    a: "No. It is plain files - one CLAUDE.md, five skill folders, two agent folders. You copy them in and you can read every line first. Nothing runs blind."
+  - q: "Do I need to be a developer to use it?"
+    a: "No. If you can create folders and paste text, you can install the PACK. The setup below is the whole job, about ten minutes on a fresh machine."
+  - q: "Will this work on my existing project?"
+    a: "Yes. The skills and agents live in your global config, so they apply everywhere. The CLAUDE.md is per-project, so you drop a copy into each repo and trim it to fit."
+---
+
+This is the exact baseline I drop onto every new machine before I write a single line for a client or product: one curated `CLAUDE.md`, five skills, and two agents. It is the anti-slop starter kit - not a prompt list, not a screenshot of settings, but real files you install and read for yourself.
+
+It is for solo builders who opened Claude Code, got a burst of magic, then watched the agent drift, burn tokens, and confidently ship something broken. The PACK is the guardrails I wish I had on day one.
+
+## What you need
+
+- Claude Code installed and authenticated (see the zero-to-shipping guide if not).
+- A terminal and a text editor.
+- The PACK files (comment PACK to get them - see the bottom of this page).
+
+## Setup
+
+1. Create your global skills and agents folders if they do not exist. Everything Claude Code loads globally lives under `~/.claude`.
+
+<Prompt title="Create the folders">
+mkdir -p ~/.claude/skills ~/.claude/agents
+</Prompt>
+
+2. Copy the five skill folders and two agent folders from the PACK into those directories. Each skill is a folder with a SKILL.md; each agent is a Markdown file with frontmatter. Restart Claude Code so it re-scans.
+
+3. Drop the curated `CLAUDE.md` into your project root. Start from this skeleton and cut anything that does not apply - a short, true CLAUDE.md beats a long, aspirational one.
+
+<Prompt title="CLAUDE.md skeleton (project root)">
+# Project: [name]
+
+## What this is
+One or two sentences. What we are building and for whom.
+
+## Rules
+- Verify before you claim done: run the test or show the output.
+- Keep changes small. One task, one diff.
+- Never auto-approve deletes, force-push, or secrets access.
+- If a step can fail, say so - do not paper over it.
+
+## Stack
+List the real versions. Point to the config files, do not restate them.
+
+## Commands
+- Build: [command]
+- Test: [command]
+- Run locally: [command]
+</Prompt>
+
+4. Verify the install. Ask Claude Code to list what it loaded. If a skill or agent is missing, the folder is in the wrong place or the frontmatter is malformed.
+
+### What each piece does
+
+- **CLAUDE.md** - the standing rules above. Cuts drift and token burn on every turn.
+- **verify-before-trust** (skill) - blocks a "done" claim until there is a test, screenshot, or receipt.
+- **token-budget** (skill) - context hygiene and model routing to keep runs cheap.
+- **ship-check** (skill) - the build to verify to ship to document loop as a checklist.
+- **commit-clean** (skill) - tidy, conventional commits with a real message.
+- **scout** (skill) - fast research that returns sources, not vibes.
+- **file-organizer** (agent) - sorts Downloads and screenshots; a safe first agent.
+- **inbox-triage** (agent) - drafts replies and labels; honest about the OAuth setup.
+
+## What breaks
+
+<Callout type="warn">
+Two failure modes to expect. First, a bloated CLAUDE.md quietly costs you on every request - it is prepended to context each turn, so keep it short and delete stale rules. Second, skills and agents only load from the exact paths above with valid frontmatter; a typo in the folder name or a missing title field means Claude Code silently skips it and you get no error. When something does not load, check the path and the frontmatter first.
+</Callout>
+
+<PackCta />

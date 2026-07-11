@@ -1,0 +1,77 @@
+---
+title: "A CLAUDE.md That Actually Works"
+description: "Build a CLAUDE.md that cuts token burn and stops agent drift. A real skeleton you can paste today, plus the rules that earn their place."
+type: "Systems"
+tool: "Claude Code"
+date: "2026-06-28"
+readTime: 7
+popular: true
+faq:
+  - q: "Why does my CLAUDE.md make things worse?"
+    a: "Usually it is too long. Every rule is prepended to context on every turn, so a 2000-word file taxes each request and buries the rules that matter. Shorter and true beats long and aspirational."
+  - q: "Global CLAUDE.md or per-project?"
+    a: "Both, with a split. Put durable personal preferences in the global file and put project facts - stack, commands, conventions - in the project file. Do not repeat yourself across the two."
+  - q: "How often should I update it?"
+    a: "Edit it the moment the agent does something you had to correct twice. The CLAUDE.md is where a repeated correction becomes a permanent one."
+---
+
+Your `CLAUDE.md` is the highest-leverage file in the whole setup. It is loaded into context on every turn, so it either steers the agent or it taxes you. Most CLAUDE.md files do both: a few good rules drowning in aspirational filler. This resource is how I keep mine short, true, and cheap.
+
+It is for solo builders who have felt the agent drift mid-task, re-explain the stack, or confidently break a convention you already wrote down somewhere. The fix is not more words. It is fewer, better ones.
+
+## What you need
+
+- A project using Claude Code.
+- Ten minutes and a willingness to delete lines.
+
+## Setup
+
+1. Start from a skeleton with four sections and nothing else. Facts, rules, commands, and a short map of the code. Paste this into your project root.
+
+<Prompt title="CLAUDE.md skeleton">
+# Project: [name]
+
+## Facts
+- What this is, in one line.
+- Stack and real versions. Point at config files; do not restate them.
+- The one thing that is weird about this repo that trips people up.
+
+## Rules
+- Verify before done. Run the test or show output; no 'should work'.
+- Small diffs. One task at a time.
+- Match existing patterns; do not introduce a new library without asking.
+- If a step can fail, say so and stop.
+
+## Commands
+- Install: [command]
+- Build: [command]
+- Test: [command]
+- Run: [command]
+
+## Map
+- Where the entry point is.
+- Where the tests live.
+- Where NOT to touch without asking.
+</Prompt>
+
+2. Move personal preferences out. Anything that is true across all your projects - tone, commit style, tools you always want - belongs in your global file, not here.
+
+<Prompt title="~/.claude/CLAUDE.md (global personal rules)">
+# My defaults
+- Be terse. No preamble, no summary of what you are about to do.
+- Prefer editing existing files over creating new ones.
+- When you finish, tell me what you did NOT do or verify.
+- Never push, deploy, or delete without an explicit go.
+</Prompt>
+
+3. Cut every line that is a wish, not a rule. "Write clean code" does nothing. "Match the error-handling pattern in the nearest sibling file" does. If you cannot picture the agent obeying it, delete it.
+
+4. Add rules by subtraction over time. When you correct the same mistake twice, encode it as one line. When a line never fires, remove it.
+
+## What breaks
+
+<Callout type="warn">
+The two traps. Bloat: the file grows every time you are annoyed, and within a month it costs real tokens on every single turn while the signal-to-noise drops - so it drifts more, not less. Contradiction: a global rule and a project rule that disagree make the agent pick unpredictably; keep durable preferences global and project facts local, and never state the same rule in both places. Reread the whole file monthly and delete on sight.
+</Callout>
+
+<PackCta />
