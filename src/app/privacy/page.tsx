@@ -35,9 +35,17 @@ export default function PrivacyPage() {
             and secure the site.
           </li>
         </ul>
+        <h2>Email capture</h2>
+        <p>
+          If you request the free PACK (on <a href="/pack">/pack</a> or the
+          site popup), the email address you submit is sent to Kit
+          (ConvertKit), our email provider, to deliver the download link and
+          occasional updates. Every email includes an unsubscribe link, and
+          unsubscribing removes you from the list.
+        </p>
         <h2>Third-party destinations</h2>
         <p>
-          Links to Instagram, TikTok, X, YouTube, and Skool take you to those
+          Links to Instagram, TikTok, X, YouTube, and Discord take you to those
           platforms, where their own privacy policies apply. If you DM the
           keyword on Instagram, that conversation happens on Instagram under
           Meta&apos;s terms.

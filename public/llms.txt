@@ -2,12 +2,12 @@
 
 > Real Claude Code agents. No slop. Solo builder (Kai) shipping the exact Claude Code skills, agents, and CLAUDE.md systems he runs — tested on a real product before release, failure modes documented.
 
-kaiships.ai publishes installable files, not prompt lists. Everything in the library is free and ungated. The paid offer is a monthly community with weekly verified skill/agent drops.
+kaiships.ai publishes installable files, not prompt lists. The article library is free to read; the full Starter PACK bundle is delivered by email. The paid offer is a monthly community with weekly verified skill/agent drops.
 
 ## What lives here
 
 - [Resource library](https://kaiships.ai/resources): free Claude Code skills, agents, workflows, and systems. Each article includes copy-paste setup, an honest "What breaks" section, and an FAQ.
-- [Starter PACK](https://kaiships.ai/resources/claude-code-starter-pack): the flagship free bundle — one curated CLAUDE.md, five skills, two agents. Delivered by DMing the keyword PACK to @kaiships.ai on Instagram, or directly from the library.
+- [Starter PACK](https://kaiships.ai/pack): the flagship free bundle — a curated CLAUDE.md, a model-routing config, 18 tested skills, and 4 subagents. Delivered by email at kaiships.ai/pack (repo link shown instantly), or by DMing the keyword PACK to @kaiships.ai on Instagram.
 - [Ship log](https://kaiships.ai/blog): build-in-public posts with real numbers — what shipped, what broke, what it cost.
 - Community: $97/mo (founding members $47/mo, first ~50, grandfathered) — a living skills library with weekly tested drops and direct support.
 

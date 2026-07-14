@@ -36,7 +36,7 @@ export function CtaBand() {
               <span className="rounded bg-terminal-2 px-2 py-1 text-amber">
                 {ctaBand.keyword}
               </span>{" "}
-              · no email wall · installable in minutes
+              · delivered by email · installable in minutes
             </p>
           </div>
         </Reveal>

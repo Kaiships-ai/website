@@ -40,8 +40,9 @@ export default function TermsPage() {
         </p>
         <h2>Community subscriptions</h2>
         <p>
-          The paid community runs on Skool; billing, cancellation, and refunds
-          are handled there under the terms shown at checkout. Cancel anytime.
+          The paid community runs on Discord; billing, cancellation, and
+          refunds are handled by the payment provider under the terms shown at
+          checkout. Cancel anytime.
         </p>
         <h2>Contact</h2>
         <p>

@@ -17,8 +17,8 @@ export const siteConfig = {
     tiktok: "https://tiktok.com/@kaiships.ai",
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
-    // TODO: replace with the real Skool URL once the community is created
-    skool: "https://skool.com/kaiships",
+    // TODO: replace with the real Discord invite once the community is created
+    discord: "https://discord.gg/kaiships",
     email: "kai@kaiships.ai",
   },
 
@@ -29,7 +29,7 @@ export const siteConfig = {
     { label: "Resources", href: "/resources" },
     { label: "Ship log", href: "/blog" },
   ],
-  navCta: { label: "Get the PACK", href: "/resources/claude-code-starter-pack" },
+  navCta: { label: "Get the PACK", href: "/pack" },
 
   hero: {
     eyebrow: "kaiships.ai — Claude Code systems for solo builders",
@@ -37,13 +37,13 @@ export const siteConfig = {
     h1Plain: "Real Claude Code agents.",
     h1Accent: "No slop.",
     sub: "The exact skills, agents, and CLAUDE.md systems I run as a solo builder — tested on a real product before they ever reach you.",
-    primaryCta: { label: "Get the free PACK", href: "/resources/claude-code-starter-pack" },
+    primaryCta: { label: "Get the free PACK", href: "/pack" },
     secondaryCta: { label: "Browse the library", href: "/resources" },
     terminal: {
       title: "kaiships — zsh",
       command: "npx kaiships add starter-pack",
       lines: [
-        { kind: "dim", text: "resolving pack · 5 skills · 2 agents · CLAUDE.md" },
+        { kind: "dim", text: "resolving pack · 18 skills · 4 subagents · CLAUDE.md" },
         { kind: "ok", text: "verify-before-trust … installed" },
         { kind: "ok", text: "token-guard … installed" },
         { kind: "ok", text: "ship-log … installed" },
@@ -129,8 +129,8 @@ export const siteConfig = {
     free: {
       label: "Free",
       title: "The Starter PACK",
-      desc: "A curated CLAUDE.md + 5 skills + 2 agents, installable in minutes. DM the word PACK on Instagram or grab it from the library.",
-      cta: { label: "Get the PACK", href: "/resources/claude-code-starter-pack" },
+      desc: "A curated CLAUDE.md, model-routing config, 18 tested skills + 4 subagents — installable in minutes. DM the word PACK on Instagram, or drop your email and get the repo instantly.",
+      cta: { label: "Get the PACK", href: "/pack" },
     },
     paid: {
       label: "$97/mo",
@@ -143,7 +143,7 @@ export const siteConfig = {
         "Direct help from Kai when things break",
         "Founding rate locked for the first 50 members, grandfathered forever",
       ],
-      cta: { label: "Join the founding 50", href: "https://skool.com/kaiships" },
+      cta: { label: "Join the founding 50", href: "https://discord.gg/kaiships" },
       finePrint: "Founding rate $47/mo for the first ~50 members, then $97/mo. Cancel anytime — churn is my problem to earn, not yours to manage.",
     },
   },
@@ -158,10 +158,10 @@ export const siteConfig = {
 
   ctaBand: {
     title: "Start with the PACK.",
-    sub: "DM the keyword on Instagram and I'll send the install link — or grab it straight from the library. No email wall.",
+    sub: "DM the keyword on Instagram, or drop your email — the repo link lands in your inbox and on your screen at the same time.",
     keyword: "PACK",
     dmCta: { label: "DM PACK on Instagram", href: "https://ig.me/m/kaiships.ai" },
-    libraryCta: { label: "Get it from the library", href: "/resources/claude-code-starter-pack" },
+    libraryCta: { label: "Get it by email", href: "/pack" },
   },
 
   marquee: [
@@ -183,7 +183,7 @@ export const siteConfig = {
       {
         title: "Ship",
         links: [
-          { label: "Starter PACK", href: "/resources/claude-code-starter-pack" },
+          { label: "Starter PACK", href: "/pack" },
           { label: "Resources", href: "/resources" },
           { label: "Ship log", href: "/blog" },
           { label: "Community", href: "/#community" },

@@ -43,6 +43,16 @@ MDX components available in content: `<Prompt title="">` (fence the payload in `
 
 No invented member counts, no fake testimonials, no revenue flexes. Numbers are examples from real runs, framed as such. Every resource documents failure modes ("What breaks").
 
+## Email capture (Kit)
+
+`/pack` and the exit-intent popup post to `/api/subscribe`, which proxies to Kit (ConvertKit). Set in `.env.local` / Vercel env (see `.env.example`):
+
+- `KIT_API_KEY` — Kit account API key
+- `KIT_FORM_ID` — the PACK form id
+- `KIT_TAG_ID` — optional; numeric id of the `pack-v1` tag (or set the tag on the form in Kit's UI)
+
+Until these are set, the form returns "not configured" and points people at the Instagram DM instead. Configure the form's confirmation email in Kit to contain the repo link — the success screen tells subscribers it was emailed.
+
 ## Deploy (Vercel)
 
 ```bash

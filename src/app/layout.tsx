@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/site.config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { LenisProvider } from "@/components/lenis-provider";
+import { ExitIntent } from "@/components/exit-intent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -90,6 +91,7 @@ export default function RootLayout({
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />
+          <ExitIntent />
         </LenisProvider>
       </body>
     </html>

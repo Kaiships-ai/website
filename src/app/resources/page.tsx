@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal";
 export const metadata: Metadata = {
   title: "Free Claude Code skills, agents & systems",
   description:
-    "Every skill, agent, and CLAUDE.md system I ship — free, installable, and tested on a real product before release. No email wall.",
+    "Every skill, agent, and CLAUDE.md system I ship — free, installable, and tested on a real product before release. The full PACK bundle ships by email.",
   alternates: { canonical: "/resources" },
 };
 

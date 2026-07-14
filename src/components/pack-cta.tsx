@@ -12,19 +12,21 @@ export function PackCta() {
         Want the whole system, installed in minutes?
       </h3>
       <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-2">
-        The free Starter PACK bundles my curated CLAUDE.md, 5 skills, and 2
-        agents — the same files this site runs on. DM{" "}
+        The free Starter PACK bundles my curated CLAUDE.md, a model-routing
+        config, 18 tested skills, and 4 subagents. Drop your email and the
+        repo link lands in your inbox — and on your screen at the same time.
+        Or DM{" "}
         <span className="rounded bg-terminal px-1.5 py-0.5 font-mono text-xs text-amber">
           {siteConfig.keyword}
         </span>{" "}
-        on Instagram or grab it from the library. No email wall.
+        on Instagram.
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
-        <Button href={siteConfig.socials.instagramDm} variant="accent">
-          DM {siteConfig.keyword} on Instagram
+        <Button href="/pack" variant="accent">
+          Get the PACK by email
         </Button>
-        <Button href="/resources/claude-code-starter-pack" variant="ghost">
-          Get it from the library
+        <Button href={siteConfig.socials.instagramDm} variant="ghost">
+          DM {siteConfig.keyword} on Instagram
         </Button>
       </div>
     </aside>

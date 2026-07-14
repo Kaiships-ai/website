@@ -4,7 +4,7 @@ import { getAllPosts, getAllResources } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
-  const statics = ["", "/resources", "/blog", "/privacy", "/terms"].map(
+  const statics = ["", "/pack", "/resources", "/blog", "/privacy", "/terms"].map(
     (p) => ({
       url: `${siteConfig.url}${p}`,
       lastModified: now,
