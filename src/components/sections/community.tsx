@@ -48,7 +48,7 @@ export function Community() {
                     {community.paid.label}
                   </span>
                 </div>
-                <span className="font-mono text-xs text-ink-2">rung 1</span>
+                <span className="font-mono text-xs text-ink-2">rung 2</span>
               </div>
               <h3 className="relative mt-5 text-2xl font-medium tracking-tight text-ink">
                 {community.paid.title}

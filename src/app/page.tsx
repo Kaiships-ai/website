@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Ship } from "@/components/sections/ship";
 import { Approach } from "@/components/sections/approach";
+import { Kit } from "@/components/sections/kit";
 import { Community } from "@/components/sections/community";
 import { ShipLog } from "@/components/sections/ship-log";
 import { CtaBand } from "@/components/sections/cta";
@@ -14,6 +15,7 @@ export default function Home() {
       <Marquee items={siteConfig.marquee} />
       <Ship />
       <Approach />
+      <Kit />
       <Community />
       <ShipLog />
       <CtaBand />

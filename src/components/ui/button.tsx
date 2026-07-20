@@ -29,18 +29,25 @@ export function Button({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const external = href.startsWith("http");
+  const internal = href.startsWith("/") || href.startsWith("#");
 
   const base = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-tight transition-all duration-300 active:scale-[0.98] ${styles[variant]} ${className}`;
 
-  const link = (
-    <Link
-      href={href}
-      className={base}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
+  // Non-internal hrefs (external URLs, unconfigured placeholders) render as a
+  // plain anchor so next/link never prefetches them.
+  const link = internal ? (
+    <Link href={href} className={base}>
       {children}
     </Link>
+  ) : (
+    <a
+      href={href}
+      className={base}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
   );
 
   if (!magnetic) return link;

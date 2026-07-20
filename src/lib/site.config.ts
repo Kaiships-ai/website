@@ -25,6 +25,7 @@ export const siteConfig = {
   nav: [
     { label: "What I ship", href: "/#ship" },
     { label: "Approach", href: "/#approach" },
+    { label: "Kit", href: "/kit" },
     { label: "Community", href: "/#community" },
     { label: "Resources", href: "/resources" },
     { label: "Ship log", href: "/blog" },
@@ -121,11 +122,54 @@ export const siteConfig = {
     ],
   },
 
+  // Content Machine Kit — the paid product (rung 1: free PACK → Kit → community).
+  kit: {
+    name: "Content Machine Kit",
+    price: "$99",
+    priceNote: "one-time · no subscription",
+    checkoutUrl: "https://buy.polar.sh/polar_cl_ifrFWJmjWHztffFq6xwQQlWSJQAbOeUbIZ9hD1xW7oi",
+    // TODO(kai): public roadmap URL; roadmap link hidden while empty.
+    roadmapUrl: "",
+    tagline: "Turn Claude Code into your",
+    taglineAccent: "content machine.",
+    sub: "An installable system that runs on your machine: ideate → carousels + reels → publish to Instagram. No subscription, no hosted middleman — your keys, your repo, your output.",
+    included: [
+      "5 KSA commands — the full ideate → publish pipeline",
+      "Keyless carousel render — no design-tool API needed",
+      "9:16 reels with local voiceover",
+      "One-click Instagram publish, or a post-ready bundle",
+      "Lifetime updates via git pull",
+      "Private GitHub repo + Discord access",
+    ],
+    need: [
+      "A Claude subscription — Pro works, Max is comfortable",
+      "It's a builder's tool, not no-code — you run it in a terminal",
+      "One-click auto-publish needs an Instagram Business/Creator account linked to a Facebook Page — without it you still publish via the post-ready bundle",
+      "A pipeline run takes minutes, not seconds",
+    ],
+    guarantee: "30-day money-back — and you keep the files. Payment and delivery handled by Polar (Merchant of Record); repo + Discord access is granted right after checkout.",
+    buyLabel: "Buy the Kit — $99",
+    pageCta: { label: "See the Content Machine Kit", href: "/kit" },
+    terminal: {
+      title: "content-machine — zsh",
+      lines: [
+        { kind: "cmd", text: "/ideate \"ai tools for solo builders\"" },
+        { kind: "ok", text: "12 hooks ranked by proof" },
+        { kind: "cmd", text: "/carousel 03" },
+        { kind: "ok", text: "8 slides rendered — no design API" },
+        { kind: "cmd", text: "/reel 03 --voice local" },
+        { kind: "ok", text: "9:16 reel + voiceover, on-device" },
+        { kind: "cmd", text: "/publish --ig" },
+        { kind: "accent", text: "posted — or bundled, your call" },
+      ],
+    },
+  },
+
   community: {
     eyebrow: "Community",
     title: "Ship with people who",
     titleAccent: "actually ship.",
-    sub: "Two rungs. No high-ticket upsell hiding behind a call booking.",
+    sub: "Three rungs, priced plainly: free PACK, a one-time Kit, a monthly community. No high-ticket upsell hiding behind a call booking.",
     free: {
       label: "Free",
       title: "The Starter PACK",
