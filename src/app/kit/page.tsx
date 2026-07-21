@@ -36,12 +36,20 @@ export default function KitPage() {
             <p className="max-w-xl text-lg leading-relaxed text-ink-2">
               {kit.sub}
             </p>
-            <p className="font-mono text-sm text-ink">
-              <span className="text-2xl font-semibold tracking-tight">
-                {kit.price}
-              </span>{" "}
-              <span className="text-ink-2">· {kit.priceNote}</span>
-            </p>
+            <div className="flex flex-col items-start gap-1.5">
+              <p className="font-mono text-sm text-ink">
+                <span className="text-ink-2 line-through decoration-1">
+                  {kit.regularPrice}
+                </span>{" "}
+                <span className="text-2xl font-semibold tracking-tight">
+                  {kit.price}
+                </span>{" "}
+                <span className="text-ink-2">· {kit.priceNote}</span>
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent-ink">
+                {kit.seats}
+              </p>
+            </div>
           </div>
           <div className="animate-enter-late">
             <TerminalShell title={kit.terminal.title}>

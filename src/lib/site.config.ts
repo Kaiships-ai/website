@@ -124,7 +124,9 @@ export const siteConfig = {
   kit: {
     name: "Content Machine Kit",
     price: "$99",
-    priceNote: "one-time · no subscription",
+    regularPrice: "$149",
+    seats: "First 20 seats at launch price",
+    priceNote: "launch price · one-time · no subscription",
     checkoutUrl: "https://buy.polar.sh/polar_cl_ifrFWJmjWHztffFq6xwQQlWSJQAbOeUbIZ9hD1xW7oi",
     // TODO(kai): public roadmap URL; roadmap link hidden while empty.
     roadmapUrl: "",
@@ -146,7 +148,7 @@ export const siteConfig = {
       "A pipeline run takes minutes, not seconds",
     ],
     guarantee: "30-day money-back — and you keep the files. Payment and delivery handled by Polar (Merchant of Record); repo + Discord access is granted right after checkout.",
-    buyLabel: "Buy the Kit — $99",
+    buyLabel: "Claim a launch seat — $99",
     pageCta: { label: "See the Content Machine Kit", href: "/kit" },
     terminal: {
       title: "content-machine — zsh",

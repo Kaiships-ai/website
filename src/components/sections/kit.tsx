@@ -13,8 +13,15 @@ export function Kit() {
           <div className="flex flex-col gap-6 rounded-2xl border border-line bg-white p-7 shadow-[0_1px_2px_rgba(20,18,16,0.04)] sm:p-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-2">
-                <Badge tone="accent">{kit.price} one-time</Badge>
-                <span className="font-mono text-xs text-ink-2">rung 1</span>
+                <Badge tone="accent">
+                  <span className="line-through opacity-60">
+                    {kit.regularPrice}
+                  </span>{" "}
+                  {kit.price} launch
+                </Badge>
+                <span className="font-mono text-xs text-ink-2">
+                  {kit.seats} · rung 1
+                </span>
               </div>
               <h2 className="mt-4 text-2xl font-medium tracking-tight text-ink sm:text-3xl">
                 {kit.name}
