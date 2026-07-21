@@ -17,8 +17,6 @@ export const siteConfig = {
     tiktok: "https://tiktok.com/@kaiships.ai",
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
-    // TODO: replace with the real Discord invite once the community is created
-    discord: "https://discord.gg/kaiships",
     email: "kai@kaiships.ai",
   },
 
@@ -169,7 +167,7 @@ export const siteConfig = {
     eyebrow: "Community",
     title: "Ship with people who",
     titleAccent: "actually ship.",
-    sub: "Three rungs, priced plainly: free PACK, a one-time Kit, a monthly community. No high-ticket upsell hiding behind a call booking.",
+    sub: "Two live rungs, priced plainly: the free PACK and a one-time Kit. A community is coming after launch — no high-ticket upsell hiding behind a call booking.",
     free: {
       label: "Free",
       title: "The Starter PACK",
@@ -177,18 +175,17 @@ export const siteConfig = {
       cta: { label: "Get the PACK", href: "/pack" },
     },
     paid: {
-      label: "$97/mo",
-      foundingLabel: "Founding: $47/mo",
+      status: "Coming after launch",
       title: "The kaiships community",
-      desc: "A living skills library with a new tested skill or agent drop every week, plus direct support when your setup breaks.",
+      desc: "A living skills library planned for after launch: a new tested skill or agent drop every week, plus direct support when your setup breaks. Not open yet — I ship it once the free PACK and the Kit are earning.",
       bullets: [
-        "Weekly skill + agent drops, verified before release",
-        "The full living library — every drop, updated",
-        "Direct help from Kai when things break",
-        "Founding rate locked for the first 50 members, grandfathered forever",
+        "Planned: weekly skill + agent drops, verified before release",
+        "Planned: the full living library — every drop, updated",
+        "Planned: direct help from Kai when things break",
+        "Early members get first access when the doors open",
       ],
-      cta: { label: "Join the founding 50", href: "https://discord.gg/kaiships" },
-      finePrint: "Founding rate $47/mo for the first ~50 members, then $97/mo. Cancel anytime — churn is my problem to earn, not yours to manage.",
+      cta: { label: "Get the PACK while you wait", href: "/pack" },
+      note: "Not open yet. Grab the free PACK now — you'll be first to hear when the community opens. No dead links, no pre-sold vaporware.",
     },
   },
 

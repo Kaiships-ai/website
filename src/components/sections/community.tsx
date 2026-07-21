@@ -42,12 +42,7 @@ export function Community() {
                 className="glow absolute -top-24 -right-24 h-64 w-64 rounded-full"
               />
               <div className="relative flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <Badge tone="accent">{community.paid.foundingLabel}</Badge>
-                  <span className="font-mono text-xs text-ink-2 line-through">
-                    {community.paid.label}
-                  </span>
-                </div>
+                <Badge tone="accent">{community.paid.status}</Badge>
                 <span className="font-mono text-xs text-ink-2">rung 2</span>
               </div>
               <h3 className="relative mt-5 text-2xl font-medium tracking-tight text-ink">
@@ -70,7 +65,7 @@ export function Community() {
                 </Button>
               </div>
               <p className="relative mt-4 font-mono text-[11px] leading-relaxed text-ink-2">
-                {community.paid.finePrint}
+                {community.paid.note}
               </p>
             </article>
           </Reveal>
