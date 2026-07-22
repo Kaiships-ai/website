@@ -21,36 +21,36 @@ export const siteConfig = {
   },
 
   nav: [
-    { label: "What I ship", href: "/#ship" },
-    { label: "Approach", href: "/#approach" },
     { label: "Kit", href: "/kit" },
-    { label: "Community", href: "/#community" },
+    { label: "Approach", href: "/#approach" },
     { label: "Resources", href: "/resources" },
     { label: "Ship log", href: "/blog" },
   ],
   navCta: { label: "Get the PACK", href: "/pack" },
 
   hero: {
-    eyebrow: "kaiships.ai — Claude Code systems for solo builders",
+    eyebrow: "kaiships.ai — Claude Code content systems for solo builders",
     // H1 renders as: {h1Plain} + {h1Accent (serif italic + cursor)}
     h1Plain: "Real Claude Code agents.",
     h1Accent: "No slop.",
-    sub: "The exact skills, agents, and CLAUDE.md systems I run as a solo builder — tested on a real product before they ever reach you.",
-    primaryCta: { label: "Get the free PACK", href: "/pack" },
-    secondaryCta: { label: "Browse the library", href: "/resources" },
+    sub: "Claude Code that researches, writes, and renders your Instagram carousels and reels — running on your own machine. You approve and post. It's the Content Machine Kit, tested on a real product before it reached you.",
+    primaryCta: {
+      label: "Claim a launch seat — $99",
+      href: "https://buy.polar.sh/polar_cl_ifrFWJmjWHztffFq6xwQQlWSJQAbOeUbIZ9hD1xW7oi",
+    },
+    secondaryCta: { label: "Get the free PACK", href: "/pack" },
     terminal: {
-      title: "kaiships — zsh",
-      command: "npx kaiships add starter-pack",
+      title: "content-machine — zsh",
+      command: '/ideate "ai tools for solo builders"',
       lines: [
-        { kind: "dim", text: "resolving pack · 18 skills · 4 subagents · CLAUDE.md" },
-        { kind: "ok", text: "verify-before-trust … installed" },
-        { kind: "ok", text: "token-guard … installed" },
-        { kind: "ok", text: "ship-log … installed" },
-        { kind: "ok", text: "inbox-agent … wired" },
-        { kind: "ok", text: "CLAUDE.md … merged" },
-        { kind: "accent", text: "pack verified — 0 slop detected" },
+        { kind: "ok", text: "12 hooks ranked by proof" },
+        { kind: "cmd", text: "/carousel 03" },
+        { kind: "ok", text: "8 slides rendered — no design API" },
+        { kind: "cmd", text: "/reel 03 --voice local" },
+        { kind: "ok", text: "9:16 reel + voiceover, on-device" },
+        { kind: "accent", text: "posted to Instagram — or bundled, your call" },
       ],
-      prompt: "kai ships daily",
+      prompt: "/publish --ig",
     },
   },
 
@@ -226,16 +226,15 @@ export const siteConfig = {
       {
         title: "Ship",
         links: [
+          { label: "Content Machine Kit", href: "/kit" },
           { label: "Starter PACK", href: "/pack" },
           { label: "Resources", href: "/resources" },
           { label: "Ship log", href: "/blog" },
-          { label: "Community", href: "/#community" },
         ],
       },
       {
         title: "Site",
         links: [
-          { label: "What I ship", href: "/#ship" },
           { label: "Approach", href: "/#approach" },
           { label: "Privacy", href: "/privacy" },
           { label: "Terms", href: "/terms" },
