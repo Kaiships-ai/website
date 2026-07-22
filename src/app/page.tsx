@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site.config";
 import { Hero } from "@/components/sections/hero";
 import { Approach } from "@/components/sections/approach";
 import { Kit } from "@/components/sections/kit";
 import { ShipLog } from "@/components/sections/ship-log";
 import { CtaBand } from "@/components/sections/cta";
+
+// Explicit homepage title. Without it the tab title fell back to the root
+// layout's title.default, which Next.js does not re-apply on client-side
+// navigation — so the /pack title leaked onto / after an SPA transition.
+// `absolute` skips the title.template suffix so this reads as the brand line.
+export const metadata: Metadata = {
+  title: { absolute: `${siteConfig.name} — ${siteConfig.tagline}` },
+  alternates: { canonical: "/" },
+};
 // Commented out 2026-07-22 with their homepage sections (see below). Component
 // files + config blocks are kept intact; uncomment to restore.
 // import { Ship } from "@/components/sections/ship";
