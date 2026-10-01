@@ -26,6 +26,39 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
 
+  // Loops is the ESP. Set LOOPS_API_KEY in the Vercel project; the old
+  // ConvertKit path below only runs while that key is missing.
+  const loopsKey = process.env.LOOPS_API_KEY;
+  if (loopsKey) {
+    const res = await fetch("https://app.loops.so/api/v1/contacts/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${loopsKey}`,
+      },
+      body: JSON.stringify({ email, source: "website-pack", userGroup: "pack" }),
+    });
+    if (!res.ok) {
+      return NextResponse.json({ error: "kit_error" }, { status: 502 });
+    }
+    // Deliver the PACK by email: transactional "Website PACK delivery",
+    // created via the Loops MCP on 2026-10-02. The form already shows the
+    // repo link on success, so a failed send does not fail the request.
+    await fetch("https://app.loops.so/api/v1/transactional", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${loopsKey}`,
+      },
+      body: JSON.stringify({
+        transactionalId:
+          process.env.LOOPS_PACK_TRANSACTIONAL_ID ?? "cmupsb43107dw0jyi5kdzf7tw",
+        email,
+      }),
+    }).catch(() => {});
+    return NextResponse.json({ ok: true });
+  }
+
   const apiKey = process.env.KIT_API_KEY;
   const formId = process.env.KIT_FORM_ID;
   if (!apiKey || !formId) {

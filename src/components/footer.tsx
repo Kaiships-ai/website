@@ -7,12 +7,8 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <p className="font-mono text-sm font-semibold text-ink">
-              kaiships.ai
-              <span
-                aria-hidden
-                className="ml-1 inline-block h-[1em] w-[0.5em] translate-y-[0.1em] bg-accent"
-              />
+            <p className="marker text-2xl text-ink">
+              kaiships<span className="text-accent">.ai</span>
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-2">
               {siteConfig.footer.blurb}
@@ -56,9 +52,7 @@ export function Footer() {
         </div>
         <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 font-mono text-xs text-ink-2 sm:flex-row sm:items-center sm:justify-between">
           <p>{siteConfig.footer.legal}</p>
-          <p>
-            <span className="text-success-ink">✓</span> no slop detected
-          </p>
+          <p>Drawn by Claude. Nobody filmed anything.</p>
         </div>
       </div>
     </footer>

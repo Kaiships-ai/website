@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { sans, serif, mono } from "@/lib/fonts";
+import { sans, serif, mono, marker } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site.config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { LenisProvider } from "@/components/lenis-provider";
 import { ExitIntent } from "@/components/exit-intent";
 import "./globals.css";
 
@@ -77,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
+      className={`${sans.variable} ${serif.variable} ${mono.variable} ${marker.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <noscript>
@@ -87,12 +86,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
         />
-        <LenisProvider>
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <ExitIntent />
-        </LenisProvider>
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <ExitIntent />
       </body>
     </html>
   );

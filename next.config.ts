@@ -29,6 +29,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // The old Content Machine Kit page is retired; the homepage sells the Reel Kit.
+  async redirects() {
+    return [{ source: "/kit", destination: "/", permanent: false }];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

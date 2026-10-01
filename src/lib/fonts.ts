@@ -1,8 +1,23 @@
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import {
+  JetBrains_Mono,
+  Newsreader,
+  Permanent_Marker,
+  Shantell_Sans,
+} from "next/font/google";
 
-export const sans = Inter({
-  subsets: ["latin"],
+// Hand-drawn brand style (brand-kit "Hình ảnh"): Shantell Sans for body,
+// numbers and names; Permanent Marker for headlines and labels.
+export const sans = Shantell_Sans({
+  subsets: ["latin", "vietnamese"],
+  weight: ["500", "600", "800"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+export const marker = Permanent_Marker({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-marker",
   display: "swap",
 });
 
