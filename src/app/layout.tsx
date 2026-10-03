@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { ExitIntent } from "@/components/exit-intent";
 import { CheckoutUtm } from "@/components/checkout-utm";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -94,6 +95,11 @@ export default function RootLayout({
         <Footer />
         <ExitIntent />
         <Analytics />
+        <Script
+          src="https://kstats-kaiships.vercel.app/stats.js"
+          data-website-id="a11d08a4-7f99-420e-aafc-5aa471b7ca6e"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
