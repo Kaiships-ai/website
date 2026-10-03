@@ -70,6 +70,21 @@ async function trackPurchase(data: Record<string, unknown>) {
   }
 }
 
+/** True when Loops already has this contact (so its lead `source` must be kept). */
+async function loopsHasContact(email: string, key: string): Promise<boolean> {
+  try {
+    const res = await fetch(
+      `https://app.loops.so/api/v1/contacts/find?email=${encodeURIComponent(email)}`,
+      { headers: { Authorization: `Bearer ${key}` }, signal: AbortSignal.timeout(3000) },
+    );
+    if (!res.ok) return false;
+    const list: unknown = await res.json();
+    return Array.isArray(list) && list.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 async function loops(path: string, key: string, payload: object) {
   const res = await fetch(`https://app.loops.so/api/v1/${path}`, {
     method: "POST",
@@ -118,11 +133,15 @@ export async function POST(request: Request) {
     if (typeof meta.utm_campaign === "string" && meta.utm_campaign) purchaseData.utm_campaign = meta.utm_campaign;
     after(async () => {
       await trackPurchase(purchaseData);
+      // buySource = where the purchase came from; `source` stays the lead's
+      // first source (only set for buyers Loops has never seen).
+      const known = await loopsHasContact(email, loopsKey);
       await loops("contacts/update", loopsKey, {
         email,
         ...(firstName ? { firstName } : {}),
         userGroup: "buyer",
-        source,
+        buySource: source,
+        ...(known ? {} : { source }),
       });
       await loops("events/send", loopsKey, { email, eventName: "kit_purchased" });
     });
