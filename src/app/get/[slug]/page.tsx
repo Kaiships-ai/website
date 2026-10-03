@@ -34,7 +34,7 @@ export default async function GiftPage({
     <div className="relative px-4 pt-28 pb-20 sm:pt-36">
       <div className="mx-auto max-w-md">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-2">
-          gift · {m.kw}
+          {m.group === "deal" ? "deal" : "gift"} · {m.kw}
         </p>
         <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
           {m.heading ?? `Your free ${m.title}`}

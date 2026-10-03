@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         email,
         source: [`${pick("utm_source") || "ig_dm"}-${magnet.slug}`, ...extra].join(" · "),
-        userGroup: "lead",
+        userGroup: magnet.group ?? "lead",
         magnet: magnet.slug,
       }),
     });

@@ -11,6 +11,8 @@ export type Magnet = {
   cta?: string;
   /** Hide the "See the Reel Kit" line after signup. */
   hideKitLine?: boolean;
+  /** Loops userGroup. "deal" keeps sales leads out of the "IG lead nurture" workflow (filter userGroup = lead). Default: "lead". */
+  group?: "deal";
 };
 
 /** Instagram comment->DM lead magnets. Source: kaiship-business magnets.json. */
@@ -36,8 +38,8 @@ export const magnets: Magnet[] = [
   { slug: "design", kw: "DESIGN", title: "5 Claude design plugins", url: "https://drive.google.com/file/d/1ZYRCCVYhrx0w6E2ctW6H211-8mdox9CF/view?usp=sharing" },
   { slug: "skill", kw: "SKILL", title: "Agent Reach guide", url: "https://kai-ships-ai-website.vercel.app/ig/agent-reach-guide/slide1.pdf" },
   { slug: "tools", kw: "TOOLS", title: "AI Tools List", url: "https://kai-ships-ai-website.vercel.app/ig/sunday-content-engine/slide1.pdf" },
-  { slug: "frame", kw: "FRAME", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=frame", heading: "Reel Kit launch price", blurb: "Launch price on the Reel Kit: $29.99 through Oct 9, then $50. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true },
-  { slug: "kit", kw: "KIT", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=kit", heading: "Reel Kit launch price", blurb: "Launch price on the Reel Kit: $29.99 through Oct 9, then $50. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true },
+  { slug: "frame", kw: "FRAME", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=frame", heading: "Reel Kit launch price", blurb: "Reel Kit ($50) + Token Diet bonus → $29.99 till Oct 9. Token Diet sent to buyers by Oct 5. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true, group: "deal" },
+  { slug: "kit", kw: "KIT", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=kit", heading: "Reel Kit launch price", blurb: "Reel Kit ($50) + Token Diet bonus → $29.99 till Oct 9. Token Diet sent to buyers by Oct 5. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true, group: "deal" },
   { slug: "learn", kw: "LEARN", title: "vibe-wise", url: "https://github.com/nykooi1/vibe-wise", blurb: "Drop your email and the repo opens right here. I'll also send you the next ones I make.", cta: "Open the repo →" },
 ];
 
