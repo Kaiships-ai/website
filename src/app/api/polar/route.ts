@@ -40,6 +40,36 @@ function verify(body: string, headers: Headers, secret: string): boolean {
   return false;
 }
 
+const UMAMI_URL = "https://kstats-kaiships.vercel.app/api/ks";
+const UMAMI_WEBSITE_ID = "a11d08a4-7f99-420e-aafc-5aa471b7ca6e";
+const UMAMI_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+
+/** Server-side Umami `purchase` event. Never throws. */
+async function trackPurchase(data: Record<string, unknown>) {
+  try {
+    const res = await fetch(UMAMI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "User-Agent": UMAMI_UA },
+      body: JSON.stringify({
+        type: "event",
+        payload: {
+          website: UMAMI_WEBSITE_ID,
+          hostname: "kai-ships-ai-website.vercel.app",
+          url: "/purchase",
+          title: "purchase",
+          name: "purchase",
+          data,
+        },
+      }),
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!res.ok) console.error("umami purchase failed", res.status);
+  } catch (err) {
+    console.error("umami purchase error", err);
+  }
+}
+
 async function loops(path: string, key: string, payload: object) {
   const res = await fetch(`https://app.loops.so/api/v1/${path}`, {
     method: "POST",
@@ -79,7 +109,15 @@ export async function POST(request: Request) {
       (v): v is string => typeof v === "string" && v.length > 0,
     );
     const source = utm.length ? `polar · ${utm.join("/")}` : "polar";
+    const amount = Number(order.net_amount ?? order.amount ?? order.total_amount ?? 0);
+    const purchaseData: Record<string, unknown> = {
+      revenue: Number.isFinite(amount) ? amount / 100 : 0,
+      currency: String(order.currency ?? "usd").toUpperCase(),
+    };
+    if (typeof meta.utm_source === "string" && meta.utm_source) purchaseData.utm_source = meta.utm_source;
+    if (typeof meta.utm_campaign === "string" && meta.utm_campaign) purchaseData.utm_campaign = meta.utm_campaign;
     after(async () => {
+      await trackPurchase(purchaseData);
       await loops("contacts/update", loopsKey, {
         email,
         ...(firstName ? { firstName } : {}),

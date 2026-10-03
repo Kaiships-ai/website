@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { track } from "@/lib/track";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -22,6 +23,7 @@ export function GiftForm({ slug, url }: { slug: string; url: string }) {
       });
       if (res.ok) {
         setStatus("success");
+        track("gift_signup", { slug });
         return;
       }
       const data = await res.json().catch(() => ({}));

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { track } from "@/lib/track";
 
 const REPO_URL = "https://github.com/KineBeo/claude-code-starter-pack";
 const INSTALL_HINT = "cp -R skills/<name> ~/.claude/skills/";
@@ -26,6 +27,7 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
       });
       if (res.ok) {
         setStatus("success");
+        track("pack_signup");
         return;
       }
       const data = await res.json().catch(() => ({}));
