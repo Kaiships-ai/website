@@ -1,4 +1,17 @@
-export type Magnet = { slug: string; kw: string; title: string; url: string };
+export type Magnet = {
+  slug: string;
+  kw: string;
+  title: string;
+  url: string;
+  /** Page h1 + meta title. Default: "Your free {title}". */
+  heading?: string;
+  /** Line under the h1. Default: the guide blurb. */
+  blurb?: string;
+  /** Button text after signup. Default: "Open the guide →". */
+  cta?: string;
+  /** Hide the "See the Reel Kit" line after signup. */
+  hideKitLine?: boolean;
+};
 
 /** Instagram comment->DM lead magnets. Source: kaiship-business magnets.json. */
 export const magnets: Magnet[] = [
@@ -23,6 +36,9 @@ export const magnets: Magnet[] = [
   { slug: "design", kw: "DESIGN", title: "5 Claude design plugins", url: "https://drive.google.com/file/d/1ZYRCCVYhrx0w6E2ctW6H211-8mdox9CF/view?usp=sharing" },
   { slug: "skill", kw: "SKILL", title: "Agent Reach guide", url: "https://kai-ships-ai-website.vercel.app/ig/agent-reach-guide/slide1.pdf" },
   { slug: "tools", kw: "TOOLS", title: "AI Tools List", url: "https://kai-ships-ai-website.vercel.app/ig/sunday-content-engine/slide1.pdf" },
+  { slug: "frame", kw: "FRAME", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=frame", heading: "Reel Kit launch price", blurb: "Launch price on the Reel Kit: $29.99 through Oct 9, then $50. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true },
+  { slug: "kit", kw: "KIT", title: "Reel Kit", url: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV?utm_source=ig_dm&utm_medium=social&utm_campaign=kit", heading: "Reel Kit launch price", blurb: "Launch price on the Reel Kit: $29.99 through Oct 9, then $50. Drop your email and the checkout opens right here.", cta: "Get the Reel Kit · $29.99 →", hideKitLine: true },
+  { slug: "learn", kw: "LEARN", title: "vibe-wise", url: "https://github.com/nykooi1/vibe-wise", blurb: "Drop your email and the repo opens right here. I'll also send you the next ones I make.", cta: "Open the repo →" },
 ];
 
 export const getMagnet = (slug: string) => magnets.find((m) => m.slug === slug);
