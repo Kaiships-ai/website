@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { track } from "@/lib/track";
 
 /**
  * Carries utm_source / utm_campaign from the landing URL to Polar checkout links.
@@ -39,6 +40,12 @@ export function CheckoutUtm() {
         if (v && !url.searchParams.has(k)) url.searchParams.set(k, v);
       }
       a.href = url.toString();
+      const data: Record<string, string> = { path: window.location.pathname };
+      for (const k of KEYS) {
+        const v = url.searchParams.get(k);
+        if (v) data[k] = v;
+      }
+      track("checkout_click", data);
     };
     document.addEventListener("click", onClick, true);
     document.addEventListener("auxclick", onClick, true);

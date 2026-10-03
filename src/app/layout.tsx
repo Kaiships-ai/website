@@ -98,6 +98,7 @@ export default function RootLayout({
         <Script
           src="https://kstats-kaiships.vercel.app/stats.js"
           data-website-id="a11d08a4-7f99-420e-aafc-5aa471b7ca6e"
+          data-domains="kai-ships-ai-website.vercel.app"
           strategy="afterInteractive"
         />
       </body>
