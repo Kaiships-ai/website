@@ -15,8 +15,9 @@ import { getMagnet } from "@/lib/magnets";
 export async function POST(request: Request) {
   let email: unknown;
   let source: unknown;
+  let utm: unknown;
   try {
-    ({ email, source } = await request.json());
+    ({ email, source, utm } = await request.json());
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
@@ -34,6 +35,10 @@ export async function POST(request: Request) {
   const magnet = typeof source === "string" ? getMagnet(source) : undefined;
   if (loopsKey && magnet) {
     // IG DM gift page (/get/[slug]): tag the lead, no PACK email.
+    // utm is folded into `source` (no utm* contact properties exist in Loops).
+    const u = (utm && typeof utm === "object" ? utm : {}) as Record<string, unknown>;
+    const pick = (k: string) => (typeof u[k] === "string" ? (u[k] as string).slice(0, 64) : "");
+    const extra = [pick("utm_medium"), pick("utm_campaign")].filter((v) => v && v !== magnet.slug);
     const res = await fetch("https://app.loops.so/api/v1/contacts/update", {
       method: "POST",
       headers: {
@@ -42,7 +47,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         email,
-        source: `ig-dm-${magnet.slug}`,
+        source: [`${pick("utm_source") || "ig_dm"}-${magnet.slug}`, ...extra].join(" · "),
         userGroup: "lead",
         magnet: magnet.slug,
       }),
