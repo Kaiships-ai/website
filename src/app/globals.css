@@ -3,14 +3,20 @@
 
 /* ————— kaiships design tokens — edit theme here ————— */
 :root {
-  --paper: #faf9f7;
-  --paper-2: #f3f1ec;
-  --ink: #141210;
-  --ink-2: #57534e;
-  --line: #e7e4de;
-  --accent: #e0532f;
-  --accent-hover: #c2410c;
-  --accent-ink: #b23a1d;
+  /* reel palette (PAL): paper, ink, clay, ochre, cream, rose, sap */
+  --paper: #f3ebdc;
+  --paper-2: #eadfcb;
+  --ink: #2b2233;
+  --ink-2: #63585f;
+  --line: #d8ccb6;
+  --accent: #d97757;
+  --accent-hover: #a84d33;
+  --accent-ink: #a84d33;
+  --clay-lt: #f2a283;
+  --ochre: #e8aa38;
+  --cream: #fffbf2;
+  --rose: #e27a92;
+  --sap: #6e9f58;
   --terminal: #12100e;
   --terminal-2: #1c1917;
   --terminal-line: #2b2724;
@@ -30,6 +36,12 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-ink: var(--accent-ink);
+  --color-clay-lt: var(--clay-lt);
+  --color-ochre: var(--ochre);
+  --color-cream: var(--cream);
+  --color-rose: var(--rose);
+  --color-sap: var(--sap);
+  --font-marker: var(--font-marker), "Permanent Marker", cursive;
   --color-terminal: var(--terminal);
   --color-terminal-2: var(--terminal-2);
   --color-terminal-line: var(--terminal-line);
@@ -44,11 +56,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--paper);
+  background-color: var(--paper);
+  /* paper grain */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .13 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -65,6 +79,76 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* ————— hand-drawn helpers ————— */
+.marker {
+  font-family: var(--font-marker), "Permanent Marker", cursive;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.04;
+  letter-spacing: 0.005em;
+}
+.marker-pop {
+  color: var(--accent);
+  text-shadow: 0.045em 0.045em 0 var(--ink);
+}
+.sketch {
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: 24px 28px 22px 30px / 28px 22px 30px 24px;
+  box-shadow: 7px 8px 0 var(--clay-lt);
+}
+.sketch-ink {
+  background: var(--ink);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: 26px 30px 24px 32px / 30px 24px 32px 26px;
+  box-shadow: 7px 8px 0 var(--accent);
+}
+.sketch-frame {
+  border: 2.5px solid var(--ink);
+  border-radius: 18px 22px 16px 24px / 22px 16px 24px 18px;
+  box-shadow: 6px 7px 0 var(--accent);
+  overflow: hidden;
+}
+.squiggle {
+  text-decoration: underline wavy var(--accent-hover);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.22em;
+}
+
+.phone {
+  border: 3px solid var(--ink);
+  border-radius: 34px 38px 32px 40px / 38px 32px 40px 34px;
+  padding: 9px;
+  background: var(--ink);
+  box-shadow: 8px 10px 0 var(--accent);
+}
+.phone video {
+  border-radius: 26px 30px 24px 32px / 30px 24px 32px 26px;
+}
+.stamp {
+  border: 3px dashed var(--accent-hover);
+  border-radius: 999px;
+  color: var(--accent-hover);
+  transform: rotate(-6deg);
+}
+@keyframes type-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.type-in {
+  animation: type-in 0.9s steps(40, end) both;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+.bob {
+  animation: bob 3.2s ease-in-out infinite;
+}
+.no-bar::-webkit-scrollbar { display: none; }
+.no-bar { scrollbar-width: none; }
 
 /* CSS-only entrance for above-the-fold content (no JS dependency → fast LCP) */
 @keyframes enter {
@@ -85,9 +169,10 @@ body {
 }
 
 /* scroll reveals — JS toggles .reveal-in / .stagger-in */
+/* Scroll reveals turned off (Kai, 2026-10-01: confusing). Content is always visible. */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98),
     transform 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98);
@@ -140,7 +225,9 @@ body {
     scroll-behavior: auto;
   }
   .cursor-blink,
-  .animate-marquee {
+  .animate-marquee,
+  .bob,
+  .type-in {
     animation: none;
   }
   *,

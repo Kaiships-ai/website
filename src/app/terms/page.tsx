@@ -38,6 +38,15 @@ export default function TermsPage() {
           specific runs, not promises. Nothing here is legal, financial, or
           professional advice.
         </p>
+        <h2>Kaiships Reel Kit</h2>
+        <p>
+          The Reel Kit is a one-time purchase sold through Polar, which emails
+          the download right after payment. You may make unlimited videos,
+          personal or commercial; please don&apos;t share or resell the kit
+          itself. If the kit won&apos;t run on your machine, DM @kaiships.ai and
+          we&apos;ll fix it together. If it still doesn&apos;t work within 14
+          days of purchase, you get a full refund.
+        </p>
         <h2>Community subscriptions</h2>
         <p>
           The paid community runs on Discord; billing, cancellation, and

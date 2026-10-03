@@ -6,9 +6,9 @@ kaiships.ai publishes installable files, not prompt lists. The article library i
 
 ## What lives here
 
-- [Resource library](https://kaiships.ai/resources): free Claude Code skills, agents, workflows, and systems. Each article includes copy-paste setup, an honest "What breaks" section, and an FAQ.
-- [Starter PACK](https://kaiships.ai/pack): the flagship free bundle — a curated CLAUDE.md, a model-routing config, 18 tested skills, and 4 subagents. Delivered by email at kaiships.ai/pack (repo link shown instantly), or by DMing the keyword PACK to @kaiships.ai on Instagram.
-- [Ship log](https://kaiships.ai/blog): build-in-public posts with real numbers — what shipped, what broke, what it cost.
+- [Resource library](https://kai-ships-ai-website.vercel.app/resources): free Claude Code skills, agents, workflows, and systems. Each article includes copy-paste setup, an honest "What breaks" section, and an FAQ.
+- [Starter PACK](https://kai-ships-ai-website.vercel.app/pack): the flagship free bundle — a curated CLAUDE.md, a model-routing config, 18 tested skills, and 4 subagents. Delivered by email at kai-ships-ai-website.vercel.app/pack (repo link shown instantly), or by DMing the keyword PACK to @kaiships.ai on Instagram.
+- [Ship log](https://kai-ships-ai-website.vercel.app/blog): build-in-public posts with real numbers — what shipped, what broke, what it cost.
 - Community: $97/mo (founding members $47/mo, first ~50, grandfathered) — a living skills library with weekly tested drops and direct support.
 
 ## Positioning facts

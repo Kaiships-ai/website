@@ -7,9 +7,9 @@ const styles = {
   primary:
     "bg-ink text-paper hover:bg-terminal-2 shadow-[0_1px_0_rgba(0,0,0,0.05),0_8px_24px_-12px_rgba(20,18,16,0.5)]",
   accent:
-    "bg-accent-ink text-white hover:bg-[#9a2f13] shadow-[0_8px_24px_-12px_rgba(178,58,29,0.6)]",
+    "border-[2.5px] border-ink bg-accent text-cream font-semibold shadow-[4px_5px_0_var(--ink)] hover:-translate-y-0.5 hover:shadow-[5px_7px_0_var(--ink)]",
   ghost:
-    "border border-line bg-transparent text-ink hover:border-ink/40 hover:bg-paper-2",
+    "border-[2.5px] border-ink bg-cream text-ink font-semibold hover:bg-paper-2",
   terminal: "bg-terminal-fg text-terminal hover:bg-white",
 } as const;
 
@@ -31,7 +31,7 @@ export function Button({
   const ref = useRef<HTMLDivElement>(null);
   const internal = href.startsWith("/") || href.startsWith("#");
 
-  const base = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-tight transition-all duration-300 active:scale-[0.98] ${styles[variant]} ${className}`;
+  const base = `inline-flex items-center justify-center gap-2 rounded-[18px_22px_16px_24px/22px_16px_24px_18px] px-6 py-3 text-base font-semibold tracking-tight transition-all duration-300 active:scale-[0.98] ${styles[variant]} ${className}`;
 
   // Non-internal hrefs (external URLs, unconfigured placeholders) render as a
   // plain anchor so next/link never prefetches them.

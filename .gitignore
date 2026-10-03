@@ -40,3 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .gstack/
+
+# local tooling
+.claude/
+.gitnexus/
+graphify-out/
+
+# IG publish media: temporary hosting via host_to_web.sh (CLI deploy), not site content
+public/ig/**/*.jpg
+public/ig/**/*.mp4

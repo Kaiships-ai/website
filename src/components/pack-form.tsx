@@ -86,13 +86,13 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
           autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@ships.daily"
-          className="w-full flex-1 rounded-full border border-line bg-white px-5 py-3 font-mono text-sm text-ink placeholder:text-ink-2/50 focus:border-accent focus:outline-none"
+          placeholder="you@email.com"
+          className="w-full flex-1 rounded-2xl border-[2.5px] border-ink bg-white px-5 py-3 text-base text-ink placeholder:text-ink-2/60 focus:border-accent focus:outline-none"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-full bg-accent-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#9a2f13] disabled:opacity-60"
+          className="rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-3 text-base font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
           {status === "loading" ? "Sending…" : "Send me the PACK"}
         </button>
@@ -102,8 +102,8 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
           {error}
         </p>
       ) : null}
-      <p className="mt-3 font-mono text-xs leading-relaxed text-ink-2">
-        No spam. Unsubscribe anytime. Real files, MIT-licensed, credited.
+      <p className="mt-4 text-sm leading-relaxed text-ink-2">
+        No spam. Unsubscribe anytime.
       </p>
     </form>
   );

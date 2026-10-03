@@ -37,14 +37,10 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="flex items-center py-3 font-mono text-sm font-semibold tracking-tight text-ink"
+          className="marker flex items-center py-3 text-xl text-ink"
           onClick={() => setOpen(false)}
         >
-          kaiships.ai
-          <span
-            aria-hidden
-            className="cursor-blink ml-1 inline-block h-[1em] w-[0.5em] translate-y-[0.1em] bg-accent"
-          />
+          kaiships<span className="text-accent">.ai</span>
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
