@@ -21,7 +21,17 @@ function readUtm(): Record<string, string> {
   );
 }
 
-export function GiftForm({ slug, url }: { slug: string; url: string }) {
+export function GiftForm({
+  slug,
+  url,
+  cta = "Open the guide →",
+  hideKitLine = false,
+}: {
+  slug: string;
+  url: string;
+  cta?: string;
+  hideKitLine?: boolean;
+}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -65,8 +75,9 @@ export function GiftForm({ slug, url }: { slug: string; url: string }) {
           rel="noopener noreferrer"
           className="mt-3 flex w-full items-center justify-center rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-4 text-lg font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
         >
-          Open the guide →
+          {cta}
         </a>
+        {hideKitLine ? null : (
         <p className="mt-6 text-sm leading-relaxed text-ink-2">
           Want reels like the one you just watched? They&apos;re made with one prompt.{" "}
           <Link
@@ -76,6 +87,7 @@ export function GiftForm({ slug, url }: { slug: string; url: string }) {
             See the Reel Kit
           </Link>
         </p>
+        )}
       </div>
     );
   }

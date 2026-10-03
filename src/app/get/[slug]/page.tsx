@@ -17,7 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const m = getMagnet(slug);
   return {
-    title: m ? `Your free ${m.title}` : "Not found",
+    title: m ? (m.heading ?? `Your free ${m.title}`) : "Not found",
     robots: { index: false, follow: false },
   };
 }
@@ -37,13 +37,13 @@ export default async function GiftPage({
           gift · {m.kw}
         </p>
         <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
-          Your free {m.title}
+          {m.heading ?? `Your free ${m.title}`}
         </h1>
         <p className="mt-3 text-base leading-relaxed text-ink-2">
-          Drop your email and the guide opens right here. I&apos;ll also send you the next ones I make.
+          {m.blurb ?? "Drop your email and the guide opens right here. I'll also send you the next ones I make."}
         </p>
         <div className="mt-6">
-          <GiftForm slug={m.slug} url={m.url} />
+          <GiftForm slug={m.slug} url={m.url} cta={m.cta} hideKitLine={m.hideKitLine} />
         </div>
       </div>
     </div>
