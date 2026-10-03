@@ -24,7 +24,7 @@ function readUtm(): Record<string, string> {
 export function GiftForm({
   slug,
   url,
-  cta = "Open the guide →",
+  cta,
   hideKitLine = false,
 }: {
   slug: string;
@@ -75,7 +75,7 @@ export function GiftForm({
           rel="noopener noreferrer"
           className="mt-3 flex w-full items-center justify-center rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-4 text-lg font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
         >
-          {cta}
+          {cta ?? "Open the guide →"}
         </a>
         {hideKitLine ? null : (
         <p className="mt-6 text-sm leading-relaxed text-ink-2">
@@ -119,7 +119,7 @@ export function GiftForm({
         <div role="alert" className="mt-3 text-sm">
           <p className="text-accent-ink">{error}</p>
           <a href={url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-ink-2 underline underline-offset-2">
-            Open the guide anyway
+            {cta ?? "Open the guide anyway"}
           </a>
         </div>
       ) : null}
