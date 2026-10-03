@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 
 /**
- * Carries utm_source / utm_campaign from the landing URL to Polar checkout links.
+ * Carries utm_source / utm_medium / utm_campaign from the landing URL to Polar checkout links.
  * Polar copies these query params into the checkout session metadata, so each
  * order shows which reel/email sold it. Stored in sessionStorage so they survive
  * in-site navigation. No visual output.
  */
-const KEYS = ["utm_source", "utm_campaign"] as const;
+const KEYS = ["utm_source", "utm_medium", "utm_campaign"] as const;
 
 function read(key: string): string | null {
   try {

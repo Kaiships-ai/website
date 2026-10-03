@@ -1,8 +1,24 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
+
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign"] as const;
+
+/** utm saved by CheckoutUtm on landing; empty strings when storage is blocked. */
+function readUtm(): Record<string, string> {
+  return Object.fromEntries(
+    UTM_KEYS.map((k) => {
+      try {
+        return [k, sessionStorage.getItem(k) ?? ""];
+      } catch {
+        return [k, ""];
+      }
+    }),
+  );
+}
 
 export function GiftForm({ slug, url }: { slug: string; url: string }) {
   const [email, setEmail] = useState("");
@@ -18,7 +34,7 @@ export function GiftForm({ slug, url }: { slug: string; url: string }) {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: slug }),
+        body: JSON.stringify({ email, source: slug, utm: readUtm() }),
       });
       if (res.ok) {
         setStatus("success");
@@ -51,12 +67,12 @@ export function GiftForm({ slug, url }: { slug: string; url: string }) {
         </a>
         <p className="mt-6 text-sm leading-relaxed text-ink-2">
           Want reels like the one you just watched? They&apos;re made with one prompt.{" "}
-          <a
-            href={`/?utm_source=ig_dm&utm_campaign=${slug}#pricing`}
+          <Link
+            href="/#pricing"
             className="font-medium text-accent-ink underline underline-offset-2"
           >
             See the Reel Kit
-          </a>
+          </Link>
         </p>
       </div>
     );

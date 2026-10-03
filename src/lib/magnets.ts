@@ -19,6 +19,9 @@ export const magnets: Magnet[] = [
   { slug: "effort", kw: "EFFORT", title: "Effort cheat sheet", url: "https://docs.google.com/document/d/1L_H-sULYJEXkR2ocAfmztiQMkHvrQ43VTYk9I2aPJ5k/view" },
   { slug: "coding", kw: "CODING", title: "4 vibe plugins", url: "https://docs.google.com/document/d/1COe3DX17s28oRRF2IRh0tZ42c1gJSEd_YMQ6DK1gvZA/view" },
   { slug: "die", kw: "DIE", title: "Web design setup", url: "https://docs.google.com/document/d/1ehxOBkuk_Ygja2CABx80MiCcQV4KqbaAdWaloquRixE/view" },
+  { slug: "claude", kw: "CLAUDE", title: "5 Claude Code plugins", url: "https://drive.google.com/file/d/12KGukRg9I29SgUTzY6ValGgVqpEm6XNh/view?usp=sharing" },
+  { slug: "design", kw: "DESIGN", title: "5 Claude design plugins", url: "https://drive.google.com/file/d/1ZYRCCVYhrx0w6E2ctW6H211-8mdox9CF/view?usp=sharing" },
+  { slug: "skill", kw: "SKILL", title: "Agent Reach guide", url: "https://kai-ships-ai-website.vercel.app/ig/agent-reach-guide/slide1.pdf" },
   { slug: "tools", kw: "TOOLS", title: "AI Tools List", url: "https://kai-ships-ai-website.vercel.app/ig/sunday-content-engine/slide1.pdf" },
 ];
 

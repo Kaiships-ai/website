@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     const name: unknown = order.customer?.name;
     const firstName = typeof name === "string" && name.trim() ? name.trim().split(/\s+/)[0] : undefined;
     const meta: Record<string, unknown> = order.metadata ?? {};
-    const utm = [meta.utm_source, meta.utm_campaign].filter(
+    const utm = [meta.utm_source, meta.utm_medium, meta.utm_campaign].filter(
       (v): v is string => typeof v === "string" && v.length > 0,
     );
     const source = utm.length ? `polar · ${utm.join("/")}` : "polar";
