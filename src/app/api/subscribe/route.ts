@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getMagnet } from "@/lib/magnets";
 
 /**
  * Proxies email opt-ins to Kit (ConvertKit) v3 forms API so the browser
@@ -13,8 +14,9 @@ import { NextResponse } from "next/server";
  */
 export async function POST(request: Request) {
   let email: unknown;
+  let source: unknown;
   try {
-    ({ email } = await request.json());
+    ({ email, source } = await request.json());
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
@@ -29,6 +31,27 @@ export async function POST(request: Request) {
   // Loops is the ESP. Set LOOPS_API_KEY in the Vercel project; the old
   // ConvertKit path below only runs while that key is missing.
   const loopsKey = process.env.LOOPS_API_KEY;
+  const magnet = typeof source === "string" ? getMagnet(source) : undefined;
+  if (loopsKey && magnet) {
+    // IG DM gift page (/get/[slug]): tag the lead, no PACK email.
+    const res = await fetch("https://app.loops.so/api/v1/contacts/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${loopsKey}`,
+      },
+      body: JSON.stringify({
+        email,
+        source: `ig-dm-${magnet.slug}`,
+        userGroup: "lead",
+        magnet: magnet.slug,
+      }),
+    });
+    if (!res.ok) {
+      return NextResponse.json({ error: "kit_error" }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true });
+  }
   if (loopsKey) {
     const res = await fetch("https://app.loops.so/api/v1/contacts/update", {
       method: "POST",

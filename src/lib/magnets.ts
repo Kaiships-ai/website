@@ -1,0 +1,25 @@
+export type Magnet = { slug: string; kw: string; title: string; url: string };
+
+/** Instagram comment->DM lead magnets. Source: kaiship-business magnets.json. */
+export const magnets: Magnet[] = [
+  { slug: "audit", kw: "AUDIT", title: "Prompt audit", url: "https://docs.google.com/document/d/1YJ1zVzP6Pvr3GidN0z6g6DQpdcsB2AEjLRjJGaQFb2E/view" },
+  { slug: "open", kw: "OPEN", title: "OpenAlternative", url: "https://docs.google.com/document/d/1cUu4SbGTP6KYhTCH6ZKImRHbJk--RgdusGypZrbZOk4/view" },
+  { slug: "prompt", kw: "PROMPT", title: "prompts.chat", url: "https://docs.google.com/document/d/16QKgLUcjD0CfCQVecbM4YzEhlLbYdg9I3P9VIWKs0wg/view" },
+  { slug: "senior", kw: "SENIOR", title: "Agent Skills", url: "https://docs.google.com/document/d/1eCcDMNIoHz6eZDYBpgzCE7RAHujHwGCdZvdCmVkDAdI/view" },
+  { slug: "limit", kw: "LIMIT", title: "4 usage-limit tools", url: "https://docs.google.com/document/d/1PuxzdVkYW_VrOQ-LDnWanG_VZQhyDte3SzH4W9azgoM/view" },
+  { slug: "scrape", kw: "SCRAPE", title: "3 scraping tools", url: "https://docs.google.com/document/d/1hWd3nO1TH6MOxGb4YiIZUBWO_Ovgbe_I5wdczvYFeZM/view" },
+  { slug: "income", kw: "INCOME", title: "4 service repos", url: "https://docs.google.com/document/d/1csaUiVsjcJ1tG9VkthDo3S7Zfc_C35xaLCavEc9QeLI/view" },
+  { slug: "api", kw: "API", title: "Free AI API list", url: "https://docs.google.com/document/d/1CddyELg8qpLFr8lZg2dTTMUe1UWx-z-ohFn7WO7VPXU/view" },
+  { slug: "repos", kw: "REPOS", title: "4 design repos", url: "https://docs.google.com/document/d/1yYawdzkUnvSajMIguN17NUOrJO-4sGYpZReihLViJdY/view" },
+  { slug: "stack", kw: "STACK", title: "AI tool stack", url: "https://docs.google.com/document/d/1vV8aVDThatWyqMx_9GUiS3XhIlXEClmHRwNEe_BDerI/view" },
+  { slug: "sonnet", kw: "SONNET", title: "Which Claude cheat sheet", url: "https://docs.google.com/document/d/14CADI_1mycKoCNwsywbgs_PGTJLOHS3IPArNWLGJ5Jk/view" },
+  { slug: "google", kw: "GOOGLE", title: "15 Google AI tools", url: "https://docs.google.com/document/d/1BfQ57l6npagzcCvpaQHQd0andzhLDDsFr8jCjazpfCk/view" },
+  { slug: "apple", kw: "APPLE", title: "Apple design skill", url: "https://docs.google.com/document/d/1-rQAITnIPu3PK5QcEFGinThVmzpLpSQMy7GHpLwbKv0/view" },
+  { slug: "frontend", kw: "FRONTEND", title: "5 frontend plugins", url: "https://docs.google.com/document/d/1ffMhTUVEFRlfMAdqpp07gRaHUe5ba9cSG8LW3qepvAQ/view" },
+  { slug: "effort", kw: "EFFORT", title: "Effort cheat sheet", url: "https://docs.google.com/document/d/1L_H-sULYJEXkR2ocAfmztiQMkHvrQ43VTYk9I2aPJ5k/view" },
+  { slug: "coding", kw: "CODING", title: "4 vibe plugins", url: "https://docs.google.com/document/d/1COe3DX17s28oRRF2IRh0tZ42c1gJSEd_YMQ6DK1gvZA/view" },
+  { slug: "die", kw: "DIE", title: "Web design setup", url: "https://docs.google.com/document/d/1ehxOBkuk_Ygja2CABx80MiCcQV4KqbaAdWaloquRixE/view" },
+  { slug: "tools", kw: "TOOLS", title: "AI Tools List", url: "https://kai-ships-ai-website.vercel.app/ig/sunday-content-engine/slide1.pdf" },
+];
+
+export const getMagnet = (slug: string) => magnets.find((m) => m.slug === slug);

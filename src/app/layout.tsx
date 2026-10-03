@@ -4,6 +4,8 @@ import { siteConfig } from "@/lib/site.config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ExitIntent } from "@/components/exit-intent";
+import { CheckoutUtm } from "@/components/checkout-utm";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -79,6 +81,7 @@ export default function RootLayout({
       className={`${sans.variable} ${serif.variable} ${mono.variable} ${marker.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <CheckoutUtm />
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
@@ -90,6 +93,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <ExitIntent />
+        <Analytics />
       </body>
     </html>
   );
