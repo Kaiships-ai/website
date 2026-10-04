@@ -25,11 +25,13 @@ export function GiftForm({
   slug,
   url,
   cta,
+  button,
   hideKitLine = false,
 }: {
   slug: string;
   url: string;
   cta?: string;
+  button?: string;
   hideKitLine?: boolean;
 }) {
   const [email, setEmail] = useState("");
@@ -112,7 +114,7 @@ export function GiftForm({
           disabled={status === "loading"}
           className="rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-3 text-base font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
-          {status === "loading" ? "Sending…" : "Send it"}
+          {status === "loading" ? "Sending…" : (button ?? "Send it")}
         </button>
       </div>
       {status === "error" ? (

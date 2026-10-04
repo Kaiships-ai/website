@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getMagnet, magnets } from "@/lib/magnets";
 import { GiftForm } from "./gift-form";
@@ -43,8 +44,22 @@ export default async function GiftPage({
           {m.blurb ?? "Drop your email and the guide opens right here. I'll also send you the next ones I make."}
         </p>
         <div className="mt-6">
-          <GiftForm slug={m.slug} url={m.url} cta={m.cta} hideKitLine={m.hideKitLine} />
+          <GiftForm slug={m.slug} url={m.url} cta={m.cta} button={m.button} hideKitLine={m.hideKitLine} />
         </div>
+        {m.preview === false ? null : (
+          <figure className="mt-10">
+            <Image
+              src={`/get/${m.slug}.jpg`}
+              alt={`First page of the ${m.title} guide`}
+              width={720}
+              height={446}
+              className="w-full rounded-2xl border-[2.5px] border-ink shadow-[4px_5px_0_var(--ink)]"
+            />
+            <figcaption className="mt-3 text-center font-mono text-xs text-ink-2">
+              page 1 of what you get
+            </figcaption>
+          </figure>
+        )}
       </div>
     </div>
   );

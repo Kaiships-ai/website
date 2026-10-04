@@ -8,7 +8,8 @@ const DISMISS_KEY = "kaiships-exit-intent-dismissed";
 
 /**
  * Exit-intent popup: fires once per session when the cursor leaves the
- * top of the viewport. Site-wide except /pack (per spec). Desktop only —
+ * top of the viewport. Site-wide except /pack (per spec) and the /get/*
+ * gift pages, which already show the email form. Desktop only —
  * there is no reliable exit signal on touch.
  */
 export function ExitIntent() {
@@ -16,7 +17,7 @@ export function ExitIntent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (pathname === "/pack") return;
+    if (pathname === "/pack" || pathname.startsWith("/get/")) return;
     if (sessionStorage.getItem(DISMISS_KEY)) return;
 
     const onMouseOut = (e: MouseEvent) => {
@@ -29,7 +30,7 @@ export function ExitIntent() {
     return () => document.removeEventListener("mouseout", onMouseOut);
   }, [pathname]);
 
-  if (!open || pathname === "/pack") return null;
+  if (!open || pathname === "/pack" || pathname.startsWith("/get/")) return null;
 
   return (
     <div

@@ -1,7 +1,22 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site.config";
 
 export function Footer() {
+  const pathname = usePathname();
+  // Gift pages (/get/*) keep the legal links only, so the email is the one action.
+  if (pathname?.startsWith("/get/")) {
+    return (
+      <footer className="border-t border-line bg-paper-2">
+        <div className="mx-auto flex max-w-6xl gap-5 px-4 py-6 font-mono text-xs text-ink-2 sm:px-6">
+          <Link href="/privacy" className="hover:text-ink">Privacy</Link>
+          <Link href="/terms" className="hover:text-ink">Terms</Link>
+        </div>
+      </footer>
+    );
+  }
   return (
     <footer className="border-t border-line bg-paper-2">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">

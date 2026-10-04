@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site.config";
 import { Button } from "@/components/ui/button";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -22,6 +24,19 @@ export function Nav() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Gift pages (/get/*) ask for one thing: the email. No links out, logo only.
+  if (pathname?.startsWith("/get/")) {
+    return (
+      <header className="absolute inset-x-0 top-0 z-50">
+        <div className="mx-auto flex h-16 max-w-6xl items-center px-4 sm:px-6">
+          <p className="marker text-xl text-ink">
+            kaiships<span className="text-accent">.ai</span>
+          </p>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header
