@@ -75,11 +75,11 @@ export function KitHero() {
       <Spark className="left-[46%] top-40 hidden h-5 w-5 lg:block" color="var(--rose)" />
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="animate-enter flex flex-col items-start gap-6">
-          <Eyebrow>Be honest</Eyebrow>
+          <Eyebrow>One reel eats your whole day?</Eyebrow>
           <h1 className="marker text-[clamp(2.5rem,6.2vw,4.4rem)] text-ink">
-            One reel eats
+            One prompt.
             <br />
-            <span className="marker-pop">your whole day.</span>
+            <span className="marker-pop">A finished reel.</span>
           </h1>
           <div className="relative mx-auto w-full max-w-[260px] lg:hidden">
             <PhoneVideo
@@ -98,8 +98,8 @@ export function KitHero() {
             </p>
           </div>
           <p className="max-w-xl text-xl font-semibold leading-relaxed text-ink">
-            The {kit.name} turns one prompt into a finished animated reel: script, voiceover, painted animation,
-            captions and music. No camera. No editing app.
+            The {kit.name} has Claude make the whole reel for you: script, voiceover, painted animation, captions
+            and music. No camera. No editing app.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <BuyButton />
@@ -111,6 +111,21 @@ export function KitHero() {
             <s>{kit.listPrice}</s> <b className="text-ink">{kit.price}</b> launch price · pay once · unlimited
             videos
           </p>
+          {/* The 3 most common questions from the FAQ, answered next to the buy button. */}
+          <ul className="flex flex-col gap-2 text-base text-ink">
+            {[
+              "No coding: unzip, open in Claude Code, paste a prompt.",
+              "Nothing to pay for beyond Claude: free voiceover, music made on your machine.",
+              "Tested on Mac. Won't run? I fix it with you, or a full refund in 14 days.",
+            ].map((t) => (
+              <li key={t} className="flex gap-2.5">
+                <span aria-hidden className="font-extrabold text-sap">
+                  ✓
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
           <dl className="mt-2 grid w-full max-w-xl grid-cols-3 gap-3">
             {[
               [s.bestViews, "views on my best reel"],
