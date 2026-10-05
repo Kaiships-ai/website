@@ -18,7 +18,7 @@ export const siteConfig = {
     tiktok: "https://tiktok.com/@kaiships.ai",
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
-    email: "kai@kaiships.ai",
+    email: "kaiships.ai@gmail.com",
   },
 
   nav: [

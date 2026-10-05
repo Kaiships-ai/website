@@ -98,7 +98,7 @@ export default function ProductsPage() {
                 </p>
                 {s.deal ? (
                   <p className="font-mono text-xs text-accent-ink">
-                    Now {kit.price}, launch price until Oct 9.
+                    Launch price {kit.price} until Oct 9, then {kit.listPrice}.
                   </p>
                 ) : null}
                 <p className="text-base leading-relaxed text-ink-2">{s.body}</p>

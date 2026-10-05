@@ -38,12 +38,12 @@ Each step does one job.
 
 **Email.** A short sequence of three emails that helps them, then points to one product.
 
-**One product.** A single, one-time purchase. Mine is the Reel Kit, $29.99.
+**One product.** A single, one-time purchase. Mine is the Reel Kit: $50, or $29.99 at its launch price.
 
-Now the real numbers, as of October 2, 2026. I tell you these so you can judge the machine honestly, not to impress you.
+Now the real numbers. Instagram numbers change every day, so each one has its date. I tell you these so you can judge the machine honestly, not to impress you.
 
-- The account has 468 followers, 17 reels and 155K views in total.
-- One reel, a coding-plugins list, got 112,526 views.
+- On October 1, 2026 the account had 408 followers (Instagram API).
+- One reel, a coding-plugins list, had 104K views and 5.4K saves on October 1, 2026, and kept climbing after that.
 - That reel is a big outlier. A typical reel of mine sits near the middle of my last ten: a median of 3,644 views and 136.5 saves.
 - I have 19 live comment-to-DM flows, one per reel keyword.
 - 2 people have paid for the Reel Kit so far.
@@ -146,6 +146,6 @@ Save the script in a text file. You will use it in Module 3.
 
 ## What is in modules 2 to 6
 
-Module 2 is how to find ideas that already won, and how to turn them into your own angle. Module 3 turns scripts into reels. The later modules cover the comment-to-DM flow, the email sequence and the one product at the end of it.
+Module 2 is how to find ideas that already won, and how to turn them into your own angle. Module 3 sharpens the script, and Module 4 turns it into a reel. The later modules cover the comment-to-DM flow, the email sequence and the one product at the end of it.
 
-If you want the fastest route to a finished video, the Reel Kit does the rendering for you: one prompt, and a vertical MP4. It took 12 minutes on the first real run I timed. It comes with Kaiships School, and Module 4 shows how I use it. If you only read this free module, you can still write and post the script with any editor you like. The full course is at [kai-ships-ai-website.vercel.app/school](https://kai-ships-ai-website.vercel.app/school).
+If you want the fastest route to a finished video, the Reel Kit does the rendering for you: one prompt, and a vertical MP4. It took 12 minutes on the first real run I timed. It comes with Kaiships School, and Module 4 shows how I use it. If you only read this free module, you can still write and post the script with any editor you like. The full course is on [the School page](https://kai-ships-ai-website.vercel.app/school).

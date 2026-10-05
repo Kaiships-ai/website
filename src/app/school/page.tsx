@@ -57,7 +57,7 @@ export default function SchoolPage() {
 
       <section className="mt-16" aria-labelledby="modules">
         <SectionTitle id="modules">6 modules</SectionTitle>
-        <p className="mt-2 text-base text-ink-2">{totalMin} minutes in total. Every lesson is listed here.</p>
+        <p className="mt-2 text-base text-ink-2">About {Math.round(totalMin / 60)} hours of reading and exercises, by my estimate. Every lesson is listed here.</p>
         <ol className="mt-6 grid gap-6 md:grid-cols-2">
           {school.modules.map((m) => (
             <li key={m.n}>
@@ -141,7 +141,7 @@ export default function SchoolPage() {
       </section>
 
       <section className="mt-16" aria-labelledby="compare">
-        <SectionTitle id="compare">School vs a $49/month course membership</SectionTitle>
+        <SectionTitle id="compare">School vs a monthly course membership</SectionTitle>
         <div className="mt-6 overflow-x-auto rounded-2xl border-[2.5px] border-ink bg-cream shadow-[4px_5px_0_var(--ink)]">
           <table className="w-full min-w-[34rem] text-left text-sm">
             <thead>

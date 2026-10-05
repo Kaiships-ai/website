@@ -37,7 +37,7 @@ export const school = {
   // separate price.
   stack: [
     { item: "The 6-module course (below)", value: "only in School" },
-    { item: "Kaiships Reel Kit: one prompt → a finished reel", value: "$50 on its own" },
+    { item: "Kaiships Reel Kit: one prompt → a finished reel", value: "$50 on its own ($29.99 launch price until Oct 9)" },
     { item: "Kaiships Skill Library: 9 Claude Code skills", value: "$19 on its own" },
   ],
   modules: [
@@ -128,7 +128,7 @@ export const school = {
     },
     {
       q: "How do I get it?",
-      a: "Polar (the payment company) emails you the download links right after you pay: the course, the Reel Kit and the skills.",
+      a: "Polar (the payment company) emails you the download links right after you pay. The course is 6 written modules, 24 lessons, as Markdown files you open in any editor (or paste into Claude and ask it to coach you). Each module ends with an exercise. The Reel Kit and the 9 skills come as zip files.",
     },
     {
       q: "Do I need to know how to code?",

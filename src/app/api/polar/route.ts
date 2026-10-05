@@ -23,7 +23,7 @@ const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welco
     welcome: {
       productName: "Kaiships School",
       downloadUrl:
-        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-school-v1-f7iBtm2DASrz9wCB8DrpNrS9FBF2ZG.zip",
+        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-school-v1-NldiZlwzvgWRBnI76lLGAWSry4Xqa7.zip",
       firstStep:
         "unzip it and open course/m1-the-system.md. The Reel Kit is a separate download in your Polar receipt.",
     },
