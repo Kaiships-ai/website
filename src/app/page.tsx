@@ -15,6 +15,7 @@ import {
   KitFaq,
   KitStickyBuy,
 } from "@/components/sections/reel-kit";
+import { Ladder } from "@/components/sections/ladder";
 
 // Explicit homepage title. Without it the tab title fell back to the root
 // layout's title.default, which Next.js does not re-apply on client-side
@@ -42,6 +43,7 @@ export default function Home() {
       <KitPricing />
       <KitFounder />
       <KitFree />
+      <Ladder />
       <KitFaq />
       <KitStickyBuy />
     </>

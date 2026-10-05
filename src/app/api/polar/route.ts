@@ -2,14 +2,46 @@ import { after, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
- * Polar webhook (Standard Webhooks spec). On order.paid for the Reel Kit,
- * tag the buyer in Loops and fire `kit_purchased` (starts onboarding).
+ * Polar webhook (Standard Webhooks spec). On order.paid, tag the buyer in
+ * Loops. Reel Kit and Kaiships School (which includes the Kit) fire
+ * `kit_purchased` (starts the Kit onboarding workflow). School and the Skill
+ * Library also get the "Purchase welcome" transactional with their download.
  *
  * Env: POLAR_WEBHOOK_SECRET, LOOPS_API_KEY.
  */
 export const runtime = "nodejs";
 
 const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf";
+
+/** Products sold on /school and /skills (R11). The download links are the same
+ * ones Polar shows the buyer in the product's benefit. */
+const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welcome: Record<string, string> }> = {
+  "f7148bd4-468d-4acf-8b4c-756bc4cffdcf": {
+    slug: "school",
+    event: "school_purchased",
+    kit: true,
+    welcome: {
+      productName: "Kaiships School",
+      downloadUrl:
+        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-school-v1-f7iBtm2DASrz9wCB8DrpNrS9FBF2ZG.zip",
+      firstStep:
+        "unzip it and open course/m1-the-system.md. The Reel Kit is a separate download in your Polar receipt.",
+    },
+  },
+  "5596945f-1cd4-4127-ac0e-127f5f6b4baf": {
+    slug: "skills",
+    event: "library_purchased",
+    kit: false,
+    welcome: {
+      productName: "Kaiships Skill Library",
+      downloadUrl:
+        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-skill-library-v1-ZqF4ADMJ12mwTX1inU7t9DjHWvcJJo.zip",
+      firstStep:
+        "unzip it, copy the skills folders into ~/.claude/skills/, start Claude Code and say \"review my numbers this week\".",
+    },
+  },
+};
+const WELCOME_TRANSACTIONAL_ID = "cmuvirk4200f40jzr22b0ecgz";
 const TOLERANCE_SECONDS = 5 * 60;
 
 function secretKey(secret: string): Buffer {
@@ -111,12 +143,13 @@ export async function POST(request: Request) {
   }
 
   const order = event.data ?? {};
-  const isKit =
-    order.product_id === REEL_KIT_PRODUCT_ID || order.product?.id === REEL_KIT_PRODUCT_ID;
+  const productId: unknown = order.product_id ?? order.product?.id;
+  const bundle = typeof productId === "string" ? BUNDLES[productId] : undefined;
+  const isKit = productId === REEL_KIT_PRODUCT_ID || bundle?.kit === true;
   const email: unknown = order.customer?.email;
   const loopsKey = process.env.LOOPS_API_KEY;
 
-  if (event.type === "order.paid" && isKit && typeof email === "string" && loopsKey) {
+  if (event.type === "order.paid" && (isKit || bundle) && typeof email === "string" && loopsKey) {
     const name: unknown = order.customer?.name;
     const firstName = typeof name === "string" && name.trim() ? name.trim().split(/\s+/)[0] : undefined;
     const meta: Record<string, unknown> = order.metadata ?? {};
@@ -128,6 +161,7 @@ export async function POST(request: Request) {
     const purchaseData: Record<string, unknown> = {
       revenue: Number.isFinite(amount) ? amount / 100 : 0,
       currency: String(order.currency ?? "usd").toUpperCase(),
+      product: bundle?.slug ?? "kit",
     };
     if (typeof meta.utm_source === "string" && meta.utm_source) purchaseData.utm_source = meta.utm_source;
     if (typeof meta.utm_campaign === "string" && meta.utm_campaign) purchaseData.utm_campaign = meta.utm_campaign;
@@ -143,7 +177,15 @@ export async function POST(request: Request) {
         buySource: source,
         ...(known ? {} : { source }),
       });
-      await loops("events/send", loopsKey, { email, eventName: "kit_purchased" });
+      if (isKit) await loops("events/send", loopsKey, { email, eventName: "kit_purchased" });
+      if (bundle) {
+        await loops("events/send", loopsKey, { email, eventName: bundle.event });
+        await loops("transactional", loopsKey, {
+          transactionalId: WELCOME_TRANSACTIONAL_ID,
+          email,
+          dataVariables: bundle.welcome,
+        });
+      }
     });
   }
 

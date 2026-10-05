@@ -12,6 +12,22 @@ import { getMagnet } from "@/lib/magnets";
  *   KIT_TAG_ID   — numeric id of the "pack-v1" tag. If unset, configure
  *                  the tag directly on the form in the Kit UI instead.
  */
+/** Loops userGroup of an existing contact, or undefined. Never throws. */
+async function currentGroup(email: string, key: string): Promise<string | undefined> {
+  try {
+    const res = await fetch(
+      `https://app.loops.so/api/v1/contacts/find?email=${encodeURIComponent(email)}`,
+      { headers: { Authorization: `Bearer ${key}` }, signal: AbortSignal.timeout(3000) },
+    );
+    if (!res.ok) return undefined;
+    const list: unknown = await res.json();
+    const first = Array.isArray(list) ? (list[0] as { userGroup?: unknown } | undefined) : undefined;
+    return typeof first?.userGroup === "string" ? first.userGroup : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function POST(request: Request) {
   let email: unknown;
   let source: unknown;
@@ -48,7 +64,8 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         email,
         source: [`${pick("utm_source") || "ig_dm"}-${magnet.slug}`, ...extra].join(" · "),
-        userGroup: magnet.group ?? "lead",
+        // A buyer who grabs a free gift stays a buyer (keeps them out of lead nurture).
+        ...((await currentGroup(email, loopsKey)) === "buyer" ? {} : { userGroup: magnet.group ?? "lead" }),
         magnet: magnet.slug,
       }),
     });
