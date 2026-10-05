@@ -16,7 +16,7 @@ export default function TermsPage() {
         </p>
         <h1>Terms of Service</h1>
         <p>
-          <em>Last updated: 2026-07-11</em>
+          <em>Last updated: 2026-10-06</em>
         </p>
         <h2>The library</h2>
         <p>
