@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         </p>
         <h1>Privacy Policy</h1>
         <p>
-          <em>Last updated: 2026-07-11</em>
+          <em>Last updated: 2026-10-06</em>
         </p>
         <p>
           Short version: this is a static website. It has no accounts, no
@@ -37,11 +37,17 @@ export default function PrivacyPage() {
         </ul>
         <h2>Email capture</h2>
         <p>
-          If you request the free PACK (on <a href="/pack">/pack</a> or the
-          site popup), the email address you submit is sent to Kit
-          (ConvertKit), our email provider, to deliver the download link and
-          occasional updates. Every email includes an unsubscribe link, and
-          unsubscribing removes you from the list.
+          If you ask for a free guide, skill pack or the PACK on this site, the
+          email address you submit is sent to Loops, our email provider, to
+          deliver it and send occasional updates. Every email includes an
+          unsubscribe link, and unsubscribing removes you from the list.
+        </p>
+        <h2>Purchases</h2>
+        <p>
+          Payments are handled by Polar, the merchant of record; we never see
+          your card details. After a purchase, Polar tells us your email and
+          what you bought, and we add you to Loops as a customer so we can send
+          your download and setup emails.
         </p>
         <h2>Third-party destinations</h2>
         <p>
