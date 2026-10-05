@@ -13,8 +13,9 @@ export const runtime = "nodejs";
 
 const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf";
 
-/** Products sold on /school and /skills (R11). The download links are the same
- * ones Polar shows the buyer in the product's benefit. */
+/** Products sold on /school and /skills (R11). Download links live in env
+ * (SCHOOL_DOWNLOAD_URL, LIBRARY_DOWNLOAD_URL), never in this public repo; they
+ * are the same links Polar shows the buyer in the product's benefit. */
 const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welcome: Record<string, string> }> = {
   "f7148bd4-468d-4acf-8b4c-756bc4cffdcf": {
     slug: "school",
@@ -22,8 +23,7 @@ const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welco
     kit: true,
     welcome: {
       productName: "Kaiships School",
-      downloadUrl:
-        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-school-v1-NldiZlwzvgWRBnI76lLGAWSry4Xqa7.zip",
+      downloadUrl: process.env.SCHOOL_DOWNLOAD_URL ?? "",
       firstStep:
         "unzip it and open course/m1-the-system.md. The Reel Kit is a separate download in your Polar receipt.",
     },
@@ -34,8 +34,7 @@ const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welco
     kit: false,
     welcome: {
       productName: "Kaiships Skill Library",
-      downloadUrl:
-        "https://9mnakwbq5fbjl7jj.public.blob.vercel-storage.com/dl/kaiships-skill-library-v1-ZqF4ADMJ12mwTX1inU7t9DjHWvcJJo.zip",
+      downloadUrl: process.env.LIBRARY_DOWNLOAD_URL ?? "",
       firstStep:
         "unzip it, copy the skills folders into ~/.claude/skills/, start Claude Code and say \"review my numbers this week\".",
     },
@@ -180,6 +179,10 @@ export async function POST(request: Request) {
       if (isKit) await loops("events/send", loopsKey, { email, eventName: "kit_purchased" });
       if (bundle) {
         await loops("events/send", loopsKey, { email, eventName: bundle.event });
+        if (!bundle.welcome.downloadUrl) {
+          console.error(`purchase welcome skipped: no download url for ${bundle.slug}`);
+          return;
+        }
         await loops("transactional", loopsKey, {
           transactionalId: WELCOME_TRANSACTIONAL_ID,
           email,
