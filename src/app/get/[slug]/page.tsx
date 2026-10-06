@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { getAllGuides, getGuideByKeyword } from "@/lib/guides";
 import { getMagnet, magnets } from "@/lib/magnets";
 import { GiftForm } from "./gift-form";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return magnets.map((m) => ({ slug: m.slug }));
+  const slugs = new Set(magnets.map((m) => m.slug));
+  for (const g of getAllGuides()) slugs.add(g.keyword.toLowerCase());
+  return [...slugs].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -25,10 +28,21 @@ export async function generateMetadata({
 
 export default async function GiftPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { slug } = await params;
+  const guide = getGuideByKeyword(slug);
+  if (guide) {
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(await searchParams)) {
+      for (const x of Array.isArray(v) ? v : v === undefined ? [] : [v]) qs.append(k, x);
+    }
+    const q = qs.toString();
+    redirect(`/guides/${guide.slug}${q ? `?${q}` : ""}`);
+  }
   const m = getMagnet(slug);
   if (!m) notFound();
   return (

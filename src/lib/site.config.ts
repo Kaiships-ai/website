@@ -22,16 +22,13 @@ export const siteConfig = {
   },
 
   nav: [
-    { label: "Products", href: "/products" },
+    { label: "Guides", href: "/guides" },
     { label: "School", href: "/school" },
+    { label: "Reel Kit", href: "/reel-kit" },
     { label: "Skills", href: "/skills" },
-    { label: "Free guides", href: "/resources" },
     { label: "About", href: "/about" },
   ],
-  navCta: {
-    label: "Get the Reel Kit",
-    href: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
-  },
+  navCta: { label: "Free guides", href: "/guides" },
 
   // The one paid product. Numbers here are real; update them from
   // ig_stats.py / Polar before changing.
@@ -425,12 +422,13 @@ export const siteConfig = {
       {
         title: "Ship",
         links: [
+          { label: "Guides", href: "/guides" },
           { label: "Products", href: "/products" },
           { label: "School", href: "/school" },
           { label: "Skills", href: "/skills" },
-          { label: "Reel Kit", href: "/#kit" },
+          { label: "Reel Kit", href: "/reel-kit" },
           { label: "Starter PACK", href: "/pack" },
-          { label: "Free resources", href: "/resources" },
+          { label: "Older resources", href: "/resources" },
           { label: "Ship log", href: "/blog" },
         ],
       },
@@ -438,7 +436,7 @@ export const siteConfig = {
         title: "Site",
         links: [
           { label: "About", href: "/about" },
-          { label: "Early users", href: "/#users" },
+          { label: "Early users", href: "/reel-kit#users" },
           { label: "Privacy", href: "/privacy" },
           { label: "Terms", href: "/terms" },
         ],

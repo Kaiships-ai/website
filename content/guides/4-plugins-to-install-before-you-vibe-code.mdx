@@ -1,0 +1,93 @@
+---
+title: "4 Plugins to Install Before You Vibe Code"
+keyword: "CODING"
+topic: "Plugins & skills"
+summary: "Four tools that make Claude Code write leaner code, keep going when your limit runs out, stop rereading files, and follow a senior-engineer workflow, with exact install commands."
+minutes: 3
+date: "2026-09-28"
+reel: "https://www.instagram.com/reel/Dd0gXqBy_dw/"
+school: 4
+schoolLine: "Module 4 puts tools like these to work: one prompt in Claude Code to make a full reel."
+---
+
+## Read this first
+
+You start vibe coding, and a few hours later the code is bloated, Claude keeps rereading the same files, and you hit your limit.
+
+This guide gives you 4 tools to set up before you start: a workflow, a plugin for leaner code, a codebase map, and a fallback for when your limit runs out. Each has the exact install command and a link.
+
+You don't need all four. Pick by the problem you actually have, and install one at a time. The numbers below come from each project's README, not my testing, and they change often.
+
+## The 4 tools
+
+Commands and numbers were re-checked against each README (checked 6 Oct 2026).
+
+### 1. Ponytail: Claude Code writes leaner code
+
+It pushes Claude Code to reuse what's already there instead of adding new code and dependencies. README benchmark: about 54% less code, from 12 feature tickets on one repo with Haiku 4.5.
+
+In Claude Code, send these as two separate prompts:
+
+```bash
+/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail
+```
+
+Link: https://github.com/DietrichGebert/ponytail (MIT)
+
+### 2. OmniRoute: keep coding when your limit runs out
+
+One endpoint in front of many AI providers. When a model hits its limit it falls back automatically: Subscription, then API, then Cheap, then Free. The README says 357 providers, 152 of them marked free, and about 1.62B free tokens per month.
+
+```bash
+npm install -g omniroute
+```
+
+Link: https://github.com/diegosouzapw/OmniRoute (MIT)
+
+Careful: there are copycat repos with the same name. Use this one.
+
+### 3. Graphify: stop your agent rereading files
+
+It turns your codebase into a knowledge graph the agent can query, instead of reading raw files again and again.
+
+```bash
+uv tool install graphifyy
+graphify install
+```
+
+Yes, two y's. Other graphify packages on PyPI are not the same project.
+
+Link: https://github.com/Graphify-Labs/graphify (Apache-2.0 and MIT)
+
+### 4. Agent Skills by Addy Osmani: a senior-engineer workflow
+
+25 skills that cover the whole build: spec, plan, build, test, review, ship. It picks the right skill for the stage you're in.
+
+```bash
+npx skills add addyosmani/agent-skills
+```
+
+Commands to try: /spec, /plan, /build, /test, /review, /ship.
+
+Link: https://github.com/addyosmani/agent-skills (MIT)
+
+## The order I'd install them
+
+1. Agent Skills, for the workflow.
+2. Ponytail, for leaner output.
+3. Graphify, for cheaper context on big repos.
+4. OmniRoute, only if you keep hitting limits.
+
+## What doesn't work
+
+- The 54% less code is a lines-of-code result from the project's own test, not a saving on your bill.
+- OmniRoute's free tokens are a sum over many free tiers, each with its own limits. Don't plan a whole project on them.
+- Graphify helps on a big repo. On a small one there is little to map.
+- I have not tested all four together.
+
+## If you only do three things
+
+1. Install Agent Skills and try /spec before you write any code.
+2. Add Ponytail with the two prompts above.
+3. Add Graphify on a big repo, or OmniRoute if you keep hitting limits.
