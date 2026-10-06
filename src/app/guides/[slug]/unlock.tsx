@@ -133,7 +133,9 @@ export function GateCard({ slug, more }: { slug: string; more: number }) {
       {status === "error" ? (
         <p role="alert" className="mt-3 text-sm text-accent-ink">{error}</p>
       ) : null}
-      <p className="mt-4 text-sm text-ink-2">No spam. Unsubscribe in one click.</p>
+      <p className="mt-4 text-sm text-ink-2">
+        From the reels on @kaiships.ai: 22 reels, 207K views (Oct 4, 2026). No spam. Unsubscribe in one click.
+      </p>
     </form>
   );
 }

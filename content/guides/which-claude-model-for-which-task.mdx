@@ -16,7 +16,7 @@ Sonnet 5.5 came out on 28 Sep 2026, and the question I keep getting is simple: w
 
 This is the short answer: a table by task, three rules to stop burning your limits, and the numbers from Anthropic's launch page, including the places where Sonnet loses.
 
-Before you switch to a bigger model, change the effort setting. Anthropic's own model guide says tuning effort is often a better lever than switching models. Most people jump to the biggest model first and pay for it.
+Before you switch to a bigger model, change the effort setting: in Claude Code, type `/effort` and pick a level. Anthropic's own model guide says tuning effort is often a better lever than switching models. Most people jump to the biggest model first and pay for it.
 
 ## The short version
 
@@ -34,21 +34,21 @@ Checked against Anthropic's model guide on 6 Oct 2026.
 ## Three rules that save your limits
 
 1. Default to Sonnet 5.5 for everyday work. Move up to Opus 5.5 only when the task is big and messy. This is my habit, not Anthropic's rule. Their guide says most workloads can start with Opus 5.5, so test it on your own prompts.
-2. Change the effort setting before you change the model.
+2. Change the effort setting before you change the model. In Claude Code, run `/effort` for a slider, or `/effort high` to set a level directly (the levels include low, medium, high and xhigh; see Anthropic's Claude Code docs, https://code.claude.com/docs/en/model-config).
 3. Mix models. Let a cheap model do the work (Haiku or Sonnet as workers) and a stronger one plan and review (Opus as the orchestrator). Anthropic describes this orchestrator and workers pattern in its model guide.
 
 ## What changed with Sonnet 5.5
 
 These are Anthropic's own numbers from its launch page: https://www.anthropic.com/claude-sonnet-5-5
 
-- Terminal-Bench 4.0 (a coding test): Sonnet 5.5 70.6%, Opus 5.5 66.4%, Sonnet 5 10.3%.
+- Terminal-Bench 4.0 (a test of coding agents working in a terminal): Sonnet 5.5 70.6%, Opus 5.5 66.4% (at xhigh, its best effort), Sonnet 5 10.3%.
 - Speed: writes output 30%+ faster than Sonnet 5.
 - Cost: up to 30% less per task, because it needs fewer tokens. The price per token is $2 per million input and $10 per million output.
 - Pokémon Red: the first Sonnet model to beat it working only from screenshots.
 
 ## What doesn't work
 
-Sonnet 5.5 does not beat Opus 5.5 everywhere. On Anthropic's other listed coding tests Opus 5.5 is still ahead: FrontierCode 1.1 (54.4% vs 46.2%, Sonnet at max effort) and CursorBench 4.0 (57.8% vs 55.5%).
+Sonnet 5.5 does not beat Opus 5.5 everywhere. On Anthropic's other listed coding tests Opus 5.5 is still ahead. FrontierCode 1.1 checks whether an agent's code changes would be merged: 54.4% vs 46.2% (Sonnet at max effort). CursorBench 4.0 tests coding agents on ambiguous, multi-file tasks from real Cursor sessions: 57.8% vs 55.5%.
 
 These are Anthropic's numbers on Anthropic's tests. They tell you where to start, not what is best for your code. Test with your own prompts.
 

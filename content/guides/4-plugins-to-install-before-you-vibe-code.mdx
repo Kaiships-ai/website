@@ -14,9 +14,16 @@ schoolLine: "Module 4 puts tools like these to work: one prompt in Claude Code t
 
 You start vibe coding, and a few hours later the code is bloated, Claude keeps rereading the same files, and you hit your limit.
 
-This guide gives you 4 tools to set up before you start: a workflow, a plugin for leaner code, a codebase map, and a fallback for when your limit runs out. Each has the exact install command and a link.
+If you install only one thing first, make it Agent Skills by Addy Osmani: 25 skills that walk Claude through spec, plan, build, test, review and ship. In Claude Code, send these as two separate prompts:
 
-You don't need all four. Pick by the problem you actually have, and install one at a time. The numbers below come from each project's README, not my testing, and they change often.
+```bash
+/plugin marketplace add addyosmani/agent-skills
+/plugin install agent-skills@addy-agent-skills
+```
+
+Then start a new feature with `/spec` instead of a loose prompt. That one habit stops most of the bloat, because Claude has to agree on what to build before it writes code.
+
+The rest of this guide covers 3 more tools: Ponytail for leaner code, Graphify to stop file rereads, and OmniRoute for when your limit runs out. You don't need all four. Install one at a time. Numbers come from each project's README, not my testing.
 
 ## The 4 tools
 
@@ -64,11 +71,14 @@ Link: https://github.com/Graphify-Labs/graphify (Apache-2.0 and MIT)
 
 25 skills that cover the whole build: spec, plan, build, test, review, ship. It picks the right skill for the stage you're in.
 
+In Claude Code, send these as two separate prompts:
+
 ```bash
-npx skills add addyosmani/agent-skills
+/plugin marketplace add addyosmani/agent-skills
+/plugin install agent-skills@addy-agent-skills
 ```
 
-Commands to try: /spec, /plan, /build, /test, /review, /ship.
+Then try /spec, /plan, /build, /test, /review and /ship. The README also lists /constraints, /webperf and /code-simplify. If the first line gives an SSH error, the README says to add the HTTPS URL instead: `/plugin marketplace add https://github.com/addyosmani/agent-skills.git`.
 
 Link: https://github.com/addyosmani/agent-skills (MIT)
 
@@ -88,6 +98,6 @@ Link: https://github.com/addyosmani/agent-skills (MIT)
 
 ## If you only do three things
 
-1. Install Agent Skills and try /spec before you write any code.
+1. Install Agent Skills with the two prompts above and try /spec before you write any code.
 2. Add Ponytail with the two prompts above.
 3. Add Graphify on a big repo, or OmniRoute if you keep hitting limits.

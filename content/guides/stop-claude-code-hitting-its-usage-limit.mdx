@@ -1,8 +1,8 @@
 ---
-title: "4 Free Tools That Stop Claude Code Hitting Its Limit"
+title: "4 Free Tools to See and Cut What Claude Code Spends"
 keyword: "LIMIT"
 topic: "Claude Code"
-summary: "Four free tools to see where your Claude Code tokens go and spend fewer of them, with the install command for each and an honest order to try them in."
+summary: "Four free tools to see where your Claude Code tokens go and try to spend fewer of them, with the install command for each and an honest order to try them in."
 minutes: 4
 date: "2026-09-30"
 reel: "https://www.instagram.com/reel/Dd7qQujS22j/"
@@ -14,9 +14,15 @@ schoolLine: "Module 4 shows how I make a whole reel with Claude in one session, 
 
 Claude Code runs out of usage in the middle of a task, and most people have no idea where the tokens went.
 
-This guide gives you 4 free tools: one that shows where your tokens go, one that sends less to the model, one that makes Claude write less code, and one that gives it a map of your codebase. Each has the install command, the link, and what it can and can't do.
+You can start on that in two minutes, free. In a terminal, run this to see your token cost by model, project and task. It reads session files already on your machine and needs Node.js 22.13 or newer:
 
-You can't fix what you can't see, so measure first, then add one tool at a time. The savings below come from each project's own benchmark, not from my testing.
+```bash
+npx codeburn
+```
+
+Then use `/clear` between tasks. Old conversation is sent again with every message, so a long chat gets more expensive with each reply.
+
+The rest of this guide covers 4 free tools in total, with install commands, links and what each can and can't do. Measure first, then add one tool at a time. The savings quoted come from each project's own tests, not from mine.
 
 ## The 4 tools
 
@@ -48,7 +54,7 @@ Link: https://github.com/getagentseal/codeburn (MIT, free)
 
 ### 2. Headroom: shrink what gets sent to the model
 
-It runs on your machine between Claude Code and the model, and compresses tool outputs, logs and files before they are sent. The README says about 20% fewer tokens for coding agents. Its table runs from 21% (code search) to 57% (incident debugging), so it depends a lot on what you send.
+It runs on your machine between Claude Code and the model, and compresses tool outputs, logs and files before they are sent. The project's GitHub description says about 20% fewer tokens for coding agents. Its table runs from 21% (code search) to 57% (incident debugging), so it depends a lot on what you send.
 
 ```bash
 pip install "headroom-ai[all]"
