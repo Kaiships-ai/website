@@ -57,7 +57,7 @@ export default function ProductsPage() {
       body: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. Needs a Mac.",
       buttons: [
         { label: `Get the Reel Kit · ${kit.price}`, href: kit.checkout, v: "accent" as const },
-        { label: "See how it works", href: "/#kit", v: "ghost" as const },
+        { label: "See how it works", href: "/reel-kit#kit", v: "ghost" as const },
       ],
     },
     {

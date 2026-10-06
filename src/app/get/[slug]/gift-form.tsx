@@ -83,7 +83,7 @@ export function GiftForm({
         <p className="mt-6 text-sm leading-relaxed text-ink-2">
           Want reels like the one you just watched? They&apos;re made with one prompt.{" "}
           <Link
-            href="/#pricing"
+            href="/reel-kit#pricing"
             className="font-medium text-accent-ink underline underline-offset-2"
           >
             See the Reel Kit

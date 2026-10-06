@@ -1,0 +1,127 @@
+---
+title: "4 Free Tools That Stop Claude Code Hitting Its Limit"
+keyword: "LIMIT"
+topic: "Claude Code"
+summary: "Four free tools to see where your Claude Code tokens go and spend fewer of them, with the install command for each and an honest order to try them in."
+minutes: 4
+date: "2026-09-30"
+reel: "https://www.instagram.com/reel/Dd7qQujS22j/"
+school: 4
+schoolLine: "Module 4 shows how I make a whole reel with Claude in one session, which is the kind of long session that eats your limit."
+---
+
+## Read this first
+
+Claude Code runs out of usage in the middle of a task, and most people have no idea where the tokens went.
+
+This guide gives you 4 free tools: one that shows where your tokens go, one that sends less to the model, one that makes Claude write less code, and one that gives it a map of your codebase. Each has the install command, the link, and what it can and can't do.
+
+You can't fix what you can't see, so measure first, then add one tool at a time. The savings below come from each project's own benchmark, not from my testing.
+
+## The 4 tools
+
+Install commands and numbers were re-checked against each README (checked 6 Oct 2026). They change often.
+
+### 1. CodeBurn: see where your tokens go
+
+It reads the session files already on your machine and shows token cost by model, project, task and tool. Measuring saves nothing by itself. `codeburn optimize` lists what wastes tokens, and `codeburn optimize --apply` makes the config fixes. Per its README it shows you each change first and backs up files before changing them.
+
+Run it without installing:
+
+```bash
+npx codeburn
+```
+
+To keep it (needs Node.js 22.13 or newer):
+
+```bash
+npm install -g codeburn
+```
+
+or on a Mac:
+
+```bash
+brew install codeburn
+```
+
+Link: https://github.com/getagentseal/codeburn (MIT, free)
+
+### 2. Headroom: shrink what gets sent to the model
+
+It runs on your machine between Claude Code and the model, and compresses tool outputs, logs and files before they are sent. The README says about 20% fewer tokens for coding agents. Its table runs from 21% (code search) to 57% (incident debugging), so it depends a lot on what you send.
+
+```bash
+pip install "headroom-ai[all]"
+```
+
+Then start Claude Code through it:
+
+```bash
+headroom wrap claude
+```
+
+It also registers a helper called Serena for the wrapped project. To skip that:
+
+```bash
+headroom wrap claude --code-memory none
+```
+
+To undo:
+
+```bash
+headroom unwrap claude
+```
+
+Link: https://github.com/headroomlabs-ai/headroom (Apache-2.0, free)
+
+### 3. Ponytail: Claude Code writes less code
+
+A plugin that pushes Claude Code to write the least code that works and reuse what is already there. In the project's own benchmark: about 54% less code and about 20% lower cost. That test was 12 feature tickets on one repo with Haiku 4.5. It is fewer lines, not half your usage.
+
+In Claude Code, send these as two separate prompts:
+
+```bash
+/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail
+```
+
+Link: https://github.com/DietrichGebert/ponytail (MIT, free)
+
+### 4. Graphify: a map of your codebase
+
+It turns your code, docs and configs into a knowledge graph that Claude Code can query through a /graphify skill. The idea is that the agent asks the graph before it opens raw files. The project does not publish a token saving for Claude Code sessions, so there is no number here.
+
+```bash
+uv tool install graphifyy
+```
+
+Yes, two y's. Other graphify packages on PyPI are not the same project. Then register the skill:
+
+```bash
+graphify install
+```
+
+Link: https://github.com/Graphify-Labs/graphify (Apache-2.0 and MIT, free)
+
+## The order I'd install them
+
+1. CodeBurn. Measure first.
+2. Ponytail. Two prompts to install and the clearest benchmark of the four.
+3. Headroom. Worth it if CodeBurn shows big tool outputs and logs eating your context.
+4. Graphify. Only on a big repo, where Claude keeps opening the same files to find its way around.
+
+Add one at a time and check CodeBurn after each.
+
+## What doesn't work
+
+- Every saving above is the project's own number on its own test. I did not run them myself.
+- Nobody has tested these four together, so don't expect the numbers to add up.
+- Ponytail's half-the-code result is lines of code, not half your usage.
+- Graphify publishes no token saving for Claude Code, and it only pays off on a big repo.
+- Headroom's saving swings between 21% and 57% depending on what you send.
+
+## If you only do three things
+
+1. Run `npx codeburn` and look at where your tokens actually go.
+2. Use `/clear` between tasks, because old conversation is sent again with every message. Keep CLAUDE.md short too, since it loads into every session.
+3. Use a smaller model for simple jobs like renames and small edits, then add one tool from the list and check CodeBurn again.

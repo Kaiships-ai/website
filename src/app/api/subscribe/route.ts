@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getMagnet } from "@/lib/magnets";
+import { getGuide } from "@/lib/guides";
 
 /**
  * Proxies email opt-ins to Kit (ConvertKit) v3 forms API so the browser
@@ -49,6 +50,31 @@ export async function POST(request: Request) {
   // ConvertKit path below only runs while that key is missing.
   const loopsKey = process.env.LOOPS_API_KEY;
   const magnet = typeof source === "string" ? getMagnet(source) : undefined;
+  const guide =
+    typeof source === "string" && source.startsWith("guide:") ? getGuide(source.slice(6)) : undefined;
+  if (loopsKey && guide) {
+    // Free guide library (/guides/[slug]): one email unlocks every guide.
+    const u = (utm && typeof utm === "object" ? utm : {}) as Record<string, unknown>;
+    const pick = (k: string) => (typeof u[k] === "string" ? (u[k] as string).slice(0, 64) : "");
+    const extra = [pick("utm_campaign")].filter(Boolean);
+    const res = await fetch("https://app.loops.so/api/v1/contacts/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${loopsKey}`,
+      },
+      body: JSON.stringify({
+        email,
+        source: [`${pick("utm_source") || "web"}-guide-${guide.slug}`, ...extra].join(" · "),
+        ...((await currentGroup(email, loopsKey)) === "buyer" ? {} : { userGroup: "lead" }),
+        magnet: guide.keyword.toLowerCase(),
+      }),
+    });
+    if (!res.ok) {
+      return NextResponse.json({ error: "kit_error" }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true });
+  }
   if (loopsKey && magnet) {
     // IG DM gift page (/get/[slug]): tag the lead, no PACK email.
     // utm is folded into `source` (no utm* contact properties exist in Loops).
