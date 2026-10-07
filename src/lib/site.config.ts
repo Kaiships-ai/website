@@ -18,15 +18,14 @@ export const siteConfig = {
     tiktok: "https://tiktok.com/@kaiships.ai",
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
-    email: "kaiships.ai@gmail.com",
+    email: "kai@kaiships.ai",
   },
 
   nav: [
-    { label: "Products", href: "/products" },
-    { label: "School", href: "/school" },
-    { label: "Skills", href: "/skills" },
-    { label: "Free guides", href: "/resources" },
-    { label: "About", href: "/about" },
+    { label: "Reel Kit", href: "/#kit" },
+    { label: "Showcase", href: "/#showcase" },
+    { label: "Early users", href: "/#users" },
+    { label: "Free resources", href: "/resources" },
   ],
   navCta: {
     label: "Get the Reel Kit",
@@ -425,9 +424,6 @@ export const siteConfig = {
       {
         title: "Ship",
         links: [
-          { label: "Products", href: "/products" },
-          { label: "School", href: "/school" },
-          { label: "Skills", href: "/skills" },
           { label: "Reel Kit", href: "/#kit" },
           { label: "Starter PACK", href: "/pack" },
           { label: "Free resources", href: "/resources" },
@@ -437,7 +433,6 @@ export const siteConfig = {
       {
         title: "Site",
         links: [
-          { label: "About", href: "/about" },
           { label: "Early users", href: "/#users" },
           { label: "Privacy", href: "/privacy" },
           { label: "Terms", href: "/terms" },

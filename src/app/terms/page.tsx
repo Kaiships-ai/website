@@ -16,7 +16,7 @@ export default function TermsPage() {
         </p>
         <h1>Terms of Service</h1>
         <p>
-          <em>Last updated: 2026-10-06</em>
+          <em>Last updated: 2026-07-11</em>
         </p>
         <h2>The library</h2>
         <p>
@@ -47,14 +47,11 @@ export default function TermsPage() {
           we&apos;ll fix it together. If it still doesn&apos;t work within 14
           days of purchase, you get a full refund.
         </p>
-        <h2>Kaiships School and Skill Library</h2>
+        <h2>Community subscriptions</h2>
         <p>
-          Both are one-time purchases sold through Polar, which emails the
-          download links right after payment. Use them for your own work,
-          including commercial work; please don&apos;t share or resell the
-          course or the skills. If something doesn&apos;t work, DM
-          @kaiships.ai and we&apos;ll fix it together. If you&apos;re not happy
-          within 14 days of purchase, you get a full refund, no questions asked.
+          The paid community runs on Discord; billing, cancellation, and
+          refunds are handled by the payment provider under the terms shown at
+          checkout. Cancel anytime.
         </p>
         <h2>Contact</h2>
         <p>
