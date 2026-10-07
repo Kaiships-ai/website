@@ -37,7 +37,7 @@ export default async function ThanksPage({
         <div className={`${card} mt-8`}>
           <p className="text-lg font-extrabold text-ink">Check your email.</p>
           <p className="text-base leading-relaxed text-ink-2">
-            Polar (the payment company) emails your download links right now. {what}{" "}If it&apos;s not there in a few minutes, look in spam.
+            Polar sends your download links from Polar. {what} If it&apos;s not there in a few minutes, look in spam.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
