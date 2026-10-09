@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-rendered="1"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shark: pitch your idea to 5 Claude sharks</title>
+<!--
+  ksa-free-source LOCKED TEMPLATE.
+  Do not edit CSS; edit content.json only. Build: node build.mjs <content.json> <out.html>
+  The CSS block below is copied verbatim from 02-content-funnel/weeks/2026-W40/plan.html,
+  followed by a small "free-doc additions" block (W40 tokens only). Changing the look needs Kai's yes.
+-->
+<script>
+(function(){try{var m=location.search.match(/theme=(light|dark)/);var t=m?m[1]:localStorage.getItem('ks-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script id="content" type="application/json">{
+ "lang": "en",
+ "web": true,
+ "title": "Shark: pitch your idea to 5 Claude sharks",
+ "crumb": [
+  "kaiships.ai",
+  "Free guide",
+  "SHARK"
+ ],
+ "eyebrow": "Free guide",
+ "subtitle": "The skill link, the install steps and a sample pitch to try.",
+ "intro": "The shark skill (by Alex Chen) is a free Claude Code skill (MIT, no signup, no API key, nothing to connect). It puts your business idea in front of a Shark Tank-style panel where every shark is a Claude, and they all want to say no.",
+ "sections": [
+  {
+   "id": "words",
+   "title": "Words on this page",
+   "sub": "Plain meanings, in case some of these are new.",
+   "blocks": [
+    {
+     "type": "gloss",
+     "items": [
+      [
+       "Claude Code",
+       "Anthropic's AI assistant that works inside your terminal and your project files."
+      ],
+      [
+       "Skill",
+       "An add-on that teaches Claude Code a new command. A skill is a folder with a \u003ccode>SKILL.md\u003c/code> file."
+      ],
+      [
+       "Sub-agent",
+       "A separate Claude that does one job and reports back. Each shark and the founder is one."
+      ],
+      [
+       "BOARD.md",
+       "The report file the skill writes at the end: every decision, offer and your homework."
+      ],
+      [
+       "npx",
+       "A command that comes with Node.js and runs a tool without installing it for good."
+      ],
+      [
+       "MIT licence",
+       "A common open-source licence: free to use, copy and change."
+      ],
+      [
+       "IN / OUT",
+       "Each shark's final call: it makes a practice offer, or it passes."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tool",
+   "blocks": [
+    {
+     "type": "callout",
+     "tone": "clay",
+     "html": "\u003cb>Before you start:\u003c/b> you need Claude Code. The skill never touches your files: everything it writes goes into a \u003ccode>.shark/\u003c/code> folder where you run it. Turn on accept-edits mode (Shift+Tab) first so you are not asked to approve every file."
+    },
+    {
+     "type": "tool",
+     "id": "shark",
+     "name": "/shark",
+     "chip": "pitch",
+     "tagline": "Claude says your idea is great. The sharks don't.",
+     "parts": [
+      {
+       "label": "What it does",
+       "html": [
+        "\u003cb>5 sharks\u003c/b> read your pitch. Each writes its biggest worry and its three hardest questions: the tech billionaire shark (\"Is this a business or a hobby?\"), the royalty shark (it only offers money for a cut of every sale), the customer shark, the numbers shark and the skeptic shark.",
+        "A \u003cb>founder\u003c/b> Claude answers every question, only from what you told it. Anything your pitch can't answer goes on your homework list.",
+        "Each shark decides \u003cb>IN or OUT\u003c/b>, with a practice offer (\"$50,000 for 10%\"), one line of why, and the one thing that would change its mind. Out sounds like: \"For that reason, I'm out.\""
+       ]
+      },
+      {
+       "label": "Install (pick one)",
+       "commands": [
+        {
+         "cmd": "npx skills add alexyc9381/shark-skill",
+         "note": "in your terminal"
+        },
+        {
+         "cmd": "/plugin marketplace add alexyc9381/shark-skill",
+         "note": "or as a plugin, inside Claude Code"
+        },
+        {
+         "cmd": "/plugin install shark-skill@shark-skill"
+        }
+       ],
+       "after": "Or paste the repo link into Claude and say \"Install this skill, then confirm /shark works.\""
+      },
+      {
+       "label": "Sample pitch",
+       "commands": [
+        {
+         "cmd": "/shark A subscription box of local hot sauces. $35 a month, 12 customers so far, I want to reach 500."
+        }
+       ],
+       "after": "A good pitch says 4 things: what it is, the price, who it's for, and how you'll reach them. Swap in your own idea."
+      },
+      {
+       "label": "Options",
+       "html": "\u003ccode>--investors N\u003c/code> picks 2 to 10 sharks (default 5). \u003ccode>--seed S\u003c/code> picks a random panel from all 10 sharks, the same one every time you reuse S."
+      },
+      {
+       "label": "Read the result",
+       "html": "Open \u003ccode>BOARD.md\u003c/code>: how many sharks are in, every offer, what would change each shark's mind, and the questions you couldn't answer yet. The \"I'm out\" reasons are your to-do list: fix them, then pitch again. The repo has a real example in \u003ccode>examples/hot-sauce/BOARD.md\u003c/code> (2 sharks, no deal, six pieces of homework)."
+      }
+     ],
+     "source": {
+      "label": "github.com/alexyc9381/shark-skill",
+      "url": "https://github.com/alexyc9381/shark-skill"
+     },
+     "warn": "\u003cb>Practice, not advice.\u003c/b> The sharks are language models and the offers are practice numbers, not real money or financial advice. Not connected to the TV show. 5 sharks = 11 sub-agent calls (5 sets of questions, 1 founder, 5 decisions), and every one counts toward your Claude plan's usage."
+    },
+    {
+     "type": "p",
+     "html": "Credit: /shark skill by Alex Chen (\u003ca href=\"https://instagram.com/nocodealex\">@nocodealex\u003c/a>): github.com/alexyc9381/shark-skill"
+    }
+   ]
+  }
+ ],
+ "ps": "P.S. The reel that sent you here wasn't filmed. It was made with one prompt in Claude Code. The kit I use is \u003ca href=\"https://kai-ships-ai-website.vercel.app/?utm_source=magnet&amp;utm_campaign=shark#pricing\">here\u003c/a>.",
+ "footer": "Free guide from kaiships.ai. Facts from the shark-skill README, checked 09/10/2026. Kaiships has no affiliation with the skill or its author."
+}</script>
+<style>
+/* ===== LOCKED: W40 plan.html CSS, verbatim. Do not edit CSS; edit content.json only. ===== */
+:root{
+  --bg:#FAF9F5;--surface:#FFFFFF;--surface-2:#F3F0E8;--ink:#1F1E1D;--muted:#625E55;--faint:#948F85;
+  --line:#E6E1D6;--line-2:#D4CDBF;--clay:#D97757;--clay-ink:#B4583A;--clay-bg:#D977571A;
+  --olive:#6E7B4E;--olive-bg:#6E7B4E1A;--slate:#5B6B7A;--slate-bg:#5B6B7A1A;--rust:#B04A3F;--rust-bg:#B04A3F14;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){color-scheme:dark;
+    --bg:#1C1B19;--surface:#252421;--surface-2:#2E2C28;--ink:#EEEBE3;--muted:#ABA69A;--faint:#7A766C;
+    --line:#383631;--line-2:#4A4740;--clay:#E08966;--clay-ink:#EFA184;--clay-bg:#E089661F;
+    --olive:#A7B57F;--olive-bg:#A7B57F1F;--slate:#9DB0C2;--slate-bg:#9DB0C21F;--rust:#E07A6E;--rust-bg:#E07A6E1F;}
+}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#1C1B19;--surface:#252421;--surface-2:#2E2C28;--ink:#EEEBE3;--muted:#ABA69A;--faint:#7A766C;
+  --line:#383631;--line-2:#4A4740;--clay:#E08966;--clay-ink:#EFA184;--clay-bg:#E089661F;
+  --olive:#A7B57F;--olive-bg:#A7B57F1F;--slate:#9DB0C2;--slate-bg:#9DB0C21F;--rust:#E07A6E;--rust-bg:#E07A6E1F;}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--clay-ink);text-underline-offset:2px}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;overflow-wrap:anywhere}
+.mono{font-family:var(--mono)}
+.lbl{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;gap:12px;align-items:center}
+.crumb{font-family:var(--mono);font-size:12px;color:var(--muted);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crumb a{color:var(--muted);text-decoration:none}.crumb a:hover{color:var(--clay-ink)}
+.crumb b{color:var(--ink);font-weight:500}
+.btn{font:500 12px var(--mono);border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.btn:hover{border-color:var(--clay)}
+.topbar-prog{height:2px;background:var(--clay);width:0;transition:width .1s linear}
+
+/* layout */
+.page{max-width:1320px;margin:0 auto;padding:0 20px 80px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px}
+.rail{min-width:0;position:sticky;top:64px;align-self:start;padding-top:40px;max-height:calc(100vh - 64px);overflow:auto}
+.tree{font-family:var(--mono);font-size:12.5px;line-height:1.5;margin:0;padding:0;list-style:none}
+.tree li{margin:0}
+.tree a{display:flex;gap:6px;padding:3px 6px;border-radius:6px;color:var(--muted);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tree a .br{color:var(--line-2);flex:none}
+.tree a:hover{color:var(--ink);background:var(--surface-2)}
+.tree a.on{color:var(--clay-ink);background:var(--clay-bg)}
+.tree a.on .br{color:var(--clay)}
+.tree .root a{color:var(--ink);font-weight:500}
+.prog{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.prog .bar{max-width:100%;font-family:var(--mono);font-size:12px;letter-spacing:-.5px;color:var(--clay);white-space:nowrap;overflow:hidden}
+.prog .bar i{font-style:normal;color:var(--line-2)}
+.prog .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+.prog .pct{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.hint{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;margin-top:12px}
+.wprog{margin-top:18px;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface)}
+.wprog .bar{color:var(--olive);overflow:hidden}
+
+main{padding-top:40px;min-width:0}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-ink)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:10px 0 0;text-wrap:balance}
+.lede{color:var(--muted);max-width:68ch;margin:14px 0 0;font-size:16px}
+section.sec{margin-top:56px;scroll-margin-top:72px}
+section.sec>h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin:0 0 6px}
+.sec-sub{color:var(--muted);margin:0 0 20px;max-width:70ch}
+h3.sub{font-family:var(--serif);font-weight:600;font-size:20px;margin:32px 0 12px;scroll-margin-top:72px}
+p.txt{margin:0 0 14px;max-width:72ch}
+
+/* blocks */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:20px 0}
+.stat{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat .v{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .s{font-size:12.5px;color:var(--muted);margin-top:4px}
+.stat.clay{border-color:var(--clay)} .stat.clay .v{color:var(--clay-ink)}
+.stat.rust .v{color:var(--rust)}
+
+.callout{border-radius:12px;padding:16px 18px;margin:16px 0;border:1.5px solid var(--line-2);background:var(--surface)}
+.callout.clay{border-color:var(--clay);background:var(--clay-bg)}
+.callout.olive{border-color:var(--olive);background:var(--olive-bg)}
+.callout.rust{border-color:var(--rust);background:var(--rust-bg)}
+.callout h4{margin:0 0 8px;font-family:var(--serif);font-size:18px;font-weight:600}
+.callout ol,.callout ul{margin:0;padding-left:20px}.callout li{margin:4px 0}
+
+.tbl-wrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:left;padding:10px 14px;border-bottom:1.5px solid var(--line);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.num{text-align:right}
+.na{color:var(--faint);font-style:italic}
+
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:2px 7px;border:1px solid var(--line-2);color:var(--muted);background:var(--surface-2);white-space:nowrap}
+.chip.clay{color:var(--clay-ink);border-color:var(--clay);background:var(--clay-bg)}
+.chip.olive{color:var(--olive);border-color:var(--olive);background:var(--olive-bg)}
+.chip.slate{color:var(--slate);border-color:var(--slate);background:var(--slate-bg)}
+.chip.rust{color:var(--rust);border-color:var(--rust);background:var(--rust-bg)}
+.kw{font-family:var(--mono);font-weight:500;font-size:12.5px;color:var(--clay-ink);background:var(--clay-bg);border-radius:5px;padding:1px 7px}
+
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;background:var(--surface);border:1.5px solid var(--line-2);border-radius:12px;padding:6px 20px}
+.gloss>div{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}
+.gloss dt{font-weight:600;font-size:14px}.gloss dd{margin:0;font-size:14px;color:var(--muted)}
+
+/* proposals */
+.props{display:grid;gap:10px}
+.prop{display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px}
+.prop .n{font-family:var(--serif);font-size:22px;color:var(--clay);line-height:1}
+.prop .f{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.prop .c{margin:4px 0}.prop .w{font-size:13.5px;color:var(--muted)}
+.prop .ask{margin-top:8px;display:flex;gap:6px}
+
+/* week strip */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin:16px 0}
+.day{border:1.5px solid var(--line);border-radius:10px;padding:10px;min-height:118px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.day.empty{background:transparent;border-style:dashed}
+.day .d{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
+.day .t{font-size:13.5px;font-weight:500;line-height:1.35}
+.day.post{border-color:var(--clay)}
+.day .m{margin-top:auto;display:flex;flex-wrap:wrap;gap:4px}
+
+/* script cards */
+.script{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;margin:18px 0;overflow:hidden;scroll-margin-top:72px}
+.script-h{padding:16px 18px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.script-h .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.script-h h3{margin:0;font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.25}
+.script-h .src{font-size:13px;color:var(--muted)}
+.hook{padding:14px 18px;background:var(--surface-2);border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+.hook .q{font-family:var(--serif);font-size:19px;font-weight:500}
+.vers{display:grid;grid-template-columns:1fr 1fr}
+.ver{padding:16px 18px;font-size:14.5px;line-height:1.7}
+.ver+.ver{border-left:1px solid var(--line)}
+.ver .lbl{display:block;margin-bottom:8px}
+.ver.kai .lbl{color:var(--clay-ink)}
+.meta{border-top:1px solid var(--line);padding:12px 18px;display:grid;gap:10px;font-size:13.5px}
+.meta .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:2px}
+.cards{display:flex;flex-wrap:wrap;gap:6px;counter-reset:c}
+.cards span{border:1px solid var(--line-2);border-radius:8px;padding:3px 9px;font-size:13px;background:var(--bg)}
+.tools a{margin-right:4px}
+.fix{color:var(--muted)}
+.warn{background:var(--rust-bg);border-top:1px solid var(--line);padding:10px 18px;font-size:13.5px}
+.pick{border-top:1px solid var(--line);padding:10px 18px;display:flex;gap:8px;align-items:center;background:var(--surface-2)}
+
+/* graph */
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:13px;color:var(--muted);margin:8px 0 14px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.filters button{font:500 12px var(--mono);border:1px solid var(--line-2);background:var(--surface);color:var(--muted);border-radius:999px;padding:4px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid-wrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+.g{display:grid;grid-template-columns:96px repeat(6,minmax(0,1fr))}
+.g .hd{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);padding:10px 12px;border-bottom:1.5px solid var(--line)}
+.g .rh{padding:12px 10px;border-bottom:1px solid var(--line);font-family:var(--serif);font-weight:600;font-size:16px;background:var(--surface-2)}
+.g .rh small{display:block;font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted)}
+.cell{padding:10px 10px;overflow-wrap:anywhere;border-bottom:1px solid var(--line);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.4;position:relative;transition:opacity .15s}
+.cell .idea{font-weight:500}
+.cell .src{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.cell .src b{color:var(--ink);font-weight:500}
+.cell .foot{margin-top:auto;display:flex;flex-wrap:wrap;gap:4px}
+.cell.used{background:var(--clay-bg)}
+.cell.used::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--clay)}
+.cell.dim{opacity:.22}
+.heat{display:inline-block;height:4px;border-radius:2px;background:var(--clay);vertical-align:middle}
+
+/* timeline */
+.tl{list-style:none;margin:16px 0;padding:0;display:grid;gap:0}
+.tl li{display:grid;grid-template-columns:40px 1fr;gap:14px;position:relative;padding-bottom:14px}
+.tl li:not(:last-child)::after{content:"";position:absolute;left:19px;top:40px;bottom:0;width:1.5px;background:var(--line-2)}
+.tl .dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:17px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--faint)}
+.tl li.done .dot{background:var(--olive);border-color:var(--olive);color:var(--bg)}
+.tl li.wait .dot{background:var(--clay);border-color:var(--clay);color:var(--bg)}
+.tl li.blocked .dot{background:var(--rust);border-color:var(--rust);color:var(--bg)}
+.tl .body{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px}
+.tl li.wait .body{border-color:var(--clay)}
+.tl li.todo .body{background:transparent;border-style:dashed}
+.tl .hrow{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.tl .nm{font-family:var(--serif);font-weight:600;font-size:18px}
+.tl .when{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-left:auto}
+.tl .note{font-size:14px;color:var(--muted);margin-top:4px}
+.log{font-family:var(--mono);font-size:12.5px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted)}
+
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.links a{font-family:var(--mono);font-size:12px;text-decoration:none;border:1px solid var(--line-2);border-radius:8px;padding:5px 10px;background:var(--surface);color:var(--ink)}
+.links a:hover{border-color:var(--clay)}
+footer{margin-top:64px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+
+@media (max-width:900px){
+  .page{grid-template-columns:minmax(0,1fr);gap:0}
+  .rail{position:static;max-height:none;padding-top:20px;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .tree .l3{display:none}
+  .g{grid-template-columns:96px repeat(6,150px)}
+  .gloss{grid-template-columns:1fr}
+  .vers{grid-template-columns:1fr}.ver+.ver{border-left:none;border-top:1px solid var(--line)}
+  .week{grid-template-columns:1fr 1fr}
+  .day{min-height:0}
+  .page{padding:0 16px 64px}.top-in{padding:10px 16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* interactive calendar */
+.cal-f{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.cal-f button{font:inherit;font-size:12.5px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.cal-f button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.cal .cd{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;min-height:150px;padding:8px;display:flex;flex-direction:column;gap:6px}
+.cal .cd.today{border-color:var(--clay)}
+.cal .cd.over{background:var(--clay-bg)}
+.cal .dh{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:flex;justify-content:space-between}
+.cal .it{border:1px solid var(--line-2);border-radius:8px;padding:6px 8px;font-size:12.5px;line-height:1.35;cursor:pointer;background:var(--surface-2)}
+.cal .it[draggable="true"]{cursor:grab}
+.cal .it.done{border-color:var(--olive);background:var(--olive-bg)}
+.cal .it.ready{border-color:var(--clay);background:var(--clay-bg)}
+.cal .it.todo{border-style:dashed}
+.cal .it.sel{outline:2px solid var(--clay);outline-offset:1px}
+.cal .it.hide{display:none}
+.cal .it b{display:block;font-weight:600}
+.cal .it small{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.cal-d{margin-top:12px;background:var(--surface);border:1.5px solid var(--line-2);border-radius:12px;padding:14px 16px;font-size:14px}
+.cal-d h4{margin:0 0 6px;font-family:var(--serif);font-size:18px}
+.cal-d dl{display:grid;grid-template-columns:120px 1fr;gap:4px 12px;margin:8px 0 0}
+.cal-d dt{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.cal-d dd{margin:0}
+.cal-hint{font-size:12.5px;color:var(--muted);margin-top:8px}
+@media (max-width:760px){.cal{grid-template-columns:1fr}.cal .cd{min-height:auto}}
+
+/* ===== LOCKED: free-doc additions (W40 tokens only). Do not edit CSS; edit content.json only. ===== */
+.meta{grid-template-columns:minmax(0,1fr)}
+.meta>div{min-width:0}
+.meta p{margin:0;max-width:72ch}.meta p+p,.meta .cmd+p,.meta p+.cmd{margin-top:8px}
+.script-h h3 .n{color:var(--clay-ink)}
+.cmd{position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;min-width:0}
+.cmd pre{margin:0;padding:12px 14px;padding-right:76px;font-family:var(--mono);font-size:12.5px;line-height:1.75;color:var(--ink);white-space:pre;overflow-x:auto}
+.cmd .c{color:var(--faint)}
+.copy{position:absolute;top:8px;right:8px;font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--surface);border:1px solid var(--line-2);color:var(--muted);border-radius:6px;padding:3px 9px;cursor:pointer}
+.copy:hover{border-color:var(--clay)}
+.copy.ok{color:var(--olive);border-color:var(--olive);background:var(--olive-bg)}
+.tl li:not([class]) .body{border-color:var(--line)}
+.ps{margin-top:40px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+@media (max-width:480px){.cmd pre{padding-top:38px;padding-right:14px}.hook{grid-template-columns:1fr}}
+</style>
+<meta name="robots" content="noindex"><script defer src="https://kstats-kaiships.vercel.app/stats.js" data-website-id="a11d08a4-7f99-420e-aafc-5aa471b7ca6e" data-domains="kai-ships-ai-website.vercel.app"></script></head>
+<body>
+<div class="top"><div class="top-in"><div class="crumb" id="crumb">kaiships.ai / Free guide / <b>SHARK</b></div><button class="btn" id="theme" type="button">◐ theme</button></div><div class="topbar-prog" id="topprog" style="width: 0%;"></div></div>
+<div class="page">
+  <aside class="rail"><nav id="toc" aria-label="Contents"><ul class="tree" id="tree"><li class="root"><a href="#top">Shark: pitch your idea to 5 Claude sharks</a></li><li><a href="#words" data-t="words"><span class="br">├</span>Words on this page</a></li><li><a href="#shark" data-t="shark"><span class="br">└</span>/shark</a></li></ul></nav>
+    <div class="prog"><div class="bar" id="bar"><i>░░░░░░░░░░░░░░░░░░░░░░░░░░░░</i></div><div class="row"><span class="lbl" id="readlbl">read</span><span class="pct" id="pct">00%</span></div></div>
+    <div class="hint" id="hint">↑ / ↓ to jump</div>
+  </aside>
+  <main id="top"><div class="eyebrow">Free guide</div><h1>Shark: pitch your idea to 5 Claude sharks</h1><p class="lede">The skill link, the install steps and a sample pitch to try.</p><p class="lede">The shark skill (by Alex Chen) is a free Claude Code skill (MIT, no signup, no API key, nothing to connect). It puts your business idea in front of a Shark Tank-style panel where every shark is a Claude, and they all want to say no.</p><section class="sec" id="words"><h2>Words on this page</h2><p class="sec-sub">Plain meanings, in case some of these are new.</p><dl class="gloss"><div><dt>Claude Code</dt><dd>Anthropic's AI assistant that works inside your terminal and your project files.</dd></div><div><dt>Skill</dt><dd>An add-on that teaches Claude Code a new command. A skill is a folder with a <code>SKILL.md</code> file.</dd></div><div><dt>Sub-agent</dt><dd>A separate Claude that does one job and reports back. Each shark and the founder is one.</dd></div><div><dt>BOARD.md</dt><dd>The report file the skill writes at the end: every decision, offer and your homework.</dd></div><div><dt>npx</dt><dd>A command that comes with Node.js and runs a tool without installing it for good.</dd></div><div><dt>MIT licence</dt><dd>A common open-source licence: free to use, copy and change.</dd></div><div><dt>IN / OUT</dt><dd>Each shark's final call: it makes a practice offer, or it passes.</dd></div></dl></section><section class="sec" id="tool"><div class="callout clay"><p class="txt" style="margin:0"><b>Before you start:</b> you need Claude Code. The skill never touches your files: everything it writes goes into a <code>.shark/</code> folder where you run it. Turn on accept-edits mode (Shift+Tab) first so you are not asked to approve every file.</p></div><article class="script" id="shark"><div class="script-h"><div class="row"><span class="chip clay">pitch</span></div><h3>/shark</h3></div>
+  <div class="hook"><span class="lbl">in one line</span><span class="q">Claude says your idea is great. The sharks don't.</span></div>
+  <div class="meta"><div><span class="k">What it does</span><p><b>5 sharks</b> read your pitch. Each writes its biggest worry and its three hardest questions: the tech billionaire shark ("Is this a business or a hobby?"), the royalty shark (it only offers money for a cut of every sale), the customer shark, the numbers shark and the skeptic shark.</p><p>A <b>founder</b> Claude answers every question, only from what you told it. Anything your pitch can't answer goes on your homework list.</p><p>Each shark decides <b>IN or OUT</b>, with a practice offer ("$50,000 for 10%"), one line of why, and the one thing that would change its mind. Out sounds like: "For that reason, I'm out."</p></div><div><span class="k">Install (pick one)</span><div class="cmd"><pre>npx skills add alexyc9381/shark-skill           <span class="c"># in your terminal</span>
+/plugin marketplace add alexyc9381/shark-skill  <span class="c"># or as a plugin, inside Claude Code</span>
+/plugin install shark-skill@shark-skill</pre><button class="copy" type="button" data-cmd="npx skills add alexyc9381/shark-skill
+/plugin marketplace add alexyc9381/shark-skill
+/plugin install shark-skill@shark-skill">Copy</button></div><p>Or paste the repo link into Claude and say "Install this skill, then confirm /shark works."</p></div><div><span class="k">Sample pitch</span><div class="cmd"><pre>/shark A subscription box of local hot sauces. $35 a month, 12 customers so far, I want to reach 500.</pre><button class="copy" type="button" data-cmd="/shark A subscription box of local hot sauces. $35 a month, 12 customers so far, I want to reach 500.">Copy</button></div><p>A good pitch says 4 things: what it is, the price, who it's for, and how you'll reach them. Swap in your own idea.</p></div><div><span class="k">Options</span><p><code>--investors N</code> picks 2 to 10 sharks (default 5). <code>--seed S</code> picks a random panel from all 10 sharks, the same one every time you reuse S.</p></div><div><span class="k">Read the result</span><p>Open <code>BOARD.md</code>: how many sharks are in, every offer, what would change each shark's mind, and the questions you couldn't answer yet. The "I'm out" reasons are your to-do list: fix them, then pitch again. The repo has a real example in <code>examples/hot-sauce/BOARD.md</code> (2 sharks, no deal, six pieces of homework).</p></div>
+  <div class="tools"><span class="k">Source</span><a href="https://github.com/alexyc9381/shark-skill" target="_blank" rel="noopener">github.com/alexyc9381/shark-skill</a></div></div>
+  <div class="warn">⚠️ <b>Practice, not advice.</b> The sharks are language models and the offers are practice numbers, not real money or financial advice. Not connected to the TV show. 5 sharks = 11 sub-agent calls (5 sets of questions, 1 founder, 5 decisions), and every one counts toward your Claude plan's usage.</div></article><p class="txt">Credit: /shark skill by Alex Chen (<a href="https://instagram.com/nocodealex" target="_blank" rel="noopener">@nocodealex</a>): github.com/alexyc9381/shark-skill</p></section><div class="callout ps"><p class="txt" style="margin:0">P.S. The reel that sent you here wasn't filmed. It was made with one prompt in Claude Code. The kit I use is <a href="https://kai-ships-ai-website.vercel.app/?utm_source=magnet&amp;utm_campaign=shark#pricing" target="_blank" rel="noopener">here</a>.</p></div><footer>Free guide from kaiships.ai. Facts from the shark-skill README, checked 09/10/2026. Kaiships has no affiliation with the skill or its author.</footer></main>
+</div>
+<script>
+(function(){
+const D=JSON.parse(document.getElementById('content').textContent||'{}');
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const chip=(t,c)=>`<span class="chip ${c||''}">${t}</span>`;
+const arr=x=>x==null?[]:Array.isArray(x)?x:[x];
+const paras=x=>arr(x).map(h=>`<p>${h}</p>`).join('');
+const UI={en:{toc:'Contents',read:'read',hint:'↑ / ↓ to jump',short:'in one line',src:'Source',copy:'Copy',copied:'Copied'},
+          vi:{toc:'Mục lục',read:'đã đọc',hint:'↑ / ↓ để nhảy mục',short:'một dòng',src:'Nguồn',copy:'Copy',copied:'Đã copy'}};
+const L=UI[D.lang]||UI.en;
+/* pre-rendered by build.mjs (data-rendered="1"): content is already in the body, only wire up the runtime */
+const PRE=document.documentElement.dataset.rendered==='1';
+if(!PRE){
+document.documentElement.lang=D.lang||'en';
+document.title=D.title||'kaiships.ai';
+$('#toc').setAttribute('aria-label',L.toc);$('#readlbl').textContent=L.read;$('#hint').textContent=L.hint;
+const crumb=arr(D.crumb);
+$('#crumb').innerHTML=crumb.map((c,i)=>i==crumb.length-1?`<b>${esc(c)}</b>`:esc(c)).join(' / ');
+
+const cmdBlock=list=>{const w=Math.max(...list.map(c=>c.cmd.length));
+  return `<div class="cmd"><pre>${list.map(c=>esc(c.cmd)+(c.note?' '.repeat(w-c.cmd.length+2)+`<span class="c"># ${esc(c.note)}</span>`:'')).join('\n')}</pre><button class="copy" type="button" data-cmd="${esc(list.map(c=>c.cmd).join('\n'))}">${L.copy}</button></div>`;};
+const B={
+ p:b=>`<p class="txt">${b.html}</p>`,
+ callout:b=>`<div class="callout ${b.tone||''}">${b.title?`<h4>${b.title}</h4>`:''}${b.html?`<p class="txt" style="margin:0">${b.html}</p>`:''}${b.items?`<${b.ordered?'ol':'ul'}>${b.items.map(i=>`<li>${i}</li>`).join('')}</${b.ordered?'ol':'ul'}>`:''}</div>`,
+ gloss:b=>`<dl class="gloss">${b.items.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`).join('')}</dl>`,
+ tool:t=>`<article class="script" id="${esc(t.id)}"><div class="script-h">${t.chip?`<div class="row">${chip(esc(t.chip),'clay')}</div>`:''}<h3>${t.n!=null?`<span class="n">${esc(t.n)}.</span> `:''}${esc(t.name)}</h3></div>
+  ${t.tagline?`<div class="hook"><span class="lbl">${L.short}</span><span class="q">${t.tagline}</span></div>`:''}
+  <div class="meta">${arr(t.parts).map(p=>`<div><span class="k">${esc(p.label)}</span>${paras(p.html)}${p.commands?cmdBlock(p.commands):''}${paras(p.after)}</div>`).join('')}
+  ${t.source?`<div class="tools"><span class="k">${L.src}</span><a href="${esc(t.source.url)}">${esc(t.source.label||t.source.url)}</a></div>`:''}</div>
+  ${t.warn?`<div class="warn">⚠️ ${t.warn}</div>`:''}</article>`,
+ steps:b=>`<ol class="tl">${b.items.map((s,i)=>`<li><div class="dot">${i+1}</div><div class="body"><div class="hrow"><span class="nm">${s.name}</span></div><div class="note">${s.html||''}</div></div></li>`).join('')}</ol>`
+};
+
+let html=`${D.eyebrow?`<div class="eyebrow">${D.eyebrow}</div>`:''}<h1>${D.title||''}</h1>${arr(D.subtitle).concat(arr(D.intro)).map(t=>`<p class="lede">${t}</p>`).join('')}`;
+let tree=`<li class="root"><a href="#top">${esc(D.title||'')}</a></li>`;
+const secs=arr(D.sections);
+secs.forEach((s,si)=>{
+  const last=si==secs.length-1, kids=arr(s.blocks).filter(b=>b.type=='tool');
+  if(s.title)tree+=`<li><a href="#${s.id}" data-t="${s.id}"><span class="br">${last?'└':'├'}</span>${esc(s.title.replace(/<[^>]+>/g,''))}</a></li>`;
+  html+=`<section class="sec" id="${s.id}">${s.title?`<h2>${s.title}</h2>`:''}${s.sub?`<p class="sec-sub">${s.sub}</p>`:''}`;
+  let k=0;
+  arr(s.blocks).forEach(b=>{
+    if(!B[b.type])throw new Error('unknown block type: '+b.type);
+    html+=B[b.type](b);
+    if(b.type=='tool'){k++;const t=(b.n!=null?b.n+'. ':'')+b.name;
+      tree+=s.title?`<li class="l3"><a href="#${b.id}" data-t="${b.id}"><span class="br">${last?'&nbsp;':'│'}&nbsp;${k==kids.length?'└':'├'}</span>${esc(t)}</a></li>`
+                   :`<li><a href="#${b.id}" data-t="${b.id}"><span class="br">${last&&k==kids.length?'└':'├'}</span>${esc(t)}</a></li>`;}
+  });
+  html+=`</section>`;
+});
+if(D.ps)html+=`<div class="callout ps"><p class="txt" style="margin:0">${D.ps}</p></div>`;
+html+=`<footer>${D.footer||''}</footer>`;
+$('#main').innerHTML=html;$('#main').id='top';
+$('#tree').innerHTML=tree;
+
+/* every outside link opens in a new tab */
+document.querySelectorAll('#top a[href]').forEach(a=>{if(!a.getAttribute('href').startsWith('#')){a.target='_blank';a.rel='noopener';}});
+}
+
+/* copy buttons: copy commands only, never the # notes */
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const text=b.dataset.cmd;
+  const done=()=>{b.textContent=L.copied;b.classList.add('ok');setTimeout(()=>{b.textContent=L.copy;b.classList.remove('ok');},1500);};
+  const fallback=()=>{const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done();}catch(e){}t.remove();};
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(text).then(done,fallback);else fallback();
+}));
+
+/* reading progress + active tree (from W40) */
+const links=[...document.querySelectorAll('#tree a[data-t]')];
+const targets=links.map(a=>document.getElementById(a.dataset.t));
+function onScroll(){
+  const h=document.documentElement,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(1,h.scrollTop/max):1;
+  const n=28,f=Math.round(p*n);
+  $('#bar').innerHTML='█'.repeat(f)+'<i>'+'░'.repeat(n-f)+'</i>';
+  $('#pct').textContent=String(Math.round(p*100)).padStart(2,'0')+'%';
+  $('#topprog').style.width=(p*100)+'%';
+  let cur=-1;targets.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<120)cur=i;});
+  links.forEach((a,i)=>a.classList.toggle('on',i==cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea')||e.metaKey||e.ctrlKey)return;
+  if(e.key!='ArrowDown'&&e.key!='ArrowUp')return;
+  const tops=targets.map(t=>t.getBoundingClientRect().top);
+  let i=e.key=='ArrowDown'?tops.findIndex(t=>t>130):[...tops].reverse().findIndex(t=>t<70);
+  if(e.key=='ArrowUp'&&i>=0)i=tops.length-1-i;
+  if(i>=0){e.preventDefault();targets[i].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});}
+});
+/* theme (from W40; ?theme=light|dark also works) */
+const KEY='ks-theme';
+$('#theme').addEventListener('click',()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark';try{localStorage.setItem(KEY,r.dataset.theme);}catch(e){}});
+document.documentElement.dataset.rendered='1';
+})();
+</script>
+
+
+</body></html>
