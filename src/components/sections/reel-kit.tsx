@@ -108,7 +108,7 @@ export function KitHero() {
             </Button>
           </div>
           <p className="text-base text-ink-2">
-            <s>{kit.listPrice}</s> <b className="text-ink">{kit.price}</b> launch price · pay once · unlimited
+            <b className="text-ink">{kit.price}</b> · pay once · unlimited
             videos
           </p>
           {/* The 3 most common questions from the FAQ, answered next to the buy button. */}
@@ -592,11 +592,8 @@ export function KitPricing() {
           </h2>
           <p className="mt-6 flex items-baseline gap-4">
             <span className="text-6xl font-extrabold text-cream">{kit.price}</span>
-            <span className="text-2xl text-cream/60">
-              <s>{kit.listPrice}</s>
-            </span>
           </p>
-          <p className="mt-2 text-base text-cream/80">Launch price. Pay once, make as many reels as you want.</p>
+          <p className="mt-2 text-base text-cream/80">Pay once, make as many reels as you want.</p>
           <div className="mt-8">
             <BuyButton className="!shadow-[4px_5px_0_var(--ochre)]" />
           </div>

@@ -23,8 +23,6 @@ export const siteConfig = {
 
   nav: [
     { label: "Products", href: "/products" },
-    { label: "School", href: "/school" },
-    { label: "Skills", href: "/skills" },
     { label: "Free guides", href: "/resources" },
     { label: "About", href: "/about" },
   ],
@@ -39,8 +37,7 @@ export const siteConfig = {
     name: "Kaiships Reel Kit",
     checkout:
       "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
-    listPrice: "$50",
-    price: "$29.99",
+    price: "$39.99",
     // Pulled from the Instagram Graph API on 2026-10-01 (ig_stats.py).
     stats: {
       date: "Oct 1, 2026",
@@ -226,65 +223,6 @@ export const siteConfig = {
     { keyword: "TOOLS", title: "Sunday Content Engine playbook", desc: "How I plan a week of content in one sitting.", href: "/ig/sunday-content-engine/slide1.pdf" },
   ],
 
-  hero: {
-    eyebrow: "kaiships.ai — Claude Code content systems for solo builders",
-    // H1 renders as: {h1Plain} + {h1Accent (serif italic + cursor)}
-    h1Plain: "Real Claude Code agents.",
-    h1Accent: "No slop.",
-    sub: "Claude Code that researches, writes, and renders your Instagram carousels and reels — running on your own machine. You approve and post. It's the Content Machine Kit, tested on a real product before it reached you.",
-    primaryCta: {
-      label: "Claim a launch seat — $99",
-      href: "https://buy.polar.sh/polar_cl_ifrFWJmjWHztffFq6xwQQlWSJQAbOeUbIZ9hD1xW7oi",
-    },
-    secondaryCta: { label: "Get the free PACK", href: "/pack" },
-    terminal: {
-      title: "content-machine — zsh",
-      command: '/ksa:ideas "ai tools for solo builders"',
-      lines: [
-        { kind: "ok", text: "12 angles ranked by proof" },
-        { kind: "cmd", text: "/ksa:reach 03 --mode carousel" },
-        { kind: "ok", text: "8-slide spec — ends in 'comment PACK'" },
-        { kind: "cmd", text: "/ksa:cooking" },
-        { kind: "ok", text: "slides + 9:16 reel rendered, local VO" },
-        { kind: "cmd", text: "/ksa:serve" },
-        { kind: "accent", text: "posted to Instagram — or bundled, your call" },
-      ],
-      prompt: "kai ships daily",
-    },
-  },
-
-  ship: {
-    eyebrow: "What I ship",
-    title: "Installable systems,",
-    titleAccent: "not prompt lists.",
-    sub: "Everything is a file you drop into Claude Code. If it can't be installed and verified, I don't publish it.",
-    items: [
-      {
-        title: "Agent Templates",
-        desc: "Autonomous agents for the boring work — inbox triage, file wrangling, content pipelines. Wired, not described.",
-        demo: "$ claude agent run inbox-triage",
-        icon: "bot",
-      },
-      {
-        title: "Claude Code Skills",
-        desc: "Drop-in skills that make Claude Code sharper: verification gates, token control, shipping rituals.",
-        demo: "$ npx kaiships add verify-before-trust",
-        icon: "zap",
-      },
-      {
-        title: "CLAUDE.md Systems",
-        desc: "The operating file that stops agent drift and token burn. Curated, opinionated, battle-run daily.",
-        demo: "✓ CLAUDE.md merged — drift guard on",
-        icon: "file",
-      },
-      {
-        title: "Weekly Drops",
-        desc: "One new skill or agent every week inside the community — built for real problems members actually hit.",
-        demo: "→ drop 07: landing-page-weekend",
-        icon: "ship",
-      },
-    ],
-  },
 
   approach: {
     eyebrow: "Approach",
@@ -319,93 +257,6 @@ export const siteConfig = {
     ],
   },
 
-  // Content Machine Kit — the paid product (rung 1: free PACK → Kit → community).
-  kit: {
-    name: "Content Machine Kit",
-    price: "$99",
-    regularPrice: "$149",
-    seats: "First 20 seats at launch price",
-    priceNote: "launch price · one-time · no subscription",
-    checkoutUrl: "https://buy.polar.sh/polar_cl_ifrFWJmjWHztffFq6xwQQlWSJQAbOeUbIZ9hD1xW7oi",
-    // TODO(kai): public roadmap URL; roadmap link hidden while empty.
-    roadmapUrl: "",
-    tagline: "Turn Claude Code into your",
-    taglineAccent: "content machine.",
-    sub: "An installable system that runs on your machine: ideate → carousels + reels → publish to Instagram. No subscription, no hosted middleman — your keys, your repo, your output.",
-    included: [
-      "5 KSA commands — the full ideate → publish pipeline",
-      "Keyless carousel render — no design-tool API needed",
-      "9:16 reels with local voiceover",
-      "One-click Instagram publish, or a post-ready bundle",
-      "Lifetime updates via git pull",
-      "Private GitHub repo + Discord access",
-    ],
-    need: [
-      "A Claude subscription — Pro works, Max is comfortable",
-      "It's a builder's tool, not no-code — you run it in a terminal",
-      "One-click auto-publish needs an Instagram Business/Creator account linked to a Facebook Page — without it you still publish via the post-ready bundle",
-      "A pipeline run takes minutes, not seconds",
-    ],
-    guarantee: "30-day money-back — and you keep the files. Payment and delivery handled by Polar (Merchant of Record); repo + Discord access is granted right after checkout.",
-    buyLabel: "Claim a launch seat — $99",
-    pageCta: { label: "See the Content Machine Kit", href: "/kit" },
-    terminal: {
-      title: "content-machine — zsh",
-      lines: [
-        { kind: "cmd", text: "/ksa:ideas \"ai tools for solo builders\"" },
-        { kind: "ok", text: "12 angles ranked by proof" },
-        { kind: "cmd", text: "/ksa:reach 03 --mode carousel" },
-        { kind: "ok", text: "8-slide spec — ends in 'comment PACK'" },
-        { kind: "cmd", text: "/ksa:cooking" },
-        { kind: "ok", text: "slides + 9:16 reel rendered, local VO" },
-        { kind: "cmd", text: "/ksa:serve" },
-        { kind: "accent", text: "posted to Instagram — or bundled, your call" },
-      ],
-    },
-  },
-
-  community: {
-    eyebrow: "Community",
-    title: "Ship with people who",
-    titleAccent: "actually ship.",
-    sub: "Two live rungs, priced plainly: the free PACK and a one-time Kit. A community is coming after launch — no high-ticket upsell hiding behind a call booking.",
-    free: {
-      label: "Free",
-      title: "The Starter PACK",
-      desc: "A curated CLAUDE.md, model-routing config, 18 tested skills + 4 subagents — installable in minutes. DM the word PACK on Instagram, or drop your email and get the repo instantly.",
-      cta: { label: "Get the PACK", href: "/pack" },
-    },
-    paid: {
-      status: "Coming after launch",
-      title: "The kaiships community",
-      desc: "A living skills library planned for after launch: a new tested skill or agent drop every week, plus direct support when your setup breaks. Not open yet — I ship it once the free PACK and the Kit are earning.",
-      bullets: [
-        "Planned: weekly skill + agent drops, verified before release",
-        "Planned: the full living library — every drop, updated",
-        "Planned: direct help from Kai when things break",
-        "Early members get first access when the doors open",
-      ],
-      cta: { label: "Get the PACK while you wait", href: "/pack" },
-      note: "Not open yet. Grab the free PACK now — you'll be first to hear when the community opens. No dead links, no pre-sold vaporware.",
-    },
-  },
-
-  shipLog: {
-    eyebrow: "Ship log",
-    title: "Built in public,",
-    titleAccent: "numbers included.",
-    sub: "What shipped, what broke, what it cost.",
-    cta: { label: "Read the ship log", href: "/blog" },
-  },
-
-  ctaBand: {
-    title: "Start with the PACK.",
-    sub: "DM the keyword on Instagram, or drop your email — the repo link lands in your inbox and on your screen at the same time.",
-    keyword: "PACK",
-    dmCta: { label: "DM PACK on Instagram", href: "https://ig.me/m/kaiships.ai" },
-    libraryCta: { label: "Get it by email", href: "/pack" },
-  },
-
   marquee: [
     "verify-before-trust",
     "token-guard",
@@ -426,9 +277,7 @@ export const siteConfig = {
         title: "Ship",
         links: [
           { label: "Products", href: "/products" },
-          { label: "School", href: "/school" },
-          { label: "Skills", href: "/skills" },
-          { label: "Reel Kit", href: "/#kit" },
+                      { label: "Reel Kit", href: "/#kit" },
           { label: "Starter PACK", href: "/pack" },
           { label: "Free resources", href: "/resources" },
           { label: "Ship log", href: "/blog" },
@@ -448,6 +297,7 @@ export const siteConfig = {
         links: [
           { label: "Instagram", href: "https://instagram.com/kaiships.ai" },
           { label: "TikTok", href: "https://tiktok.com/@kaiships.ai" },
+          { label: "Discord", href: "https://discord.gg/MAAJmghmrA" },
         ],
       },
     ],

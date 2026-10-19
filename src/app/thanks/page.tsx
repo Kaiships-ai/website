@@ -14,19 +14,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function ThanksPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const sp = await searchParams;
-  const p = Array.isArray(sp.p) ? sp.p[0] : sp.p;
-  const what =
-    p === "school"
-      ? "The email has the 6-module course, the Reel Kit and the 9 Claude Code skills."
-      : p === "skills"
-        ? "The email has the 9-skill Library."
-        : "The email has your files.";
+export default function ThanksPage() {
+    const what = "The email has your files.";
   return (
     <PageShell>
       <div className="max-w-2xl">
@@ -41,11 +30,7 @@ export default async function ThanksPage({
           </p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">
-          {p === "school" ? (
-            <Button href="/school/module-1" variant="accent">Read module 1 now</Button>
-          ) : (
-            <Button href="/school/module-1" variant="ghost">Read module 1 free</Button>
-          )}
+          <Button href="https://discord.gg/MAAJmghmrA" variant="accent">Join the Discord</Button>
           <Button href={siteConfig.socials.instagramDm} variant="ghost">DM @kaiships.ai for help</Button>
         </div>
       </div>

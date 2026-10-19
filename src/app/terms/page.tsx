@@ -47,15 +47,6 @@ export default function TermsPage() {
           we&apos;ll fix it together. If it still doesn&apos;t work within 14
           days of purchase, you get a full refund.
         </p>
-        <h2>Kaiships School and Skill Library</h2>
-        <p>
-          Both are one-time purchases sold through Polar, which emails the
-          download links right after payment. Use them for your own work,
-          including commercial work; please don&apos;t share or resell the
-          course or the skills. If something doesn&apos;t work, DM
-          @kaiships.ai and we&apos;ll fix it together. If you&apos;re not happy
-          within 14 days of purchase, you get a full refund, no questions asked.
-        </p>
         <h2>Contact</h2>
         <p>
           Questions: <a href={`mailto:${siteConfig.socials.email}`}>{siteConfig.socials.email}</a>

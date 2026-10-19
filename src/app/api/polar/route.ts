@@ -3,7 +3,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 /**
  * Polar webhook (Standard Webhooks spec). On order.paid, tag the buyer in
- * Loops. Reel Kit and Kaiships School (which includes the Kit) fire
+ * Loops. Reel Kit purchases fire
  * `kit_purchased` (starts the Kit onboarding workflow). School and the Skill
  * Library also get the "Purchase welcome" transactional with their download.
  *
@@ -13,7 +13,8 @@ export const runtime = "nodejs";
 
 const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf";
 
-/** Products sold on /school and /skills (R11). Download links live in env
+/** Retired products (stopped 2026-10-19). Kept so past buyers still get
+ * their welcome email if Polar re-sends a webhook. (R11). Download links live in env
  * (SCHOOL_DOWNLOAD_URL, LIBRARY_DOWNLOAD_URL), never in this public repo; they
  * are the same links Polar shows the buyer in the product's benefit. */
 const BUNDLES: Record<string, { slug: string; event: string; kit: boolean; welcome: Record<string, string> }> = {

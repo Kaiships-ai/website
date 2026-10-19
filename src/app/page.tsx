@@ -15,7 +15,6 @@ import {
   KitFaq,
   KitStickyBuy,
 } from "@/components/sections/reel-kit";
-import { Ladder } from "@/components/sections/ladder";
 
 // Explicit homepage title. Without it the tab title fell back to the root
 // layout's title.default, which Next.js does not re-apply on client-side
@@ -27,8 +26,7 @@ export const metadata: Metadata = {
 };
 
 // The homepage sells one thing: the Kaiships Reel Kit. The older sections
-// (hero, kit, approach, ship-log, cta, ship, community) stay in
-// components/sections but are no longer rendered.
+// is the only product on sale.
 export default function Home() {
   return (
     <>
@@ -43,7 +41,6 @@ export default function Home() {
       <KitPricing />
       <KitFounder />
       <KitFree />
-      <Ladder />
       <KitFaq />
       <KitStickyBuy />
     </>

@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div className="flex flex-col gap-4">
           <SectionTitle>What kaiships.ai is</SectionTitle>
           <p className="text-base leading-relaxed text-ink-2">
-            One person, one Instagram account and a stack of Claude Code skills. I post faceless animated reels, give away free guides, and sell a few things for people who want to do the same: the Reel Kit, the Skill Library and the School.
+            One person, one Instagram account and a stack of Claude Code skills. I post faceless animated reels, give away free guides, and sell one thing for people who want to do the same: the Reel Kit.
           </p>
         </div>
       </section>
