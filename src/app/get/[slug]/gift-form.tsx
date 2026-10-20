@@ -86,7 +86,7 @@ export function GiftForm({
             href="/#pricing"
             className="font-medium text-accent-ink underline underline-offset-2"
           >
-            See the Reel Kit
+            See Kaiships Studio
           </Link>
         </p>
         )}

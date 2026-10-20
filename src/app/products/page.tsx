@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { PageShell, PageHero, card, Badge2 } from "@/components/page-bits";
 import { siteConfig } from "@/lib/site.config";
 
-const title = "Products: free guides and the Reel Kit";
+const title = "Products: free guides and Kaiships Studio";
 const description =
-  "Every kaiships.ai product in order, free guides, and the Reel Kit. Start free, pay only when you want more.";
+  "Every kaiships.ai product in order, free guides, and Kaiships Studio. Start free, pay only when you want more.";
 
 export const metadata: Metadata = {
   title,
@@ -36,7 +36,7 @@ export default function ProductsPage() {
       note: "one-time, sold through Polar",
       body: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. Needs a Mac.",
       buttons: [
-        { label: `Get the Reel Kit · ${kit.price}`, href: kit.checkout, v: "accent" as const },
+        { label: `Get Kaiships Studio · ${kit.price}`, href: kit.checkout, v: "accent" as const },
         { label: "See how it works", href: "/#kit", v: "ghost" as const },
       ],
     },

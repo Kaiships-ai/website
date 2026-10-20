@@ -161,7 +161,7 @@ export function StickyBuy({ href, price }: { href: string; price: string }) {
         tabIndex={show ? 0 : -1}
         className="flex items-center justify-between rounded-2xl border-[2.5px] border-ink bg-ink px-5 py-3 text-cream shadow-[4px_5px_0_var(--accent)]"
       >
-        <span className="text-base font-extrabold">Get the Reel Kit</span>
+        <span className="text-base font-extrabold">Buy Pro PreOrder</span>
         <span className="rounded-lg bg-accent px-3 py-1 text-base font-extrabold">{price}</span>
       </a>
     </div>

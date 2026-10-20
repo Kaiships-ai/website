@@ -38,9 +38,9 @@ export default function TermsPage() {
           specific runs, not promises. Nothing here is legal, financial, or
           professional advice.
         </p>
-        <h2>Kaiships Reel Kit</h2>
+        <h2>Kaiships Studio</h2>
         <p>
-          The Reel Kit is a one-time purchase sold through Polar, which emails
+          Kaiships Studio is a one-time purchase sold through Polar, which emails
           the download right after payment. You may make unlimited videos,
           personal or commercial; please don&apos;t share or resell the kit
           itself. If the kit won&apos;t run on your machine, DM @kaiships.ai and

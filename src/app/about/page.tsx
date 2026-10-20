@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div className="flex flex-col gap-4">
           <SectionTitle>What kaiships.ai is</SectionTitle>
           <p className="text-base leading-relaxed text-ink-2">
-            One person, one Instagram account and a stack of Claude Code skills. I post faceless animated reels, give away free guides, and sell one thing for people who want to do the same: the Reel Kit.
+            One person, one Instagram account and a stack of Claude Code skills. I post faceless animated reels, give away free guides, and sell one thing for people who want to do the same: Kaiships Studio.
           </p>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-16" aria-labelledby="users">
-        <SectionTitle id="users">Reel Kit early users</SectionTitle>
+        <SectionTitle id="users">Kaiships Studio early users</SectionTitle>
         <ul className="mt-6 grid gap-4 md:grid-cols-3">
           {users.slice(0, 3).map((u) => (
             <li key={u.handle} className={card}>

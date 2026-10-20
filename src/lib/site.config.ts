@@ -9,7 +9,7 @@ export const siteConfig = {
   // kaiships.ai has no DNS yet (checked 2026-10-02); the live site is the Vercel URL.
   url: "https://kai-ships-ai-website.vercel.app",
   tagline: "One prompt. Claude ships the reel.",
-  bio: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. The Kaiships Reel Kit, plus every free guide from my reels.",
+  bio: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. Kaiships Studio, plus every free guide from my reels.",
   keyword: "PACK",
 
   socials: {
@@ -27,14 +27,14 @@ export const siteConfig = {
     { label: "About", href: "/about" },
   ],
   navCta: {
-    label: "Get the Reel Kit",
-    href: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
+    label: "Buy Pro PreOrder",
+    href: "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
   },
 
   // The one paid product. Numbers here are real; update them from
   // ig_stats.py / Polar before changing.
   reelKit: {
-    name: "Kaiships Reel Kit",
+    name: "Kaiships Studio",
     checkout:
       "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
     price: "$39.99",
@@ -210,6 +210,32 @@ export const siteConfig = {
     ],
   },
 
+  // Kaiships Studio: Starter (= Studio Reel, the old Reel Kit Polar product) + Pro PreOrder.
+  // Copy from 00-journal/html-visualization/website-wireframe.html (home:A).
+  studio: {
+    starter: {
+      name: "Starter",
+      price: "$39.99",
+      checkout: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
+      sub: "one-time · Studio Reel",
+      items: ["Watercolour reel engine + Clawd", "/make-reel + 3 example scripts", "Unlimited reels, commercial use", "Discord help"],
+    },
+    pro: {
+      name: "Pro",
+      price: "$79",
+      after: "$99",
+      productId: "74d08e44-d147-41b2-bb74-e1e70cf049ec",
+      checkout: "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
+      items: ["Everything in Starter", "Week 1 · Hook + script", "Week 2 · Caption + CTA", "Week 3 · Viral radar", "Week 4 · Week plan", "12 months of updates"],
+    },
+    // Views from the wireframe (home:A); reel11 links to the post.
+    reels: [
+      { id: "reel11-vibe-plugins", label: "reel11", url: "https://www.instagram.com/reel/Dd0gXqBy_dw/", views: "125.8K" },
+      { id: null, label: "", url: null, views: "46.8K" },
+      { id: null, label: "reel63 3D", url: null, views: "35K" },
+    ] as { id: string | null; label: string; url: string | null; views: string }[],
+  },
+
   // Free guides sent by DM from each reel. One Google Doc or PDF per keyword.
   magnets: [
     { keyword: "SONNET", title: "Which Claude for which task", desc: "Cheat sheet: when Sonnet is enough and when to pay for Opus.", href: "https://docs.google.com/document/d/14CADI_1mycKoCNwsywbgs_PGTJLOHS3IPArNWLGJ5Jk/view" },
@@ -277,7 +303,7 @@ export const siteConfig = {
         title: "Ship",
         links: [
           { label: "Products", href: "/products" },
-                      { label: "Reel Kit", href: "/#kit" },
+                      { label: "Kaiships Studio", href: "/#buy" },
           { label: "Starter PACK", href: "/pack" },
           { label: "Free resources", href: "/resources" },
           { label: "Ship log", href: "/blog" },

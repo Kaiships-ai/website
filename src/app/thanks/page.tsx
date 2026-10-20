@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function ThanksPage() {
-    const what = "The email has your files.";
+    const what = "The email has your files. Bought Pro? The 4 Pro skills arrive weekly over 4 weeks.";
   return (
     <PageShell>
       <div className="max-w-2xl">
