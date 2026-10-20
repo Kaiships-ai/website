@@ -228,11 +228,11 @@ export const siteConfig = {
       checkout: "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
       items: ["Everything in Starter", "Week 1 · Hook + script", "Week 2 · Caption + CTA", "Week 3 · Viral radar", "Week 4 · Week plan", "12 months of updates"],
     },
-    // Views from the wireframe (home:A); reel11 links to the post.
+    // Reels made with the Studio Reel engine (ksa-reel-handdrawn). Views from the Instagram API, Oct 20, 2026.
     reels: [
-      { id: "reel11-vibe-plugins", label: "reel11", url: "https://www.instagram.com/reel/Dd0gXqBy_dw/", views: "125.8K" },
-      { id: null, label: "", url: null, views: "46.8K" },
-      { id: null, label: "reel63 3D", url: null, views: "35K" },
+      { id: "reel49-shark", label: "Shark: pitch your idea to 5 Claude sharks", url: "https://www.instagram.com/reel/DeQNRxTyS-v/", views: "40.3K" },
+      { id: "reel45-vibe-v2", label: "5 plugins for vibe coding", url: "https://www.instagram.com/reel/DeMxFCtyAm9/", views: "13.3K" },
+      { id: "reel48-cli", label: "CLI-Anything", url: "https://www.instagram.com/reel/DePaI0_S9Rj/", views: "4.8K" },
     ] as { id: string | null; label: string; url: string | null; views: string }[],
   },
 

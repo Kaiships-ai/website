@@ -111,7 +111,7 @@ export function StudioCrew() {
   return (
     <section className="bg-paper-2/70 py-16 sm:py-24">
       <div className={wrap}>
-        <H2 sub="A 33 s reel, done in about 12 min [kiểm].">One prompt, the whole studio gets to work</H2>
+        <H2 sub="A 30-second reel renders in a few minutes, longer on a laptop without a GPU.">One prompt, the whole studio gets to work</H2>
         <div className="mt-10 grid items-start gap-8 lg:grid-cols-2">
           <Reveal className="sketch-ink p-6 font-mono text-sm leading-7 text-cream">
             <p className="text-ochre">&gt; Make a reel: why the sky is blue</p>
@@ -198,6 +198,7 @@ export function StudioReels() {
                 </div>
               )}
               <figcaption className="mt-4 text-center">
+                {r.id && r.label ? <p className="text-sm font-semibold text-ink-2">{r.label}</p> : null}
                 <h3 className="text-xl font-extrabold text-ink">{r.views} views</h3>
                 {r.url ? (
                   <a className="squiggle text-sm font-semibold text-ink" href={r.url} target="_blank" rel="noopener noreferrer">
@@ -223,7 +224,7 @@ export function StudioAccounts() {
           <a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-2xl font-extrabold text-ink">
             @kaiships.ai
           </a>
-          <p className="text-base text-ink-2">@kaiships.ai · followers [kiểm]</p>
+          <p className="text-base text-ink-2">1,189 followers · 486K reel views (Instagram, Oct 20, 2026)</p>
         </Reveal>
       </div>
     </section>
@@ -307,7 +308,7 @@ export function StudioPricing() {
           </Reveal>
         </div>
         <p className="mx-auto mt-6 max-w-[860px] text-center text-sm text-ink-2">
-          Delivered via GitHub: Starter → studio-reel, Pro → studio-pro. All 4 Pro skills ship by [launch date + 4 weeks].
+          Starter: download link by email. Pro: an invite to the private GitHub repo, and <code>git pull</code> gets every new skill. All 4 Pro skills ship by Nov 10, 2026, one a week.
         </p>
         <p className="mx-auto mt-3 max-w-[860px] text-center text-base font-semibold text-ink">
           Won&apos;t run? DM me, I fix it with you. Still stuck in 14 days → full refund.
@@ -362,12 +363,12 @@ export function StudioFaq() {
 /* 11 · Machine requirements, 6 cards. */
 export function StudioRequirements() {
   const reqs: [string, string?][] = [
-    ["Machine", "Mac · Windows [kiểm]"],
+    ["Machine", "Mac or Windows"],
     ["Claude Code", "Paid plan"],
     ["Node 18+"],
-    ["Disk", "[kiểm]"],
-    ["Browser", "Chrome for render [kiểm]"],
-    ["Internet", "AI voice"],
+    ["Python 3", "Setup installs the voice tools into it"],
+    ["Browser", "Chrome or Edge renders the frames; setup can download one"],
+    ["Internet", "For the AI voice"],
   ];
   return (
     <section className="py-16 sm:py-24">
@@ -410,11 +411,6 @@ export function StudioInstall() {
             </li>
           ))}
         </ol>
-        <p className="mt-8 text-center">
-          <a className="squiggle font-extrabold text-ink" href="/products">
-            Open the setup guide
-          </a>
-        </p>
       </div>
     </section>
   );
