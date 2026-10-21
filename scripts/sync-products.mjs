@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 // Pull every product fact from its repo + Polar into content/products/<slug>/.
 // ARCHITECTURE rule 4: the website reads, never copies by hand. Run: pnpm sync:products
+// Preview unmerged repo changes: pnpm sync:products --local[=<dir>] reads <dir>/<repo name>
+// (default ~/Desktop/kaiships) instead of GitHub main. Release PRs always use the GitHub run.
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const products = JSON.parse(fs.readFileSync(path.join(root, "products.json"), "utf8"));
+const localArg = process.argv.find((a) => a === "--local" || a.startsWith("--local="));
+const localDir = localArg && (localArg.split("=")[1] || path.join(os.homedir(), "Desktop/kaiships"));
 
 const gh = (args, raw = true) =>
   execFileSync("gh", ["api", ...(raw ? ["-H", "Accept: application/vnd.github.raw"] : []), ...args], {
@@ -20,7 +25,9 @@ const write = (file, data) => {
 const index = {};
 for (const p of products) {
   const dir = path.join(root, "content/products", p.slug);
-  const get = (f) => gh([`repos/${p.repo}/contents/${f}`]);
+  const repoDir = localDir && path.join(localDir, p.repo.split("/")[1]);
+  if (repoDir && !fs.existsSync(repoDir)) throw new Error(`--local: no clone at ${repoDir}`);
+  const get = (f) => (repoDir ? fs.readFileSync(path.join(repoDir, f)) : gh([`repos/${p.repo}/contents/${f}`]));
 
   const product = JSON.parse(get("product.json").toString());
   write(path.join(dir, "product.json"), JSON.stringify(product, null, 2) + "\n");
@@ -28,7 +35,9 @@ for (const p of products) {
 
   // docs/*.md + images they reference (relative paths only). Old docs are removed first.
   fs.rmSync(path.join(dir, "docs"), { recursive: true, force: true });
-  const list = JSON.parse(gh([`repos/${p.repo}/contents/docs`], false).toString());
+  const list = repoDir
+    ? fs.readdirSync(path.join(repoDir, "docs"), { withFileTypes: true }).map((d) => ({ name: d.name, type: d.isFile() ? "file" : "dir" }))
+    : JSON.parse(gh([`repos/${p.repo}/contents/docs`], false).toString());
   const mds = list.filter((f) => f.type === "file" && f.name.endsWith(".md"));
   for (const f of mds) {
     const md = get(`docs/${f.name}`).toString();
