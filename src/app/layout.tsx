@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { sans, serif, mono, marker } from "@/lib/fonts";
+import { display, sans, mono } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site.config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -79,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${serif.variable} ${mono.variable} ${marker.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <CheckoutUtm />

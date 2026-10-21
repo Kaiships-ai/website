@@ -1,30 +1,17 @@
-import {
-  JetBrains_Mono,
-  Newsreader,
-  Permanent_Marker,
-  Shantell_Sans,
-} from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 
-// Hand-drawn brand style (brand-kit "Hình ảnh"): Shantell Sans for body,
-// numbers and names; Permanent Marker for headlines and labels.
-export const sans = Shantell_Sans({
+// Kaiships Studio design system v1 (2026-10-21): Bricolage Grotesque for headlines,
+// Inter for body, JetBrains Mono for labels and code. Hand-drawn fonts live only in the reels.
+export const display = Bricolage_Grotesque({
   subsets: ["latin", "vietnamese"],
-  weight: ["500", "600", "800"],
+  weight: ["500", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+export const sans = Inter({
+  subsets: ["latin", "vietnamese"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-export const marker = Permanent_Marker({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-marker",
-  display: "swap",
-});
-
-export const serif = Newsreader({
-  subsets: ["latin"],
-  style: ["italic"],
-  variable: "--font-serif",
   display: "swap",
 });
 

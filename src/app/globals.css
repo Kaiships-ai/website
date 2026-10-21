@@ -1,39 +1,92 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* ————— kaiships design tokens — edit theme here ————— */
+/* ————— Kaiships Studio design system v1 (2026-10-21) —————
+   Source of truth: kaiship-business/00-journal/html-visualization/studio-design-system.html
+   New code uses the Studio names (bg, surface, sunk, ink, muted, line, accent, space…).
+   The legacy names (paper, ink-2, cream, ochre, terminal…) are aliases kept so older pages render
+   in the new palette; remove them once no class uses them. */
 :root {
-  /* reel palette (PAL): paper, ink, clay, ochre, cream, rose, sap */
-  --paper: #f3ebdc;
-  --paper-2: #eadfcb;
-  --ink: #2b2233;
-  --ink-2: #63585f;
-  --line: #d8ccb6;
-  --accent: #d97757;
-  --accent-hover: #a84d33;
-  --accent-ink: #a84d33;
-  --clay-lt: #f2a283;
-  --ochre: #e8aa38;
-  --cream: #fffbf2;
-  --rose: #e27a92;
-  --sap: #6e9f58;
-  --terminal: #12100e;
-  --terminal-2: #1c1917;
-  --terminal-line: #2b2724;
-  --terminal-fg: #e7e5e4;
-  --terminal-muted: #8d857e;
-  --success: #4ade80;
-  --success-ink: #166534;
-  --amber: #f59e0b;
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --sunk: #efebe5;
+  --ink: #15130f;
+  --muted: #6b645a;
+  --line: #e3ded6;
+  --line-strong: #cfc8bd;
+  --accent: #b04a18;      /* text + buttons, AA 5.0:1 on bg */
+  --accent-on: #ffffff;
+  --accent-soft: #df7440; /* Clawd orange, fills + icons only */
+  --accent-wash: #fbe9df;
+  --space: #13162b;       /* terminal + Pro card only */
+  --space-2: #1d2140;
+  --space-ink: #e9ecf7;
+  --space-muted: #9aa1c4;
+  --space-line: #2b3056;
+  --ok: #2f8f5b;
+  --shadow: 0 1px 2px rgba(21, 19, 15, 0.06), 0 8px 24px -12px rgba(21, 19, 15, 0.18);
+  --radius: 12px;
+  --radius-lg: 18px;
+  /* legacy aliases */
+  --paper: var(--bg);
+  --paper-2: var(--sunk);
+  --ink-2: var(--muted);
+  --accent-hover: var(--accent);
+  --accent-ink: var(--accent);
+  --clay-lt: var(--accent-wash);
+  --ochre: var(--accent-soft);
+  --cream: var(--surface);
+  --rose: var(--accent-soft);
+  --sap: var(--ok);
+  --terminal: var(--space);
+  --terminal-2: var(--space-2);
+  --terminal-line: var(--space-line);
+  --terminal-fg: var(--space-ink);
+  --terminal-muted: var(--space-muted);
+  --success: #7fd3a3;
+  --success-ink: var(--ok);
+  --amber: #b7791f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0e0c; --surface: #191714; --sunk: #14120f; --ink: #f2eee8; --muted: #a39c91;
+    --line: #2b2823; --line-strong: #3a362f; --accent: #f0874f; --accent-on: #15130f;
+    --accent-soft: #f0874f; --accent-wash: #2a1a10; --space: #121528; --space-2: #1a1e3a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0e0c; --surface: #191714; --sunk: #14120f; --ink: #f2eee8; --muted: #a39c91;
+  --line: #2b2823; --line-strong: #3a362f; --accent: #f0874f; --accent-on: #15130f;
+  --accent-soft: #f0874f; --accent-wash: #2a1a10; --space: #121528; --space-2: #1a1e3a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-on: var(--accent-on);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-wash: var(--accent-wash);
+  --color-space: var(--space);
+  --color-space-2: var(--space-2);
+  --color-space-ink: var(--space-ink);
+  --color-space-muted: var(--space-muted);
+  --color-space-line: var(--space-line);
+  --color-ok: var(--ok);
+  --radius-card: var(--radius);
+  --radius-card-lg: var(--radius-lg);
+  --shadow-card: var(--shadow);
+  /* legacy aliases */
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
-  --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
-  --color-line: var(--line);
-  --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-ink: var(--accent-ink);
   --color-clay-lt: var(--clay-lt);
@@ -41,7 +94,6 @@
   --color-cream: var(--cream);
   --color-rose: var(--rose);
   --color-sap: var(--sap);
-  --font-marker: var(--font-marker), "Permanent Marker", cursive;
   --color-terminal: var(--terminal);
   --color-terminal-2: var(--terminal-2);
   --color-terminal-line: var(--terminal-line);
@@ -51,7 +103,9 @@
   --color-success-ink: var(--success-ink);
   --color-amber: var(--amber);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-marker: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, "SF Mono", monospace;
 }
 
@@ -61,8 +115,6 @@ html {
 
 body {
   background-color: var(--paper);
-  /* paper grain */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .13 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -71,7 +123,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: var(--paper);
+  color: var(--accent-on);
 }
 
 :focus-visible {
@@ -80,59 +132,64 @@ body {
   border-radius: 2px;
 }
 
-/* ————— hand-drawn helpers ————— */
+/* ————— legacy helper classes, restyled to the Studio system (no hand-drawn chrome in the UI) ————— */
 .marker {
-  font-family: var(--font-marker), "Permanent Marker", cursive;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 1.04;
-  letter-spacing: 0.005em;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
-.marker-pop {
-  color: var(--accent);
-  text-shadow: 0.045em 0.045em 0 var(--ink);
-}
+.marker-pop { color: var(--accent); }
 .sketch {
-  background: var(--cream);
-  border: 2.5px solid var(--ink);
-  border-radius: 24px 28px 22px 30px / 28px 22px 30px 24px;
-  box-shadow: 7px 8px 0 var(--clay-lt);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 .sketch-ink {
-  background: var(--ink);
-  color: var(--cream);
-  border: 2.5px solid var(--ink);
-  border-radius: 26px 30px 24px 32px / 30px 24px 32px 26px;
-  box-shadow: 7px 8px 0 var(--accent);
+  background: var(--space);
+  color: var(--space-ink);
+  border: 1px solid var(--space-line);
+  border-radius: var(--radius-lg);
 }
 .sketch-frame {
-  border: 2.5px solid var(--ink);
-  border-radius: 18px 22px 16px 24px / 22px 16px 24px 18px;
-  box-shadow: 6px 7px 0 var(--accent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 .squiggle {
-  text-decoration: underline wavy var(--accent-hover);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.22em;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
 }
-
+.squiggle:hover { text-decoration-color: var(--accent); }
 .phone {
-  border: 3px solid var(--ink);
-  border-radius: 34px 38px 32px 40px / 38px 32px 40px 34px;
-  padding: 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 28px;
+  padding: 6px;
   background: var(--ink);
-  box-shadow: 8px 10px 0 var(--accent);
+  box-shadow: var(--shadow);
 }
-.phone video {
-  border-radius: 26px 30px 24px 32px / 30px 24px 32px 26px;
-}
+.phone video { border-radius: 22px; }
 .stamp {
-  border: 3px dashed var(--accent-hover);
+  border: 1px solid var(--accent);
   border-radius: 999px;
-  color: var(--accent-hover);
-  transform: rotate(-6deg);
+  color: var(--accent);
 }
+/* Studio helpers */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before { content: ""; width: 18px; height: 1px; background: currentColor; }
 @keyframes type-in {
   from { clip-path: inset(0 100% 0 0); }
   to { clip-path: inset(0 0 0 0); }
