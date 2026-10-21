@@ -21,7 +21,7 @@ export function GET() {
 
 > ${siteConfig.bio}
 
-Kaiships Studio is a kit for Claude Code on a Mac. You type one prompt and Claude makes a finished vertical reel (1080×1920 MP4): script, voiceover, painted animation, captions, music and sound effects. It is sold through Polar. Made by Kai, a solo builder who posts the reels on Instagram as @kaiships.ai.
+Kaiships Studio is a kit for Claude Code on Mac or Windows. You type one prompt and Claude makes a finished vertical reel (1080×1920 MP4): script, voiceover, painted animation, captions, music and sound effects. It is sold through Polar. Made by Kai, a solo builder who posts the reels on Instagram as @kaiships.ai.
 
 ## Plans
 

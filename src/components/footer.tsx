@@ -12,7 +12,7 @@ const cols = [
       { label: "Kaiships Studio", href: "/" },
       { label: "Pricing", href: "/#buy" },
       { label: "Starter PACK", href: "/pack" },
-      { label: "Free resources", href: "/resources" },
+      { label: "Guides", href: "/guides" },
     ],
   },
   {

@@ -20,7 +20,8 @@ export function getFreePages(): Guide[] {
       const meta = html.match(/<meta\s+name="description"\s+content="([^"]*)"/)?.[1];
       const ledes = [...html.matchAll(/<p class="lede">([\s\S]*?)<\/p>/g)].map((m) => decode(m[1]));
       const description = meta ? decode(meta) : ledes.sort((a, b) => b.length - a.length)[0] ?? "";
-      return { href: `/free/${f}`, title, description, topic: "Reel guides", external: true };
+      // The free guides are lead magnets: link the email gate (/get/<slug>), not the noindex /free page.
+      return { href: `/get/${f.replace(/\.html$/, "")}`, title, description, topic: "Reel guides" };
     })
     .sort((a, b) => a.title.localeCompare(b.title));
 }
