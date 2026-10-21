@@ -22,7 +22,7 @@ export const studioFaq = [
   { q: "What if it doesn't work for me?", a: "DM @kaiships.ai and I'll fix it with you first. Still stuck within 14 days of buying, you get a full refund." },
   {
     q: "How do updates work?",
-    a: `Starter: you get a new download link for each update. Pro: \`git pull\` in the repo${pro.updatesMonths ? `, for ${pro.updatesMonths} months from your purchase date` : ""}.`,
+    a: `Starter: you get a new download link for each update. Pro: git pull in the repo${pro.updatesMonths ? `, for ${pro.updatesMonths} months from your purchase date` : ""}.`,
   },
   { q: "Can I use the videos for my business?", a: kit.faq[6].a },
   { q: "Where do I get help?", a: "In the Kaiships Discord: ask in #help. Bugs you report there become GitHub Issues in the product repo." },
@@ -213,7 +213,7 @@ export function StudioProSkills() {
   return (
     <Section>
       <Head
-        n="03b"
+        n="04"
         name="Everything in Pro"
         title="The writing skills before and after the reel"
         sub={pro.shipsBy ? `PreOrder: one skill a week, all by ${pro.shipsBy}. Get each one with git pull.` : "Get each one with git pull."}
@@ -245,7 +245,7 @@ export function StudioProSkills() {
 export function StudioReels() {
   return (
     <Section id="showcase">
-      <Head n="04" name="Proof" title="Reels made with the engine inside Studio Reel" sub="Kai's own reels, made with the hand-drawn engine that Studio Reel packages. Views from Instagram, Oct 20, 2026." />
+      <Head n="05" name="Proof" title="Reels made with the engine inside Studio Reel" sub="Kai's own reels, made with the hand-drawn engine that Studio Reel packages. Views from Instagram, Oct 20, 2026." />
       <div className="mx-auto mt-14 grid max-w-[900px] gap-6 sm:grid-cols-3">
         {studio.reels.map((r, i) => (
           <figure key={i} className="mx-auto w-full max-w-[280px] overflow-hidden rounded-card-lg border border-line bg-surface shadow-card">
@@ -279,7 +279,7 @@ export function StudioReels() {
 export function StudioAccounts() {
   return (
     <Section sunk>
-      <Head n="05" name="Account" title="The account behind it" sub="Numbers from the Instagram API, Oct 20, 2026." />
+      <Head n="06" name="Account" title="The account behind it" sub="Numbers from the Instagram API, Oct 20, 2026." />
       <div className="mx-auto mt-14 grid max-w-[720px] gap-4 sm:grid-cols-3">
         <a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className={`${cardCls} flex flex-col justify-center gap-1 transition-colors hover:border-line-strong`}>
           <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">Instagram</span>
@@ -303,7 +303,7 @@ export function StudioAccounts() {
 export function StudioUsers() {
   return (
     <Section id="users">
-      <Head n="06" name="Users" title="What users say" />
+      <Head n="07" name="Users" title="What users say" />
       <div className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3">
         {kit.users.map((u) => (
           <figure key={u.handle} className={`${cardCls} mb-4 break-inside-avoid`}>
@@ -340,7 +340,7 @@ export function StudioPricing() {
   return (
     <section id="buy" className="scroll-mt-20 border-y border-line bg-sunk py-[72px] lg:py-28">
       <div id="pricing" className={wrap}>
-        <Head n="07" name="Pricing" title="Pay once, use forever" sub="Today's Pro price is the PreOrder price." />
+        <Head n="08" name="Pricing" title="Pay once, use forever" sub="Today's Pro price is the PreOrder price." />
         <div className="mx-auto mt-14 grid max-w-[880px] gap-4 md:grid-cols-2">
           <div className={`${cardCls} flex flex-col gap-4 p-7`}>
             <h3 className="font-display text-[22px] font-bold text-ink">{starter.name}</h3>
@@ -390,7 +390,7 @@ export function StudioPricing() {
 export function StudioCommitments() {
   return (
     <Section>
-      <Head n="08" name="Commitments" title="Kai's commitments" />
+      <Head n="09" name="Commitments" title="Kai's commitments" />
       <div className="mt-14 grid gap-4 md:grid-cols-3">
         {[
           ["14-day refund", "Won't run? DM me and I fix it with you. Still stuck in 14 days, full refund."],
@@ -412,7 +412,7 @@ export function StudioCommitments() {
 export function StudioFaq() {
   return (
     <Section id="faq" sunk>
-      <Head n="09" name="FAQ" title="Frequently asked questions" />
+      <Head n="10" name="FAQ" title="Frequently asked questions" />
       <div className="mx-auto mt-14 flex max-w-3xl flex-col gap-3">
         {studioFaq.map((f) => (
           <details key={f.q} className="group rounded-card border border-line bg-surface">
@@ -442,7 +442,7 @@ export function StudioRequirements() {
   ];
   return (
     <Section>
-      <Head n="10" name="Requirements" title="What your machine needs" />
+      <Head n="11" name="Requirements" title="What your machine needs" />
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {reqs.map(([t, d]) => (
           <div key={t} className={`${cardCls} p-5`}>
@@ -488,7 +488,7 @@ export function StudioInstall() {
   ];
   return (
     <Section sunk>
-      <Head n="11" name="Install" title="Install in a few minutes" sub="The first run sets everything up by itself. It takes a few minutes and needs internet." />
+      <Head n="12" name="Install" title="Install in a few minutes" sub="The first run sets everything up by itself. It takes a few minutes and needs internet." />
       <div className="mx-auto mt-14 grid max-w-[1000px] gap-6 md:grid-cols-2">
         {plans.map(([name, items]) => (
           <div key={name} className="flex flex-col gap-3">

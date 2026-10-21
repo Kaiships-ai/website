@@ -19,7 +19,7 @@ export default function ThanksPage() {
   const pro = getProduct("pro");
   const shipped = pro.includes.filter((i) => i.status === "shipped").map((i) => i.title.toLowerCase());
   const what =
-    `Bought Pro? You get an invite to the private GitHub repo studio-pro; \`git pull\` gets every update.` +
+    `Bought Pro? You get an invite to the private GitHub repo studio-pro; git pull gets every update.` +
     (shipped.length ? ` The first skill (${shipped.join(", ")}) is already in the repo` : "") +
     (pro.shipsBy ? `, the rest arrive one a week, all by ${formatDate(pro.shipsBy)}.` : ".") +
     " Both plans get the Discord.";
