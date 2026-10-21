@@ -1,6 +1,6 @@
 ---
 title: "The Claude Code Starter PACK"
-description: "The exact CLAUDE.md, five skills, and two agents I install on every new machine. Free, tested, and you read every file before it runs."
+description: "The exact CLAUDE.md, 18 skills, and 4 agents I install on every new machine. Free, tested, and you read every file before it runs."
 type: "Systems"
 tool: "Claude Code"
 date: "2026-07-11"
@@ -8,14 +8,14 @@ readTime: 8
 popular: true
 faq:
   - q: "Is the PACK a package I have to install and trust?"
-    a: "No. It is plain files - one CLAUDE.md, five skill folders, two agent folders. You copy them in and you can read every line first. Nothing runs blind."
+    a: "No. It is plain files - one CLAUDE.md, 18 skill folders, 4 agent files. You copy them in and you can read every line first. Nothing runs blind."
   - q: "Do I need to be a developer to use it?"
     a: "No. If you can create folders and paste text, you can install the PACK. The setup below is the whole job, about ten minutes on a fresh machine."
   - q: "Will this work on my existing project?"
     a: "Yes. The skills and agents live in your global config, so they apply everywhere. The CLAUDE.md is per-project, so you drop a copy into each repo and trim it to fit."
 ---
 
-This is the exact baseline I drop onto every new machine before I write a single line for a client or product: one curated `CLAUDE.md`, five skills, and two agents. It is the anti-slop starter kit - not a prompt list, not a screenshot of settings, but real files you install and read for yourself.
+This is the exact baseline I drop onto every new machine before I write a single line for a client or product: one curated `CLAUDE.md`, 18 skills, and 4 agents. It is the anti-slop starter kit - not a prompt list, not a screenshot of settings, but real files you install and read for yourself.
 
 It is for solo builders who opened Claude Code, got a burst of magic, then watched the agent drift, burn tokens, and confidently ship something broken. The PACK is the guardrails I wish I had on day one.
 
@@ -23,7 +23,7 @@ It is for solo builders who opened Claude Code, got a burst of magic, then watch
 
 - Claude Code installed and authenticated (see the zero-to-shipping guide if not).
 - A terminal and a text editor.
-- The PACK files - get them at [kaiships.ai/pack](/pack) (delivered by email, repo link shown instantly).
+- The PACK files - get them on [the Starter PACK page](/pack) (delivered by email, repo link shown instantly).
 
 ## Setup
 
@@ -37,7 +37,7 @@ mkdir -p ~/.claude/skills ~/.claude/agents
 
 </Prompt>
 
-2. Copy the five skill folders and two agent folders from the PACK into those directories. Each skill is a folder with a SKILL.md; each agent is a Markdown file with frontmatter. Restart Claude Code so it re-scans.
+2. Copy the 18 skill folders and 4 agent files from the PACK into those directories. Each skill is a folder with a SKILL.md; each agent is a Markdown file with frontmatter. Restart Claude Code so it re-scans.
 
 3. Drop the curated `CLAUDE.md` into your project root. Start from this skeleton and cut anything that does not apply - a short, true CLAUDE.md beats a long, aspirational one.
 
@@ -71,13 +71,9 @@ List the real versions. Point to the config files, do not restate them.
 ### What each piece does
 
 - **CLAUDE.md** - the standing rules above. Cuts drift and token burn on every turn.
-- **verify-before-trust** (skill) - blocks a "done" claim until there is a test, screenshot, or receipt.
-- **token-budget** (skill) - context hygiene and model routing to keep runs cheap.
-- **ship-check** (skill) - the build to verify to ship to document loop as a checklist.
-- **commit-clean** (skill) - tidy, conventional commits with a real message.
-- **scout** (skill) - fast research that returns sources, not vibes.
-- **file-organizer** (agent) - sorts Downloads and screenshots; a safe first agent.
-- **inbox-triage** (agent) - drafts replies and labels; honest about the OAuth setup.
+- **Skills (18 folders in `skills/`)** - ai-seo, archify, avoid-ai-writing, brainstorming, caveman, ccpm, code-review-and-quality, code-simplification, content-ideator, copywriting, cro, debugging-and-error-recovery, design-system, systematic-debugging, test-driven-development, ui-ux-pro-max, verification-before-completion, writing-plans.
+- **Agents (4 files in `agents/`)** - code-reviewer, debugger, git-workflow-manager, technical-writer.
+- **model-routing.md** and **mcp/starter.mcp.json** - which model to use for which job, and a starter MCP config.
 
 ## What breaks
 

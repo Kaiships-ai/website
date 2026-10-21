@@ -3,61 +3,87 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site.config";
+import { DISCORD, Logo } from "@/components/nav";
+
+const cols = [
+  {
+    title: "Product",
+    links: [
+      { label: "Kaiships Studio", href: "/" },
+      { label: "Pricing", href: "/#buy" },
+      { label: "Starter PACK", href: "/pack" },
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
+      { label: "Docs", href: "/docs/studio-reel/install" },
+      { label: "Guides", href: "/guides" },
+      { label: "Changelog", href: "/changelog" },
+      { label: "Showcase", href: "/showcase" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { label: "Discord", href: DISCORD },
+      { label: "Instagram", href: siteConfig.socials.instagram },
+      { label: "TikTok", href: siteConfig.socials.tiktok },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Ship log", href: "/blog" },
+      { label: "Contact", href: siteConfig.socials.instagramDm },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+];
+
+const linkCls = "inline-flex min-h-9 items-center text-[14px] text-muted transition-colors hover:text-ink";
 
 export function Footer() {
   const pathname = usePathname();
   // Gift pages (/get/*) keep the legal links only, so the email is the one action.
   if (pathname?.startsWith("/get/")) {
     return (
-      <footer className="border-t border-line bg-paper-2">
-        <div className="mx-auto flex max-w-6xl gap-5 px-4 py-6 font-mono text-xs text-ink-2 sm:px-6">
-          <Link href="/privacy" className="hover:text-ink">Privacy</Link>
-          <Link href="/terms" className="hover:text-ink">Terms</Link>
+      <footer className="border-t border-line bg-sunk">
+        <div className="mx-auto flex max-w-[1200px] gap-6 px-4 py-6 sm:px-6">
+          <Link href="/privacy" className={linkCls}>Privacy</Link>
+          <Link href="/terms" className={linkCls}>Terms</Link>
         </div>
       </footer>
     );
   }
   return (
-    <footer className="border-t border-line bg-paper-2">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
-            <p className="marker text-2xl text-ink">
-              kaiships<span className="text-accent">.ai</span>
-            </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-2">
-              {siteConfig.footer.blurb}
-            </p>
-            <p className="mt-4 font-mono text-xs text-ink-2">
-              $ built in public with Claude Code agents —{" "}
-              <Link
-                href="/blog/building-this-site-with-agent-teams"
-                className="text-accent-ink underline underline-offset-4"
-              >
-                this site is one of the receipts
-              </Link>
-            </p>
-          </div>
-          {siteConfig.footer.cols.map((col) => (
+    <footer className="border-t border-line bg-sunk">
+      <div className="mx-auto max-w-[1200px] px-4 py-16 sm:px-6">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
+          {cols.map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-2">
-                {col.title}
-              </p>
-              <ul className="mt-4 space-y-2.5">
+              <p className="font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-ink">{col.title}</p>
+              <ul className="mt-4 space-y-1">
                 {col.links.map((l) => {
                   const external = l.href.startsWith("http");
                   return (
-                    <li key={l.href}>
-                      <Link
-                        href={l.href}
-                        className="inline-block py-1 text-sm text-ink-2 transition-colors hover:text-ink"
-                        {...(external
-                          ? { target: "_blank", rel: "noopener noreferrer" }
-                          : {})}
-                      >
-                        {l.label}
-                        {external ? " ↗" : ""}
-                      </Link>
+                    <li key={l.label}>
+                      {external ? (
+                        <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                          {l.label}
+                        </a>
+                      ) : (
+                        <Link href={l.href} className={linkCls}>
+                          {l.label}
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -65,9 +91,14 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 font-mono text-xs text-ink-2 sm:flex-row sm:items-center sm:justify-between">
-          <p>{siteConfig.footer.legal}</p>
-          <p>Drawn by Claude. Nobody filmed anything.</p>
+        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <Logo />
+          <p className="font-mono text-[12px] text-muted">
+            Built with Claude Code by{" "}
+            <a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-line-strong underline-offset-4 hover:decoration-accent">
+              @kaiships.ai
+            </a>
+          </p>
         </div>
       </div>
     </footer>

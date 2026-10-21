@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
 const tones = {
-  neutral: "bg-paper-2 text-ink border-line",
-  accent: "bg-accent/10 text-accent-ink border-accent/20",
-  success: "bg-success-ink/10 text-success-ink border-success-ink/20",
-  terminal: "bg-terminal-2 text-terminal-fg border-terminal-line",
+  neutral: "bg-sunk text-ink border-line",
+  accent: "bg-accent-wash text-accent border-accent/30",
+  success: "bg-ok/10 text-ok border-ok/20",
+  terminal: "bg-space-2 text-space-ink border-space-line",
 } as const;
 
 export function Badge({

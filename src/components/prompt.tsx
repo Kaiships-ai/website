@@ -26,19 +26,19 @@ export function Prompt({
   return (
     <div
       data-prompt
-      className="not-prose my-6 overflow-hidden rounded-xl border border-terminal-line bg-terminal"
+      className="not-prose my-6 overflow-hidden rounded-xl border border-space-line bg-space"
     >
-      <div className="flex items-center justify-between border-b border-terminal-line px-4 py-2.5">
-        <span className="font-mono text-xs text-terminal-muted">{title}</span>
+      <div className="flex items-center justify-between border-b border-space-line px-4 py-2.5">
+        <span className="font-mono text-xs text-space-muted">{title}</span>
         <button
           onClick={onCopy}
-          className="rounded-full border border-terminal-line px-3 py-1 font-mono text-xs text-terminal-fg transition-colors hover:border-amber hover:text-amber"
+          className="rounded-full border border-space-line px-3 py-1 font-mono text-xs text-space-ink transition-colors hover:border-amber hover:text-amber"
           aria-label={`Copy ${title} to clipboard`}
         >
           {copied ? "copied ✓" : "copy"}
         </button>
       </div>
-      <div className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-terminal-fg [&_pre]:m-0 [&_pre]:whitespace-pre-wrap [&_pre]:bg-transparent [&_pre]:p-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_p]:m-0 [&_p]:whitespace-pre-wrap">
+      <div className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-space-ink [&_pre]:m-0 [&_pre]:whitespace-pre-wrap [&_pre]:bg-transparent [&_pre]:p-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_p]:m-0 [&_p]:whitespace-pre-wrap">
         {children}
       </div>
     </div>

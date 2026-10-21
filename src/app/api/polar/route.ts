@@ -11,7 +11,9 @@ import { createHmac, timingSafeEqual } from "node:crypto";
  */
 export const runtime = "nodejs";
 
-const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf";
+const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf"; // Kaiships Studio Starter
+/** Kaiships Studio Pro (PreOrder). Same buyer flow as Starter. */
+const STUDIO_PRO_PRODUCT_ID = "74d08e44-d147-41b2-bb74-e1e70cf049ec";
 
 /** Retired products (stopped 2026-10-19). Kept so past buyers still get
  * their welcome email if Polar re-sends a webhook. (R11). Download links live in env
@@ -145,7 +147,9 @@ export async function POST(request: Request) {
   const order = event.data ?? {};
   const productId: unknown = order.product_id ?? order.product?.id;
   const bundle = typeof productId === "string" ? BUNDLES[productId] : undefined;
-  const isKit = productId === REEL_KIT_PRODUCT_ID || bundle?.kit === true;
+  const isPro = productId === STUDIO_PRO_PRODUCT_ID;
+  const isKit = productId === REEL_KIT_PRODUCT_ID || isPro || bundle?.kit === true;
+  const tier: "pro" | "starter" = isPro ? "pro" : "starter";
   const email: unknown = order.customer?.email;
   const loopsKey = process.env.LOOPS_API_KEY;
 
@@ -162,6 +166,7 @@ export async function POST(request: Request) {
       revenue: Number.isFinite(amount) ? amount / 100 : 0,
       currency: String(order.currency ?? "usd").toUpperCase(),
       product: bundle?.slug ?? "kit",
+      tier,
     };
     if (typeof meta.utm_source === "string" && meta.utm_source) purchaseData.utm_source = meta.utm_source;
     if (typeof meta.utm_campaign === "string" && meta.utm_campaign) purchaseData.utm_campaign = meta.utm_campaign;
@@ -175,9 +180,10 @@ export async function POST(request: Request) {
         ...(firstName ? { firstName } : {}),
         userGroup: "buyer",
         buySource: source,
+        ...(isKit ? { tier } : {}),
         ...(known ? {} : { source }),
       });
-      if (isKit) await loops("events/send", loopsKey, { email, eventName: "kit_purchased" });
+      if (isKit) await loops("events/send", loopsKey, { email, eventName: "kit_purchased", eventProperties: { tier } });
       if (bundle) {
         await loops("events/send", loopsKey, { email, eventName: bundle.event });
         if (!bundle.welcome.downloadUrl) {

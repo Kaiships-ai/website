@@ -2,6 +2,15 @@
  * kaiships.ai — all site copy, links, and funnel wiring live here.
  * Edit this file to change content; components never hardcode copy.
  */
+import { getProduct, formatDate } from "./products-data";
+
+// Price, checkout and version come from products.json + Polar (pnpm sync:products).
+const starterP = getProduct("starter");
+const proP = getProduct("pro");
+const shipped = proP.includes.filter((i) => i.status === "shipped").map((i) => i.title.toLowerCase());
+const proShipLine =
+  (shipped.length ? `The first skill (${shipped.join(", ")}) is already in the repo; the rest arrive one a week` : "The Pro skills arrive one a week") +
+  (proP.shipsBy ? `, all by ${formatDate(proP.shipsBy)}.` : ".");
 
 export const siteConfig = {
   name: "kaiships.ai",
@@ -9,7 +18,7 @@ export const siteConfig = {
   // kaiships.ai has no DNS yet (checked 2026-10-02); the live site is the Vercel URL.
   url: "https://kai-ships-ai-website.vercel.app",
   tagline: "One prompt. Claude ships the reel.",
-  bio: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. The Kaiships Reel Kit, plus every free guide from my reels.",
+  bio: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. Kaiships Studio, plus every free guide from my reels.",
   keyword: "PACK",
 
   socials: {
@@ -22,28 +31,27 @@ export const siteConfig = {
   },
 
   nav: [
-    { label: "Products", href: "/products" },
-    { label: "Free guides", href: "/resources" },
+    { label: "Products", href: "/#buy" },
+    { label: "Free guides", href: "/guides" },
     { label: "About", href: "/about" },
   ],
   navCta: {
-    label: "Get the Reel Kit",
-    href: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
+    label: "Buy Pro PreOrder",
+    href: proP.checkout,
   },
 
   // The one paid product. Numbers here are real; update them from
   // ig_stats.py / Polar before changing.
   reelKit: {
-    name: "Kaiships Reel Kit",
-    checkout:
-      "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
-    price: "$39.99",
-    // Pulled from the Instagram Graph API on 2026-10-01 (ig_stats.py).
+    name: "Kaiships Studio",
+    checkout: starterP.checkout,
+    price: starterP.price,
+    version: starterP.version,
+    // Pulled from the Instagram Graph API on 2026-10-20 (ig_stats.py).
     stats: {
-      date: "Oct 1, 2026",
-      followers: "408",
-      bestViews: "104K",
-      bestSaves: "5.4K",
+      date: "Oct 20, 2026",
+      followers: "1,189",
+      bestViews: "127.6K",
     },
     bestReel: "https://www.instagram.com/reel/Dd0gXqBy_dw/",
     // The kit's own bundled example, rendered untouched from the v1.2 zip.
@@ -58,7 +66,7 @@ export const siteConfig = {
     promptReel: {
       video: "/reel-kit/video/kit-running.mp4",
       poster: "/reel-kit/video/kit-running.jpg",
-      note: "Prompt to finished 28-second MP4 in 12 min 42 s on my Mac. 0 edits.",
+      note: "Prompt to finished 28-second MP4 on my Mac. 0 edits.",
     } as null | { video: string; poster: string; note: string },
     // One line per job, Blotato-style.
     features: [
@@ -72,7 +80,7 @@ export const siteConfig = {
     worksWith: ["Claude Code", "macOS", "Instagram Reels", "TikTok", "YouTube Shorts"],
     founder: [
       "I'm Kai. Product manager by day, builder at night. I wanted to post every day, but one reel ate my whole evening: script, recording, cutting, captions, music.",
-      "So I taught Claude to do all of it. One of those reels reached 104K views, and I never filmed a second of it. People kept asking how I made them, so I packed the setup into a kit you can run yourself.",
+      "So I taught Claude to do all of it. One of those reels reached 127.6K views (Instagram, Oct 20, 2026), and I never filmed a second of it. People kept asking how I made them, so I packed the setup into a kit you can run yourself.",
     ],
     pains: [
       "Write the script",
@@ -105,7 +113,7 @@ export const siteConfig = {
     ],
     // Reels on @kaiships.ai, numbers from the Graph API on 2026-10-01.
     reels: [
-      { id: "reel11-vibe-plugins", url: "https://www.instagram.com/reel/Dd0gXqBy_dw/", views: "104K", saves: "5.4K" },
+      { id: "reel11-vibe-plugins", url: "https://www.instagram.com/reel/Dd0gXqBy_dw/", views: "127.6K", saves: "" },
       { id: "reel15-apple-design", url: "https://www.instagram.com/reel/Dd4BjZ8SssK/", views: "5.7K", saves: "180" },
       { id: "reel16-sonnet-vs-opus", url: "https://www.instagram.com/reel/Dd6nguzSt4G/", views: "3.6K", saves: "32" },
       { id: "reel14-frontend-plugins", url: "https://www.instagram.com/reel/Dd3epGKSN-m/", views: "3.5K", saves: "148" },
@@ -189,11 +197,11 @@ export const siteConfig = {
       },
       {
         q: "Does it work on Windows?",
-        a: "I have only tested it on Mac with Apple Silicon so far. If it fails on your machine, DM me on Instagram and I'll help you fix it.",
+        a: "I have only tested it on Mac with Apple Silicon so far. The setup script supports Windows, but it is less tested there. If it fails on your machine, DM me on Instagram and I'll help you fix it.",
       },
       {
         q: "How long does one reel take?",
-        a: "The \"A topic\" prompt above went from prompt to a finished 28-second reel in 12 min 42 s on my Mac, with no edits. Longer or more detailed reels take longer, because Claude writes the script and paints every scene first. My last reel went from one prompt to a first render in 36 minutes and was done at 70, with no edits from me.",
+        a: "A 30-second reel renders in a few minutes, longer on a laptop without a dedicated GPU. The first run also sets everything up, which takes a few minutes and needs internet.",
       },
       {
         q: "Can I change the style or the character?",
@@ -201,13 +209,54 @@ export const siteConfig = {
       },
       {
         q: "What happens after I pay?",
-        a: "Polar emails you the download right away. If it won't run, DM @kaiships.ai and I'll fix it with you. Still stuck within 14 days, you get a full refund.",
+        a: "Starter: Polar emails you a download link. Pro: you get an invite to the private GitHub repo studio-pro, and `git pull` gets every update. " + proShipLine + " Both plans get the Discord. If it won't run, DM @kaiships.ai and I'll fix it with you.",
       },
       {
         q: "Can I use the videos for my business?",
         a: "Yes. Unlimited videos, personal or commercial. Please don't share or resell the kit itself.",
       },
     ],
+  },
+
+  // Kaiships Studio: Starter (= Studio Reel, the old Reel Kit Polar product) + Pro PreOrder.
+  // Copy from 00-journal/html-visualization/website-wireframe.html (home:A).
+  studio: {
+    starter: {
+      name: "Starter",
+      price: starterP.price,
+      priceValue: starterP.priceValue,
+      productName: starterP.name,
+      currency: starterP.currency,
+      version: starterP.version,
+      checkout: starterP.checkout,
+      sub: "one-time · Studio Reel",
+      items: ["Watercolour reel engine + Clawd", "/make-reel + 3 example scripts", "Unlimited reels, commercial use", "Discord help"],
+    },
+    pro: {
+      name: "Pro",
+      price: proP.price,
+      priceValue: proP.priceValue,
+      productName: proP.name,
+      currency: proP.currency,
+      version: proP.version,
+      after: proP.afterPreorderPrice,
+      productId: proP.polarProductId,
+      checkout: proP.checkout,
+      includes: proP.includes,
+      shipsBy: proP.shipsBy ? formatDate(proP.shipsBy) : null,
+      updatesMonths: proP.updatesMonths ?? null,
+      items: [
+        "Everything in Starter",
+        ...proP.includes.map((i) => `Week ${i.week} · ${i.title}`),
+        ...(proP.updatesMonths ? [`${proP.updatesMonths} months of updates`] : []),
+      ],
+    },
+    // Reels made with the Studio Reel engine (ksa-reel-handdrawn). Views from the Instagram API, Oct 20, 2026.
+    reels: [
+      { id: "reel49-shark", label: "Shark: pitch your idea to 5 Claude sharks", url: "https://www.instagram.com/reel/DeQNRxTyS-v/", views: "40.3K" },
+      { id: "reel45-vibe-v2", label: "5 plugins for vibe coding", url: "https://www.instagram.com/reel/DeMxFCtyAm9/", views: "13.3K" },
+      { id: "reel48-cli", label: "CLI-Anything", url: "https://www.instagram.com/reel/DePaI0_S9Rj/", views: "4.8K" },
+    ] as { id: string | null; label: string; url: string | null; views: string }[],
   },
 
   // Free guides sent by DM from each reel. One Google Doc or PDF per keyword.
@@ -276,10 +325,10 @@ export const siteConfig = {
       {
         title: "Ship",
         links: [
-          { label: "Products", href: "/products" },
-                      { label: "Reel Kit", href: "/#kit" },
+          { label: "Products", href: "/#buy" },
+                      { label: "Kaiships Studio", href: "/#buy" },
           { label: "Starter PACK", href: "/pack" },
-          { label: "Free resources", href: "/resources" },
+          { label: "Free resources", href: "/guides" },
           { label: "Ship log", href: "/blog" },
         ],
       },

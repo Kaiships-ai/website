@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="pt-32 pb-24 sm:pt-36">
-      <div className="prose prose-stone mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-medium prose-headings:tracking-tight prose-a:text-accent-ink">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-ink not-prose">
+      <div className="prose prose-stone mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-medium prose-headings:tracking-tight prose-a:text-accent">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent not-prose">
           {"//"} legal
         </p>
         <h1>Terms of Service</h1>
@@ -38,9 +38,9 @@ export default function TermsPage() {
           specific runs, not promises. Nothing here is legal, financial, or
           professional advice.
         </p>
-        <h2>Kaiships Reel Kit</h2>
+        <h2>Kaiships Studio</h2>
         <p>
-          The Reel Kit is a one-time purchase sold through Polar, which emails
+          Kaiships Studio is a one-time purchase sold through Polar, which emails
           the download right after payment. You may make unlimited videos,
           personal or commercial; please don&apos;t share or resell the kit
           itself. If the kit won&apos;t run on your machine, DM @kaiships.ai and

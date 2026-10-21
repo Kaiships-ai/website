@@ -2,14 +2,14 @@ import type { ReactNode } from "react";
 
 const kinds = {
   warn: {
-    cls: "border-amber/40 bg-amber/8",
+    cls: "border-amber/40 bg-accent-soft/8",
     label: "what breaks",
     labelCls: "text-[#92400e]",
   },
   note: {
-    cls: "border-line bg-paper-2",
+    cls: "border-line bg-sunk",
     label: "note",
-    labelCls: "text-ink-2",
+    labelCls: "text-muted",
   },
 } as const;
 
