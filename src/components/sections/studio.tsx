@@ -514,7 +514,7 @@ export function StudioFinal() {
     <section className="relative isolate overflow-hidden py-[72px] lg:py-28">
       <Orbit />
       <div className={`${wrap} flex flex-col items-center gap-6 text-center`}>
-        <p className="eyebrow">12 — Get started</p>
+        <p className="eyebrow">13 — Get started</p>
         <h2 className="max-w-[760px] font-display text-[clamp(2.1rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.025em] text-ink">
           Get Pro at the <span className="text-accent">PreOrder price.</span>
         </h2>
