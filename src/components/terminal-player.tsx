@@ -74,8 +74,8 @@ export function TerminalPlayer({
   return (
     <TerminalShell title={title}>
       <div aria-hidden={mounted && !reduced ? undefined : undefined}>
-        <div className="text-terminal-fg">
-          <span className="mr-2 text-accent">$</span>
+        <div className="text-space-ink">
+          <span className="mr-2 text-accent-soft">$</span>
           {command.slice(0, cmdChars)}
           {!cmdDone ? <Cursor /> : null}
         </div>
@@ -85,8 +85,8 @@ export function TerminalPlayer({
           ))}
         </div>
         {cmdDone && linesDone ? (
-          <div className="mt-2 text-terminal-fg">
-            <span className="mr-2 text-accent">$</span>
+          <div className="mt-2 text-space-ink">
+            <span className="mr-2 text-accent-soft">$</span>
             {prompt.slice(0, promptChars)}
             <Cursor />
           </div>
@@ -98,6 +98,6 @@ export function TerminalPlayer({
 
 function Cursor() {
   return (
-    <span className="cursor-blink ml-0.5 inline-block h-[1.1em] w-[0.55em] translate-y-[0.18em] bg-amber" />
+    <span className="cursor-blink ml-0.5 inline-block h-[1.1em] w-[0.55em] translate-y-[0.18em] bg-accent-soft" />
   );
 }

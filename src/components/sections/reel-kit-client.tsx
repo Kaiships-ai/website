@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** Muted looping reel in a hand-drawn phone. `sound` adds a tap-for-sound pill. */
+/** Muted looping 9:16 reel tile. `sound` adds a tap-for-sound pill. */
 export function PhoneVideo({
   src,
   poster,
@@ -46,7 +46,7 @@ export function PhoneVideo({
   };
 
   return (
-    <div className={`phone relative ${className}`}>
+    <div className={`relative ${className}`}>
       <video
         ref={ref}
         src={src}
@@ -56,80 +56,17 @@ export function PhoneVideo({
         playsInline
         preload="metadata"
         aria-label={label}
-        className="block aspect-[9/16] w-full bg-paper-2 object-cover"
+        className="block aspect-[9/16] w-full bg-sunk object-cover"
       />
       {sound ? (
         <button
           type="button"
           onClick={toggle}
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border-2 border-ink bg-cream px-4 py-1.5 text-sm font-extrabold text-ink shadow-[3px_3px_0_var(--ink)]"
+          className="absolute bottom-3 left-1/2 min-h-11 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-surface px-4 text-sm font-semibold text-ink shadow-card"
         >
           {muted ? "🔊 Tap for sound" : "🔇 Mute"}
         </button>
       ) : null}
-    </div>
-  );
-}
-
-/** Prompt picker: tabs with the README prompts, copy to clipboard. */
-export function PromptPicker({
-  prompts,
-}: {
-  prompts: readonly { tab: string; text: string }[];
-}) {
-  const [i, setI] = useState(0);
-  const [copied, setCopied] = useState(false);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(prompts[i].text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      setCopied(false);
-    }
-  };
-  return (
-    <div>
-      <div role="tablist" aria-label="Example prompts" className="flex flex-wrap gap-2">
-        {prompts.map((p, k) => (
-          <button
-            key={p.tab}
-            role="tab"
-            aria-selected={k === i}
-            type="button"
-            onClick={() => {
-              setI(k);
-              setCopied(false);
-            }}
-            className={`rounded-xl border-2 border-ink px-3.5 py-1.5 text-sm font-extrabold transition-colors ${
-              k === i ? "bg-ink text-ochre" : "bg-cream text-ink hover:bg-paper-2"
-            }`}
-          >
-            {p.tab}
-          </button>
-        ))}
-      </div>
-      <div className="sketch mt-4 p-5 sm:p-6">
-        <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-ink-2">
-          You paste into Claude Code
-        </p>
-        <p key={i} className="type-in mt-3 min-h-[5.5rem] text-lg font-semibold leading-relaxed text-ink sm:text-xl">
-          <span className="text-accent-ink">&gt; </span>
-          {prompts[i].text}
-        </p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={copy}
-            className="rounded-xl border-2 border-ink bg-accent px-4 py-2 text-sm font-extrabold text-cream shadow-[3px_3px_0_var(--ink)]"
-          >
-            {copied ? "✓ Copied" : "Copy prompt"}
-          </button>
-          <p className="text-sm text-ink-2">
-            Claude writes the script, voices it, paints it, adds captions and music.
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
@@ -159,10 +96,10 @@ export function StickyBuy({ href, price }: { href: string; price: string }) {
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={show ? 0 : -1}
-        className="flex items-center justify-between rounded-2xl border-[2.5px] border-ink bg-ink px-5 py-3 text-cream shadow-[4px_5px_0_var(--accent)]"
+        className="flex min-h-14 items-center justify-between rounded-card-lg border border-space-line bg-space px-5 text-space-ink shadow-card"
       >
-        <span className="text-base font-extrabold">Buy Pro PreOrder</span>
-        <span className="rounded-lg bg-accent px-3 py-1 text-base font-extrabold">{price}</span>
+        <span className="text-base font-semibold">Buy Pro PreOrder</span>
+        <span className="rounded-lg bg-accent px-3 py-1 text-base font-semibold text-accent-on">{price}</span>
       </a>
     </div>
   );

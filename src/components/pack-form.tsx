@@ -49,9 +49,9 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-success-ink/30 bg-white p-5 text-left"
+        className="rounded-2xl border border-ok/30 bg-surface p-5 text-left"
       >
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-success-ink">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-ok">
           ✓ sent
         </p>
         <p className="mt-2 text-sm leading-relaxed text-ink">
@@ -61,14 +61,14 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
           href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-2 rounded-full bg-accent-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#9a2f13]"
+          className="mt-3 inline-flex items-center gap-2 min-h-11 rounded-[10px] bg-accent px-5 py-2.5 text-sm font-semibold text-accent-on transition-colors hover:brightness-110"
         >
           Open the repo on GitHub ↗
         </a>
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-2">
+        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
           install a skill
         </p>
-        <pre className="mt-1.5 overflow-x-auto rounded-lg border border-terminal-line bg-terminal px-3.5 py-2.5 font-mono text-xs text-terminal-fg">
+        <pre className="mt-1.5 overflow-x-auto rounded-lg border border-space-line bg-space px-3.5 py-2.5 font-mono text-xs text-space-ink">
           {INSTALL_HINT}
         </pre>
       </div>
@@ -89,22 +89,22 @@ export function PackForm({ compact = false }: { compact?: boolean }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@email.com"
-          className="w-full flex-1 rounded-2xl border-[2.5px] border-ink bg-white px-5 py-3 text-base text-ink placeholder:text-ink-2/60 focus:border-accent focus:outline-none"
+          className="w-full flex-1 min-h-11 rounded-[10px] border border-line-strong bg-surface px-4 py-3 text-base text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-3 text-base font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          className="min-h-11 rounded-[10px] bg-accent px-6 py-3 text-base font-semibold text-accent-on shadow-card transition-[filter] hover:brightness-110 disabled:opacity-60"
         >
           {status === "loading" ? "Sending…" : "Send me the PACK"}
         </button>
       </div>
       {status === "error" ? (
-        <p role="alert" className="mt-2 text-sm text-accent-ink">
+        <p role="alert" className="mt-2 text-sm text-accent">
           {error}
         </p>
       ) : null}
-      <p className="mt-4 text-sm leading-relaxed text-ink-2">
+      <p className="mt-4 text-sm leading-relaxed text-muted">
         No spam. Unsubscribe anytime.
       </p>
     </form>

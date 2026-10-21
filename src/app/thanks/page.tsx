@@ -19,13 +19,13 @@ export default function ThanksPage() {
   return (
     <PageShell>
       <div className="max-w-2xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-ink">Thanks</p>
-        <h1 className="marker mt-4 text-4xl text-ink sm:text-6xl">
-          Payment <span className="marker-pop">received.</span>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Thanks</p>
+        <h1 className="font-display font-bold tracking-[-0.02em] mt-4 text-4xl text-ink sm:text-6xl">
+          Payment <span className="text-accent">received.</span>
         </h1>
         <div className={`${card} mt-8`}>
           <p className="text-lg font-extrabold text-ink">Check your email.</p>
-          <p className="text-base leading-relaxed text-ink-2">
+          <p className="text-base leading-relaxed text-muted">
             Polar (the payment company) emails your download links right now. {what}{" "}If it&apos;s not there in a few minutes, look in spam.
           </p>
         </div>

@@ -8,13 +8,13 @@ export type TermLine = {
 export function lineColor(kind: TermLine["kind"]) {
   switch (kind) {
     case "ok":
-      return "text-success";
+      return "text-[#7fd3a3]";
     case "accent":
-      return "text-amber";
+      return "text-accent-soft";
     case "cmd":
-      return "text-terminal-fg";
+      return "text-space-ink";
     default:
-      return "text-terminal-muted";
+      return "text-space-muted";
   }
 }
 
@@ -29,13 +29,13 @@ export function TerminalShell({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-2xl border border-terminal-line bg-terminal shadow-[0_24px_80px_-24px_rgba(20,18,16,0.55)] ${className}`}
+      className={`overflow-hidden rounded-card-lg border border-space-line bg-space shadow-card ${className}`}
     >
-      <div className="relative flex items-center gap-2 border-b border-terminal-line px-4 py-3">
+      <div className="relative flex items-center gap-2 border-b border-space-line px-4 py-3">
         <span aria-hidden className="size-3 rounded-full bg-[#ff5f57]" />
         <span aria-hidden className="size-3 rounded-full bg-[#febc2e]" />
         <span aria-hidden className="size-3 rounded-full bg-[#28c840]" />
-        <span className="absolute inset-x-0 text-center font-mono text-xs text-terminal-muted">
+        <span className="absolute inset-x-0 text-center font-mono text-xs text-space-muted">
           {title}
         </span>
       </div>
@@ -61,7 +61,7 @@ export function TermLineView({ line }: { line: TermLine }) {
         </>
       ) : line.kind === "cmd" ? (
         <>
-          <span className="mr-2 text-accent">$</span>
+          <span className="mr-2 text-accent-soft">$</span>
           {line.text}
         </>
       ) : (

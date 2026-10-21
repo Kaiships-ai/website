@@ -4,19 +4,19 @@ import { Button } from "@/components/ui/button";
 /** End-of-article CTA — the PACK → community ladder. */
 export function PackCta() {
   return (
-    <aside className="not-prose mt-12 rounded-2xl border border-line bg-paper-2 p-6 sm:p-8">
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent-ink">
+    <aside className="not-prose mt-12 rounded-2xl border border-line bg-sunk p-6 sm:p-8">
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
         {"//"} the free pack
       </p>
       <h3 className="mt-3 text-2xl font-medium tracking-tight text-ink">
         Want the whole system, installed in minutes?
       </h3>
-      <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-2">
+      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">
         The free Starter PACK bundles my curated CLAUDE.md, a model-routing
         config, 18 tested skills, and 4 subagents. Drop your email and the
         repo link lands in your inbox — and on your screen at the same time.
         Or DM{" "}
-        <span className="rounded bg-terminal px-1.5 py-0.5 font-mono text-xs text-amber">
+        <span className="rounded bg-space px-1.5 py-0.5 font-mono text-xs text-amber">
           {siteConfig.keyword}
         </span>{" "}
         on Instagram.

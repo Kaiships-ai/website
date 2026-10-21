@@ -37,12 +37,12 @@ export default function AboutPage() {
         <div className="flex flex-col gap-4">
           <SectionTitle id="story">The short story</SectionTitle>
           {founder.map((p) => (
-            <p key={p.slice(0, 20)} className="text-base leading-relaxed text-ink-2">{p}</p>
+            <p key={p.slice(0, 20)} className="text-base leading-relaxed text-muted">{p}</p>
           ))}
         </div>
         <div className="flex flex-col gap-4">
           <SectionTitle>What kaiships.ai is</SectionTitle>
-          <p className="text-base leading-relaxed text-ink-2">
+          <p className="text-base leading-relaxed text-muted">
             One person, one Instagram account and a stack of Claude Code skills. I post faceless animated reels, give away free guides, and sell one thing for people who want to do the same: Kaiships Studio.
           </p>
         </div>
@@ -57,12 +57,12 @@ export default function AboutPage() {
             ["Best reel saves", stats.bestSaves],
           ].map(([k, v]) => (
             <div key={k} className={card}>
-              <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink-2">{k}</dt>
-              <dd className="marker text-3xl text-ink">{v}</dd>
+              <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted">{k}</dt>
+              <dd className="font-display font-bold tracking-[-0.02em] text-3xl text-ink">{v}</dd>
             </div>
           ))}
         </dl>
-        <p className="mt-4 max-w-2xl font-mono text-xs leading-relaxed text-ink-2">
+        <p className="mt-4 max-w-2xl font-mono text-xs leading-relaxed text-muted">
           Every number on this site comes from Instagram&apos;s API or Polar, with the date. These are from {stats.date}.
         </p>
       </section>
@@ -74,9 +74,9 @@ export default function AboutPage() {
             <li key={s.num}>
               <Reveal className="h-full">
                 <div className={card}>
-                  <span className="font-mono text-xs text-ink-2">{s.num}</span>
+                  <span className="font-mono text-xs text-muted">{s.num}</span>
                   <h3 className="text-lg font-extrabold text-ink">{s.title}</h3>
-                  <p className="text-base text-ink-2">{short[i]}</p>
+                  <p className="text-base text-muted">{short[i]}</p>
                 </div>
               </Reveal>
             </li>
@@ -90,7 +90,7 @@ export default function AboutPage() {
           {users.slice(0, 3).map((u) => (
             <li key={u.handle} className={card}>
               <p className="text-base leading-relaxed text-ink">&ldquo;{u.text}&rdquo;</p>
-              <p className="mt-auto font-mono text-xs text-ink-2">{u.name} · @{u.handle}</p>
+              <p className="mt-auto font-mono text-xs text-muted">{u.name} · @{u.handle}</p>
             </li>
           ))}
         </ul>

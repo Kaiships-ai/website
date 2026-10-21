@@ -70,21 +70,21 @@ export function GiftForm({
   if (status === "success") {
     return (
       <div role="status">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-success-ink">✓ saved</p>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-ok">✓ saved</p>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 flex w-full items-center justify-center rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-4 text-lg font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5"
+          className="mt-3 flex w-full items-center justify-center min-h-11 rounded-[10px] bg-accent px-6 py-4 text-lg font-semibold text-accent-on shadow-card transition-[filter] hover:brightness-110"
         >
           {cta ?? "Open the guide →"}
         </a>
         {hideKitLine ? null : (
-        <p className="mt-6 text-sm leading-relaxed text-ink-2">
+        <p className="mt-6 text-sm leading-relaxed text-muted">
           Want reels like the one you just watched? They&apos;re made with one prompt.{" "}
           <Link
             href="/#pricing"
-            className="font-medium text-accent-ink underline underline-offset-2"
+            className="font-medium text-accent underline underline-offset-2"
           >
             See Kaiships Studio
           </Link>
@@ -107,25 +107,25 @@ export function GiftForm({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@email.com"
-          className="w-full rounded-2xl border-[2.5px] border-ink bg-white px-5 py-3 text-base text-ink placeholder:text-ink-2/60 focus:border-accent focus:outline-none"
+          className="w-full min-h-11 rounded-[10px] border border-line-strong bg-surface px-4 py-3 text-base text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-2xl border-[2.5px] border-ink bg-accent px-6 py-3 text-base font-semibold text-cream shadow-[4px_5px_0_var(--ink)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          className="min-h-11 rounded-[10px] bg-accent px-6 py-3 text-base font-semibold text-accent-on shadow-card transition-[filter] hover:brightness-110 disabled:opacity-60"
         >
           {status === "loading" ? "Sending…" : (button ?? "Send it")}
         </button>
       </div>
       {status === "error" ? (
         <div role="alert" className="mt-3 text-sm">
-          <p className="text-accent-ink">{error}</p>
-          <a href={url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-ink-2 underline underline-offset-2">
+          <p className="text-accent">{error}</p>
+          <a href={url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-muted underline underline-offset-2">
             {cta ?? "Open the guide anyway"}
           </a>
         </div>
       ) : null}
-      <p className="mt-4 text-sm text-ink-2">No spam. Unsubscribe anytime.</p>
+      <p className="mt-4 text-sm text-muted">No spam. Unsubscribe anytime.</p>
     </form>
   );
 }

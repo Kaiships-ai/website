@@ -34,13 +34,13 @@ export default async function GiftPage({
   return (
     <div className="relative px-4 pt-28 pb-20 sm:pt-36">
       <div className="mx-auto max-w-md">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-2">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
           {m.group === "deal" ? "deal" : "gift"} · {m.kw}
         </p>
-        <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+        <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
           {m.heading ?? `Your free ${m.title}`}
         </h1>
-        <p className="mt-3 text-base leading-relaxed text-ink-2">
+        <p className="mt-3 text-base leading-relaxed text-muted">
           {m.blurb ?? "Drop your email and the guide opens right here. I'll also send you the next ones I make."}
         </p>
         <div className="mt-6">
@@ -53,9 +53,9 @@ export default async function GiftPage({
               alt={`First page of the ${m.title} guide`}
               width={720}
               height={446}
-              className="w-full rounded-2xl border-[2.5px] border-ink shadow-[4px_5px_0_var(--ink)]"
+              className="w-full rounded-2xl border border-line-strong shadow-card"
             />
-            <figcaption className="mt-3 text-center font-mono text-xs text-ink-2">
+            <figcaption className="mt-3 text-center font-mono text-xs text-muted">
               page 1 of what you get
             </figcaption>
           </figure>

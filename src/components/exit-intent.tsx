@@ -42,24 +42,24 @@ export function ExitIntent() {
         if (e.target === e.currentTarget) setOpen(false);
       }}
     >
-      <div className="relative w-full max-w-md rounded-2xl border border-line bg-paper p-6 shadow-[0_24px_80px_-24px_rgba(20,18,16,0.5)] sm:p-8">
+      <div className="relative w-full max-w-md rounded-card-lg border border-line bg-surface p-6 shadow-[0_24px_80px_-24px_rgba(20,18,16,0.5)] sm:p-8">
         <button
           onClick={() => setOpen(false)}
           aria-label="Close"
-          className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink"
+          className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-muted transition-colors hover:bg-sunk hover:text-ink"
         >
           ✕
         </button>
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent-ink">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
           {"//"} before you go
         </p>
         <h2
           id="exit-intent-title"
-          className="mt-3 text-xl font-medium tracking-tight text-ink"
+          className="mt-3 font-display text-xl font-bold text-ink"
         >
           Grab the free Claude Code starter pack.
         </h2>
-        <p className="mt-1.5 text-sm leading-relaxed text-ink-2">
+        <p className="mt-1.5 text-sm leading-relaxed text-muted">
           A starter CLAUDE.md, model-routing config, 18 tested skills + 4
           subagents. Sent by email.
         </p>
