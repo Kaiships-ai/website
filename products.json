@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "studio-reel",
+    "repo": "Kaiships-ai/studio-reel",
+    "tier": "starter",
+    "label": "Starter",
+    "polarProductId": "e62fb517-8ad3-42ae-a24d-be4574d09acf",
+    "checkout": "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV"
+  },
+  {
+    "slug": "studio-pro",
+    "repo": "Kaiships-ai/studio-pro",
+    "tier": "pro",
+    "label": "Pro",
+    "polarProductId": "74d08e44-d147-41b2-bb74-e1e70cf049ec",
+    "checkout": "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
+    "preorder": true,
+    "afterPreorderPrice": "$99"
+  }
+]

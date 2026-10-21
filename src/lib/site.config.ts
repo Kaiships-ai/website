@@ -2,6 +2,11 @@
  * kaiships.ai — all site copy, links, and funnel wiring live here.
  * Edit this file to change content; components never hardcode copy.
  */
+import { getProduct } from "./products-data";
+
+// Price, checkout and version come from products.json + Polar (pnpm sync:products).
+const starterP = getProduct("starter");
+const proP = getProduct("pro");
 
 export const siteConfig = {
   name: "kaiships.ai",
@@ -28,16 +33,16 @@ export const siteConfig = {
   ],
   navCta: {
     label: "Buy Pro PreOrder",
-    href: "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
+    href: proP.checkout,
   },
 
   // The one paid product. Numbers here are real; update them from
   // ig_stats.py / Polar before changing.
   reelKit: {
     name: "Kaiships Studio",
-    checkout:
-      "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
-    price: "$39.99",
+    checkout: starterP.checkout,
+    price: starterP.price,
+    version: starterP.version,
     // Pulled from the Instagram Graph API on 2026-10-01 (ig_stats.py).
     stats: {
       date: "Oct 1, 2026",
@@ -215,17 +220,23 @@ export const siteConfig = {
   studio: {
     starter: {
       name: "Starter",
-      price: "$39.99",
-      checkout: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
+      price: starterP.price,
+      priceValue: starterP.priceValue,
+      productName: starterP.name,
+      version: starterP.version,
+      checkout: starterP.checkout,
       sub: "one-time · Studio Reel",
       items: ["Watercolour reel engine + Clawd", "/make-reel + 3 example scripts", "Unlimited reels, commercial use", "Discord help"],
     },
     pro: {
       name: "Pro",
-      price: "$79",
-      after: "$99",
-      productId: "74d08e44-d147-41b2-bb74-e1e70cf049ec",
-      checkout: "https://buy.polar.sh/polar_cl_AGSBauv8QLQoxKhcjIHorgoE0zHD5waxRxDov13rSDS",
+      price: proP.price,
+      priceValue: proP.priceValue,
+      productName: proP.name,
+      version: proP.version,
+      after: proP.afterPreorderPrice,
+      productId: proP.polarProductId,
+      checkout: proP.checkout,
       items: ["Everything in Starter", "Week 1 · Hook + script", "Week 2 · Caption + CTA", "Week 3 · Viral radar", "Week 4 · Week plan", "12 months of updates"],
     },
     // Reels made with the Studio Reel engine (ksa-reel-handdrawn). Views from the Instagram API, Oct 20, 2026.

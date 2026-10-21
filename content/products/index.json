@@ -1,0 +1,36 @@
+{
+  "studio-reel": {
+    "product": {
+      "name": "Kaiships Studio Starter",
+      "product": "Studio Reel",
+      "line": "Kaiships Studio",
+      "version": "1.4.1",
+      "polar_product_id": "e62fb517-8ad3-42ae-a24d-be4574d09acf",
+      "repo": "Kaiships-ai/studio-reel",
+      "demo_media": []
+    },
+    "polar": {
+      "name": "Kaiships Studio Starter",
+      "price_amount": 3999,
+      "currency": "usd",
+      "fetched_at": "2026-10-20"
+    }
+  },
+  "studio-pro": {
+    "product": {
+      "name": "Kaiships Studio Pro (PreOrder)",
+      "line": "Kaiships Studio",
+      "version": "pro-1",
+      "engine": "studio-reel 1.4.1",
+      "polar_product_id": "74d08e44-d147-41b2-bb74-e1e70cf049ec",
+      "repo": "Kaiships-ai/studio-pro",
+      "demo_media": []
+    },
+    "polar": {
+      "name": "Kaiships Studio Pro (PreOrder)",
+      "price_amount": 7900,
+      "currency": "usd",
+      "fetched_at": "2026-10-20"
+    }
+  }
+}

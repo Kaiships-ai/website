@@ -12,7 +12,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 export const runtime = "nodejs";
 
 const REEL_KIT_PRODUCT_ID = "e62fb517-8ad3-42ae-a24d-be4574d09acf"; // Kaiships Studio Starter
-/** Kaiships Studio Pro ($79 PreOrder). Same buyer flow as Starter. */
+/** Kaiships Studio Pro (PreOrder). Same buyer flow as Starter. */
 const STUDIO_PRO_PRODUCT_ID = "74d08e44-d147-41b2-bb74-e1e70cf049ec";
 
 /** Retired products (stopped 2026-10-19). Kept so past buyers still get

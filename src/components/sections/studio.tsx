@@ -443,8 +443,8 @@ export function StudioJsonLd() {
     description: "Type one prompt and Claude makes a hand-painted reel: script, voiceover, painted scenes, captions and music.",
     brand: { "@type": "Brand", name: siteConfig.name },
     offers: [
-      { "@type": "Offer", name: "Kaiships Studio Starter", price: "39.99", priceCurrency: "USD", url: starter.checkout, availability: "https://schema.org/InStock" },
-      { "@type": "Offer", name: "Kaiships Studio Pro (PreOrder)", price: "79.00", priceCurrency: "USD", url: pro.checkout, availability: "https://schema.org/PreOrder" },
+      { "@type": "Offer", name: starter.productName, price: starter.priceValue, priceCurrency: "USD", url: starter.checkout, availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: pro.productName, price: pro.priceValue, priceCurrency: "USD", url: pro.checkout, availability: "https://schema.org/PreOrder" },
     ],
   };
   const faq = {
