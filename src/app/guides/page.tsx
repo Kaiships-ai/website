@@ -19,7 +19,7 @@ export default function GuidesPage() {
   return (
     <div className="mx-auto w-full max-w-[1200px] px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
       <JsonLd data={breadcrumbLd([{ name: "Guides", path: "/guides" }])} />
-      <PageHeader center eyebrow="Guides" title="Free guides for Claude Code." sub="Skills, agents and setups I use every day, plus the guide behind each reel. Free to read, no signup." />
+      <PageHeader center eyebrow="Guides" title="Free guides for Claude Code." sub="Skills, agents and setups I use every day, plus the guide behind each reel. Free. Some guides ask for your email so the next one reaches you." />
       <div className="mt-14">
         <GuidesGrid guides={guides} topics={topics} />
       </div>

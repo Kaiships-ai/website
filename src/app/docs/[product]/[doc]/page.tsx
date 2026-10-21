@@ -45,7 +45,7 @@ export default async function DocPage({ params }: P) {
   const path = `/docs/${product}/${doc}`;
 
   return (
-    <div className="mx-auto w-full max-w-[1280px] px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
+    <div className="mx-auto w-full max-w-[1200px] px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
       <JsonLd
         data={breadcrumbLd([
           { name: "Docs", path: "/docs" },
@@ -60,7 +60,7 @@ export default async function DocPage({ params }: P) {
 
         <article className="min-w-0">
           <nav aria-label="Breadcrumb" className="font-mono text-xs text-muted">
-            <Link href="/docs" className="hover:text-ink">Docs</Link> <span aria-hidden>/</span> {p.label} <span aria-hidden>/</span> {d.group}
+            <Link href="/docs/studio-reel/install" className="hover:text-ink">Docs</Link> <span aria-hidden>/</span> {p.label} <span aria-hidden>/</span> {d.group} <span aria-hidden>/</span> <span className="text-ink">{d.title}</span>
           </nav>
           <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
             <h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">{d.title}</h1>

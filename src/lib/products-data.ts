@@ -22,9 +22,16 @@ export type Product = {
   polarProductId: string;
   preorder: boolean;
   afterPreorderPrice?: string;
+  /** Pro skills by week, from the product repo's product.json `includes`. */
+  includes: Include[];
+  /** "2026-11-10": the last included skill ships by this date. */
+  shipsBy?: string;
+  updatesMonths?: number;
 };
 
-type Synced = Record<string, { product: { name: string; version: string }; polar: { name: string; price_amount: number; currency: string } }>;
+export type Include = { week: number; title: string; detail: string; commands: string[]; status: string };
+
+type Synced = Record<string, { product: { name: string; version: string; includes?: Include[]; ships_by?: string; updates_months?: number }; polar: { name: string; price_amount: number; currency: string } }>;
 
 export function formatPrice(cents: number, currency = "usd"): string {
   const sym = currency.toLowerCase() === "usd" ? "$" : `${currency.toUpperCase()} `;
@@ -50,6 +57,9 @@ export function getProducts(): Product[] {
       polarProductId: p.polarProductId as string,
       preorder: Boolean(p.preorder),
       afterPreorderPrice: p.afterPreorderPrice as string | undefined,
+      includes: s.product.includes ?? [],
+      shipsBy: s.product.ships_by,
+      updatesMonths: s.product.updates_months,
     };
   });
 }
@@ -58,4 +68,9 @@ export function getProduct(tier: Tier): Product {
   const p = getProducts().find((x) => x.tier === tier);
   if (!p) throw new Error(`products: no ${tier} product`);
   return p;
+}
+
+/** ISO date → short US date, e.g. "Jan 2, 2026". */
+export function formatDate(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 }

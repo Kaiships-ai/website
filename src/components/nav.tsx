@@ -10,7 +10,7 @@ export const DISCORD = "https://discord.gg/MAAJmghmrA";
 
 const links = [
   { label: "Studio", href: "/" },
-  { label: "Docs", href: "/docs" },
+  { label: "Docs", href: "/docs/studio-reel/install" },
   { label: "Guides", href: "/guides" },
   { label: "Changelog", href: "/changelog" },
   { label: "Showcase", href: "/showcase" },
@@ -91,7 +91,7 @@ export function Nav() {
         </div>
 
         <div className="hidden lg:block">
-          <Button href={cta.href} variant="accent">
+          <Button href={cta.href} variant="ghost">
             {cta.label}
           </Button>
         </div>
@@ -118,7 +118,7 @@ export function Nav() {
             <NavLink key={l.href} {...l} big active={isActive(l.href)} onClick={() => setOpen(false)} />
           ))}
           <div className="pt-8">
-            <Button href={cta.href} variant="accent" className="w-full">
+            <Button href={cta.href} variant="ghost" className="w-full">
               {cta.label}
             </Button>
           </div>

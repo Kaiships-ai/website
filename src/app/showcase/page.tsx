@@ -31,7 +31,7 @@ export default function ShowcasePage() {
     <div className="mx-auto w-full max-w-[1200px] px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
       <JsonLd data={breadcrumbLd([{ name: "Showcase", path: "/showcase" }])} />
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <PageHeader eyebrow="Showcase" title="Made with Studio." sub="Reels from the Studio Reel engine, posted on @kaiships.ai. One prompt each." />
+        <PageHeader eyebrow="Showcase" title="Made with Studio." sub="Reels from the Studio Reel engine, posted on @kaiships.ai." />
         {discord ? (
           <a href={discord} target="_blank" rel="noopener noreferrer" className="w-fit shrink-0 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-accent-on hover:opacity-90">
             Submit your reel on Discord ↗

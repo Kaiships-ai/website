@@ -5,6 +5,7 @@ import {
   StudioCrew,
   StudioPain,
   StudioInside,
+  StudioProSkills,
   StudioReels,
   StudioAccounts,
   StudioUsers,
@@ -41,6 +42,7 @@ export default function Home() {
       <StudioCrew />
       <StudioPain />
       <StudioInside />
+      <StudioProSkills />
       <StudioReels />
       <StudioAccounts />
       <StudioUsers />

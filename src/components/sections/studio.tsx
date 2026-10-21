@@ -19,6 +19,14 @@ export const studioFaq = [
   { q: "How long does one reel take?", a: kit.faq[3].a },
   { q: "Can I change the style or character?", a: kit.faq[4].a },
   { q: "What happens after I pay?", a: kit.faq[5].a },
+  { q: "What if it doesn't work for me?", a: "DM @kaiships.ai and I'll fix it with you first. Still stuck within 14 days of buying, you get a full refund." },
+  {
+    q: "How do updates work?",
+    a: `Starter: you get a new download link for each update. Pro: \`git pull\` in the repo${pro.updatesMonths ? `, for ${pro.updatesMonths} months from your purchase date` : ""}.`,
+  },
+  { q: "Can I use the videos for my business?", a: kit.faq[6].a },
+  { q: "Where do I get help?", a: "In the Kaiships Discord: ask in #help. Bugs you report there become GitHub Issues in the product repo." },
+  { q: "What if Claude Code changes?", a: "Fixes ship as updates, and every change is listed in the changelog." },
 ];
 
 const wrap = "mx-auto max-w-[1200px] px-4 sm:px-6";
@@ -54,22 +62,22 @@ function ProButton({ className = "", label = `Buy Pro PreOrder · ${pro.price}` 
   );
 }
 
-const crew: [string, string][] = [
-  ["Writer", "Script + hook."],
-  ["Narrator", "Voiceover in one take."],
-  ["Painter", "Painted scenes with Clawd."],
-  ["Captions", "Word-locked captions."],
-  ["Composer", "Music + SFX."],
-  ["Reviewer", "Self-review, hook ≥ 8/10."],
+const crew: [string, string, string][] = [
+  ["Writer", "Script + hook", "Hook first, one idea per reel, in plain spoken lines."],
+  ["Narrator", "Voiceover in one take", "Natural text-to-speech. No microphone, no voice subscription."],
+  ["Painter", "Painted scenes with Clawd", "Hand-drawn characters and props, drawn stroke by stroke in code."],
+  ["Captions", "Word-locked captions", "Captions locked to the spoken words, inside Instagram's safe zone."],
+  ["Composer", "Music + SFX", "Generated on your machine and timed to the words."],
+  ["Reviewer", "Self-review", "Say what's wrong and it renders again."],
 ];
-const steps = crew.map(([, d]) => d.replace(/\.$/, ""));
+const steps = crew.map(([, d]) => d);
 
 function Orbit() {
   return (
-    <svg aria-hidden viewBox="0 0 1200 600" className="pointer-events-none absolute left-1/2 top-10 -z-10 w-[1400px] max-w-none -translate-x-1/2 text-line-strong" fill="none">
+    <svg aria-hidden viewBox="0 0 1200 600" className="pointer-events-none absolute left-1/2 top-[440px] -z-10 w-[1400px] max-w-none -translate-x-1/2 text-line opacity-70" fill="none">
       <ellipse cx="600" cy="300" rx="560" ry="200" stroke="currentColor" strokeDasharray="2 8" />
       <ellipse cx="600" cy="300" rx="380" ry="130" stroke="currentColor" opacity="0.6" />
-      <circle cx="1040" cy="176" r="7" className="fill-accent-soft" stroke="none" />
+      <circle cx="1120" cy="250" r="7" className="fill-accent-soft" stroke="none" />
     </svg>
   );
 }
@@ -85,7 +93,7 @@ export function StudioHero() {
           <span className="rounded-full bg-accent-wash px-3 py-1 text-accent">PreOrder price</span>
         </div>
         <h1 className="max-w-[920px] font-display text-[clamp(2.5rem,6.4vw,4rem)] font-bold leading-[1.02] tracking-[-0.03em] text-ink">
-          Type one prompt. <span className="text-accent">Get a hand-painted reel.</span>
+          Type one prompt. <span className="text-accent">Get a hand&#8209;painted reel.</span>
         </h1>
         <p className="max-w-xl text-[17px] leading-relaxed text-muted sm:text-lg">
           Claude writes, voices, paints, captions and scores the reel. You get a 1080×1920 MP4.
@@ -101,16 +109,16 @@ export function StudioHero() {
             title="claude · studio-reel"
             command='claude "/make-reel why the sky is blue"'
             lines={[
-              ...steps.map((t) => ({ kind: "dim" as const, text: `✓ ${t}` })),
-              { kind: "ok" as const, text: "reel.mp4 · 1080×1920 · 33 s" },
+              { kind: "dim" as const, text: "rendering…" },
+              { kind: "ok" as const, text: "reel.mp4 · 1080×1920" },
             ]}
             prompt="/make-reel your topic"
           />
         </div>
         <div className="mt-4 grid w-full max-w-[900px] gap-4 sm:grid-cols-3">
           {[
-            ["Ready to use", "Unzip, open in Claude Code."],
-            ["Pay once", "No subscription."],
+            ["Ready to use", "Unzip, open in Claude Code. The first run installs what it needs by itself."],
+            ["Pay once", "No subscription and no API keys. The voiceover uses a free text-to-speech service."],
             ["Price after PreOrder", `Pro goes from ${pro.price} to ${pro.after}.`],
           ].map(([t, d]) => (
             <div key={t} className={`${cardCls} text-left`}>
@@ -130,17 +138,16 @@ export function StudioCrew() {
     <Section sunk>
       <Head n="01" name="The crew" title="One prompt, the whole studio gets to work" sub="A 30-second reel renders in a few minutes, longer on a laptop without a GPU." />
       <div className="mt-14 grid items-start gap-6 lg:grid-cols-[5fr_7fr]">
-        <div className="rounded-card-lg border border-space-line bg-space p-6 font-mono text-[13px] leading-7 text-space-ink shadow-card">
-          <p className="text-accent-soft">&gt; Make a reel: why the sky is blue</p>
+        <div className="hidden rounded-card-lg border border-space-line bg-space p-6 font-mono text-[13px] leading-7 text-space-ink shadow-card sm:block">
+          <p className="text-space-muted">Steps, in order</p>
           {steps.map((s) => (
             <p key={s} className="text-space-muted">
               <span className="text-[#7fd3a3]">✓</span> {s}
             </p>
           ))}
-          <p className="mt-2 text-space-ink">reel.mp4 · 1080×1920 · 33 s</p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {crew.map(([c, d], i) => (
+          {crew.map(([c, , d], i) => (
             <div key={c} className={`${cardCls} flex flex-col gap-1.5 p-5`}>
               <span className="font-mono text-[12px] text-accent">0{i + 1}</span>
               <h3 className="font-display text-[18px] font-bold text-ink">{c}</h3>
@@ -159,12 +166,19 @@ export function StudioPain() {
     <Section>
       <Head n="02" name="The problem" title="Reels look great. Making them eats your day." />
       <div className="mt-14 grid gap-4 md:grid-cols-3">
-        {["Filming takes hours", "Editing apps are hard", "Templates all look the same"].map((p) => (
-          <div key={p} className={`${cardCls} flex items-center gap-4 p-5`}>
+        {[
+          ["Filming takes hours", "Write the script, record yourself again and again."],
+          ["Editing apps are hard", "Cut, animate, add captions, find music, fix the timing, export."],
+          ["Templates all look the same", "Studio Reel paints every scene for your topic instead."],
+        ].map(([p, d]) => (
+          <div key={p} className={`${cardCls} flex items-start gap-4 p-5`}>
             <span aria-hidden className="grid size-9 flex-none place-items-center rounded-full bg-accent-wash text-accent">
               ✕
             </span>
-            <h3 className="font-display text-[18px] font-bold text-ink">{p}</h3>
+            <div>
+              <h3 className="font-display text-[18px] font-bold text-ink">{p}</h3>
+              <p className="mt-1 text-[14px] text-muted">{d}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -193,11 +207,45 @@ export function StudioInside() {
   );
 }
 
+/* 4b · Everything in Pro: one card per Pro skill, from studio-pro product.json. */
+export function StudioProSkills() {
+  if (!pro.includes.length) return null;
+  return (
+    <Section>
+      <Head
+        n="03b"
+        name="Everything in Pro"
+        title="The writing skills before and after the reel"
+        sub={pro.shipsBy ? `PreOrder: one skill a week, all by ${pro.shipsBy}. Get each one with git pull.` : "Get each one with git pull."}
+      />
+      <div className="mx-auto mt-14 grid max-w-[880px] gap-4 sm:grid-cols-2">
+        {pro.includes.map((i) => (
+          <div key={i.week} className={`${cardCls} flex flex-col gap-2`}>
+            <div className="flex items-center justify-between gap-2 font-mono text-[12px]">
+              <span className="text-accent">Week {i.week}</span>
+              <span className={i.status === "shipped" ? "text-ok" : "text-muted"}>{i.status === "shipped" ? "in the repo" : i.status}</span>
+            </div>
+            <h3 className="font-display text-[20px] font-bold text-ink">{i.title}</h3>
+            <p className="text-[15px] leading-relaxed text-muted">{i.detail}</p>
+            <p className="mt-auto flex flex-wrap gap-2 pt-1">
+              {i.commands.map((c) => (
+                <code key={c} className="rounded-md bg-sunk px-1.5 py-0.5 font-mono text-[13px] text-ink">
+                  {c}
+                </code>
+              ))}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 /* 5 · Video grid with view counts. */
 export function StudioReels() {
   return (
     <Section id="showcase">
-      <Head n="04" name="Proof" title="Reels made entirely with Kaiships Studio" sub="No camera, no editing app. Views from Instagram, Oct 20, 2026." />
+      <Head n="04" name="Proof" title="Reels made with the engine inside Studio Reel" sub="Kai's own reels, made with the hand-drawn engine that Studio Reel packages. Views from Instagram, Oct 20, 2026." />
       <div className="mx-auto mt-14 grid max-w-[900px] gap-6 sm:grid-cols-3">
         {studio.reels.map((r, i) => (
           <figure key={i} className="mx-auto w-full max-w-[280px] overflow-hidden rounded-card-lg border border-line bg-surface shadow-card">
@@ -231,7 +279,7 @@ export function StudioReels() {
 export function StudioAccounts() {
   return (
     <Section sunk>
-      <Head n="05" name="Accounts" title="Real accounts built with it" sub="Numbers from the Instagram API, Oct 20, 2026." />
+      <Head n="05" name="Account" title="The account behind it" sub="Numbers from the Instagram API, Oct 20, 2026." />
       <div className="mx-auto mt-14 grid max-w-[720px] gap-4 sm:grid-cols-3">
         <a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className={`${cardCls} flex flex-col justify-center gap-1 transition-colors hover:border-line-strong`}>
           <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">Instagram</span>
@@ -239,7 +287,7 @@ export function StudioAccounts() {
         </a>
         {[
           ["1,189", "followers · IG Oct 20"],
-          ["486K", "reel views · IG Oct 20"],
+          ["486K", "views across all @kaiships.ai reels · IG Oct 20"],
         ].map(([v, k]) => (
           <div key={k} className={cardCls}>
             <p className="font-display text-[36px] font-bold leading-none tracking-[-0.02em] text-ink">{v}</p>
@@ -327,7 +375,8 @@ export function StudioPricing() {
           </div>
         </div>
         <p className="mx-auto mt-8 max-w-[720px] text-center text-[14px] leading-relaxed text-muted">
-          Starter: download link by email. Pro: an invite to the private GitHub repo, and <code className="font-mono text-ink">git pull</code> gets every new skill. All 4 Pro skills ship by Nov 10, 2026, one a week.
+          Starter: download link by email. Pro: an invite to the private GitHub repo, and <code className="font-mono text-ink">git pull</code> gets every new skill.
+          {pro.shipsBy ? ` All ${pro.includes.length} Pro skills ship by ${pro.shipsBy}, one a week.` : null}
         </p>
         <p className="mx-auto mt-3 max-w-[720px] text-center text-[15px] font-semibold text-ink">
           Won&apos;t run? DM me, I fix it with you. Still stuck in 14 days → full refund.
@@ -343,10 +392,15 @@ export function StudioCommitments() {
     <Section>
       <Head n="08" name="Commitments" title="Kai's commitments" />
       <div className="mt-14 grid gap-4 md:grid-cols-3">
-        {["14-day refund", "The version you bought is yours", "Runs on your machine"].map((t, i) => (
+        {[
+          ["14-day refund", "Won't run? DM me and I fix it with you. Still stuck in 14 days, full refund."],
+          ["The version you bought is yours", "Pay once, no subscription. Unlimited videos, personal or commercial."],
+          ["Runs on your machine", "Music and sound effects are generated locally. Only the voiceover needs internet."],
+        ].map(([t, d], i) => (
           <div key={t} className={cardCls}>
             <span className="font-mono text-[12px] text-accent">0{i + 1}</span>
             <h3 className="mt-2 font-display text-[18px] font-bold text-ink">{t}</h3>
+            <p className="mt-1 text-[15px] text-muted">{d}</p>
           </div>
         ))}
       </div>
@@ -379,10 +433,10 @@ export function StudioFaq() {
 /* 11 · Machine requirements, 6 cards. */
 export function StudioRequirements() {
   const reqs: [string, string?][] = [
-    ["Machine", "Mac or Windows"],
+    ["Machine", "Mac (tested) · Windows (setup supports it, less tested)"],
     ["Claude Code", "Paid plan"],
     ["Node 18+"],
-    ["Python 3", "Setup installs the voice tools into it"],
+    ["Python 3.9+", "Setup installs the voice tools into it"],
     ["Browser", "Chrome or Edge renders the frames; setup can download one"],
     ["Internet", "For the AI voice"],
   ];
@@ -401,29 +455,55 @@ export function StudioRequirements() {
   );
 }
 
-/* 12 · Install steps. */
+/* 12 · Install steps: Starter and Pro, from the product docs. */
 export function StudioInstall() {
   const code = "rounded-md bg-sunk px-1.5 py-0.5 font-mono text-[13px] text-ink";
-  const items = [
-    <>Download the zip from your Polar email</>,
-    <>
-      Unzip, <code className={code}>cd kaiships-reel-kit</code>, run <code className={code}>claude</code>
-    </>,
-    <>
-      Type <code className={code}>/make-reel your topic</code>
-    </>,
+  const plans: [string, React.ReactNode[]][] = [
+    [
+      "Starter",
+      [
+        <>Download the zip from your Polar email and unzip it</>,
+        <>
+          <code className={code}>cd kaiships-reel-kit</code>, then run <code className={code}>claude</code>
+        </>,
+        <>
+          Type <code className={code}>/make-reel your topic</code>
+        </>,
+      ],
+    ],
+    [
+      "Pro",
+      [
+        <>
+          <code className={code}>git clone</code> studio-pro (the GitHub invite comes after checkout), then <code className={code}>cd studio-pro</code>
+        </>,
+        <>
+          Run <code className={code}>claude</code>
+        </>,
+        <>
+          Write the script with <code className={code}>/ig-reel your topic</code>, then turn it into a reel with <code className={code}>/make-reel</code>
+        </>,
+      ],
+    ],
   ];
   return (
     <Section sunk>
-      <Head n="11" name="Install" title="Install in a few minutes" />
-      <ol className="mx-auto mt-14 grid max-w-[1000px] gap-4 md:grid-cols-3">
-        {items.map((c, i) => (
-          <li key={i} className={`${cardCls} flex items-start gap-4 p-5 text-[15px] leading-relaxed text-ink`}>
-            <span className="grid size-8 flex-none place-items-center rounded-full border border-line-strong font-mono text-[13px] text-accent">{i + 1}</span>
-            <span>{c}</span>
-          </li>
+      <Head n="11" name="Install" title="Install in a few minutes" sub="The first run sets everything up by itself. It takes a few minutes and needs internet." />
+      <div className="mx-auto mt-14 grid max-w-[1000px] gap-6 md:grid-cols-2">
+        {plans.map(([name, items]) => (
+          <div key={name} className="flex flex-col gap-3">
+            <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">{name}</p>
+            <ol className="flex flex-col gap-3">
+              {items.map((c, i) => (
+                <li key={i} className={`${cardCls} flex items-start gap-4 p-5 text-[15px] leading-relaxed text-ink`}>
+                  <span className="grid size-8 flex-none place-items-center rounded-full border border-line-strong font-mono text-[13px] text-accent">{i + 1}</span>
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
         ))}
-      </ol>
+      </div>
     </Section>
   );
 }
@@ -461,10 +541,11 @@ export function StudioJsonLd() {
     "@type": "Product",
     name: "Kaiships Studio",
     description: "Type one prompt and Claude makes a hand-painted reel: script, voiceover, painted scenes, captions and music.",
+    image: `${siteConfig.url}/opengraph-image`,
     brand: { "@type": "Brand", name: siteConfig.name },
     offers: [
-      { "@type": "Offer", name: starter.productName, price: starter.priceValue, priceCurrency: "USD", url: starter.checkout, availability: "https://schema.org/InStock" },
-      { "@type": "Offer", name: pro.productName, price: pro.priceValue, priceCurrency: "USD", url: pro.checkout, availability: "https://schema.org/PreOrder" },
+      { "@type": "Offer", name: starter.productName, price: starter.priceValue, priceCurrency: starter.currency, url: starter.checkout, availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: pro.productName, price: pro.priceValue, priceCurrency: pro.currency, url: pro.checkout, availability: "https://schema.org/PreOrder" },
     ],
   };
   const faq = {

@@ -12,13 +12,12 @@ const cols = [
       { label: "Kaiships Studio", href: "/" },
       { label: "Pricing", href: "/#buy" },
       { label: "Starter PACK", href: "/pack" },
-      { label: "Guides", href: "/guides" },
     ],
   },
   {
     title: "Learn",
     links: [
-      { label: "Docs", href: "/docs" },
+      { label: "Docs", href: "/docs/studio-reel/install" },
       { label: "Guides", href: "/guides" },
       { label: "Changelog", href: "/changelog" },
       { label: "Showcase", href: "/showcase" },

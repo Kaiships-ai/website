@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/about" },
-  openGraph: { title, description, url: `${siteConfig.url}/about`, images: ["/opengraph-image.jpg"] },
+  openGraph: { title, description, url: `${siteConfig.url}/about`, images: ["/opengraph-image"] },
 };
 
 const short = [
@@ -50,11 +50,10 @@ export default function AboutPage() {
 
       <section className="mt-16" aria-labelledby="numbers">
         <SectionTitle id="numbers">Real numbers</SectionTitle>
-        <dl className="mt-6 grid grid-cols-3 gap-4">
+        <dl className="mt-6 grid grid-cols-2 gap-4">
           {[
             ["Followers", stats.followers],
             ["Best reel views", stats.bestViews],
-            ["Best reel saves", stats.bestSaves],
           ].map(([k, v]) => (
             <div key={k} className={card}>
               <dt className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted">{k}</dt>
@@ -63,7 +62,8 @@ export default function AboutPage() {
           ))}
         </dl>
         <p className="mt-4 max-w-2xl font-mono text-xs leading-relaxed text-muted">
-          Every number on this site comes from Instagram&apos;s API or Polar, with the date. These are from {stats.date}.
+          These numbers come from Instagram&apos;s API on {stats.date}.{" "}
+          <a href={siteConfig.reelKit.bestReel} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-ink">See the best reel</a>.
         </p>
       </section>
 

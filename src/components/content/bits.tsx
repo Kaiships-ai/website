@@ -26,15 +26,10 @@ export function Chip({ children, accent = false }: { children: ReactNode; accent
 
 /** Clean generated cover: topic label + title on a calm card. No stock art, no fake data. */
 export function Cover({ topic, title, tone = 0 }: { topic: string; title: string; tone?: number }) {
-  const dark = tone % 3 === 2;
+  const bg = ["bg-sunk", "bg-accent-wash", "bg-surface"][tone % 3];
   return (
-    <div
-      className={
-        "relative flex aspect-[16/9] flex-col justify-between overflow-hidden rounded-[18px] border p-6 sm:p-8 " +
-        (dark ? "border-space-line bg-space text-space-ink" : tone % 3 === 1 ? "border-line bg-accent-wash text-ink" : "border-line bg-sunk text-ink")
-      }
-    >
-      <span className={"font-mono text-[11px] uppercase tracking-[0.14em] " + (dark ? "text-space-muted" : "text-accent")}>{topic}</span>
+    <div className={"relative flex aspect-[16/9] flex-col justify-between overflow-hidden rounded-[18px] border border-line p-6 text-ink sm:p-8 " + bg}>
+      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{topic}</span>
       <span className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl line-clamp-3">{title}</span>
       <span aria-hidden className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent-soft/25" />
     </div>

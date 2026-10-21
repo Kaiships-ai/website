@@ -52,7 +52,7 @@ export function ShowcaseGrid({ reels, source }: { reels: Reel[]; source: string 
             className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none sm:w-64"
           />
         </div>
-        <ul className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <ul className={`mt-8 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 ${reels.length > 3 ? "lg:grid-cols-4" : ""}`}>
           {shown.map((r) => (
             <li key={r.label}>
               <a href={r.url ?? "#"} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-3">

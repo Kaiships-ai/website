@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pack" },
 };
 
-const REPO_URL = "https://github.com/KineBeo/claude-code-starter-pack";
+const REPO_URL = "https://github.com/Kaiships-ai/claude-code-starter-pack";
 
 const proofBlocks = [
   {
     eyebrow: "what's in it",
-    title: "Built to run together, not a dump of 1,000 files",
+    title: "18 skills and 4 subagents, built to run together",
     body: "The core: a starter CLAUDE.md and a model-routing config that cuts your bill. Around it, 18 tested skills — systems, testing, code quality, design, writing & marketing, PM, token-saving — plus 4 subagents wired to work as one setup.",
   },
   {

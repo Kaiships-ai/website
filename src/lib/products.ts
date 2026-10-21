@@ -7,8 +7,8 @@ import path from "node:path";
 import matter from "gray-matter";
 import { getProducts } from "./products-data";
 
-export { getProducts, getProduct, formatPrice } from "./products-data";
-export type { Product, Tier } from "./products-data";
+export { getProducts, getProduct, formatPrice, formatDate } from "./products-data";
+export type { Product, Tier, Include } from "./products-data";
 
 const DIR = path.join(process.cwd(), "content/products");
 const GROUPS = ["Start", "Make better reels", "Help"];

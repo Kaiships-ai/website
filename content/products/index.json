@@ -24,7 +24,48 @@
       "engine": "studio-reel 1.4.1",
       "polar_product_id": "74d08e44-d147-41b2-bb74-e1e70cf049ec",
       "repo": "Kaiships-ai/studio-pro",
-      "demo_media": []
+      "demo_media": [],
+      "includes": [
+        {
+          "week": 1,
+          "title": "Hook + script",
+          "detail": "Hook options scored against 26 formulas, the spoken script, on-screen text, a timed beat sheet. Comes with a humanizer that strips AI-sounding lines.",
+          "commands": [
+            "/ig-reel",
+            "/ig-human"
+          ],
+          "status": "shipped"
+        },
+        {
+          "week": 2,
+          "title": "Caption + CTA",
+          "detail": "The first line that survives \"… more\", the body, one ask, search terms, three hashtags.",
+          "commands": [
+            "/ig-caption"
+          ],
+          "status": "by 2026-10-27"
+        },
+        {
+          "week": 3,
+          "title": "Viral radar",
+          "detail": "Reels that are winning in your niche right now, ranked, with the hook formula each one used.",
+          "commands": [
+            "/ig-viral"
+          ],
+          "status": "by 2026-11-03"
+        },
+        {
+          "week": 4,
+          "title": "Week plan",
+          "detail": "What to post, which format, when, and who to engage with.",
+          "commands": [
+            "/ig-plan"
+          ],
+          "status": "by 2026-11-10"
+        }
+      ],
+      "ships_by": "2026-11-10",
+      "updates_months": 12
     },
     "polar": {
       "name": "Kaiships Studio Pro (PreOrder)",

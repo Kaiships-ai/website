@@ -27,7 +27,7 @@ export default function NotFound() {
           <Button href="/" variant="accent">
             cd ~
           </Button>
-          <Button href="/resources" variant="ghost">
+          <Button href="/guides" variant="ghost">
             ls /resources
           </Button>
         </div>
