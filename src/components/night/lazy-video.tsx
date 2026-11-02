@@ -2,19 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
+type Source = { src: string; media?: string };
+
 /**
  * A normal <video controls> that waits until it is near the screen before it
  * asks for its poster and metadata, so below-the-fold players don't compete
  * with the first paint. Never autoplays; the visitor presses play, with sound.
+ * Several sources: the browser takes the first whose `media` matches (sharp
+ * 1440p on wide screens, a lighter 720p on phones).
  */
 export function LazyVideo({
-  src,
+  sources,
   poster,
   width,
   height,
   label,
 }: {
-  src: string;
+  sources: readonly Source[];
   poster: string;
   width: number;
   height: number;
@@ -50,7 +54,9 @@ export function LazyVideo({
       height={height}
       aria-label={label}
     >
-      {near ? <source src={src} type="video/mp4" /> : null}
+      {near
+        ? sources.map((x) => <source key={x.src} src={x.src} media={x.media} type="video/mp4" />)
+        : null}
     </video>
   );
 }

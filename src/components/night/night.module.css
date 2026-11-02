@@ -350,6 +350,9 @@
 .hero .btnNote {
   position: relative;
 }
+.heroBuy {
+  min-width: 240px;
+}
 .term {
   margin: 48px auto 0;
   max-width: 560px;
@@ -538,38 +541,6 @@
 .pause svg {
   width: 14px;
   height: 14px;
-}
-
-/* ————— 2 · stats ————— */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin: 72px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.stats li {
-  padding: 34px 24px;
-  border-left: 1px solid var(--line);
-}
-.stats li:first-child {
-  border-left: 0;
-}
-.stats b {
-  display: block;
-  font: 800 clamp(34px, 4vw, 56px) / 1 var(--display);
-  letter-spacing: -0.03em;
-  color: #fff;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.stats span {
-  color: var(--dim);
-  font-size: 15px;
-  display: block;
-  margin-top: 10px;
 }
 
 /* ————— 3 · scroll story ————— */
@@ -968,14 +939,24 @@
 }
 
 /* ————— 5 · what people told me ————— */
+/* The paying buyer leads, big; three shorter quotes stack beside it. */
 .users {
-  columns: 3;
-  column-gap: 18px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 18px;
+  align-items: stretch;
   margin-top: 64px;
 }
+.usersRest {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.usersRest .quote {
+  margin: 0;
+}
 .quote {
-  break-inside: avoid;
-  margin: 0 0 18px;
+  margin: 0;
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
@@ -1027,6 +1008,32 @@
     color: #fff;
   }
 }
+.quoteBig {
+  padding: 36px;
+  border-color: rgba(240, 135, 79, 0.45);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(240, 135, 79, 0.1), transparent 60%),
+    var(--bg-2);
+}
+.quoteBig blockquote {
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.quoteBig {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.quoteBig figcaption {
+  margin-top: 28px;
+}
+.quoteBig img {
+  width: 48px;
+  height: 48px;
+}
 .quote em {
   font-style: normal;
   margin-left: auto;
@@ -1038,56 +1045,34 @@
 }
 
 /* ————— 6 · pricing ————— */
-.priceGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 480px) minmax(0, 420px);
-  justify-content: center;
-  gap: 56px;
-  align-items: center;
-  margin: 64px auto 0;
-}
+/* One card: value on the left, the whole cost on the right, one button. */
 .plan {
+  max-width: 1000px;
+  margin: 64px auto 0;
   border: 1px solid rgba(240, 135, 79, 0.5);
   border-radius: var(--r-xl);
-  padding: 34px;
+  padding: 36px 40px;
   background:
     radial-gradient(120% 70% at 50% 0%, rgba(240, 135, 79, 0.14), transparent 60%),
     var(--bg-2);
   box-shadow:
     0 0 0 1px rgba(240, 135, 79, 0.15),
     0 40px 100px -40px rgba(240, 135, 79, 0.45);
-  display: flex;
-  flex-direction: column;
 }
-.plan h3 {
-  font-size: 24px;
-  letter-spacing: -0.02em;
+.planHead {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-2);
 }
-.badge {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  font: 500 11px/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  padding: 6px 10px;
-  border: 1px solid #2e5040;
-  color: var(--ok);
-}
-.badge::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ok);
-  box-shadow: 0 0 8px var(--ok);
+.planHead h3 {
+  font-size: 26px;
+  letter-spacing: -0.02em;
 }
 .pr {
-  margin-top: 18px;
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -1099,51 +1084,86 @@
 }
 .pr span {
   color: var(--dim);
-  font-size: 15px;
-}
-.planNote {
-  color: var(--dim);
   font-size: 16px;
-  margin-top: 10px;
 }
-.plan ul {
+.planCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 28px 0 32px;
+}
+.gets {
   list-style: none;
+  margin: 18px 0 0;
   padding: 0;
-  margin: 24px 0 30px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.plan li {
+.gets li {
   display: flex;
   gap: 10px;
-  font-size: 16px;
 }
-.plan li::before {
+.gets li::before {
   content: "✓";
+  flex: none;
   color: var(--or);
   font-weight: 700;
 }
-.plan .btn {
-  width: 100%;
+.costs {
+  margin: 18px 0 0;
+  padding: 0;
 }
-.refund {
+.costs div {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.costs div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.costs dt {
+  font: 500 11px/1.9 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.costs dd {
+  margin: 0;
+  color: var(--ink);
+}
+.planFoot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.planBuy {
+  width: 100%;
+  max-width: 420px;
+}
+.planNote {
   color: var(--dim);
   font-size: 16px;
-  margin-top: 16px;
-  text-align: center;
+}
+.insteadWrap {
+  max-width: 1000px;
+  margin: 48px auto 0;
 }
 .instead {
-  margin: 20px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 28px;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
 .instead li {
-  padding: 18px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--line);
-}
-.instead li:last-child {
-  border-bottom: 1px solid var(--line);
 }
 .instead b {
   display: block;
@@ -1411,22 +1431,6 @@
   .term small {
     display: none;
   }
-  .stats {
-    grid-template-columns: 1fr 1fr;
-    margin-top: 56px;
-  }
-  .stats li:nth-child(3) {
-    border-left: 0;
-  }
-  .stats li:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
-  }
-  .stats li {
-    padding: 24px 16px;
-  }
-  .stats li:nth-child(odd) {
-    padding-left: 0;
-  }
   .story {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1509,16 +1513,26 @@
     grid-template-columns: 1fr;
   }
   .users {
-    columns: 1;
+    grid-template-columns: 1fr;
     margin-top: 48px;
   }
-  .priceGrid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    margin-top: 48px;
+  .quoteBig {
+    padding: 26px;
   }
   .plan {
-    padding: 26px;
+    margin-top: 48px;
+    padding: 26px 22px;
+  }
+  .planCols {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .instead {
+    grid-template-columns: 1fr;
+  }
+  .heroBuy {
+    width: 100%;
+    max-width: 360px;
   }
   .faqGrid {
     grid-template-columns: 1fr;

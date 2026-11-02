@@ -5,7 +5,10 @@ import s from "./night.module.css";
 const { studio } = siteConfig;
 const p = studio.pricing;
 
-/* 6 · One card, one price, the refund, and what it replaces. */
+/*
+ * 6 · One card that puts the value next to the whole cost (money, effort,
+ * time, risk), one button, and what it replaces.
+ */
 export function Pricing() {
   return (
     <section className={s.sec} id="pricing" aria-labelledby="pricing-title">
@@ -21,40 +24,60 @@ export function Pricing() {
           <p className={s.lead}>{p.lead}</p>
         </div>
 
-        <div className={s.priceGrid}>
-          <div className={s.plan}>
-            <h3>
-              {p.plan}
-              <span className={s.badge}>{p.badge}</span>
-            </h3>
+        <div className={s.plan}>
+          <div className={s.planHead}>
+            <h3>{p.plan}</h3>
             <div className={s.pr}>
               <b>{studio.price}</b>
               <span>one-time</span>
             </div>
+          </div>
+          <div className={s.planCols}>
+            <div>
+              <span className={s.eyebrow}>
+                <i aria-hidden />
+                You get
+              </span>
+              <ul className={s.gets}>
+                {p.gets.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <span className={s.eyebrow}>
+                <i aria-hidden />
+                It costs you
+              </span>
+              <dl className={s.costs}>
+                {p.costs.map((c) => (
+                  <div key={c.k}>
+                    <dt>{c.k}</dt>
+                    <dd>{c.t}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+          <div className={s.planFoot}>
+            <BuyButton className={s.planBuy} />
             <p className={s.planNote}>{p.note}</p>
-            <ul>
-              {p.items.map((it) => (
-                <li key={it}>{it}</li>
-              ))}
-            </ul>
-            <BuyButton />
-            <p className={s.refund}>{p.refund}</p>
           </div>
+        </div>
 
-          <div>
-            <span className={s.eyebrow}>
-              <i aria-hidden />
-              Instead of
-            </span>
-            <ul className={s.instead}>
-              {p.insteadOf.map((x) => (
-                <li key={x.k}>
-                  <b>{x.k}</b>
-                  <span>{x.t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className={s.insteadWrap}>
+          <span className={s.eyebrow}>
+            <i aria-hidden />
+            Instead of
+          </span>
+          <ul className={s.instead}>
+            {p.insteadOf.map((x) => (
+              <li key={x.k}>
+                <b>{x.k}</b>
+                <span>{x.t}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

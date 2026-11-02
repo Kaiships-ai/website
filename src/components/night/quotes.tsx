@@ -3,9 +3,34 @@ import { siteConfig } from "@/lib/site.config";
 import s from "./night.module.css";
 
 const { studio, earlyUsers } = siteConfig;
+type User = (typeof earlyUsers)[number];
 
-/* 5 · What people told me. Wording exact, handles real. */
+function Quote({ u, big = false }: { u: User; big?: boolean }) {
+  return (
+    <figure className={`${s.quote} ${big ? s.quoteBig : ""}`}>
+      <blockquote>“{u.text}”</blockquote>
+      <figcaption>
+        <Image src={`/night-full/users/${u.img}.jpg`} alt="" width={big ? 48 : 38} height={big ? 48 : 38} />
+        <span className={s.who}>
+          <b>{u.name}</b>
+          <a href={`https://instagram.com/${u.handle}`} target="_blank" rel="noopener noreferrer">
+            @{u.handle}
+            <span className={s.srOnly}> on Instagram (opens in a new tab)</span>
+          </a>
+        </span>
+        {u.label ? <em>{u.label}</em> : null}
+      </figcaption>
+    </figure>
+  );
+}
+
+/*
+ * 5 · What people told me. Wording exact, handles real and tappable.
+ * The paying buyer leads, big; the rest are about making videos.
+ */
 export function Quotes() {
+  const featured = earlyUsers.find((u) => u.handle === studio.users.featured)!;
+  const rest = studio.users.show.map((h) => earlyUsers.find((u) => u.handle === h)!);
   return (
     <section className={s.sec} id="users" aria-labelledby="users-title">
       <div className={s.wrap}>
@@ -20,22 +45,12 @@ export function Quotes() {
           <p className={s.lead}>{studio.users.lead}</p>
         </div>
         <div className={s.users}>
-          {earlyUsers.map((u) => (
-            <figure key={u.handle} className={s.quote}>
-              <blockquote>“{u.text}”</blockquote>
-              <figcaption>
-                <Image src={`/night-full/users/${u.img}.jpg`} alt="" width={38} height={38} />
-                <span className={s.who}>
-                  <b>{u.name}</b>
-                  <a href={`https://instagram.com/${u.handle}`} target="_blank" rel="noopener noreferrer">
-                    @{u.handle}
-                    <span className={s.srOnly}> on Instagram (opens in a new tab)</span>
-                  </a>
-                </span>
-                {u.label ? <em>{u.label}</em> : null}
-              </figcaption>
-            </figure>
-          ))}
+          <Quote u={featured} big />
+          <div className={s.usersRest}>
+            {rest.map((u) => (
+              <Quote key={u.handle} u={u} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -16,7 +16,7 @@ export function BuyButton({ className = "" }: { className?: string }) {
       data-umami-event="buy-click"
       data-buy=""
     >
-      Get it · {studio.price}
+      {studio.cta} · {studio.price}
     </a>
   );
 }

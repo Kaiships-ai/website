@@ -6,7 +6,7 @@ import s from "./night.module.css";
 
 const { studio } = siteConfig;
 
-/* 1 · Who it is for, what they get, the button, then reels that exist. */
+/* 1 · Who it is for, what they get, one button, then reels that exist. */
 export function Hero() {
   const prompt = studio.prompt;
   return (
@@ -15,7 +15,7 @@ export function Hero() {
       <Spotlight />
       <p className={`${s.pill} ${s.enter}`}>
         <i aria-hidden />
-        {studio.name} {studio.version} · <b>52 film styles</b>
+        {studio.name} · <b>52 film styles</b>
       </p>
       <h1 id="hero-title" className={`${s.h1} ${s.grad}`}>
         You built it with Claude Code.
@@ -26,10 +26,7 @@ export function Hero() {
         {studio.sub}
       </p>
       <div className={`${s.ctas} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
-        <BuyButton />
-        <a className={`${s.btn} ${s.ghost}`} href="#real-run">
-          Watch a real run
-        </a>
+        <BuyButton className={s.heroBuy} />
       </div>
       <p className={`${s.btnNote} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
         {studio.buyNote}

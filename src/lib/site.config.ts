@@ -27,7 +27,6 @@ export const siteConfig = {
   // Don't add numbers that are not in those files.
   studio: {
     name: "Kaiships Studio",
-    version: "1.6",
     price: "$30",
     refundDays: 7,
     checkout:
@@ -35,6 +34,8 @@ export const siteConfig = {
     headline: "You built it with Claude Code. Nobody knows yet.",
     sub: "Type what it does. Claude Code makes the reel on your machine: script, voice, scenes, captions and music. No camera.",
     buyNote: "One payment. 7-day refund.",
+    // Every buy button says the outcome, then the price (no surprise at checkout).
+    cta: "Make my reel",
     prompt: "/studio a promo for my app",
     nav: [
       { label: "How it works", href: "#how" },
@@ -43,25 +44,17 @@ export const siteConfig = {
       { label: "FAQ", href: "#faq" },
     ],
 
-    // Reels that exist. Views only where night-full.html already has them,
-    // pulled from the Instagram Graph API on Oct 20-21, 2026.
+    // Reels that exist. Views read from the Instagram Graph API on
+    // 2026-11-03 (kaiship-business ig_stats.py posts, read-only).
     reels: [
       { id: "studio-fall", video: "/proof/studio-fall-loop.mp4", poster: "/proof/studio-fall-poster.jpg", tag: "Made by Studio, about itself" },
-      { id: "reel11", video: "/night-full/top-reels/reel11.mp4", poster: "/night-full/top-reels/reel11.jpg", tag: "127.9K views" },
-      { id: "reel37", video: "/night-full/top-reels/reel37.mp4", poster: "/night-full/top-reels/reel37.jpg", tag: "112.9K views" },
-      { id: "reel49", video: "/night-full/top-reels/reel49.mp4", poster: "/night-full/top-reels/reel49.jpg", tag: "41.6K views" },
-      { id: "reel45", video: "/night-full/top-reels/reel45.mp4", poster: "/night-full/top-reels/reel45.jpg", tag: "13.4K views" },
-      { id: "reel26", video: "/night-full/top-reels/reel26.mp4", poster: "/night-full/top-reels/reel26.jpg", tag: "10.9K views" },
+      { id: "reel37", video: "/night-full/top-reels/reel37.mp4", poster: "/night-full/top-reels/reel37.jpg", tag: "241.9K views" },
+      { id: "reel11", video: "/night-full/top-reels/reel11.mp4", poster: "/night-full/top-reels/reel11.jpg", tag: "130.8K views" },
+      { id: "reel49", video: "/night-full/top-reels/reel49.mp4", poster: "/night-full/top-reels/reel49.jpg", tag: "50.4K views" },
+      { id: "reel45", video: "/night-full/top-reels/reel45.mp4", poster: "/night-full/top-reels/reel45.jpg", tag: "15.3K views" },
+      { id: "reel26", video: "/night-full/top-reels/reel26.mp4", poster: "/night-full/top-reels/reel26.jpg", tag: "11.0K views" },
     ],
-    reelsSource: "My reels on Instagram, made with the hand-drawn engine that is now Studio's own style. Views: Instagram Graph API, Oct 20-21, 2026.",
-
-    stats: [
-      { n: "100K+", l: "top reel views" },
-      { n: "$39.99", l: "my revenue so far" },
-      { n: "~50 min", l: "my real run (2 reels)" },
-      { n: "52", l: "film styles" },
-    ],
-    statsSource: "Views: Instagram · revenue: Polar · run time: my session log, Nov 2, 2026",
+    reelsSource: "My own reels, made in Studio's hand-drawn style. Views on Instagram, Nov 3, 2026.",
 
     how: {
       title: ["One prompt.", "Six jobs. One MP4."],
@@ -89,7 +82,12 @@ export const siteConfig = {
     realRun: {
       title: ["One real run,", "start to finish."],
       lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. About 50 minutes of real time in a 9:38 video.",
-      video: "/proof/tutorial-9m38.mp4",
+      // 1440p master for wide screens, 720p for phones. Both stream only
+      // when the visitor presses play.
+      sources: [
+        { src: "/proof/tutorial-1440.mp4", media: "(min-width: 901px)" },
+        { src: "/proof/tutorial-720.mp4" },
+      ],
       poster: "/proof/tutorial-poster.jpg",
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
@@ -107,18 +105,33 @@ export const siteConfig = {
     },
 
     users: {
-      title: "From the DMs.",
+      title: "In their words.",
       lead: "People who tried my earlier kit told me this. Tap a handle to see who they are.",
+      // The one paying buyer leads; then the quotes about making videos.
+      // The two quotes about slides are left out: not the buyer's job.
+      featured: "i.sonnenkinder",
+      show: ["thanh.hai2802", "nhatpt_", "gnikylenol_ndb"],
     },
 
     pricing: {
       title: "Pay once. Keep it.",
-      lead: "No monthly plan. No upsell.",
-      plan: "Starter",
-      badge: "One-time",
+      lead: "What you get, next to what it costs you.",
+      plan: "Kaiships Studio",
       note: "Polar emails you the download link.",
-      items: ["52 film styles", "Unlimited reels", "Personal or commercial use", "Discord help", "7-day refund"],
-      refund: "Can't make a reel on your machine? DM @kaiships.ai within 7 days for a refund.",
+      gets: [
+        "Promo reels of your product, ready to post: 1080×1920 MP4 with a cover",
+        "Script, voice, scenes, captions and music, made for you",
+        "52 film styles to pick from",
+        "Every hook scored against a bar of 8/10, so you know before you post",
+        "Unlimited reels, personal or commercial use",
+        "Discord help",
+      ],
+      costs: [
+        { k: "Money", t: "$30 once. No monthly plan, no upsell. Your Claude plan is separate." },
+        { k: "Effort", t: "One line about your product, then pick a style. No camera, no editing." },
+        { k: "Time", t: "My run: about 50 minutes for two reels, with the setup already downloaded." },
+        { k: "Risk", t: "Can't make a reel on your machine? DM @kaiships.ai within 7 days for a refund." },
+      ],
       // What Studio removes next to each alternative from the wireframe.
       // Claims are about Studio only, not about other people's products.
       insteadOf: [
@@ -133,13 +146,12 @@ export const siteConfig = {
       needs: [
         { t: "Claude Code", d: "Studio runs inside it. Your Claude plan is not included in the $30." },
         { t: "A computer: macOS, Windows or Linux", d: "Not a phone. Heavier 3D styles run better with a GPU." },
-        { t: "About 900 MB for the first setup", d: "It downloads its tools into the Studio folder, so the first run needs internet." },
       ],
       promise: "It makes the reel. It can't promise views or sales.",
       faq: [
         { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
-        { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up." },
-        { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run downloads about 900 MB of tools before it starts." },
+        { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up: it downloads about 900 MB of tools into the Studio folder, so it needs internet." },
+        { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run also downloads the tools before it starts." },
         { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
         { q: "Can I use the reels for my business?", a: "Yes. Unlimited reels, personal or commercial, with no watermark. Please don't share or resell Studio itself." },
         { q: "What if it doesn't work on my machine?", a: "DM @kaiships.ai on Instagram. If you can't make a reel on your machine within 7 days, you get a refund." },

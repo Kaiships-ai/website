@@ -2,7 +2,6 @@ import { siteConfig } from "@/lib/site.config";
 import { display, text } from "./fonts";
 import { NightNav } from "./nav";
 import { Hero } from "./hero";
-import { Stats } from "./stats";
 import { HowItWorks } from "./how-it-works";
 import { RealRun } from "./real-run";
 import { Quotes } from "./quotes";
@@ -22,9 +21,8 @@ export function NightPage() {
   return (
     <div className={`${s.night} ${display.variable} ${text.variable}`} data-night="">
       <div className={s.grain} aria-hidden />
-      <NightNav name={studio.name} price={studio.price} checkout={studio.checkout} links={studio.nav} />
+      <NightNav name={studio.name} cta={studio.cta} price={studio.price} checkout={studio.checkout} links={studio.nav} />
       <Hero />
-      <Stats />
       <HowItWorks how={studio.how} prompt={studio.prompt} reel={studio.reels[0]} />
       <RealRun />
       <Quotes />
