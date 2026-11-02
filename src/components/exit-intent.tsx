@@ -6,6 +6,9 @@ import { PackForm } from "@/components/pack-form";
 
 const DISMISS_KEY = "kaiships-exit-intent-dismissed";
 
+// The home page is the Kaiships Studio sales page: one offer, no email ask.
+const skip = (p: string) => p === "/" || p === "/pack" || p.startsWith("/get/");
+
 /**
  * Exit-intent popup: fires once per session when the cursor leaves the
  * top of the viewport. Site-wide except /pack (per spec) and the /get/*
@@ -17,7 +20,7 @@ export function ExitIntent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (pathname === "/pack" || pathname.startsWith("/get/")) return;
+    if (skip(pathname)) return;
     if (sessionStorage.getItem(DISMISS_KEY)) return;
 
     const onMouseOut = (e: MouseEvent) => {
@@ -30,7 +33,7 @@ export function ExitIntent() {
     return () => document.removeEventListener("mouseout", onMouseOut);
   }, [pathname]);
 
-  if (!open || pathname === "/pack" || pathname.startsWith("/get/")) return null;
+  if (!open || skip(pathname)) return null;
 
   return (
     <div

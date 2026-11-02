@@ -6,9 +6,19 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site.config";
 import { Button } from "@/components/ui/button";
 
+const studio = siteConfig.studio;
+
+function Logo() {
+  return (
+    <>
+      Kaiships<span className="text-accent">&nbsp;Studio</span>
+    </>
+  );
+}
+
+// One page, one job: the nav is the logo and a single buy button.
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -18,20 +28,13 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   // Gift pages (/get/*) ask for one thing: the email. No links out, logo only.
   if (pathname?.startsWith("/get/")) {
     return (
       <header className="absolute inset-x-0 top-0 z-50">
         <div className="mx-auto flex h-16 max-w-6xl items-center px-4 sm:px-6">
           <p className="marker text-xl text-ink">
-            kaiships<span className="text-accent">.ai</span>
+            <Logo />
           </p>
         </div>
       </header>
@@ -41,77 +44,27 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open
+        scrolled
           ? "border-b border-line/70 bg-paper/80 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <nav
         aria-label="Main"
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
       >
-        <Link
-          href="/"
-          className="marker flex items-center py-3 text-xl text-ink"
-          onClick={() => setOpen(false)}
-        >
-          kaiships<span className="text-accent">.ai</span>
+        <Link href="/" className="marker flex items-center py-3 text-lg text-ink sm:text-xl">
+          <Logo />
         </Link>
-
-        <div className="hidden items-center gap-7 md:flex">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="py-2.5 text-sm text-ink-2 transition-colors hover:text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button href={siteConfig.navCta.href} variant="accent">
-            {siteConfig.navCta.label}
-          </Button>
-        </div>
-
-        <button
-          className="flex flex-col gap-1.5 p-2 md:hidden"
-          aria-expanded={open}
-          aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
+        <Button
+          href={studio.checkout}
+          variant="accent"
+          umamiEvent="buy-click"
+          className="!px-4 !py-2 text-sm sm:!px-5 sm:text-base"
         >
-          <span
-            className={`h-0.5 w-6 bg-ink transition-transform ${open ? "translate-y-2 rotate-45" : ""}`}
-          />
-          <span className={`h-0.5 w-6 bg-ink ${open ? "opacity-0" : ""}`} />
-          <span
-            className={`h-0.5 w-6 bg-ink transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`}
-          />
-        </button>
+          Get it · {studio.price}
+        </Button>
       </nav>
-
-      {open ? (
-        <div className="flex h-[calc(100dvh-4rem)] flex-col gap-2 border-t border-line bg-paper px-6 py-8 md:hidden">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-line py-4 font-mono text-lg text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="pt-6">
-            <Button
-              href={siteConfig.navCta.href}
-              variant="accent"
-              className="w-full"
-            >
-              {siteConfig.navCta.label}
-            </Button>
-          </div>
-        </div>
-      ) : null}
     </header>
   );
 }
