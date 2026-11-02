@@ -271,7 +271,7 @@ export const siteConfig = {
       { label: "Terms", href: "/terms" },
     ],
     clawd: "Clawd is Anthropic's Claude Code mascot, redrawn in code. Unofficial, not affiliated with Anthropic.",
-    legal: "© 2026 kaiships.ai. All rights reserved.",
+    legal: "© 2026 Kaiships. All rights reserved.",
   },
 } as const;
 
