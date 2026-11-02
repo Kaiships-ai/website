@@ -11,7 +11,8 @@ export const contentType = "image/png";
 
 const fontDir = path.join(process.cwd(), "src/assets/fonts");
 
-// Link preview for the sales page. Facts only from site.config (studio).
+// Link preview for the sales page, in the Night colours. Facts only from
+// site.config (studio).
 export default function Image() {
   const bold = fs.readFileSync(path.join(fontDir, "JetBrainsMono-Bold.ttf"));
   const regular = fs.readFileSync(path.join(fontDir, "JetBrainsMono-Regular.ttf"));
@@ -23,37 +24,38 @@ export default function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#f3ebdc",
+          backgroundColor: "#0a0c17",
           padding: 64,
           fontFamily: "JBMono",
-          color: "#2b2233",
+          color: "#ece9f6",
         }}
       >
         <div style={{ display: "flex", fontSize: 30, fontWeight: 700 }}>
-          Kaiships<span style={{ color: "#d97757", marginLeft: 16 }}>Studio</span>
+          Kaiships<span style={{ color: "#f0874f", marginLeft: 16 }}>Studio</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", marginTop: 44, fontSize: 58, fontWeight: 700, lineHeight: 1.12, letterSpacing: -1.5 }}>
           <span>You built it with Claude Code.</span>
-          <span style={{ color: "#a84d33" }}>Nobody knows yet.</span>
+          <span style={{ display: "flex" }}>
+            Nobody knows<span style={{ color: "#f0874f", marginLeft: 22 }}>yet.</span>
+          </span>
         </div>
-        <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: "#63585f", maxWidth: 1000, lineHeight: 1.35 }}>
+        <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: "#8c89a8", maxWidth: 1000, lineHeight: 1.35 }}>
           {studio.sub}
         </div>
         <div style={{ display: "flex", marginTop: "auto", alignItems: "center", gap: 24, fontSize: 28 }}>
           <span
             style={{
               display: "flex",
-              backgroundColor: "#d97757",
-              color: "#fffbf2",
-              border: "3px solid #2b2233",
-              borderRadius: 18,
+              backgroundColor: "#f0874f",
+              color: "#160b05",
+              borderRadius: 14,
               padding: "12px 28px",
               fontWeight: 700,
             }}
           >
             Get it · {studio.price}
           </span>
-          <span style={{ color: "#63585f" }}>{studio.buyNote}</span>
+          <span style={{ color: "#8c89a8" }}>{studio.buyNote}</span>
         </div>
       </div>
     ),

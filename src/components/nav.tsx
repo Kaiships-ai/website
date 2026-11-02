@@ -3,10 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/lib/site.config";
 import { Button } from "@/components/ui/button";
 
-const studio = siteConfig.studio;
 
 function Logo() {
   return (
@@ -17,7 +15,9 @@ function Logo() {
 }
 
 // One page, one job: the nav is the logo and a single buy button.
-export function Nav() {
+// Copy comes in as props from the (server) layout, so the whole site config
+// never ships in the client bundle.
+export function Nav({ checkout, price }: { checkout: string; price: string }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -27,6 +27,9 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // "/" is the Night sales page; it renders its own nav.
+  if (pathname === "/") return null;
 
   // Gift pages (/get/*) ask for one thing: the email. No links out, logo only.
   if (pathname?.startsWith("/get/")) {
@@ -57,12 +60,12 @@ export function Nav() {
           <Logo />
         </Link>
         <Button
-          href={studio.checkout}
+          href={checkout}
           variant="accent"
           umamiEvent="buy-click"
           className="!px-4 !py-2 text-sm sm:!px-5 sm:text-base"
         >
-          Get it · {studio.price}
+          Get it · {price}
         </Button>
       </nav>
     </header>

@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { PackForm } from "@/components/pack-form";
+import dynamic from "next/dynamic";
+
+// The form loads only when the popup opens, not with every page.
+const PackForm = dynamic(() => import("@/components/pack-form").then((m) => m.PackForm));
 
 const DISMISS_KEY = "kaiships-exit-intent-dismissed";
 

@@ -90,9 +90,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
         />
-        <Nav />
+        <Nav checkout={siteConfig.studio.checkout} price={siteConfig.studio.price} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer footer={siteConfig.footer} />
         <ExitIntent />
         <Analytics />
         <Script

@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/lib/site.config";
+import type { SiteConfig } from "@/lib/site.config";
 
-const { footer } = siteConfig;
 
-export function Footer() {
+// Copy comes in as props from the (server) layout, so the whole site config
+// never ships in the client bundle.
+export function Footer({ footer }: { footer: SiteConfig["footer"] }) {
   const pathname = usePathname();
+  // "/" is the Night sales page; it renders its own footer.
+  if (pathname === "/") return null;
   // Gift pages (/get/*) keep the legal links only, so the email is the one action.
   if (pathname?.startsWith("/get/")) {
     return (

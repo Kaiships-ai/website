@@ -5,14 +5,14 @@ export default function NotFound() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4 pt-24 pb-16">
       <div className="w-full max-w-lg text-center">
-        <TerminalShell title="kaiships — zsh">
+        <TerminalShell title="kaiships · zsh">
           <div className="text-left">
             <div className="text-terminal-fg">
               <span className="mr-2 text-accent">$</span>
               open {"<this page>"}
             </div>
             <div className="mt-1 text-[#ff5f57]">
-              zsh: 404 — command not found
+              zsh: 404: command not found
             </div>
             <div className="mt-1 text-terminal-muted">
               hint: the page moved, or it never shipped
