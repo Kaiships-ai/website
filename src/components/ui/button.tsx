@@ -21,12 +21,15 @@ export function Button({
   variant = "primary",
   magnetic = false,
   className = "",
+  umamiEvent,
 }: {
   href: string;
   children: ReactNode;
   variant?: ButtonVariant;
   magnetic?: boolean;
   className?: string;
+  /** Umami custom event name, sent on click by the Umami script in layout. */
+  umamiEvent?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const internal = href.startsWith("/") || href.startsWith("#");
@@ -36,13 +39,14 @@ export function Button({
   // Non-internal hrefs (external URLs, unconfigured placeholders) render as a
   // plain anchor so next/link never prefetches them.
   const link = internal ? (
-    <Link href={href} className={base}>
+    <Link href={href} className={base} data-umami-event={umamiEvent}>
       {children}
     </Link>
   ) : (
     <a
       href={href}
       className={base}
+      data-umami-event={umamiEvent}
       target="_blank"
       rel="noopener noreferrer"
     >

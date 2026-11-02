@@ -2,9 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { PackForm } from "@/components/pack-form";
+import dynamic from "next/dynamic";
+
+// The form loads only when the popup opens, not with every page.
+const PackForm = dynamic(() => import("@/components/pack-form").then((m) => m.PackForm));
 
 const DISMISS_KEY = "kaiships-exit-intent-dismissed";
+
+// The home page is the Kaiships Studio sales page: one offer, no email ask.
+const skip = (p: string) => p === "/" || p === "/pack" || p.startsWith("/get/");
 
 /**
  * Exit-intent popup: fires once per session when the cursor leaves the
@@ -17,7 +23,7 @@ export function ExitIntent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (pathname === "/pack" || pathname.startsWith("/get/")) return;
+    if (skip(pathname)) return;
     if (sessionStorage.getItem(DISMISS_KEY)) return;
 
     const onMouseOut = (e: MouseEvent) => {
@@ -30,7 +36,7 @@ export function ExitIntent() {
     return () => document.removeEventListener("mouseout", onMouseOut);
   }, [pathname]);
 
-  if (!open || pathname === "/pack" || pathname.startsWith("/get/")) return null;
+  if (!open || skip(pathname)) return null;
 
   return (
     <div

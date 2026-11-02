@@ -59,6 +59,22 @@ html {
   scroll-behavior: auto;
 }
 
+/* The Night sales page ("/") is dark from edge to edge, overscroll included. */
+html:has([data-night]) {
+  background-color: #0a0c17;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+body:has([data-night]) {
+  background: #0a0c17;
+  color: #ece9f6;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-night]) {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background-color: var(--paper);
   /* paper grain */

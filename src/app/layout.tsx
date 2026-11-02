@@ -12,7 +12,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.studio.name} · ${siteConfig.tagline}`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.bio,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: `${siteConfig.studio.name} · ${siteConfig.tagline}`,
     description: siteConfig.bio,
   },
   twitter: {
@@ -90,9 +90,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
         />
-        <Nav />
+        <Nav checkout={siteConfig.studio.checkout} price={siteConfig.studio.price} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer footer={siteConfig.footer} />
         <ExitIntent />
         <Analytics />
         <Script

@@ -8,8 +8,8 @@ export const siteConfig = {
   domain: "kaiships.ai",
   // kaiships.ai has no DNS yet (checked 2026-10-02); the live site is the Vercel URL.
   url: "https://kai-ships-ai-website.vercel.app",
-  tagline: "One prompt. Claude ships the reel.",
-  bio: "Type one prompt and Claude makes the whole reel: script, voiceover, painted animation, captions and music. The Kaiships Reel Kit, plus every free guide from my reels.",
+  tagline: "A reel for what you built with Claude Code.",
+  bio: "Kaiships Studio: type what your product does and get a vertical reel with voice, animation, captions and music. No camera. $30 one-time, 7-day refund.",
   keyword: "PACK",
 
   socials: {
@@ -21,196 +21,184 @@ export const siteConfig = {
     email: "kai@kaiships.ai",
   },
 
-  nav: [
-    { label: "Reel Kit", href: "/#kit" },
-    { label: "Showcase", href: "/#showcase" },
-    { label: "Early users", href: "/#users" },
-    { label: "Free resources", href: "/resources" },
-  ],
-  navCta: {
-    label: "Get the Reel Kit",
-    href: "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
+  // The one paid product. Every fact here comes from the settled offer
+  // (crowsnest first-principle/da-chac-chan.html, step 3), the approved
+  // wireframe (trang-ban-nhap.md) or the product README (studio-reel v1.6).
+  // Don't add numbers that are not in those files.
+  studio: {
+    name: "Kaiships Studio",
+    version: "1.6",
+    price: "$30",
+    refundDays: 7,
+    checkout:
+      "https://buy.polar.sh/polar_cl_yqXEKmmPW7SvfiYAfeDll5InhQ2jiUaJp8UtZ2GvObZ",
+    headline: "You built it with Claude Code. Nobody knows yet.",
+    sub: "Type what it does. Claude Code makes the reel on your machine: script, voice, scenes, captions and music. No camera.",
+    buyNote: "One payment. 7-day refund.",
+    prompt: "/studio a promo for my app",
+    nav: [
+      { label: "How it works", href: "#how" },
+      { label: "Real run", href: "#real-run" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+    ],
+
+    // Reels that exist. Views only where night-full.html already has them,
+    // pulled from the Instagram Graph API on Oct 20-21, 2026.
+    reels: [
+      { id: "studio-fall", video: "/proof/studio-fall-loop.mp4", poster: "/proof/studio-fall-poster.jpg", tag: "Made by Studio, about itself" },
+      { id: "reel11", video: "/night-full/top-reels/reel11.mp4", poster: "/night-full/top-reels/reel11.jpg", tag: "127.9K views" },
+      { id: "reel37", video: "/night-full/top-reels/reel37.mp4", poster: "/night-full/top-reels/reel37.jpg", tag: "112.9K views" },
+      { id: "reel49", video: "/night-full/top-reels/reel49.mp4", poster: "/night-full/top-reels/reel49.jpg", tag: "41.6K views" },
+      { id: "reel45", video: "/night-full/top-reels/reel45.mp4", poster: "/night-full/top-reels/reel45.jpg", tag: "13.4K views" },
+      { id: "reel26", video: "/night-full/top-reels/reel26.mp4", poster: "/night-full/top-reels/reel26.jpg", tag: "10.9K views" },
+    ],
+    reelsSource: "My reels on Instagram, made with the hand-drawn engine that is now Studio's own style. Views: Instagram Graph API, Oct 20-21, 2026.",
+
+    stats: [
+      { n: "100K+", l: "top reel views" },
+      { n: "$39.99", l: "my revenue so far" },
+      { n: "~50 min", l: "my real run (2 reels)" },
+      { n: "52", l: "film styles" },
+    ],
+    statsSource: "Views: Instagram · revenue: Polar · run time: my session log, Nov 2, 2026",
+
+    how: {
+      title: ["One prompt.", "Six jobs. One MP4."],
+      lead: "You type what your product does and pick a style. Claude runs six jobs, one after another, and hands you a 1080×1920 MP4 with a cover, ready to post.",
+      steps: [
+        { k: "Writer", t: "It writes the words.", d: "From one line about your product, it writes the script with the hook in the first 3 seconds. Or paste your own script and it keeps every word." },
+        { k: "Narrator", t: "A voiceover. No microphone.", d: "Text to speech, line by line. A speech-to-text check listens back to every line and redoes the ones that come out wrong." },
+        { k: "Director", t: "One of 52 film styles.", d: "It suggests two or three styles that fit, each with a preview. Every frame is drawn in code: no video generation, no stock footage." },
+        { k: "Captions", t: "Captions on every word.", d: "Word timings come from the voice, so each caption lands on its word. They are burned into the picture." },
+        { k: "Composer", t: "Music and sound effects.", d: "A score and sound effects built on the same timeline as the picture, then mixed under the voice." },
+        { k: "Reviewer", t: "It checks its own work.", d: "It scores the hook against a bar of 8/10 and tells you when it misses. Then it scans the MP4 and fixes what is wrong, up to 3 rounds." },
+      ],
+      // Scene text for the phone mock, taken from the studio-fall reel itself.
+      hook: "I just launched Kaiships Studio. Watch Clawd fall through it.",
+      caption: "It turns one line into a finished reel, all in code.",
+      styles: [
+        { name: "Kai Hand-Draw Reel", img: "/night/styles/kai-hand-draw.jpg" },
+        { name: "Living Screencast", img: "/night/styles/living-screencast.jpg" },
+        { name: "ASCII / CRT Terminal", img: "/night/styles/ascii-crt.jpg" },
+      ],
+      review: "hook 7/10, bar 8/10",
+      output: "studio-fall.mp4",
+    },
+
+    realRun: {
+      title: ["One real run,", "start to finish."],
+      lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. About 50 minutes of real time in a 9:38 video.",
+      video: "/proof/tutorial-9m38.mp4",
+      poster: "/proof/tutorial-poster.jpg",
+      caption: "One real run, waits sped up and labelled. The clock shows real time.",
+      reel: {
+        video: "/proof/studio-fall.mp4",
+        poster: "/proof/studio-fall-poster.jpg",
+        title: "The reel from this run",
+        text: "30 seconds, made about itself. A fast preview, not the final render. Turn the sound on.",
+      },
+      facts: [
+        { k: "Time", t: "About 50 minutes for two fast-preview reels." },
+        { k: "Machine", t: "My Mac, with the setup already downloaded." },
+        { k: "Your first time", t: "The setup downloads about 900 MB first." },
+        { k: "Hook score", t: "Its review gave both hooks 7/10, under the 8/10 bar." },
+      ],
+    },
+
+    users: {
+      title: "From the DMs.",
+      lead: "People who tried my earlier kit told me this. Tap a handle to see who they are.",
+    },
+
+    pricing: {
+      title: "Pay once. Keep it.",
+      lead: "No monthly plan. No upsell.",
+      plan: "Starter",
+      badge: "One-time",
+      note: "Polar emails you the download link.",
+      items: ["52 film styles", "Unlimited reels", "Personal or commercial use", "Discord help", "7-day refund"],
+      refund: "Can't make a reel on your machine? DM @kaiships.ai within 7 days for a refund.",
+      // What Studio removes next to each alternative from the wireframe.
+      // Claims are about Studio only, not about other people's products.
+      insteadOf: [
+        { k: "Filming yourself", t: "Here: no camera, no retakes, no editing." },
+        { k: "Hiring an editor", t: "Here: no fee per video. $30 once, unlimited reels." },
+        { k: "Template apps", t: "Here: no monthly plan, and the script, voice and music are made for you." },
+      ],
+    },
+
+    before: {
+      title: "What you need.",
+      needs: [
+        { t: "Claude Code", d: "Studio runs inside it. Your Claude plan is not included in the $30." },
+        { t: "A computer: macOS, Windows or Linux", d: "Not a phone. Heavier 3D styles run better with a GPU." },
+        { t: "About 900 MB for the first setup", d: "It downloads its tools into the Studio folder, so the first run needs internet." },
+      ],
+      promise: "It makes the reel. It can't promise views or sales.",
+      faq: [
+        { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
+        { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up." },
+        { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run downloads about 900 MB of tools before it starts." },
+        { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
+        { q: "Can I use the reels for my business?", a: "Yes. Unlimited reels, personal or commercial, with no watermark. Please don't share or resell Studio itself." },
+        { q: "What if it doesn't work on my machine?", a: "DM @kaiships.ai on Instagram. If you can't make a reel on your machine within 7 days, you get a refund." },
+        { q: "Will my reel get views?", a: "It makes the reel. It can't promise views or sales." },
+      ],
+    },
+
+    final: {
+      eyebrow: "Kaiships Studio",
+      title: ["Your next reel is", "one prompt", "away."],
+    },
   },
 
-  // The one paid product. Numbers here are real; update them from
-  // ig_stats.py / Polar before changing.
-  reelKit: {
-    name: "Kaiships Reel Kit",
-    checkout:
-      "https://buy.polar.sh/polar_cl_HyrrBG3sH6HuMBa6QZndeGTLHaaErzsyHqZwG0sl3bV",
-    listPrice: "$50",
-    price: "$29.99",
-    // Pulled from the Instagram Graph API on 2026-10-01 (ig_stats.py).
-    stats: {
-      date: "Oct 1, 2026",
-      followers: "408",
-      bestViews: "104K",
-      bestSaves: "5.4K",
+  // Early users of the earlier kit, word for word from the home page on main
+  // (site.config reelKit.users before PR #22). Handles are real.
+  earlyUsers: [
+    {
+      name: "Thinh",
+      handle: "i.sonnenkinder",
+      img: "i_sonnenkinder",
+      label: "bought the kit",
+      text: "Closed the deal with you and it was worth every penny. I like that the templates aren't stuffed with effects. Looks clean, keeps viewers focused on the content.",
     },
-    bestReel: "https://www.instagram.com/reel/Dd0gXqBy_dw/",
-    // The kit's own bundled example, rendered untouched from the v1.2 zip.
-    example: {
-      video: "/reel-kit/video/kit-example.mp4",
-      poster: "/reel-kit/video/kit-example.jpg",
-      renderTime: "1 min 41 s",
-      length: "17-second",
+    {
+      name: "Hải Phạm",
+      handle: "thanh.hai2802",
+      img: "thanh_hai2802",
+      label: "",
+      text: "Gotta admit, the kit's visuals are nothing like the usual templates. I make reels faster and they don't have that AI-slop feel like the scammy stuff online. It makes my content look way more consistent. Are you planning to add more templates?",
     },
-    // A reel the kit made from the README "A topic" prompt, untouched.
-    // null until it has been rendered.
-    promptReel: {
-      video: "/reel-kit/video/kit-running.mp4",
-      poster: "/reel-kit/video/kit-running.jpg",
-      note: "Prompt to finished 28-second MP4 in 12 min 42 s on my Mac. 0 edits.",
-    } as null | { video: string; poster: string; note: string },
-    // One line per job, Blotato-style.
-    features: [
-      { k: "Script", t: "You give a topic. It writes the words.", d: "Hook first, one idea per reel, in plain spoken lines." },
-      { k: "Voice", t: "A voiceover, free.", d: "Natural text-to-speech. No microphone, no voice subscription." },
-      { k: "Animation", t: "Every scene, painted.", d: "Hand-drawn characters and props, drawn stroke by stroke in code." },
-      { k: "Captions", t: "Word by word, on the beat.", d: "Captions locked to the spoken words, inside Instagram's safe zone." },
-      { k: "Sound", t: "Music and sound effects.", d: "Generated on your machine and timed to the words." },
-      { k: "Fixes", t: "Say what's wrong. It renders again.", d: "\"The first 3 seconds are too slow\" is a valid prompt." },
-    ],
-    worksWith: ["Claude Code", "macOS", "Instagram Reels", "TikTok", "YouTube Shorts"],
-    founder: [
-      "I'm Kai. Product manager by day, builder at night. I wanted to post every day, but one reel ate my whole evening: script, recording, cutting, captions, music.",
-      "So I taught Claude to do all of it. One of those reels reached 104K views, and I never filmed a second of it. People kept asking how I made them, so I packed the setup into a kit you can run yourself.",
-    ],
-    pains: [
-      "Write the script",
-      "Record yourself, again and again",
-      "Cut, animate, add captions",
-      "Find music, fix the timing, export",
-    ],
-    // Prompts copied from the kit README.
-    prompts: [
-      {
-        tab: "A topic",
-        text: "Make a 30-second reel about 3 mistakes people make when they start running.",
-      },
-      {
-        tab: "A tone",
-        text: "Make a 20-second reel that explains what an API is to a complete beginner. Friendly and a bit funny.",
-      },
-      {
-        tab: "Your facts",
-        text: 'Make a 30-second reel for my coffee shop, Moon Beans in Austin. Facts: open 7am–6pm every day, oat flat white is $4.50, we roast in-house. End with "come say hi".',
-      },
-      {
-        tab: "Your script",
-        text: 'Make a reel from this script, exactly as written: "Most people quit the gym in week three. Here\'s why…"',
-      },
-      {
-        tab: "Fix it",
-        text: "The first 3 seconds are too slow. Make the hook hit harder and render again.",
-      },
-    ],
-    // Reels on @kaiships.ai, numbers from the Graph API on 2026-10-01.
-    reels: [
-      { id: "reel11-vibe-plugins", url: "https://www.instagram.com/reel/Dd0gXqBy_dw/", views: "104K", saves: "5.4K" },
-      { id: "reel15-apple-design", url: "https://www.instagram.com/reel/Dd4BjZ8SssK/", views: "5.7K", saves: "180" },
-      { id: "reel16-sonnet-vs-opus", url: "https://www.instagram.com/reel/Dd6nguzSt4G/", views: "3.6K", saves: "32" },
-      { id: "reel14-frontend-plugins", url: "https://www.instagram.com/reel/Dd3epGKSN-m/", views: "3.5K", saves: "148" },
-      { id: "reel13-google-tools", url: "https://www.instagram.com/reel/Dd3easkS-Qw/", views: "3.2K", saves: "151" },
-    ],
-    gets: [
-      "Script, voiceover, painted animation, captions, music and sound effects",
-      "A vertical MP4 (1080×1920) ready to post, with a cover image",
-      "Prompts to copy: a topic, a tone, your own facts, or your own script",
-      "Unlimited videos, personal or commercial",
-      "No extra API keys. The voiceover is free",
-    ],
-    setup: [
-      {
-        t: "A Mac",
-        d: "Tested on Apple Silicon Macs so far. A computer, not a phone.",
-      },
-      {
-        t: "Install 2 free apps",
-        d: "Node.js and Claude Code. About 10 minutes if you have never done it.",
-        links: [
-          { label: "Node.js", href: "https://nodejs.org" },
-          { label: "Claude Code", href: "https://claude.com/claude-code" },
-        ],
-      },
-      {
-        t: "Unzip, open, paste a prompt",
-        d: "The first run sets everything else up by itself. Your reel lands in the out folder.",
-      },
-    ],
-    users: [
-      {
-        name: "Thinh",
-        handle: "i.sonnenkinder",
-        img: "i_sonnenkinder",
-        label: "bought the kit",
-        text: "Closed the deal with you and it was worth every penny. I like that the templates aren't stuffed with effects. Looks clean, keeps viewers focused on the content.",
-      },
-      {
-        name: "Hải Phạm",
-        handle: "thanh.hai2802",
-        img: "thanh_hai2802",
-        text: "Gotta admit, the kit's visuals are nothing like the usual templates. I make reels faster and they don't have that AI-slop feel like the scammy stuff online. It makes my content look way more consistent. Are you planning to add more templates?",
-      },
-      {
-        name: "Phạm Tiến Nhật",
-        handle: "nhatpt_",
-        img: "nhatpt_",
-        text: "=))) What I need is a template I can pick up and use right away, not one I have to tear apart before it looks good. No idea how, but this kit does exactly that.",
-      },
-      {
-        name: "Đỗ Văn Long",
-        handle: "vlonggg23",
-        img: "vlonggg23",
-        label: "used it for slides",
-        text: "Kai, this blew up. I used the kit to make slides for my team. I only meant to try it, but in the meeting everyone asked me for the link. Looks super sharp, really good!!! =)))",
-      },
-      {
-        name: "Nguyễn Linh",
-        handle: "nguyn_nlinhh",
-        img: "nguyn_nlinhh",
-        label: "used it for slides",
-        text: "Really easy to use. I used the kit for an internal presentation and the whole company went \"woahh\".",
-      },
-      {
-        name: "Nguyễn Tuấn Ming",
-        handle: "gnikylenol_ndb",
-        img: "gnikylenol_ndb",
-        label: "asked for this in my DMs",
-        text: "I need exactly this kind of template, but I had no idea how to make it. I tried Remotion a few times and the output still looked bad.",
-      },
-    ],
-    faq: [
-      {
-        q: "Do I need to know how to code?",
-        a: "No. You unzip the folder, open it in Claude Code and paste a prompt. Claude installs what it needs and writes all the code.",
-      },
-      {
-        q: "Do I need API keys or other subscriptions?",
-        a: "No. The voiceover uses a free text-to-speech service, and the music and sound effects are generated on your machine.",
-      },
-      {
-        q: "Does it work on Windows?",
-        a: "I have only tested it on Mac with Apple Silicon so far. If it fails on your machine, DM me on Instagram and I'll help you fix it.",
-      },
-      {
-        q: "How long does one reel take?",
-        a: "The \"A topic\" prompt above went from prompt to a finished 28-second reel in 12 min 42 s on my Mac, with no edits. Longer or more detailed reels take longer, because Claude writes the script and paints every scene first. My last reel went from one prompt to a first render in 36 minutes and was done at 70, with no edits from me.",
-      },
-      {
-        q: "Can I change the style or the character?",
-        a: "The kit is built for this one hand-drawn style and its little mascot. You choose the topic, tone, length, facts and script, and you can ask for changes after each render.",
-      },
-      {
-        q: "What happens after I pay?",
-        a: "Polar emails you the download right away. If it won't run, DM @kaiships.ai and I'll fix it with you. Still stuck within 14 days, you get a full refund.",
-      },
-      {
-        q: "Can I use the videos for my business?",
-        a: "Yes. Unlimited videos, personal or commercial. Please don't share or resell the kit itself.",
-      },
-    ],
-  },
+    {
+      name: "Phạm Tiến Nhật",
+      handle: "nhatpt_",
+      img: "nhatpt_",
+      label: "",
+      text: "=))) What I need is a template I can pick up and use right away, not one I have to tear apart before it looks good. No idea how, but this kit does exactly that.",
+    },
+    {
+      name: "Đỗ Văn Long",
+      handle: "vlonggg23",
+      img: "vlonggg23",
+      label: "used it for slides",
+      text: "Kai, this blew up. I used the kit to make slides for my team. I only meant to try it, but in the meeting everyone asked me for the link. Looks super sharp, really good!!! =)))",
+    },
+    {
+      name: "Nguyễn Linh",
+      handle: "nguyn_nlinhh",
+      img: "nguyn_nlinhh",
+      label: "used it for slides",
+      text: "Really easy to use. I used the kit for an internal presentation and the whole company went \"woahh\".",
+    },
+    {
+      name: "Nguyễn Tuấn Ming",
+      handle: "gnikylenol_ndb",
+      img: "gnikylenol_ndb",
+      label: "asked for this in my DMs",
+      text: "I need exactly this kind of template, but I had no idea how to make it. I tried Remotion a few times and the output still looked bad.",
+    },
+  ],
 
   // Free guides sent by DM from each reel. One Google Doc or PDF per keyword.
   magnets: [
@@ -419,34 +407,13 @@ export const siteConfig = {
   ],
 
   footer: {
-    blurb: "One prompt, and Claude ships the reel. Plus every free guide from my reels.",
-    cols: [
-      {
-        title: "Ship",
-        links: [
-          { label: "Reel Kit", href: "/#kit" },
-          { label: "Starter PACK", href: "/pack" },
-          { label: "Free resources", href: "/resources" },
-          { label: "Ship log", href: "/blog" },
-        ],
-      },
-      {
-        title: "Site",
-        links: [
-          { label: "Early users", href: "/#users" },
-          { label: "Privacy", href: "/privacy" },
-          { label: "Terms", href: "/terms" },
-        ],
-      },
-      {
-        title: "Connect",
-        links: [
-          { label: "Instagram", href: "https://instagram.com/kaiships.ai" },
-          { label: "TikTok", href: "https://tiktok.com/@kaiships.ai" },
-        ],
-      },
+    links: [
+      { label: "Instagram", href: "https://instagram.com/kaiships.ai" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
-    legal: "© 2026 kaiships.ai. All rights reserved.",
+    clawd: "Clawd is Anthropic's Claude Code mascot, redrawn in code. Unofficial, not affiliated with Anthropic.",
+    legal: "© 2026 Kaiships. All rights reserved.",
   },
 } as const;
 
