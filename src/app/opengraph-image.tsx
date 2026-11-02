@@ -53,7 +53,7 @@ export default function Image() {
               fontWeight: 700,
             }}
           >
-            Get it · {studio.price}
+            {studio.cta} · {studio.price}
           </span>
           <span style={{ color: "#8c89a8" }}>{studio.buyNote}</span>
         </div>

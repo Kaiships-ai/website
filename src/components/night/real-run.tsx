@@ -26,10 +26,10 @@ export function RealRun() {
 
         <figure className={s.player} id="real-run">
           <LazyVideo
-            src={run.video}
+            sources={run.sources}
             poster={run.poster}
-            width={1280}
-            height={720}
+            width={2560}
+            height={1440}
             label="Screen recording of one real Kaiships Studio run, 9 minutes 38 seconds"
           />
         </figure>
@@ -38,7 +38,7 @@ export function RealRun() {
         <div className={s.made}>
           <div className={s.madePhone}>
             <LazyVideo
-              src={run.reel.video}
+              sources={[{ src: run.reel.video }]}
               poster={run.reel.poster}
               width={540}
               height={960}

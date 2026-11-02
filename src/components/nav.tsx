@@ -17,7 +17,7 @@ function Logo() {
 // One page, one job: the nav is the logo and a single buy button.
 // Copy comes in as props from the (server) layout, so the whole site config
 // never ships in the client bundle.
-export function Nav({ checkout, price }: { checkout: string; price: string }) {
+export function Nav({ checkout, cta, price }: { checkout: string; cta: string; price: string }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -65,7 +65,7 @@ export function Nav({ checkout, price }: { checkout: string; price: string }) {
           umamiEvent="buy-click"
           className="!px-4 !py-2 text-sm sm:!px-5 sm:text-base"
         >
-          Get it · {price}
+          {cta} · {price}
         </Button>
       </nav>
     </header>

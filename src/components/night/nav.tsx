@@ -5,6 +5,7 @@ import s from "./night.module.css";
 
 type Props = {
   name: string;
+  cta: string;
   price: string;
   checkout: string;
   links: readonly { label: string; href: string }[];
@@ -15,7 +16,7 @@ type Props = {
  * quiet while another buy button is on screen and turns orange when it is
  * the only one, so each screen has one primary action.
  */
-export function NightNav({ name, price, checkout, links }: Props) {
+export function NightNav({ name, cta, price, checkout, links }: Props) {
   const [solid, setSolid] = useState(false);
   const [alone, setAlone] = useState(false);
 
@@ -64,7 +65,7 @@ export function NightNav({ name, price, checkout, links }: Props) {
           className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost}`}
           data-umami-event="buy-click"
         >
-          Get it · {price}
+          {cta} · {price}
         </a>
       </div>
     </header>
