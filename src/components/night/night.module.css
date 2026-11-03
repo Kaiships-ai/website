@@ -1252,8 +1252,8 @@
   padding-top: 18px;
 }
 .quote img {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--line-2);
@@ -1285,9 +1285,13 @@
     color: #fff;
   }
 }
-/* The paying buyer: the one card that differs (Von Restorff). Tag on top,
-   the words big, the name pinned to the bottom: no hollow middle. */
+/* The paying buyer: the one card that differs (Von Restorff). Tag and the
+   big words on the left, the author in the right column at the foot. */
 .quoteBig {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-rows: auto 1fr;
+  column-gap: 56px;
   padding: 48px 56px 44px;
   border-color: rgba(240, 135, 79, 0.32);
   border-radius: var(--r-xl);
@@ -1302,33 +1306,25 @@
   color: #fff;
 }
 .quoteBig figcaption {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
   margin-top: 0;
-  padding-top: 32px;
+  padding: 4px 0 4px 28px;
+  border-left: 1px solid var(--line-2);
 }
 .quote .quoteTag {
+  justify-self: start;
   align-self: flex-start;
   text-align: left;
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   padding: 5px 11px;
   border: 1px solid var(--line-2);
   border-radius: 999px;
   color: var(--ink-2);
 }
-/* A short quote's label sits under its handle, so every quote in the row
-   starts on the same line. */
-.quote .whoTag {
-  display: block;
-  margin-top: 4px;
-  color: var(--ink-2);
-}
 .quoteBig .quoteTag {
   margin-bottom: 28px;
-  border-color: rgba(240, 135, 79, 0.45);
-  color: var(--or);
-}
-.quoteBig img {
-  width: 48px;
-  height: 48px;
 }
 .quote em {
   font-style: normal;
@@ -1924,6 +1920,7 @@
     padding: 22px 22px 20px;
   }
   .quoteBig {
+    display: flex;
     padding: 28px 24px 24px;
     border-radius: var(--r-lg);
   }
@@ -1931,7 +1928,9 @@
     margin-bottom: 20px;
   }
   .quoteBig figcaption {
-    padding-top: 24px;
+    align-self: stretch;
+    padding: 24px 0 0;
+    border-left: 0;
   }
   .plan {
     padding: 28px 22px 26px;
