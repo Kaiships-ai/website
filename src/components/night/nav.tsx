@@ -3,13 +3,20 @@
 import { useEffect, useState } from "react";
 import type { BuySpot } from "./buy-button";
 import s from "./night.module.css";
+import p from "./shell.module.css";
 
 type Props = {
   name: string;
   cta: string;
   price: string;
   checkout: string;
-  links: readonly { label: string; href: string }[];
+  /** "sales": the page at "/", with section links and the phone buy bar.
+      "page": Terms, Privacy, the 404; no section links and no bar. */
+  variant: "sales" | "page";
+  /** False when the nav button is the page's only buy button (Terms, Privacy):
+      it starts orange and stays on phones. */
+  inPageBuy: boolean;
+  links?: readonly { label: string; href: string }[];
 };
 
 /**
@@ -27,9 +34,10 @@ function keepAboveBar(el: Element | null) {
   if (r.bottom > b.top - 8 && r.top < window.innerHeight) window.scrollBy(0, r.bottom - b.top + 16);
 }
 
-export function NightNav({ name, cta, price, checkout, links }: Props) {
+export function NightNav({ name, cta, price, checkout, variant, inPageBuy, links = [] }: Props) {
+  const sales = variant === "sales";
   const [solid, setSolid] = useState(false);
-  const [alone, setAlone] = useState(false);
+  const [alone, setAlone] = useState(!inPageBuy);
   const [bar, setBar] = useState(false);
 
   useEffect(() => {
@@ -78,26 +86,28 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
   return (
     <>
       <header className={`${s.nav} ${solid ? s.navSolid : ""}`}>
-        <a className={s.skip} href="#top">
+        <a className={s.skip} href={sales ? "#top" : "#main"}>
           Skip to content
         </a>
         <div className={`${s.wrap} ${s.navIn}`}>
-          <a className={s.logo} href="#top" aria-label="Kaiships Studio, back to top">
+          <a className={s.logo} href={sales ? "#top" : "/"} aria-label={sales ? "Kaiships Studio, back to top" : "Kaiships Studio, home"}>
             <i aria-hidden />
             {name}
           </a>
-          <nav aria-label="Sections">
-            <ul className={s.navLinks}>
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {links.length > 0 ? (
+            <nav aria-label="Sections">
+              <ul className={s.navLinks}>
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ) : null}
           <a
             href={checkout}
-            className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost}`}
+            className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost} ${inPageBuy ? "" : p.navCtaStays}`}
             data-umami-event="buy-click"
             data-umami-event-spot={"nav" satisfies BuySpot}
           >
@@ -106,16 +116,18 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
         </div>
       </header>
       {/* Outside the header: its backdrop-filter would pin a fixed child to the header. */}
-      <div className={`${s.bar} ${bar ? s.barOn : ""}`} data-buy-bar>
-        <a
-          href={checkout}
-          className={`${s.btn} ${s.primary}`}
-          data-umami-event="buy-click"
-          data-umami-event-spot={"bar" satisfies BuySpot}
-        >
-          {cta} · {price}
-        </a>
-      </div>
+      {sales ? (
+        <div className={`${s.bar} ${bar ? s.barOn : ""}`} data-buy-bar>
+          <a
+            href={checkout}
+            className={`${s.btn} ${s.primary}`}
+            data-umami-event="buy-click"
+            data-umami-event-spot={"bar" satisfies BuySpot}
+          >
+            {cta} · {price}
+          </a>
+        </div>
+      ) : null}
     </>
   );
 }

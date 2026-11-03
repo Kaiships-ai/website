@@ -187,7 +187,7 @@ const speech = (st: Speech, ev: "click" | "done"): Speech =>
   ev === "click" ? { phase: "speaking", n: st.n + 1 } : { phase: "idle", n: st.n };
 const SPEAK_MS = 4000;
 
-function TalkingBean({
+export function TalkingBean({
   say,
   label,
   pose,

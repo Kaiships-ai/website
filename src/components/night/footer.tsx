@@ -12,7 +12,8 @@ function Out({ href, children }: { href: string; children: React.ReactNode }) {
   );
 }
 
-export function NightFooter() {
+/** `current`: the page this footer sits on, marked in its links. */
+export function NightFooter({ current }: { current?: string } = {}) {
   return (
     <footer className={s.foot} data-bar-off="">
       <div className={`${s.wrap} ${s.footIn}`}>
@@ -28,7 +29,12 @@ export function NightFooter() {
           {footer.links.map((l) => {
             const external = l.href.startsWith("http");
             return (
-              <a key={l.href} href={l.href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              <a
+                key={l.href}
+                href={l.href}
+                aria-current={l.href === current ? "page" : undefined}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 {l.label}
                 {external ? " ↗" : ""}
               </a>

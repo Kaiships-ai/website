@@ -1,5 +1,4 @@
 import { siteConfig } from "@/lib/site.config";
-import { display, text } from "./fonts";
 import { NightNav } from "./nav";
 import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
@@ -9,6 +8,7 @@ import { Pricing } from "./pricing";
 import { BeforeYouBuy } from "./before-you-buy";
 import { FinalCta } from "./final-cta";
 import { NightFooter } from "./footer";
+import "@/app/night.css";
 import s from "./night.module.css";
 
 const { studio } = siteConfig;
@@ -19,9 +19,9 @@ const { studio } = siteConfig;
  */
 export function NightPage() {
   return (
-    <div className={`${s.night} ${display.variable} ${text.variable}`} data-night="">
+    <div className={s.night} data-night="">
       <div className={s.grain} aria-hidden />
-      <NightNav name={studio.name} cta={studio.cta} price={studio.price} checkout={studio.checkout} links={studio.nav} />
+      <NightNav name={studio.name} cta={studio.cta} price={studio.price} checkout={studio.checkout} variant="sales" inPageBuy links={studio.nav} />
       <Hero />
       {/* Proof first, as in the approved wireframe: see it work, then how. */}
       <RealRun />

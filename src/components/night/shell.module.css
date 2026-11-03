@@ -1,0 +1,218 @@
+/*
+ * Night pages other than the sales page: Terms, Privacy, the 404.
+ * Approved prototype: scratchpad r4/proto (Night Light). Colors come only from
+ * Night's tokens (night.module.css), so light and dark both follow the theme.
+ */
+
+.shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+/* A soft wash at the top, the quiet twin of the hero glow. */
+.shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 520px;
+  pointer-events: none;
+  background: radial-gradient(60% 100% at 50% 0%, var(--bg-2) 0%, transparent 70%);
+}
+.main {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  scroll-margin-top: var(--nav-h);
+}
+.main a {
+  color: inherit;
+}
+
+/* Terms and Privacy: the nav button is the only buy button, so phones keep it. */
+@media (max-width: 599.98px) {
+  .navCtaStays.navCtaStays {
+    display: inline-flex;
+  }
+}
+@media (max-width: 380px) {
+  .navCtaStays.navCtaStays {
+    padding: 10px 12px;
+  }
+}
+
+/* ————— long-form reading ————— */
+.doc {
+  max-width: 680px;
+  margin-inline: auto;
+  padding: calc(var(--nav-h) + 72px) 0 120px;
+}
+.doc h1 {
+  font-weight: 800;
+  font-size: clamp(40px, 5.2vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.028em;
+  margin-top: 18px;
+}
+.updated {
+  margin: 18px 0 0;
+  color: var(--dim);
+  font-size: 15px;
+}
+.doc .lede {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 40px 0 0;
+}
+.doc h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  margin: 44px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.doc .lede + h2,
+.updated + h2 {
+  margin-top: 40px;
+}
+.doc p,
+.doc li {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.doc p {
+  margin: 16px 0 0;
+}
+.doc strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.doc ul {
+  display: grid;
+  gap: 14px;
+  margin: 16px 0 0;
+}
+.doc li {
+  position: relative;
+  padding-left: 22px;
+}
+.doc li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-3);
+}
+.doc a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-3);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-radius: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .doc a:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* ————— 404 ————— */
+.lost {
+  max-width: 680px;
+  margin-inline: auto;
+  padding: calc(var(--nav-h) + 96px) 0 120px;
+}
+.lostBean.lostBean {
+  --bh: 160px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  min-height: 160px;
+}
+/* Bean's words: in flow beside it, always there (just transparent), so speaking never shifts the row. */
+.lostBean > span[aria-hidden] {
+  position: static;
+  padding-bottom: 22px;
+  font-size: 16px;
+  white-space: normal;
+}
+.lostEyebrow {
+  margin-top: 28px;
+}
+.lost h1 {
+  font-weight: 800;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-top: 18px;
+}
+.line {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 20px 0 0;
+  max-width: 30em;
+}
+.acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+.acts > a {
+  display: inline-flex;
+}
+
+@media (max-width: 599.98px) {
+  .doc {
+    padding: calc(var(--nav-h) + 40px) 0 72px;
+  }
+  .doc .lede {
+    font-size: 18px;
+    margin-top: 32px;
+  }
+  .doc p,
+  .doc li {
+    font-size: 17px;
+  }
+  .doc h2 {
+    font-size: 22px;
+    margin-top: 36px;
+    padding-top: 22px;
+  }
+  .lost {
+    padding: calc(var(--nav-h) + 40px) 0 72px;
+  }
+  .lostBean.lostBean {
+    --bh: 120px;
+    min-height: 120px;
+  }
+  .lostBean > span[aria-hidden] {
+    padding-bottom: 16px;
+    font-size: 15px;
+  }
+  .line {
+    font-size: 18px;
+  }
+  .acts {
+    flex-direction: column;
+  }
+  .acts > a {
+    width: 100%;
+  }
+}
+
+.shell footer nav a[aria-current] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-3);
+  text-underline-offset: 3px;
+}

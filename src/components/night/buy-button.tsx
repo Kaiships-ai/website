@@ -4,7 +4,7 @@ import s from "./night.module.css";
 const { studio } = siteConfig;
 
 /** Where a buy click came from, sent to Umami with every buy-click. */
-export type BuySpot = "nav" | "bar" | "hero" | "reel" | "pricing" | "final";
+export type BuySpot = "nav" | "bar" | "hero" | "reel" | "pricing" | "final" | "404";
 
 /**
  * Every buy button on the page: same Polar link, same Umami event, plus the
