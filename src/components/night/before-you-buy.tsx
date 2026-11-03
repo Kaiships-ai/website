@@ -32,7 +32,7 @@ export function BeforeYouBuy() {
           <h3 className={s.srOnly}>Questions</h3>
           {b.faq.map((f, i) => (
             <details key={f.q} open={i === 0}>
-              <summary>
+              <summary data-umami-event="faq-open" data-umami-event-q={i}>
                 {f.q}
                 <i aria-hidden />
               </summary>

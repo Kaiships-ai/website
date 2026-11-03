@@ -54,7 +54,7 @@ export function RealRun() {
               ))}
             </dl>
             <div className={s.madeBuy}>
-              <BuyButton />
+              <BuyButton spot="reel" />
               <p className={s.btnNote}>{studio.buyNote}</p>
             </div>
           </div>

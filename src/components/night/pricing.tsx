@@ -75,7 +75,7 @@ export function Pricing() {
             </div>
           </div>
           <div className={s.planFoot}>
-            <BuyButton className={s.planBuy} />
+            <BuyButton spot="pricing" className={s.planBuy} />
             <p className={s.planNote}>{p.note}</p>
           </div>
         </div>

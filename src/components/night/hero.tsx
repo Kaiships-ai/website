@@ -27,7 +27,7 @@ export function Hero() {
         {studio.sub}
       </p>
       <div className={`${s.ctas} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
-        <BuyButton className={s.heroBuy} />
+        <BuyButton spot="hero" className={s.heroBuy} />
       </div>
       <p className={`${s.btnNote} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
         {studio.buyNote}

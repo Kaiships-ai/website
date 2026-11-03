@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { BuySpot } from "./buy-button";
 import s from "./night.module.css";
 
 type Props = {
@@ -51,6 +52,9 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
   return (
     <>
       <header className={`${s.nav} ${solid ? s.navSolid : ""}`}>
+        <a className={s.skip} href="#top">
+          Skip to content
+        </a>
         <div className={`${s.wrap} ${s.navIn}`}>
           <a className={s.logo} href="#top" aria-label="Kaiships Studio, back to top">
             <i aria-hidden />
@@ -69,6 +73,7 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
             href={checkout}
             className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost}`}
             data-umami-event="buy-click"
+            data-umami-event-spot={"nav" satisfies BuySpot}
           >
             {cta} · {price}
           </a>
@@ -76,7 +81,12 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
       </header>
       {/* Outside the header: its backdrop-filter would pin a fixed child to the header. */}
       <div className={`${s.bar} ${bar ? s.barOn : ""}`}>
-        <a href={checkout} className={`${s.btn} ${s.primary}`} data-umami-event="buy-click">
+        <a
+          href={checkout}
+          className={`${s.btn} ${s.primary}`}
+          data-umami-event="buy-click"
+          data-umami-event-spot={"bar" satisfies BuySpot}
+        >
           {cta} · {price}
         </a>
       </div>

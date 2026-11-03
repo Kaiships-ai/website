@@ -31,7 +31,7 @@ export function FinalCta() {
           </span>
         </h2>
         <div className={`${s.ctas} ${s.finalCtas}`}>
-          <BuyButton />
+          <BuyButton spot="final" />
           <FinalBean />
         </div>
         <p className={s.btnNote}>{studio.buyNote}</p>
