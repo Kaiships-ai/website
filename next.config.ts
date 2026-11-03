@@ -28,13 +28,27 @@ const securityHeaders = [
   },
 ];
 
+// public/ files have stable names, so they can't be immutable: a re-encoded
+// reel or re-rendered Bean pose has to reach returning visitors. One day
+// fresh, then served from cache while it revalidates for a week, so a repeat
+// visit is instant and at most one visit behind a change.
+const assetCache = [
+  { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+];
+
 const nextConfig: NextConfig = {
   // The old Content Machine Kit page is retired; the homepage sells the Reel Kit.
   async redirects() {
     return [{ source: "/kit", destination: "/", permanent: false }];
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      ...["bean", "night-full", "proof", "night"].map((dir) => ({
+        source: `/${dir}/:path*`,
+        headers: assetCache,
+      })),
+    ];
   },
 };
 
