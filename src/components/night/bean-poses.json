@@ -52,5 +52,16 @@
       "pose": "cheering",
       "expr": "celebrating"
     }
+  },
+  "frame": {
+    "canvas": 640,
+    "camZ": 8,
+    "lookY": 0.2,
+    "crop": {
+      "x": 89,
+      "y": 141,
+      "w": 444,
+      "h": 380
+    }
   }
 }

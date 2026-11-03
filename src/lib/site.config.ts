@@ -36,16 +36,19 @@ export const siteConfig = {
     checkout:
       "https://buy.polar.sh/polar_cl_yqXEKmmPW7SvfiYAfeDll5InhQ2jiUaJp8UtZ2GvObZ",
     headline: "You built it with Claude Code. Nobody knows yet.",
-    sub: "Type what it does. Claude Code makes the reel on your machine: script, voice, scenes, captions and music. No camera.",
+    sub: "Type what it does. Claude Code makes the reel on your own computer: script, voice, scenes, captions and music. No camera.",
     // The refund condition, said where the money decision happens (offer:
     // "Không ra được reel: hoàn tiền trong 7 ngày").
     // Non-breaking spaces keep the refund sentence on one line on a phone.
     buyNote: "One payment. Can't\u00a0make\u00a0a\u00a0reel\u00a0in\u00a07\u00a0days?\u00a0Refund.",
+    // Who makes it and can I use it, both on the first screen (FAQ has the long version).
+    maker: "Made by Kai",
+    runsOn: "Runs in Claude Code on macOS, Windows\u00a0or\u00a0Linux.",
     // Every buy button says the outcome, then the price (no surprise at checkout).
     cta: "Make my reel",
     prompt: "/studio a promo for my app",
     nav: [
-      { label: "Real run", href: "#real-run" },
+      { label: "See it work", href: "#real-run" },
       { label: "How it works", href: "#how" },
       { label: "Pricing", href: "#pricing" },
       { label: "FAQ", href: "#faq" },
@@ -86,23 +89,36 @@ export const siteConfig = {
       output: "studio-fall.mp4",
     },
 
+    // The 30-second reel first (cheap proof), then the whole session for
+    // people who want it.
     realRun: {
-      title: ["One real run,", "start to finish."],
-      lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. About 50 minutes of real time in a 9:38 video.",
-      // 1440p master for wide screens, 720p for phones. Both stream only
-      // when the visitor presses play.
+      eyebrow: "See it work",
+      title: ["One real run.", "Here's what it made."],
+      lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. First one of the two reels it made, then the whole session.",
+      session: {
+        title: "Want the whole session?",
+        lead: "About 50 minutes of real time in a 9:38 video.",
+      },
+      // 1440p master for wide screens, 720p for phones (also the no-JS link).
+      // Both stream only when the visitor presses play.
       sources: [
         { src: "/proof/tutorial-1440.mp4", media: "(min-width: 901px)" },
         { src: "/proof/tutorial-720.mp4" },
       ],
-      poster: "/proof/tutorial-poster.jpg",
+      poster: {
+        src: "/proof/tutorial-poster.jpg",
+        srcSet: "/proof/tutorial-poster-800.webp 800w, /proof/tutorial-poster-1280.webp 1280w",
+        width: 1600,
+        height: 900,
+      },
       playLabel: "Watch the real run · 9:38",
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
         video: "/proof/studio-fall.mp4",
-        poster: "/proof/studio-fall-poster.jpg",
+        poster: { src: "/proof/studio-fall-poster.jpg", srcSet: "/proof/studio-fall-poster.webp 540w", width: 540, height: 960 },
+        playLabel: "Play the reel · 0:30",
         title: "The reel from this run",
-        text: "30 seconds, made about itself. A fast preview, not the final render. Turn the sound on.",
+        text: "30 seconds, made about itself. Turn the sound on. A fast preview, not the final render.",
       },
       facts: [
         { k: "Time", t: "About 50 minutes for two fast-preview reels." },
@@ -135,36 +151,37 @@ export const siteConfig = {
         "Discord help",
       ],
       costs: [
-        { k: "Money", t: "$30 once. No monthly plan, no upsell. Your Claude plan is separate." },
+        // "a reel uses a lot of it" is Kai's own line on the Polar checkout.
+        { k: "Money", t: "$30 once. No monthly plan, no upsell. Studio runs on your own Claude plan, and a reel uses a lot of it." },
         { k: "Effort", t: "One line about your product, then pick a style. No camera, no editing." },
         { k: "Time", t: "My run: about 50 minutes for two reels, with the setup already downloaded." },
-        { k: "Risk", t: "Can't make a reel on your machine? DM @kaiships.ai within 7 days for a refund." },
+        { k: "Risk", t: "Can't make a reel on your computer? Message @kaiships.ai on Instagram within 7 days and you get your money back." },
       ],
       // What Studio removes next to each alternative from the wireframe.
       // Claims are about Studio only, not about other people's products.
       insteadOf: [
-        { k: "Filming yourself", t: "Here: no camera, no retakes, no editing." },
-        { k: "Hiring an editor", t: "Here: no fee per video. $30 once, unlimited reels." },
-        { k: "Template apps", t: "Here: no monthly plan, and the script, voice and music are made for you." },
+        { k: "Filming yourself", t: "No camera, no retakes, no editing." },
+        { k: "Hiring an editor", t: "No fee per video. $30 once, unlimited reels." },
+        { k: "Template apps", t: "No monthly plan, and the script, voice and music are made for you." },
       ],
     },
 
     before: {
       title: "What you need.",
       needs: [
-        { t: "Claude Code", d: "Studio runs inside it. Your Claude plan is not included in the $30." },
+        { t: "Claude Code", d: "Studio runs inside it, on your own Claude plan (not included in the $30). A reel uses a lot of it." },
         { t: "A computer: macOS, Windows or Linux", d: "Not a phone. Heavier 3D styles run better with a GPU." },
       ],
       promise: "It makes the reel. It can't promise views or sales.",
       faq: [
         {
           q: "What if it doesn't work on my machine?",
-          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel on your machine within 7 days, DM @kaiships.ai on Instagram for a refund.",
+          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel, message @kaiships.ai on Instagram within 7 days and you get your money back.",
           cta: { label: "Join the Discord", href: "https://discord.gg/MAAJmghmrA", event: "discord-click" },
         },
         { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up: it downloads about 900 MB of tools into the Studio folder, so it needs internet." },
         { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run also downloads the tools before it starts." },
-        { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
+        { q: "Is there a monthly fee?", a: "No. $30 once, no subscription, no upsell. Studio runs on your own Claude plan." },
         { q: "Can I use the reels for my business?", a: "Yes. Unlimited reels, personal or commercial, with no watermark. Please don't share or resell Studio itself." },
         { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
         { q: "Will my reel get views?", a: "It makes the reel. It can't promise views or sales." },

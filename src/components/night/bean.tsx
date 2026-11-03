@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
+import type { Follow, LiveBean } from "./bean-live";
 import registry from "./bean-poses.json";
 import s from "./night.module.css";
 
@@ -59,13 +60,109 @@ function useFirstView(ref: React.RefObject<HTMLElement | null>, onEnter: () => v
   }, [ref, threshold]);
 }
 
+// Live Bean (bean-live.ts, three.js) only after load and the first real
+// input, so it never competes with the first paint and Lighthouse never sees
+// it. Reduced motion, Save-Data, no WebGL or a failed chunk: the stills stay.
+const INPUTS = ["pointermove", "pointerdown", "touchstart", "wheel", "scroll", "keydown"] as const;
+let engine: Promise<typeof import("./bean-live") | null> | undefined;
+function loadLive() {
+  return (engine ??= Promise.all([
+    new Promise<void>((r) => (document.readyState === "complete" ? r() : addEventListener("load", () => r(), { once: true }))),
+    new Promise<void>((r) => {
+      const go = () => {
+        INPUTS.forEach((ev) => removeEventListener(ev, go));
+        r();
+      };
+      INPUTS.forEach((ev) => addEventListener(ev, go, { passive: true }));
+    }),
+  ])
+    .then(() => (canLive() ? import("./bean-live") : null))
+    .catch(() => null));
+}
+function canLive() {
+  if (reducedMotion() || (navigator as { connection?: { saveData?: boolean } }).connection?.saveData) return false;
+  const gl = document.createElement("canvas").getContext("webgl2");
+  gl?.getExtension("WEBGL_lose_context")?.loseContext();
+  return !!gl;
+}
+
+/** still: the WebP stack. mounting: canvas drawn under it. live: canvas faded in over it. */
+type LiveState = "still" | "mounting" | "live";
+type Live = { state: LiveState; canvas: (el: HTMLCanvasElement | null) => void };
+
+/** Brings a spot's Bean to life once allowed. `hop` changes replay the source's hop. */
+export function useLiveBean({ pose, hop = 0, follow, doze }: { pose: BeanPose; hop?: number; follow?: Follow; doze?: boolean }): Live {
+  const [state, setState] = useState<LiveState>("still");
+  const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
+  const bean = useRef<LiveBean | null>(null);
+  const spec = useRef({ pose, follow, doze, hop });
+  useEffect(() => {
+    spec.current = { pose, follow, doze, hop };
+  });
+  useEffect(() => {
+    let on = true;
+    loadLive().then((mod) => {
+      if (on && mod) setState("mounting");
+    });
+    return () => {
+      on = false;
+    };
+  }, []);
+  useEffect(() => {
+    if (!canvas) return;
+    let on = true;
+    loadLive().then((mod) => {
+      if (!on || !mod) return;
+      const { pose, doze } = spec.current;
+      bean.current = mod.mountBean(
+        canvas,
+        { pose, doze, follow: (t) => spec.current.follow?.(t) ?? null },
+        { shown: () => setState("live"), failed: () => setState("still") },
+      );
+      if (!bean.current) setState("still");
+      // A hop asked for before the chunk arrived (the final cheer, or a click that was
+      // the first input) still plays once Bean is live.
+      else if (spec.current.hop) bean.current.hop();
+    });
+    return () => {
+      on = false;
+      bean.current?.dispose();
+      bean.current = null;
+    };
+  }, [canvas]);
+  useEffect(() => {
+    bean.current?.set(pose);
+  }, [pose]);
+  useEffect(() => {
+    if (hop) bean.current?.hop();
+  }, [hop]);
+  return { state, canvas: setCanvas };
+}
+
 /**
  * Every pose this spot can show, stacked; the current one is opaque. Changing
- * pose is an opacity crossfade, so a fast scroll just retargets it.
+ * pose is an opacity crossfade, so a fast scroll just retargets it. A live
+ * Bean, once allowed, fades in over the stack on a canvas framed like the stills.
  */
-export function BeanStack({ poses, pose, eager = [] }: { poses: readonly BeanPose[]; pose: BeanPose; eager?: readonly BeanPose[] }) {
+export function BeanStack({
+  poses,
+  pose,
+  eager = [],
+  live = "still",
+  liveRef,
+}: {
+  poses: readonly BeanPose[];
+  pose: BeanPose;
+  eager?: readonly BeanPose[];
+  live?: LiveState;
+  liveRef?: Live["canvas"];
+}) {
   return (
-    <span className={s.beanStack} style={{ aspectRatio: `${registry.size.w} / ${registry.size.h}` }}>
+    <span
+      className={s.beanStack}
+      style={{ aspectRatio: `${registry.size.w} / ${registry.size.h}` }}
+      data-live={live === "live" || undefined}
+    >
       {[...new Set(poses)].map((p) => (
         <Image
           key={p}
@@ -78,6 +175,7 @@ export function BeanStack({ poses, pose, eager = [] }: { poses: readonly BeanPos
           fetchPriority={eager.includes(p) ? "low" : undefined}
         />
       ))}
+      {live !== "still" ? <canvas ref={liveRef} className={s.beanLive} /> : null}
     </span>
   );
 }
@@ -95,15 +193,18 @@ function TalkingBean({
   pose,
   poses,
   eager,
+  follow,
 }: {
   say: readonly string[];
   label: string;
   pose: BeanPose;
   poses: readonly BeanPose[];
   eager?: readonly BeanPose[];
+  follow?: Follow;
 }) {
   const [st, send] = useReducer(speech, { phase: "idle", n: 0 });
   const speaking = st.phase === "speaking";
+  const live = useLiveBean({ pose: speaking ? "hi" : pose, hop: st.n, follow, doze: true });
   // "hi" is only needed after a click: fetch it once the page is idle.
   const loaded = useAfterLoad();
   const withHi = loaded || st.n > 0;
@@ -116,9 +217,10 @@ function TalkingBean({
   return (
     <>
       <button type="button" className={s.beanBtn} aria-label={label} onClick={() => send("click")}>
-        <span className={s.beanBounce} data-b={st.n === 0 ? undefined : st.n % 2}>
+        {/* Live, the source's own hop replaces the CSS bounce. */}
+        <span className={s.beanBounce} data-b={st.n === 0 || live.state === "live" ? undefined : st.n % 2}>
           <span className={s.beanClip}>
-            <BeanStack poses={withHi ? [...poses, "hi"] : poses} pose={speaking ? "hi" : pose} eager={eager} />
+            <BeanStack poses={withHi ? [...poses, "hi"] : poses} pose={speaking ? "hi" : pose} eager={eager} live={live.state} liveRef={live.canvas} />
           </span>
         </span>
       </button>
@@ -135,11 +237,47 @@ function TalkingBean({
   );
 }
 
-/** A · Hero: reads the prompt while it types (CSS, once), says hi when clicked. */
+const READ_S = 1.1; // as long as the prompt takes to type itself
+const AHEAD_S = 1.4;
+
+/**
+ * Live hero Bean's eyes: on the caret while the prompt types; if it came alive
+ * after the typing, it reads the line once, left to right. Then it looks at
+ * the visitor before the pointer takes over.
+ */
+function readAlong(root: HTMLElement): Follow {
+  let from: number | undefined;
+  let sawTyping = false;
+  return (t) => {
+    const typed = root.parentElement?.querySelector<HTMLElement>(`.${CSS.escape(s.typed)}`);
+    if (!typed) return null;
+    const r = typed.getBoundingClientRect();
+    const y = r.top + r.height / 2;
+    if (typed.getAnimations().some((a) => a.playState === "running")) {
+      sawTyping = true;
+      return { x: r.right, y };
+    }
+    from ??= sawTyping ? t - READ_S : t;
+    const k = (t - from) / READ_S;
+    if (k < 1) return { x: r.left + r.width * k, y };
+    return t - from < READ_S + AHEAD_S ? "ahead" : null;
+  };
+}
+
+/** A · Hero: reads the prompt while it types, says hi when clicked. */
 export function HeroBean({ say }: { say: readonly string[] }) {
+  const [root, setRoot] = useState<HTMLSpanElement | null>(null);
+  const follow = useMemo(() => (root ? readAlong(root) : undefined), [root]);
   return (
-    <span className={`${s.bean} ${s.heroBean}`}>
-      <TalkingBean say={say} label="Say hi to Bean" pose="idle" poses={["idle", "read"]} eager={["idle", "read"]} />
+    <span ref={setRoot} className={`${s.bean} ${s.heroBean}`}>
+      <TalkingBean
+        say={say}
+        label="Say hi to Bean"
+        pose="idle"
+        poses={["idle", "read"]}
+        eager={["idle", "read"]}
+        follow={follow}
+      />
     </span>
   );
 }
@@ -182,6 +320,7 @@ export function FinalBean() {
   const ref = useRef<HTMLSpanElement>(null);
   const [phase, setPhase] = useState<"waiting" | "party" | "done">("waiting");
   useFirstView(ref, () => setPhase(reducedMotion() ? "done" : "party"), 0.8);
+  const live = useLiveBean({ pose: "cheer", hop: phase === "party" ? 1 : 0 });
   useEffect(() => {
     if (phase !== "party") return;
     const t = window.setTimeout(() => setPhase("done"), CONFETTI_MS);
@@ -190,7 +329,7 @@ export function FinalBean() {
 
   return (
     <span ref={ref} className={`${s.bean} ${s.finalBean}`} data-phase={phase} aria-hidden>
-      <BeanStack poses={["cheer"]} pose="cheer" />
+      <BeanStack poses={["cheer"]} pose="cheer" live={live.state} liveRef={live.canvas} />
       {phase === "party" ? (
         <span className={s.confetti}>
           {CONFETTI.map((style, i) => (
