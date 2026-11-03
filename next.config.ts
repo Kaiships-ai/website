@@ -37,6 +37,13 @@ const assetCache = [
 ];
 
 const nextConfig: NextConfig = {
+  // Every width a next/image on the site asks for at DPR 2 (posters 160-220 px,
+  // thumbs 90 px, avatars 48 px, the /get page 720 px); the defaults put 15
+  // widths in each srcset, a third of the homepage HTML.
+  images: {
+    deviceSizes: [390, 640, 828, 1080, 1440],
+    imageSizes: [96, 160, 220],
+  },
   // The old Content Machine Kit page is retired; the homepage sells the Reel Kit.
   async redirects() {
     return [{ source: "/kit", destination: "/", permanent: false }];
