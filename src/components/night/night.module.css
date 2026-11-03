@@ -84,7 +84,7 @@
 .wrap {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 max(24px, env(safe-area-inset-right)) 0 max(24px, env(safe-area-inset-left));
 }
 .grain {
   position: fixed;
@@ -1832,7 +1832,7 @@
     letter-spacing: -0.024em;
   }
   .wrap {
-    padding: 0 20px;
+    padding: 0 max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
   }
   .navLinks {
     display: none;

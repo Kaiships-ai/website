@@ -30,7 +30,12 @@ export const metadata: Metadata = {
   },
 };
 
+// viewport-fit=cover lets the phone buy bar pad itself above the home indicator
+// (env(safe-area-inset-bottom)); .wrap pads the side insets in landscape.
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#0a0c17",
   colorScheme: "dark",
 };
