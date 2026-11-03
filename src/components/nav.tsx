@@ -28,9 +28,6 @@ export function Nav({ checkout, cta, price }: { checkout: string; cta: string; p
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // "/" is the Night sales page; it renders its own nav.
-  if (pathname === "/") return null;
-
   // Gift pages (/get/*) ask for one thing: the email. No links out, logo only.
   if (pathname?.startsWith("/get/")) {
     return (

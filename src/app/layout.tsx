@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { sans, serif, mono, marker } from "@/lib/fonts";
 import { siteConfig } from "@/lib/site.config";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
-import { ExitIntent } from "@/components/exit-intent";
-import { CheckoutUtm } from "@/components/checkout-utm";
-import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
-import "./globals.css";
+import { ThemeScript } from "@/components/night/theme-script";
+import { SiteScripts } from "@/components/site-scripts";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -71,6 +66,8 @@ const siteLd = {
   ],
 };
 
+// Only what every route needs. The old site's chrome lives in (site)/layout.tsx,
+// the Night pages' in (night)/layout.tsx; the Night 404 is not-found.tsx.
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,25 +77,18 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${sans.variable} ${serif.variable} ${mono.variable} ${marker.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-full flex flex-col">
-        <CheckoutUtm />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
         />
-        <Nav checkout={siteConfig.studio.checkout} cta={siteConfig.studio.cta} price={siteConfig.studio.price} />
-        <main className="flex-1">{children}</main>
-        <Footer footer={siteConfig.footer} />
-        <ExitIntent />
-        {/* Only Vercel serves /_vercel/insights; elsewhere the script 404s. */}
-        {process.env.VERCEL && <Analytics />}
-        <Script
-          src="https://kstats-kaiships.vercel.app/stats.js"
-          data-website-id="a11d08a4-7f99-420e-aafc-5aa471b7ca6e"
-          data-domains={new URL(siteConfig.url).hostname}
-          strategy="afterInteractive"
-        />
+        {children}
+        <SiteScripts />
       </body>
     </html>
   );

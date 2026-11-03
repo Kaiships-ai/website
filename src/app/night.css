@@ -1,0 +1,91 @@
+/*
+ * The page base for Night routes ("/", /terms, /privacy, the 404): Tailwind's
+ * reset only, no theme and no utilities. The rest of globals.css belongs to
+ * the old site. Night's own styles are CSS modules in components/night.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/preflight.css" layer(base);
+
+/*
+ * Night type: Bricolage Grotesque for headlines and numbers, Inter for text;
+ * JetBrains Mono (labels) comes from the root layout as --font-mono.
+ * Plain @font-face, not next/font: the 404 (app/not-found.tsx) is part of
+ * the root bundle, and a next/font import reachable from it makes every page
+ * preload the fonts. (night)/layout.tsx preloads them for Night routes only.
+ * Bricolage: the opsz 96 cut, weights 700-800, latin (41 KB). Inter: latin,
+ * 400-600 (30 KB). Both OFL (src/assets/fonts/*-OFL.txt). The fallback faces
+ * are the metrics next/font computed, so the swap does not shift the layout.
+ */
+@font-face {
+  font-family: display;
+  src: url("/night/fonts/BricolageGrotesque-opsz96-wght700-800-latin.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "display Fallback";
+  src: local(Arial);
+  ascent-override: 91.48%;
+  descent-override: 26.56%;
+  line-gap-override: 0%;
+  size-adjust: 101.66%;
+}
+@font-face {
+  font-family: text;
+  src: url("/night/fonts/Inter-wght400-600-latin.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "text Fallback";
+  src: local(Arial);
+  ascent-override: 89.79%;
+  descent-override: 22.36%;
+  line-gap-override: 0%;
+  size-adjust: 107.89%;
+}
+[data-night] {
+  --font-display: "display", "display Fallback", system-ui, sans-serif;
+  --font-text: "text", "text Fallback", system-ui, sans-serif;
+}
+
+/* Edge to edge in the page's theme, overscroll included. */
+html:has([data-night]) {
+  background-color: #0a0c17;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+body:has([data-night]) {
+  background: #0a0c17;
+  color: #ece9f6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+:root[data-theme="light"]:has([data-night]),
+:root[data-theme="light"] body:has([data-night]) {
+  background-color: #f5f6fa;
+  color: #0f1222;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]):has([data-night]),
+  :root:not([data-theme]) body:has([data-night]) {
+    background-color: #f5f6fa;
+    color: #0f1222;
+    color-scheme: light;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-night]) {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

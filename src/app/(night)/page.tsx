@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site.config";
 import { NightPage } from "@/components/night/night-page";
 
@@ -30,16 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-// viewport-fit=cover lets the phone buy bar pad itself above the home indicator
-// (env(safe-area-inset-bottom)); .wrap pads the side insets in landscape.
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  viewportFit: "cover",
-  themeColor: "#0a0c17",
-  colorScheme: "dark",
-};
-
 // The real offer only: no rating, no review, nothing site.config does not say.
 const productLd = {
   "@context": "https://schema.org",
@@ -61,12 +51,12 @@ const productLd = {
 // Spec: crowsnest first-principle/trang-ban-nhap.md + da-chac-chan.html step 3.
 export default function Home() {
   return (
-    <>
+    <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
       />
       <NightPage />
-    </>
+    </main>
   );
 }

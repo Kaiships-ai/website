@@ -9,8 +9,6 @@ import type { SiteConfig } from "@/lib/site.config";
 // never ships in the client bundle.
 export function Footer({ footer }: { footer: SiteConfig["footer"] }) {
   const pathname = usePathname();
-  // "/" is the Night sales page; it renders its own footer.
-  if (pathname === "/") return null;
   // Gift pages (/get/*) keep the legal links only, so the email is the one action.
   if (pathname?.startsWith("/get/")) {
     return (

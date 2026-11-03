@@ -9,8 +9,7 @@ const PackForm = dynamic(() => import("@/components/pack-form").then((m) => m.Pa
 
 const DISMISS_KEY = "kaiships-exit-intent-dismissed";
 
-// The home page is the Kaiships Studio sales page: one offer, no email ask.
-const skip = (p: string) => p === "/" || p === "/pack" || p.startsWith("/get/");
+const skip = (p: string) => p === "/pack" || p.startsWith("/get/");
 
 /**
  * Exit-intent popup: fires once per session when the cursor leaves the

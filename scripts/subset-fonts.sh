@@ -1,11 +1,13 @@
 #!/bin/bash
-# Rebuilds the self-hosted font files in src/assets/fonts from Google Fonts:
+# Rebuilds the self-hosted font files in src/assets/fonts (public/night/fonts
+# for the Night page's woff2, which night.css loads by URL) from Google Fonts:
 # the latin subset Google serves, cut to the weights the site uses. Smaller
 # files keep the first paint light (each KB before first paint costs about
 # 4 ms of mobile Lighthouse LCP). Needs: curl, python3 with fonttools and
 # brotli (pip install fonttools brotli). Run: bash scripts/subset-fonts.sh
 set -euo pipefail
-OUT="$(cd "$(dirname "$0")/.." && pwd)/src/assets/fonts"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+OUT="$ROOT/src/assets/fonts"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
@@ -33,6 +35,8 @@ while IFS='|' read -r family axes keep file; do
   python3 -m fontTools.varLib.instancer "$src" "wght=$keep" -q -o "$TMP/cut.ttf"
   # The instancer keeps the woff2 wrapper; next/og (Satori) only reads plain TTF.
   flavor=$([ "${file##*.}" = woff2 ] && echo woff2 || echo none)
-  python3 -m fontTools.subset "$TMP/cut.ttf" --unicodes="$LATIN" --layout-features='*' --flavor="$flavor" --output-file="$OUT/$file"
-  echo "$file $(wc -c < "$OUT/$file") bytes"
+  dest="$OUT/$file"
+  [ "$file" = Inter-wght400-600-latin.woff2 ] && dest="$ROOT/public/night/fonts/$file"
+  python3 -m fontTools.subset "$TMP/cut.ttf" --unicodes="$LATIN" --layout-features='*' --flavor="$flavor" --output-file="$dest"
+  echo "$file $(wc -c < "$dest") bytes"
 done <<< "$FONTS"

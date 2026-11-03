@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site.config";
+import { NightShell } from "@/components/night/shell";
+import s from "@/components/night/night.module.css";
+import p from "@/components/night/shell.module.css";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -9,16 +12,15 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="pt-32 pb-24 sm:pt-36">
-      <div className="prose prose-stone mx-auto max-w-3xl px-4 sm:px-6 prose-headings:font-medium prose-headings:tracking-tight prose-a:text-accent-ink">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-ink not-prose">
-          {"//"} legal
-        </p>
+    <NightShell current="/privacy" inPageBuy={false}>
+      <article className={p.doc}>
+        <span className={s.eyebrow}>
+          <i aria-hidden />
+          Legal
+        </span>
         <h1>Privacy Policy</h1>
-        <p>
-          <em>Last updated: 2026-11-03</em>
-        </p>
-        <p>
+        <p className={p.updated}>Last updated: 2026-11-03</p>
+        <p className={p.lede}>
           Short version: there are no accounts and no cookies. We count visits
           without knowing who you are, and Polar handles payment.
         </p>
@@ -67,7 +69,7 @@ export default function PrivacyPage() {
         <p>
           Questions: <a href={`mailto:${siteConfig.socials.email}`}>{siteConfig.socials.email}</a>
         </p>
-      </div>
-    </div>
+      </article>
+    </NightShell>
   );
 }
