@@ -610,8 +610,10 @@
   margin: 0;
   padding: 0;
 }
+/* Each step holds its own scroll stretch without the hollow gaps a 44vh box
+   left between short paragraphs (graft from round-2 c3). */
 .step {
-  min-height: 44vh;
+  min-height: clamp(240px, 34vh, 320px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -668,6 +670,8 @@
     var(--lift);
 }
 .monTerm {
+  display: flex;
+  flex-direction: column;
   padding: 22px 22px;
   font: 13px/2 var(--mono);
   color: var(--dim);
@@ -721,7 +725,8 @@
   color: var(--or);
 }
 .out {
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 16px;
   opacity: 0;
   transition: opacity 250ms ease;
 }
@@ -1279,6 +1284,10 @@
   gap: 56px;
   padding: 32px 0 36px;
 }
+.planCols > div + div {
+  padding-left: 56px;
+  border-left: 1px solid var(--line);
+}
 .gets {
   list-style: none;
   margin: 18px 0 0;
@@ -1800,6 +1809,11 @@
   .planCols {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  .planCols > div + div {
+    padding: 28px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
   .instead {
     grid-template-columns: 1fr;
