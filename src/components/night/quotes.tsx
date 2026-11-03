@@ -8,6 +8,7 @@ type User = (typeof earlyUsers)[number];
 function Quote({ u, big = false }: { u: User; big?: boolean }) {
   return (
     <figure className={`${s.quote} ${big ? s.quoteBig : ""}`}>
+      {big && u.label ? <em className={s.quoteTag}>{u.label}</em> : null}
       <blockquote>“{u.text}”</blockquote>
       <figcaption>
         <Image src={`/night-full/users/${u.img}.jpg`} alt="" width={big ? 48 : 38} height={big ? 48 : 38} />
@@ -18,7 +19,7 @@ function Quote({ u, big = false }: { u: User; big?: boolean }) {
             <span className={s.srOnly}> on Instagram (opens in a new tab)</span>
           </a>
         </span>
-        {u.label ? <em>{u.label}</em> : null}
+        {!big && u.label ? <em>{u.label}</em> : null}
       </figcaption>
     </figure>
   );

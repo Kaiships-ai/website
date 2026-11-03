@@ -92,6 +92,7 @@ export const siteConfig = {
         { src: "/proof/tutorial-720.mp4" },
       ],
       poster: "/proof/tutorial-poster.jpg",
+      playLabel: "Watch the real run · 9:38",
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
         video: "/proof/studio-fall.mp4",
@@ -103,7 +104,7 @@ export const siteConfig = {
         { k: "Time", t: "About 50 minutes for two fast-preview reels." },
         { k: "Machine", t: "My Mac, with the setup already downloaded." },
         { k: "Your first time", t: "The setup downloads about 900 MB first." },
-        { k: "Hook score", t: "Its review gave both hooks 7/10, under the 8/10 bar." },
+        { k: "Its own review", t: "Flagged both hooks at 7/10, under the 8/10 bar." },
       ],
     },
 

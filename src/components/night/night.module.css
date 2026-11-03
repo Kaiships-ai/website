@@ -193,6 +193,7 @@
   color: var(--dim);
   font-size: 16px;
   margin-top: 14px;
+  text-wrap: balance;
 }
 
 /* ————— nav ————— */
@@ -557,7 +558,7 @@
   padding: 0;
 }
 .step {
-  min-height: 62vh;
+  min-height: 44vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -946,6 +947,77 @@
   margin-top: 12px;
 }
 
+/* Big play button on the real-run poster. Light, not orange: orange is the
+   buy colour. Centred above the native control bar. */
+.vwrap {
+  position: relative;
+}
+.playBig {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  max-width: calc(100% - 32px);
+  padding: 10px 22px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(236, 233, 246, 0.94);
+  color: #0a0c17;
+  font: 600 16px/1.2 var(--text);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 18px 50px -12px rgba(0, 0, 0, 0.8);
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 150ms ease;
+}
+.playBig:active {
+  transform: translate(-50%, -50%) scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .playBig:hover {
+    background: #fff;
+  }
+}
+.playBig i {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0a0c17;
+}
+.playBig i::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  border-left: 12px solid #ece9f6;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+/* Small players (phones): a round icon only, so it doesn't cover the poster. */
+@media (max-width: 600px) {
+  .playBig {
+    gap: 0;
+    padding: 9px;
+  }
+  .playBig span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
 /* ————— 5 · what people told me ————— */
 /* The paying buyer leads, big; three shorter quotes stack beside it. */
 .users {
@@ -1037,6 +1109,14 @@
 }
 .quoteBig figcaption {
   margin-top: 28px;
+}
+.quote .quoteTag {
+  align-self: flex-start;
+  text-align: left;
+  margin: 0 0 22px;
+  padding: 5px 12px;
+  border: 1px solid rgba(240, 135, 79, 0.45);
+  border-radius: 999px;
 }
 .quoteBig img {
   width: 48px;
@@ -1504,7 +1584,7 @@
   /* Short steps under a sticky monitor: each one is readable for its whole
      active stretch (monitor ends ~370 px, active band at ~71% of the screen). */
   .step {
-    min-height: 300px;
+    min-height: 250px;
   }
   .player {
     margin-top: 40px;

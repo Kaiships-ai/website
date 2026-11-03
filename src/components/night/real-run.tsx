@@ -32,6 +32,7 @@ export function RealRun() {
             poster={run.poster}
             width={2560}
             height={1440}
+            playLabel={run.playLabel}
             label="Screen recording of one real Kaiships Studio run, 9 minutes 38 seconds"
           />
         </figure>
