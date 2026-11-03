@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { SiteConfig } from "@/lib/site.config";
-import { BeanStack, type BeanPose } from "./bean";
+import { BeanStack, useLiveBean, type BeanPose } from "./bean";
 import s from "./night.module.css";
 
 type Studio = SiteConfig["studio"];
@@ -27,6 +27,7 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
   const [word, setWord] = useState(-1);
   const stepsRef = useRef<HTMLOListElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const live = useLiveBean({ pose: bean[active] });
 
   // Images in the phone load only once the story is close.
   useEffect(() => {
@@ -141,7 +142,7 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
                     ))}
                   </ul>
                   <span className={`${s.bean} ${s.monBean}`}>
-                    <BeanStack poses={near ? bean : []} pose={bean[active]} />
+                    <BeanStack poses={near ? bean : []} pose={bean[active]} live={live.state} liveRef={live.canvas} />
                   </span>
                 </div>
                 <div className={`${s.out} ${active === 5 ? s.outOn : ""}`}>
