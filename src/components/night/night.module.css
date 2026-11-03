@@ -2131,6 +2131,32 @@
   }
 }
 
+/* Live Bean (bean-live.ts): a canvas the engine frames like the stills and
+   sizes to overhang the box, so hops never clip. It fades in over the stills,
+   which hide only once it is opaque, so the swap never dips or jumps. */
+.beanLive {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+}
+.beanStack[data-live] .beanLive {
+  opacity: 1;
+}
+.beanStack[data-live] img {
+  visibility: hidden;
+  transition:
+    opacity 200ms var(--ease-out),
+    visibility 0s 200ms;
+}
+/* The source floats and hops Bean itself; the CSS float freezes where it is. */
+.heroBean .beanStack[data-live] {
+  animation-play-state: paused;
+}
+.finalBean .beanStack[data-live] {
+  animation: none;
+}
+
 /* Narrow: Bean sits on top of the pill's right end, words to its left. */
 @media (max-width: 1180px) {
   .term {
