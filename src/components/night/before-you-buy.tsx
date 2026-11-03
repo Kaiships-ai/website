@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site.config";
+import { FaqBean } from "./bean";
 import s from "./night.module.css";
 
 const { studio } = siteConfig;
@@ -37,17 +38,20 @@ export function BeforeYouBuy() {
               </summary>
               <p>{f.a}</p>
               {"cta" in f ? (
-                <a
-                  className={`${s.btn} ${s.ghost} ${s.faqCta}`}
-                  href={f.cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-umami-event={f.cta.event}
-                >
-                  {f.cta.label}
-                  <span aria-hidden>↗</span>
-                  <span className={s.srOnly}> (opens in a new tab)</span>
-                </a>
+                <div className={s.faqHelp}>
+                  <a
+                    className={`${s.btn} ${s.ghost} ${s.faqCta}`}
+                    href={f.cta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-umami-event={f.cta.event}
+                  >
+                    {f.cta.label}
+                    <span aria-hidden>↗</span>
+                    <span className={s.srOnly}> (opens in a new tab)</span>
+                  </a>
+                  <FaqBean say={studio.bean.faq.say} />
+                </div>
               ) : null}
             </details>
           ))}

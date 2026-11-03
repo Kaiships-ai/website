@@ -1,3 +1,5 @@
+import type { BeanPose } from "@/components/night/bean";
+
 /**
  * kaiships.ai — all site copy, links, and funnel wiring live here.
  * Edit this file to change content; components never hardcode copy.
@@ -167,6 +169,14 @@ export const siteConfig = {
         { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
         { q: "Will my reel get views?", a: "It makes the reel. It can't promise views or sales." },
       ],
+    },
+
+    // Bean, the lead studio mascot. It speaks only when clicked; `how` is one
+    // pose per how.steps entry, same order.
+    bean: {
+      hero: { say: ["Hi, I'm Bean.", "One line in, one reel out."] },
+      faq: { say: ["Stuck? Ask in the Discord.", "Kai helps there."] },
+      how: ["think", "talk", "find", "work", "excited", "surprised"] satisfies readonly [BeanPose, BeanPose, BeanPose, BeanPose, BeanPose, BeanPose],
     },
 
     final: {

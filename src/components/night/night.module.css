@@ -1885,3 +1885,327 @@
     display: none;
   }
 }
+
+/* ————— Bean, the lead studio mascot ————— */
+/* Speaks only when clicked, words beside it as plain text, one confetti
+   moment on the page (final CTA). --bh is Bean's height at each spot. */
+.bean {
+  position: relative;
+  display: block;
+  flex: none;
+  --bh: 64px;
+}
+.beanStack {
+  position: relative;
+  display: block;
+  height: var(--bh);
+}
+.beanStack img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+}
+.beanStack img[data-on] {
+  opacity: 1;
+}
+.beanBtn {
+  display: block;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms var(--ease-out);
+}
+.beanBtn:active {
+  transform: scale(0.97);
+}
+.beanBounce,
+.beanClip {
+  display: block;
+  transform-origin: 50% 100%;
+}
+.beanClip {
+  transition: transform 200ms var(--ease-out);
+}
+/* Two names for one bounce, so every click replays it. */
+.beanBounce[data-b="0"] {
+  animation: beanBounceA 300ms var(--ease-out);
+}
+.beanBounce[data-b="1"] {
+  animation: beanBounceB 300ms var(--ease-out);
+}
+@keyframes beanBounceA {
+  25% {
+    transform: scale(1.07, 0.9);
+  }
+  60% {
+    transform: translateY(-9px) scale(0.97, 1.04);
+  }
+}
+@keyframes beanBounceB {
+  25% {
+    transform: scale(1.07, 0.9);
+  }
+  60% {
+    transform: translateY(-9px) scale(0.97, 1.04);
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .beanBtn:hover .beanClip {
+    transform: translateY(-2px);
+  }
+}
+.beanSay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font: 500 14px/1.35 var(--text);
+  color: var(--ink-2);
+  text-align: left;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out);
+}
+.beanSay span:first-child {
+  color: #fff;
+  font-weight: 600;
+}
+.beanSay[data-on] {
+  opacity: 1;
+}
+
+/* A · hero: stands right of the prompt pill, bottom-aligned with it. */
+.heroBean {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  margin-left: 14px;
+}
+.heroBean .beanStack {
+  animation: beanFloat 1.5s ease-in-out infinite alternate;
+}
+@keyframes beanFloat {
+  from {
+    transform: translateY(1px);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+.heroBean .beanSay {
+  left: 100%;
+  bottom: 10px;
+  margin-left: 8px;
+}
+/* Reads along while the prompt types itself: .typed runs 0.5 s to 1.6 s. */
+.heroBean img[data-pose="read"] {
+  animation: beanRead 2.2s;
+}
+.heroBean img[data-pose="idle"] {
+  animation: beanUnread 2.2s;
+}
+.heroBean:has(.beanSay[data-on]) img {
+  animation: none;
+}
+@keyframes beanRead {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  25%,
+  85% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+@keyframes beanUnread {
+  25%,
+  85% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 1;
+  }
+}
+
+/* B · How it works: under the job list, above the output lines. */
+.monJobs {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.monBean {
+  --bh: 88px;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* C · FAQ: beside Join the Discord, rises from behind the baseline. */
+.faqHelp {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: -18px 0 22px;
+}
+.faqHelp .faqCta {
+  margin: 0;
+}
+.faqBean {
+  --bh: 56px;
+}
+.faqBean .beanClip {
+  clip-path: inset(-80px -80px 0 -80px);
+}
+.faqBean .beanStack {
+  transform: translateY(105%);
+  transition: transform 300ms var(--ease-out);
+}
+.faqBean:not([data-phase="hidden"]) .beanStack {
+  transform: none;
+}
+.faqBean .beanSay {
+  left: 100%;
+  bottom: 8px;
+  margin-left: 6px;
+}
+
+/* Final CTA: cheers right of the last buy button; the button stays centred. */
+.finalCtas {
+  width: fit-content;
+  margin-inline: auto;
+}
+.finalBean {
+  --bh: 96px;
+  position: absolute;
+  left: 100%;
+  bottom: -10px;
+  margin-left: 18px;
+}
+.finalBean[data-phase="party"] .beanStack {
+  animation: beanHop 420ms var(--ease-out);
+}
+@keyframes beanHop {
+  40% {
+    transform: translateY(-10px) scale(0.97, 1.04);
+  }
+}
+.confetti {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  pointer-events: none;
+}
+.confetti i {
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--c);
+  opacity: 0;
+  animation: confetti 880ms var(--ease-out) var(--d) forwards;
+}
+@keyframes confetti {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0) scale(0.5);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), calc(var(--y) + 24px)) rotate(var(--r)) scale(1);
+  }
+}
+
+/* Narrow: Bean sits on top of the pill's right end, words to its left. */
+@media (max-width: 1180px) {
+  .term {
+    margin-top: 76px;
+  }
+  .heroBean {
+    left: auto;
+    right: 14px;
+    bottom: calc(100% - 7px);
+    margin: 0;
+    --bh: 56px;
+  }
+  .heroBean .beanSay {
+    left: auto;
+    right: 100%;
+    bottom: 12px;
+    margin: 0 6px 0 0;
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+@media (max-width: 900px) {
+  /* Right of the short job names, just above the output lines. */
+  .monBean {
+    --bh: 60px;
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    margin: 0;
+  }
+  .finalCtas {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .finalBean {
+    --bh: 84px;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    order: -1;
+    margin: 0;
+  }
+}
+/* Phone: the FAQ words take the room left of the row, in flow and always
+   there (just transparent), so speaking never shifts the layout. */
+@media (max-width: 600px) {
+  .faqBean {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+  }
+  .faqBean .beanSay {
+    position: static;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    white-space: normal;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heroBean .beanStack,
+  .beanBounce[data-b],
+  .finalBean[data-phase] .beanStack {
+    animation: none;
+  }
+  .faqBean .beanStack {
+    transform: none;
+    transition: none;
+  }
+  .beanStack img,
+  .beanSay {
+    transition: none;
+  }
+}
