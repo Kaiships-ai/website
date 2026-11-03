@@ -12,7 +12,7 @@ export default function LostPage() {
       <div className={p.lost}>
         <span className={`${s.bean} ${p.lostBean}`}>
           <TalkingBean
-            say={["hi", "I looked. Nothing here."]}
+            say={["I looked. Nothing here."]}
             label="Bean, the Studio mascot. Click to hear from Bean."
             pose="curious"
             poses={["curious"]}
