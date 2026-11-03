@@ -28,7 +28,14 @@ const other = (): Theme => (document.documentElement.dataset.theme === "light" ?
  * while everything else snaps. Images that just became visible would replay
  * their one-time entrance (the hero Bean's read-along): it is settled.
  */
+// The browser's own bar follows the page, not just the system scheme.
+const BAR = { light: "#f5f6fa", dark: "#0a0c17" } as const;
+function syncBar(t: Theme) {
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute("content", BAR[t]));
+}
+
 function apply(t: Theme) {
+  syncBar(t);
   const root = document.documentElement;
   root.dataset.themeSwitch = "";
   root.dataset.theme = t;
@@ -56,6 +63,7 @@ export function ThemeToggle() {
   useEffect(() => {
     const root = document.documentElement;
     if (!root.dataset.theme) root.dataset.theme = system();
+    syncBar(root.dataset.theme === "light" ? "light" : "dark");
   }, []);
 
   const toggle = async () => {

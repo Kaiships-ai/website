@@ -93,7 +93,8 @@ export function NightNav({ name, cta, price, checkout, variant, inPageBuy, links
         <div className={`${s.wrap} ${s.navIn}`}>
           <a className={s.logo} href={sales ? "#top" : "/"} aria-label={sales ? "Kaiships Studio, back to top" : "Kaiships Studio, home"}>
             <i aria-hidden />
-            {name}
+            {/* Terms and Privacy keep the buy button on phones: the name gives way, the dot stays. */}
+            <span className={sales ? undefined : p.logoName}>{name}</span>
           </a>
           {links.length > 0 ? (
             <nav aria-label="Sections">

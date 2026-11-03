@@ -34,8 +34,8 @@ export default function PrivacyPage() {
           <li>
             <strong>Anonymous counts.</strong> Umami and Vercel Web Analytics
             count page views and clicks on the buy buttons, with the page,
-            referrer, browser and country. Neither sets cookies or identifies
-            you.
+            referrer, browser and country. Vercel Speed Insights measures how
+            fast pages load. None of them sets cookies or identifies you.
           </li>
         </ul>
         <h2>Purchases</h2>
