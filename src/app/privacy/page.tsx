@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site.config";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How kaiships.ai handles your data — briefly, because there is very little of it.",
+  description: "How kaiships.ai handles your data, briefly, because there is very little of it.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -16,25 +16,33 @@ export default function PrivacyPage() {
         </p>
         <h1>Privacy Policy</h1>
         <p>
-          <em>Last updated: 2026-07-11</em>
+          <em>Last updated: 2026-11-03</em>
         </p>
         <p>
-          Short version: this is a static website. It has no accounts, no
-          comment box, and no tracking pixels of its own.
+          Short version: there are no accounts and no cookies. We count visits
+          without knowing who you are, and Polar handles payment.
         </p>
         <h2>What we collect</h2>
         <ul>
-          <li>
-            <strong>Nothing directly.</strong> Browsing this site does not
-            require an account and the site sets no first-party tracking
-            cookies.
-          </li>
           <li>
             <strong>Hosting logs.</strong> The site is hosted on Vercel, which
             processes standard request logs (IP address, user agent) to serve
             and secure the site.
           </li>
+          <li>
+            <strong>Anonymous counts.</strong> Umami and Vercel Web Analytics
+            count page views and clicks on the buy buttons, with the page,
+            referrer, browser and country. Neither sets cookies or identifies
+            you.
+          </li>
         </ul>
+        <h2>Purchases</h2>
+        <p>
+          Kaiships Studio is sold through Polar, the merchant of record: Polar
+          takes the payment and we never see your card details. Polar tells us
+          your email and what you bought, so we can help with setup and
+          refunds.
+        </p>
         <h2>Email capture</h2>
         <p>
           If you request the free PACK (on <a href="/pack">/pack</a> or the
@@ -46,9 +54,9 @@ export default function PrivacyPage() {
         <h2>Third-party destinations</h2>
         <p>
           Links to Instagram, TikTok, X, YouTube, and Discord take you to those
-          platforms, where their own privacy policies apply. If you DM the
-          keyword on Instagram, that conversation happens on Instagram under
-          Meta&apos;s terms.
+          platforms, where their own privacy policies apply. Help with Studio
+          happens on Discord, and a refund request is a DM on Instagram; both
+          conversations happen under those platforms&apos; terms.
         </p>
         <h2>Email</h2>
         <p>
