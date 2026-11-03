@@ -1,50 +1,40 @@
 import { siteConfig } from "@/lib/site.config";
 import { BuyButton } from "./buy-button";
-import { LazyVideo } from "./lazy-video";
+import { VideoFacade } from "./video-facade";
 import s from "./night.module.css";
 
 const { studio } = siteConfig;
 const run = studio.realRun;
 
 /*
- * 4 · Proof the buyer can check: the whole session, then the reel it made.
- * Both players start only when the visitor presses play, with sound.
- * A buy button sits right after the proof, where belief peaks.
+ * 2 · Proof the buyer can check: the 30-second reel first, with a buy button
+ * right after it, where belief peaks; then the whole 9:38 session for people
+ * who want it. Both players start only when the visitor presses play, with sound.
  */
 export function RealRun() {
   return (
-    <section className={s.sec} aria-labelledby="run-title">
+    <section className={s.sec} id="real-run" aria-labelledby="run-title">
       <div className={s.wrap}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
-          Real run
+          {run.eyebrow}
         </span>
-        <h2 id="run-title" className={`${s.h2} ${s.grad}`}>
+        <h2 id="run-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
           {run.title[0]}
           <br />
           {run.title[1]}
         </h2>
-        <p className={s.lead}>{run.lead}</p>
-
-        <figure className={s.player} id="real-run">
-          <LazyVideo
-            sources={run.sources}
-            poster={run.poster}
-            width={2560}
-            height={1440}
-            playLabel={run.playLabel}
-            label="Screen recording of one real Kaiships Studio run, 9 minutes 38 seconds"
-          />
-        </figure>
-        <p className={s.caption}>{run.caption}</p>
+        <p className={`${s.lead} ${s.arrive}`}>{run.lead}</p>
 
         <div className={s.made}>
           <div className={s.madePhone}>
-            <LazyVideo
+            <VideoFacade
               sources={[{ src: run.reel.video }]}
               poster={run.reel.poster}
-              width={540}
-              height={960}
+              sizes="(max-width: 900px) 246px, 286px"
+              playLabel={run.reel.playLabel}
+              iconOnly
+              event="reel-play"
               label="The 30-second reel this run made, about Kaiships Studio"
             />
           </div>
@@ -64,10 +54,26 @@ export function RealRun() {
               ))}
             </dl>
             <div className={s.madeBuy}>
-              <BuyButton />
+              <BuyButton spot="reel" />
               <p className={s.btnNote}>{studio.buyNote}</p>
             </div>
           </div>
+        </div>
+
+        <div className={s.session}>
+          <h3>{run.session.title}</h3>
+          <p>{run.session.lead}</p>
+          <figure className={s.player}>
+            <VideoFacade
+              sources={run.sources}
+              poster={run.poster}
+              sizes="(max-width: 1240px) calc(100vw - 40px), 1192px"
+              playLabel={run.playLabel}
+              event="run-play"
+              label="Screen recording of one real Kaiships Studio run, 9 minutes 38 seconds"
+            />
+          </figure>
+          <p className={s.caption}>{run.caption}</p>
         </div>
       </div>
     </section>

@@ -15,14 +15,14 @@ export function Pricing() {
     <section className={s.sec} id="pricing" aria-labelledby="pricing-title">
       <div className={s.wrap}>
         <div className={s.center}>
-          <span className={s.eyebrow}>
+          <span className={`${s.eyebrow} ${s.arrive}`}>
             <i aria-hidden />
             Pricing
           </span>
-          <h2 id="pricing-title" className={`${s.h2} ${s.grad}`}>
+          <h2 id="pricing-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
             {p.title}
           </h2>
-          <p className={s.lead}>{p.lead}</p>
+          <p className={`${s.lead} ${s.arrive}`}>{p.lead}</p>
         </div>
 
         <div className={s.insteadWrap}>
@@ -75,7 +75,7 @@ export function Pricing() {
             </div>
           </div>
           <div className={s.planFoot}>
-            <BuyButton className={s.planBuy} />
+            <BuyButton spot="pricing" className={s.planBuy} />
             <p className={s.planNote}>{p.note}</p>
           </div>
         </div>

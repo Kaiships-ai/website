@@ -11,11 +11,11 @@ export function BeforeYouBuy() {
     <section className={s.sec} id="faq" aria-labelledby="faq-title">
       <div className={`${s.wrap} ${s.faqGrid}`}>
         <div>
-          <span className={s.eyebrow}>
+          <span className={`${s.eyebrow} ${s.arrive}`}>
             <i aria-hidden />
             Before you buy
           </span>
-          <h2 id="faq-title" className={`${s.h2} ${s.grad}`}>
+          <h2 id="faq-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
             {b.title}
           </h2>
           <ol className={s.req}>
@@ -32,13 +32,13 @@ export function BeforeYouBuy() {
           <h3 className={s.srOnly}>Questions</h3>
           {b.faq.map((f, i) => (
             <details key={f.q} open={i === 0}>
-              <summary>
+              <summary data-umami-event="faq-open" data-umami-event-q={i}>
                 {f.q}
                 <i aria-hidden />
               </summary>
               <p>{f.a}</p>
               {"cta" in f ? (
-                <div className={s.faqHelp}>
+                <div className={s.faqHelp} data-bar-off="">
                   <a
                     className={`${s.btn} ${s.ghost} ${s.faqCta}`}
                     href={f.cta.href}

@@ -15,23 +15,23 @@ export function FinalCta() {
       <div className={s.wall} aria-hidden>
         {Array.from({ length: 24 }, (_, i) => (
           <div key={i}>
-            <Image src={posters[i % posters.length]} alt="" fill sizes="160px" />
+            <Image src={posters[i % posters.length]} alt="" fill sizes="(max-width: 900px) 32vw, 14vw" />
           </div>
         ))}
       </div>
       <div className={s.finalIn}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
           {f.eyebrow}
         </span>
-        <h2 id="final-title" className={`${s.finalH2} ${s.grad}`}>
+        <h2 id="final-title" className={`${s.finalH2} ${s.grad} ${s.arrive}`}>
           <span>{f.title[0]}</span>
           <span>
             <span className={s.hot}>{f.title[1]}</span> {f.title[2]}
           </span>
         </h2>
         <div className={`${s.ctas} ${s.finalCtas}`}>
-          <BuyButton />
+          <BuyButton spot="final" />
           <FinalBean />
         </div>
         <p className={s.btnNote}>{studio.buyNote}</p>
