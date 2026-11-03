@@ -13,6 +13,14 @@ type BeanImage = { src: string; width: number; height: number };
 export const BEAN = Object.fromEntries(
   Object.keys(registry.poses).map((k) => [k, { src: `/bean/${k}.webp`, width: registry.size.w, height: registry.size.h }]),
 ) as Record<BeanPose, BeanImage>;
+/** The same poses rendered for a light ground (no rim glow). */
+const BEAN_LIGHT = Object.fromEntries(
+  Object.entries(BEAN).map(([k, b]) => [k, { ...b, src: `/bean/light/${k}.webp` }]),
+) as Record<BeanPose, BeanImage>;
+const SETS = [
+  ["dark", BEAN],
+  ["light", BEAN_LIGHT],
+] as const;
 
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -143,6 +151,10 @@ export function useLiveBean({ pose, hop = 0, follow, doze }: { pose: BeanPose; h
  * Every pose this spot can show, stacked; the current one is opaque. Changing
  * pose is an opacity crossfade, so a fast scroll just retargets it. A live
  * Bean, once allowed, fades in over the stack on a canvas framed like the stills.
+ * Each pose is there twice, dark and light (`data-theme-img`): CSS hides the
+ * set the theme does not use, and lazy images that are not displayed never
+ * load, so only one set is fetched (the server can't know the theme;
+ * ThemeScript sets it pre-paint). theme-toggle.tsx warms the other set.
  */
 export function BeanStack({
   poses,
@@ -163,18 +175,21 @@ export function BeanStack({
       style={{ aspectRatio: `${registry.size.w} / ${registry.size.h}` }}
       data-live={live === "live" || undefined}
     >
-      {[...new Set(poses)].map((p) => (
-        <Image
-          key={p}
-          {...BEAN[p]}
-          alt=""
-          unoptimized
-          data-pose={p}
-          data-on={p === pose || undefined}
-          loading={eager.includes(p) ? "eager" : "lazy"}
-          fetchPriority={eager.includes(p) ? "low" : undefined}
-        />
-      ))}
+      {SETS.map(([set, images]) =>
+        [...new Set(poses)].map((p) => (
+          <Image
+            key={`${set}-${p}`}
+            {...images[p]}
+            alt=""
+            unoptimized
+            data-theme-img={set}
+            data-pose={p}
+            data-on={p === pose || undefined}
+            loading="lazy"
+            fetchPriority={eager.includes(p) ? "low" : undefined}
+          />
+        )),
+      )}
       {live !== "still" ? <canvas ref={liveRef} className={s.beanLive} /> : null}
     </span>
   );
@@ -309,7 +324,7 @@ const CONFETTI = Array.from({ length: 18 }, (_, i) => {
     "--x": `${Math.round(Math.cos(a) * r)}px`,
     "--y": `${Math.round(Math.sin(a) * r - 20)}px`,
     "--r": `${(i * 47) % 360}deg`,
-    "--c": ["var(--or)", "var(--ok)", "#ffd69e", "var(--ink-2)", "var(--or-2)"][i % 5],
+    "--c": ["var(--or)", "var(--ok)", "var(--sun)", "var(--ink-2)", "var(--or-2)"][i % 5],
     "--d": `${(i % 6) * 20}ms`,
   } as React.CSSProperties;
 });

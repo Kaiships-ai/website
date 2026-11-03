@@ -1,6 +1,6 @@
 import { WebGLRenderer, type PerspectiveCamera, type Scene } from "three";
 import type { BeanPose } from "./bean";
-import { Mascot, makeCam, makeScene, type MascotExpr, type MascotPose } from "./bean-mascot.gen";
+import { Mascot, makeCam, makeScene, setThemeDark, type MascotExpr, type MascotPose } from "./bean-mascot.gen";
 import registry from "./bean-poses.json";
 
 /**
@@ -86,6 +86,8 @@ function build(spot: Spot, t: number) {
 }
 
 function draw(spot: Spot, t: number) {
+  // The scheme around this Bean: the page's theme, or dark inside the monitor.
+  setThemeDark(getComputedStyle(spot.canvas).colorScheme !== "light");
   if (!spot.m) build(spot, t);
   const { mascot, scene, cam } = spot.m!;
   const l = look(spot, t);
