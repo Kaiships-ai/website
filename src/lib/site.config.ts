@@ -43,7 +43,7 @@ export const siteConfig = {
     buyNote: "One payment. Can't\u00a0make\u00a0a\u00a0reel\u00a0in\u00a07\u00a0days?\u00a0Refund.",
     // Who makes it and can I use it, both on the first screen (FAQ has the long version).
     maker: "Made by Kai",
-    runsOn: "Runs in Claude Code on macOS, Windows or Linux.",
+    runsOn: "Runs in Claude Code on macOS, Windows\u00a0or\u00a0Linux.",
     // Every buy button says the outcome, then the price (no surprise at checkout).
     cta: "Make my reel",
     prompt: "/studio a promo for my app",

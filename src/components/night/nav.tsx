@@ -18,6 +18,15 @@ type Props = {
  * on screen and turns orange when it is the only one; the bar shows only when
  * nothing else to buy with, or to read under it (`data-bar-off`), is on screen.
  */
+function keepAboveBar(el: Element | null) {
+  const barEl = document.querySelector("[data-buy-bar]");
+  if (!barEl || !el || barEl.contains(el) || !el.matches(":focus-visible")) return;
+  const b = barEl.getBoundingClientRect();
+  if (!b.height || b.top >= window.innerHeight) return; // no bar here, or hidden
+  const r = el.getBoundingClientRect();
+  if (r.bottom > b.top - 8 && r.top < window.innerHeight) window.scrollBy(0, r.bottom - b.top + 16);
+}
+
 export function NightNav({ name, cta, price, checkout, links }: Props) {
   const [solid, setSolid] = useState(false);
   const [alone, setAlone] = useState(false);
@@ -43,11 +52,28 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
       { rootMargin: "-68px 0px 0px 0px" },
     );
     document.querySelectorAll("main [data-buy], main [data-bar-off]").forEach((el) => io.observe(el));
+
+    // Keyboard focus never sits under the bar: scroll-padding covers most cases, but
+    // browsers skip it for an element already partly on screen. Checked a frame after
+    // the browser's own focus scroll.
+    const onFocus = (e: FocusEvent) => {
+      const el = e.target;
+      if (el instanceof Element) requestAnimationFrame(() => keepAboveBar(el));
+    };
+    document.addEventListener("focusin", onFocus);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("focusin", onFocus);
       io.disconnect();
     };
   }, []);
+
+  // The bar can also slide in under an element that already has keyboard focus.
+  useEffect(() => {
+    if (!bar) return;
+    const t = window.setTimeout(() => keepAboveBar(document.activeElement), 220);
+    return () => window.clearTimeout(t);
+  }, [bar]);
 
   return (
     <>
@@ -80,7 +106,7 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
         </div>
       </header>
       {/* Outside the header: its backdrop-filter would pin a fixed child to the header. */}
-      <div className={`${s.bar} ${bar ? s.barOn : ""}`}>
+      <div className={`${s.bar} ${bar ? s.barOn : ""}`} data-buy-bar>
         <a
           href={checkout}
           className={`${s.btn} ${s.primary}`}

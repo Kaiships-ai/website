@@ -326,6 +326,10 @@
   .navCta {
     display: none;
   }
+  /* Keyboard focus and find-in-page never land under the bar. */
+  html:has(.bar) {
+    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
   .bar {
     display: block;
     position: fixed;
@@ -365,7 +369,7 @@
 /* ————— 1 · hero ————— */
 .hero {
   text-align: center;
-  padding: calc(var(--nav-h) + 64px) 16px 0;
+  padding: calc(var(--nav-h) + 64px) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
   position: relative;
   overflow: hidden;
 }
@@ -1678,7 +1682,7 @@
   margin-top: 140px;
   position: relative;
   overflow: hidden;
-  padding: 200px 16px 210px;
+  padding: 200px max(16px, env(safe-area-inset-right)) 210px max(16px, env(safe-area-inset-left));
   text-align: center;
 }
 .wall {

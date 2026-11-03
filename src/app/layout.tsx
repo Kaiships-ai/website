@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.studio.name} · ${siteConfig.tagline}`,
-    template: `%s — ${siteConfig.name}`,
+    template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.bio,
   keywords: [

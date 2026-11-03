@@ -95,9 +95,9 @@ export function useLiveBean({ pose, hop = 0, follow, doze }: { pose: BeanPose; h
   const [state, setState] = useState<LiveState>("still");
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
   const bean = useRef<LiveBean | null>(null);
-  const spec = useRef({ pose, follow, doze });
+  const spec = useRef({ pose, follow, doze, hop });
   useEffect(() => {
-    spec.current = { pose, follow, doze };
+    spec.current = { pose, follow, doze, hop };
   });
   useEffect(() => {
     let on = true;
@@ -120,6 +120,9 @@ export function useLiveBean({ pose, hop = 0, follow, doze }: { pose: BeanPose; h
         { shown: () => setState("live"), failed: () => setState("still") },
       );
       if (!bean.current) setState("still");
+      // A hop asked for before the chunk arrived (the final cheer, or a click that was
+      // the first input) still plays once Bean is live.
+      else if (spec.current.hop) bean.current.hop();
     });
     return () => {
       on = false;

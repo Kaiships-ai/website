@@ -58,10 +58,14 @@ export default function Image() {
               letterSpacing: -2,
             }}
           >
-            <span style={nowrap}>You built it with</span>
+            {/* Satori kerns "Yo" when drawing but not when measuring, which leaves a wide
+                space after "You"; a smaller explicit gap evens it out. */}
+            <span style={nowrap}>
+              You<span style={{ marginLeft: 3 }}>built it with</span>
+            </span>
             <span style={nowrap}>Claude Code.</span>
             <span style={nowrap}>
-              Nobody knows<span style={{ color: "#f0874f", marginLeft: 18 }}>yet.</span>
+              Nobody knows<span style={{ color: "#f0874f", marginLeft: 10 }}>yet.</span>
             </span>
           </div>
           <div style={{ display: "flex", marginTop: 26, fontSize: 25, lineHeight: 1.4, color: "#b4b1cc", textWrap: "balance" }}>
