@@ -18,3 +18,5 @@ export class Mascot {
 }
 export function makeScene(m: Mascot): Scene;
 export function makeCam(z?: number, ty?: number): PerspectiveCamera;
+/** The source's theme switch: rim glow and shadow strength, read on every update. */
+export function setThemeDark(dark: boolean): void;

@@ -143,7 +143,8 @@ function burst(color, cx, cy, pts) {
   return g;
 }
 
-const THEME_DARK = true;
+let THEME_DARK = true;
+const setThemeDark = (dark) => { THEME_DARK = dark; };
 
 // ---------- the mascot ----------
 class Mascot {
@@ -459,4 +460,4 @@ function makeCam(z = 6.4, ty = 0.14) {
   const c = new THREE.PerspectiveCamera(30, 1, 0.1, 50); c.position.set(0, 0.42, z); c.lookAt(0, ty, 0); return c;
 }
 
-export { Mascot, makeScene, makeCam };
+export { Mascot, makeScene, makeCam, setThemeDark };

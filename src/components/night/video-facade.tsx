@@ -1,12 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { track } from "@/lib/track";
 import s from "./night.module.css";
+import f from "./video-facade.module.css";
 
 type Source = { src: string; media?: string };
 export type Poster = { src: string; srcSet: string; width: number; height: number };
+
+/** poster: nothing loaded yet. video: <video controls> mounted. failed: back on the poster, saying so. */
+type Phase = "poster" | "video" | "failed";
 
 /**
  * A poster and one play control, server-rendered: no video bytes, no native
@@ -14,6 +18,8 @@ export type Poster = { src: string; srcSet: string; width: number; height: numbe
  * JavaScript the control is a plain link to the MP4. With it, the press mounts
  * <video controls> and starts it inside the same gesture, so sound is allowed.
  * Several sources: the browser takes the first whose `media` matches.
+ * A playing video pauses when it leaves the screen or the tab hides; one that
+ * cannot load goes back to its poster with a short note, and play retries.
  */
 export function VideoFacade({
   sources,
@@ -32,12 +38,36 @@ export function VideoFacade({
   event: string;
   iconOnly?: boolean;
 }) {
-  const [on, setOn] = useState(false);
+  const [phase, setPhase] = useState<Phase>("poster");
   const [posterSrc, setPosterSrc] = useState<string>();
   const img = useRef<HTMLImageElement>(null);
   const video = useRef<HTMLVideoElement>(null);
+  const link = useRef<HTMLAnchorElement>(null);
 
-  if (on) {
+  // The failed player unmounts with focus inside it: hand focus back to play.
+  useEffect(() => {
+    if (phase === "failed") link.current?.focus();
+  }, [phase]);
+
+  useEffect(() => {
+    const v = video.current;
+    if (phase !== "video" || !v) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) v.pause();
+    });
+    io.observe(v);
+    const onHide = () => {
+      if (document.hidden) v.pause();
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onHide);
+    };
+  }, [phase]);
+
+  if (phase === "video") {
+    const failed = () => setPhase("failed");
     return (
       <video
         ref={video}
@@ -48,11 +78,13 @@ export function VideoFacade({
         width={poster.width}
         height={poster.height}
         aria-label={label}
+        onError={failed}
         // One player at a time: starting this one pauses any other.
         onPlay={(e) => document.querySelectorAll("video[controls]").forEach((v) => v !== e.currentTarget && (v as HTMLVideoElement).pause())}
       >
-        {sources.map((x) => (
-          <source key={x.src} src={x.src} media={x.media} type="video/mp4" />
+        {sources.map((x, i) => (
+          // A source's error only means the browser tries the next; the last one failing means none loaded.
+          <source key={x.src} src={x.src} media={x.media} type="video/mp4" onError={i === sources.length - 1 ? failed : undefined} />
         ))}
       </video>
     );
@@ -60,6 +92,7 @@ export function VideoFacade({
 
   return (
     <a
+      ref={link}
       className={s.facade}
       href={sources[sources.length - 1].src}
       onClick={(e) => {
@@ -69,7 +102,7 @@ export function VideoFacade({
         if (e.detail === 0) track(event);
         flushSync(() => {
           setPosterSrc(img.current?.currentSrc || undefined);
-          setOn(true);
+          setPhase("video");
         });
         video.current?.play().catch(() => {});
         video.current?.focus();
@@ -86,6 +119,9 @@ export function VideoFacade({
           <i aria-hidden />
           <span>{playLabel}</span>
         </span>
+      </span>
+      <span className={f.note} role="status">
+        {phase === "failed" ? "The video didn't load. Press play to try again." : ""}
       </span>
     </a>
   );

@@ -38,8 +38,9 @@ js = patch(
 );
 js = patch(js, "const Q = new URLSearchParams(location.search);\n", "");
 js = patch(js, "const STILL = Q.has('still');\nif (STILL) document.documentElement.classList.add('still');\n", "const STILL = false;\n");
-// The sales page is dark, and the stills were rendered with ?theme=dark.
-js = patch(js, "let THEME_DARK = false;", "const THEME_DARK = true;");
+// The page sets the theme per Bean before each frame (bean-live.ts), from the
+// colour scheme around it: a dark Bean has a rim glow and a softer shadow.
+js = patch(js, "let THEME_DARK = false;", "let THEME_DARK = true;\nconst setThemeDark = (dark) => { THEME_DARK = dark; };");
 // The page's one confetti moment is the DOM confetti by the final buy button.
 js = patch(js, "    if (celebrate && !this.conf) this.initConfetti();\n", "");
 // The registry only feeds the page's tile UI, and would keep every Bean alive.
@@ -56,7 +57,7 @@ const out = `/* eslint-disable */
 import * as THREE from "three";
 ${js.trimEnd()}
 
-export { Mascot, makeScene, makeCam };
+export { Mascot, makeScene, makeCam, setThemeDark };
 `;
 
 if (process.argv.includes("--check")) {
