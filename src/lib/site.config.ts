@@ -115,7 +115,7 @@ export const siteConfig = {
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
         video: "/proof/studio-fall.mp4",
-        poster: { src: "/proof/studio-fall-poster.jpg", srcSet: "/proof/studio-fall-poster.webp 540w", width: 540, height: 960 },
+        poster: { src: "/proof/studio-fall-poster.jpg", srcSet: "/proof/studio-fall-poster.webp 540w, /proof/studio-fall-poster-720.webp 720w", width: 540, height: 960 },
         playLabel: "Play the reel · 0:30",
         title: "The reel from this run",
         text: "30 seconds, made about itself. Turn the sound on. A fast preview, not the final render.",
