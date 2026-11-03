@@ -1370,6 +1370,14 @@
   padding: 0 48px 22px 0;
   color: var(--dim);
 }
+/* A help link inside an answer: secondary (ghost), so the buy button stays
+   the only orange action on the screen. */
+.faq .faqCta {
+  min-height: 44px;
+  margin: -6px 0 22px;
+  padding: 10px 16px;
+  font-size: 15px;
+}
 .faq code {
   font: 14px var(--mono);
   color: var(--ink);

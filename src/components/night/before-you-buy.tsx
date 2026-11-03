@@ -36,6 +36,19 @@ export function BeforeYouBuy() {
                 <i aria-hidden />
               </summary>
               <p>{f.a}</p>
+              {"cta" in f ? (
+                <a
+                  className={`${s.btn} ${s.ghost} ${s.faqCta}`}
+                  href={f.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-umami-event={f.cta.event}
+                >
+                  {f.cta.label}
+                  <span aria-hidden>↗</span>
+                  <span className={s.srOnly}> (opens in a new tab)</span>
+                </a>
+              ) : null}
             </details>
           ))}
         </div>

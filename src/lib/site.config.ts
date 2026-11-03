@@ -19,6 +19,8 @@ export const siteConfig = {
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
     email: "kai@kaiships.ai",
+    // "Kai Ship AI Community", invite never expires (checked 2026-11-03).
+    discord: "https://discord.gg/MAAJmghmrA",
   },
 
   // The one paid product. Every fact here comes from the settled offer
@@ -153,7 +155,11 @@ export const siteConfig = {
       ],
       promise: "It makes the reel. It can't promise views or sales.",
       faq: [
-        { q: "What if it doesn't work on my machine?", a: "DM @kaiships.ai on Instagram. If you can't make a reel on your machine within 7 days, you get a refund." },
+        {
+          q: "What if it doesn't work on my machine?",
+          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel on your machine within 7 days, DM @kaiships.ai on Instagram for a refund.",
+          cta: { label: "Join the Discord", href: "https://discord.gg/MAAJmghmrA", event: "discord-click" },
+        },
         { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up: it downloads about 900 MB of tools into the Studio folder, so it needs internet." },
         { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run also downloads the tools before it starts." },
         { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
