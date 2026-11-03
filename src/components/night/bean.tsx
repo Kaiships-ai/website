@@ -15,6 +15,28 @@ export const BEAN = Object.fromEntries(
 
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/** True once the page has loaded and gone idle, so extra poses never compete with the first paint. */
+function useAfterLoad() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let idle = 0;
+    const go = () => {
+      idle =
+        typeof window.requestIdleCallback === "function"
+          ? window.requestIdleCallback(() => setReady(true), { timeout: 2500 })
+          : (globalThis.setTimeout(() => setReady(true), 300) as unknown as number);
+    };
+    if (document.readyState === "complete") go();
+    else window.addEventListener("load", go, { once: true });
+    return () => {
+      window.removeEventListener("load", go);
+      if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(idle);
+      else globalThis.clearTimeout(idle);
+    };
+  }, []);
+  return ready;
+}
+
 /** Calls `onEnter` once, the first time `ref` scrolls into view. */
 function useFirstView(ref: React.RefObject<HTMLElement | null>, onEnter: () => void, threshold = 0.6) {
   const cb = useRef(onEnter);
@@ -41,7 +63,7 @@ function useFirstView(ref: React.RefObject<HTMLElement | null>, onEnter: () => v
  * Every pose this spot can show, stacked; the current one is opaque. Changing
  * pose is an opacity crossfade, so a fast scroll just retargets it.
  */
-export function BeanStack({ poses, pose, eager }: { poses: readonly BeanPose[]; pose: BeanPose; eager?: BeanPose }) {
+export function BeanStack({ poses, pose, eager = [] }: { poses: readonly BeanPose[]; pose: BeanPose; eager?: readonly BeanPose[] }) {
   return (
     <span className={s.beanStack} style={{ aspectRatio: `${registry.size.w} / ${registry.size.h}` }}>
       {[...new Set(poses)].map((p) => (
@@ -52,8 +74,8 @@ export function BeanStack({ poses, pose, eager }: { poses: readonly BeanPose[]; 
           unoptimized
           data-pose={p}
           data-on={p === pose || undefined}
-          loading={p === eager ? "eager" : "lazy"}
-          fetchPriority={p === eager ? "low" : undefined}
+          loading={eager.includes(p) ? "eager" : "lazy"}
+          fetchPriority={eager.includes(p) ? "low" : undefined}
         />
       ))}
     </span>
@@ -78,10 +100,13 @@ function TalkingBean({
   label: string;
   pose: BeanPose;
   poses: readonly BeanPose[];
-  eager?: BeanPose;
+  eager?: readonly BeanPose[];
 }) {
   const [st, send] = useReducer(speech, { phase: "idle", n: 0 });
   const speaking = st.phase === "speaking";
+  // "hi" is only needed after a click: fetch it once the page is idle.
+  const loaded = useAfterLoad();
+  const withHi = loaded || st.n > 0;
   useEffect(() => {
     if (st.phase !== "speaking") return;
     const t = window.setTimeout(() => send("done"), SPEAK_MS);
@@ -93,7 +118,7 @@ function TalkingBean({
       <button type="button" className={s.beanBtn} aria-label={label} onClick={() => send("click")}>
         <span className={s.beanBounce} data-b={st.n === 0 ? undefined : st.n % 2}>
           <span className={s.beanClip}>
-            <BeanStack poses={[...poses, "hi"]} pose={speaking ? "hi" : pose} eager={eager} />
+            <BeanStack poses={withHi ? [...poses, "hi"] : poses} pose={speaking ? "hi" : pose} eager={eager} />
           </span>
         </span>
       </button>
@@ -102,18 +127,19 @@ function TalkingBean({
           <span key={l}>{l}</span>
         ))}
       </span>
+      {/* The trailing space flips per click, so a repeat click is announced again. */}
       <span className={s.srOnly} aria-live="polite">
-        {speaking ? say.join(" ") : ""}
+        {speaking ? say.join(" ") + (st.n % 2 ? "\u00a0" : "") : ""}
       </span>
     </>
   );
 }
 
-/** A · Hero: reads the prompt while it types (CSS), says hi when clicked. */
+/** A · Hero: reads the prompt while it types (CSS, once), says hi when clicked. */
 export function HeroBean({ say }: { say: readonly string[] }) {
   return (
     <span className={`${s.bean} ${s.heroBean}`}>
-      <TalkingBean say={say} label="Say hi to Bean" pose="idle" poses={["idle", "read"]} eager="idle" />
+      <TalkingBean say={say} label="Say hi to Bean" pose="idle" poses={["idle", "read"]} eager={["idle", "read"]} />
     </span>
   );
 }
@@ -131,7 +157,7 @@ export function FaqBean({ say }: { say: readonly string[] }) {
 
   return (
     <span ref={ref} className={`${s.bean} ${s.faqBean}`} data-phase={phase}>
-      <TalkingBean say={say} label="Ask Bean for help" pose={phase === "hi" ? "hi" : "curious"} poses={["curious"]} />
+      <TalkingBean say={say} label="Ask Bean for help" pose={phase === "hi" ? "hi" : "curious"} poses={["curious", "hi"]} />
     </span>
   );
 }

@@ -141,7 +141,7 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
                     ))}
                   </ul>
                   <span className={`${s.bean} ${s.monBean}`}>
-                    <BeanStack poses={bean} pose={bean[active]} />
+                    <BeanStack poses={near ? bean : []} pose={bean[active]} />
                   </span>
                 </div>
                 <div className={`${s.out} ${active === 5 ? s.outOn : ""}`}>
