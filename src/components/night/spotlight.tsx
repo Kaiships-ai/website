@@ -49,6 +49,8 @@ export function Spotlight() {
       if (resting) last = 0;
     };
     const onMove = (e: PointerEvent) => {
+      // The light shows up once the pointer moves: feedback, not decoration at rest.
+      el.dataset.on = "";
       const r = hero.getBoundingClientRect();
       tx = e.clientX - r.left;
       ty = e.clientY - r.top;
