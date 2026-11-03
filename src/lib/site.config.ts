@@ -36,11 +36,14 @@ export const siteConfig = {
     checkout:
       "https://buy.polar.sh/polar_cl_yqXEKmmPW7SvfiYAfeDll5InhQ2jiUaJp8UtZ2GvObZ",
     headline: "You built it with Claude Code. Nobody knows yet.",
-    sub: "Type what it does. Claude Code makes the reel on your machine: script, voice, scenes, captions and music. No camera.",
+    sub: "Type what it does. Claude Code makes the reel on your own computer: script, voice, scenes, captions and music. No camera.",
     // The refund condition, said where the money decision happens (offer:
     // "Không ra được reel: hoàn tiền trong 7 ngày").
     // Non-breaking spaces keep the refund sentence on one line on a phone.
     buyNote: "One payment. Can't\u00a0make\u00a0a\u00a0reel\u00a0in\u00a07\u00a0days?\u00a0Refund.",
+    // Who makes it and can I use it, both on the first screen (FAQ has the long version).
+    maker: "Made by Kai",
+    runsOn: "Runs in Claude Code on macOS, Windows or Linux.",
     // Every buy button says the outcome, then the price (no surprise at checkout).
     cta: "Make my reel",
     prompt: "/studio a promo for my app",

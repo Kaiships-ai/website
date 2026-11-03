@@ -16,7 +16,7 @@ export function Hero() {
       <Spotlight />
       <p className={`${s.pill} ${s.enter}`}>
         <i aria-hidden />
-        {studio.name} · <b>52 film styles</b>
+        {studio.maker} · <b>52 film styles</b>
       </p>
       <h1 id="hero-title" className={`${s.h1} ${s.grad}`}>
         You built it with Claude Code.
@@ -31,6 +31,9 @@ export function Hero() {
       </div>
       <p className={`${s.btnNote} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
         {studio.buyNote}
+      </p>
+      <p className={`${s.runsOn} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>
+        {studio.runsOn}
       </p>
       <div className={`${s.term} ${s.enter}`} style={{ "--d": 4 } as React.CSSProperties}>
         <span className={s.or} aria-hidden>
