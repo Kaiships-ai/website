@@ -15,7 +15,7 @@ export function FinalCta() {
       <div className={s.wall} aria-hidden>
         {Array.from({ length: 24 }, (_, i) => (
           <div key={i}>
-            <Image src={posters[i % posters.length]} alt="" fill sizes="160px" />
+            <Image src={posters[i % posters.length]} alt="" fill sizes="(max-width: 900px) 32vw, 14vw" />
           </div>
         ))}
       </div>

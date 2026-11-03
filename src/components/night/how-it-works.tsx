@@ -48,14 +48,15 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
   // Which step is in the middle band of the viewport.
   useEffect(() => {
     const steps = [...(stepsRef.current?.children ?? [])];
-    // Desktop: the middle of the screen. Phone: the middle of the space left
-    // under the sticky monitor, so the active step is the one you can read.
-    const phone = window.matchMedia("(max-width: 900px)").matches;
+    // Side by side: the middle of the screen. Stacked (below 1180 px): the
+    // middle of the space left under the sticky monitor, so the active step
+    // is the one you can read.
+    const stacked = window.matchMedia("(max-width: 1179.98px)").matches;
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) if (e.isIntersecting) setActive(steps.indexOf(e.target));
       },
-      { rootMargin: phone ? "-70% 0px -28% 0px" : "-45% 0px -45% 0px" },
+      { rootMargin: stacked ? "-70% 0px -28% 0px" : "-45% 0px -45% 0px" },
     );
     steps.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -151,6 +152,8 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
               </div>
 
               <div className={s.phone}>
+                {/* The reel's own cover, faint behind every scene: no empty panel. */}
+                {near ? <Image className={s.phoneBg} src={reel.poster} alt="" fill sizes="(max-width: 1179px) 160px, 340px" /> : null}
                 <div className={scene(0, s.sHook)}>
                   <small>HOOK · SCRIPT</small>
                   <p>{how.hook}</p>
@@ -194,7 +197,7 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
                   <div className={s.sceneLbl}>Music + sound on the beats</div>
                 </div>
                 <div className={scene(5, s.sFinal)}>
-                  {near ? <Image src={reel.poster} alt="" fill sizes="200px" /> : null}
+                  {near ? <Image src={reel.poster} alt="" fill sizes="(max-width: 1179px) 160px, 340px" /> : null}
                   <video ref={videoRef} data-src={reel.video} muted loop playsInline preload="metadata" />
                   <span className={s.ready}>✓ ready</span>
                   <span className={s.tag}>Hook 7/10 · bar 8/10</span>

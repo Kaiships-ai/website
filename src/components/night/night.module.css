@@ -650,12 +650,13 @@
 }
 
 /* ————— 3 · scroll story ————— */
-/* Steps column sized to its measure (~48 ch), so the monitor gets the
-   width its terminal needs and the prompt stays on one line. */
+/* Steps column sized to its measure, so the monitor gets the width its
+   terminal needs and the prompt stays on one line (checked at 1180 px).
+   Narrower than 1180 the story stacks, monitor on top. */
 .story {
   display: grid;
-  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
-  gap: 80px;
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+  gap: 64px;
   margin-top: var(--gap-content);
 }
 .steps {
@@ -810,6 +811,13 @@
   position: relative;
   overflow: hidden;
 }
+/* Blurred, so its own words never double the scene's words. */
+.phoneBg {
+  object-fit: cover;
+  opacity: 0.22;
+  filter: blur(8px) saturate(1.2);
+  transform: scale(1.12);
+}
 .scene {
   position: absolute;
   inset: 0;
@@ -915,7 +923,7 @@
   text-transform: uppercase;
 }
 .sCap {
-  background: #f1e2cc;
+  background: rgba(241, 226, 204, 0.9);
   align-items: center;
   text-align: center;
 }
@@ -961,6 +969,11 @@
 }
 .sFinal {
   padding: 0;
+}
+/* Never an ellipsis: wraps to two lines in the small phone. */
+.sFinal .tag {
+  white-space: normal;
+  text-overflow: clip;
 }
 .sFinal img,
 .sFinal video {
@@ -1717,6 +1730,36 @@
   margin-top: 6px;
 }
 
+/* ————— stacked story (tablets and phones) ————— */
+@media (max-width: 1179.98px) {
+  .story {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .monWrap {
+    top: calc(var(--nav-h) + 8px);
+    height: 400px;
+    order: -1;
+    z-index: 2;
+  }
+  /* Steps scroll under the monitor: solid behind it, then a soft fade, so
+     text going under it fades out instead of being cut. */
+  .monWrap::before {
+    content: "";
+    position: absolute;
+    inset: -9px -24px -56px;
+    background: linear-gradient(var(--bg) calc(100% - 52px), transparent);
+    z-index: -1;
+  }
+  .monTerm {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .step {
+    min-height: 260px;
+  }
+}
+
 /* ————— phone ————— */
 @media (max-width: 900px) {
   .night {
@@ -1783,23 +1826,12 @@
   .term small {
     display: none;
   }
-  .story {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
   .monWrap {
-    top: calc(var(--nav-h) + 8px);
     height: 300px;
-    order: -1;
-    z-index: 2;
   }
-  /* Steps scroll under the monitor: hide them there instead of peeking out. */
   .monWrap::before {
-    content: "";
-    position: absolute;
-    inset: -9px -20px -28px;
-    background: linear-gradient(var(--bg) 88%, transparent);
-    z-index: -1;
+    left: -20px;
+    right: -20px;
   }
   .monTerm {
     padding: 14px;
@@ -1840,6 +1872,9 @@
   }
   .styleCard small {
     font-size: 8px;
+  }
+  .sFinal .tag {
+    border-radius: var(--r-sm);
   }
   /* Short steps under a sticky monitor: each one is readable for its whole
      active stretch (monitor ends ~370 px, active band at ~71% of the screen). */
