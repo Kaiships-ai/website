@@ -1429,6 +1429,7 @@
 .costs dd {
   margin: 0;
   color: var(--ink);
+  text-wrap: balance;
 }
 .planFoot {
   display: flex;
@@ -1482,6 +1483,13 @@
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 64px;
+  align-items: start;
+}
+/* The needs ride along beside the FAQ, so the left column never ends in a
+   dead zone. */
+.faqGrid > div:first-child {
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
 }
 .req {
   list-style: none;
@@ -1968,6 +1976,9 @@
   .faqGrid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .faqGrid > div:first-child {
+    position: static;
   }
   .faq details p {
     padding-right: 0;

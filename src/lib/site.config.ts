@@ -151,36 +151,37 @@ export const siteConfig = {
         "Discord help",
       ],
       costs: [
-        { k: "Money", t: "$30 once. No monthly plan, no upsell. Your Claude plan is separate." },
+        // "a reel uses a lot of it" is Kai's own line on the Polar checkout.
+        { k: "Money", t: "$30 once. No monthly plan, no upsell. Studio runs on your own Claude plan, and a reel uses a lot of it." },
         { k: "Effort", t: "One line about your product, then pick a style. No camera, no editing." },
         { k: "Time", t: "My run: about 50 minutes for two reels, with the setup already downloaded." },
-        { k: "Risk", t: "Can't make a reel on your machine? DM @kaiships.ai within 7 days for a refund." },
+        { k: "Risk", t: "Can't make a reel on your computer? Message @kaiships.ai on Instagram within 7 days and you get your money back." },
       ],
       // What Studio removes next to each alternative from the wireframe.
       // Claims are about Studio only, not about other people's products.
       insteadOf: [
-        { k: "Filming yourself", t: "Here: no camera, no retakes, no editing." },
-        { k: "Hiring an editor", t: "Here: no fee per video. $30 once, unlimited reels." },
-        { k: "Template apps", t: "Here: no monthly plan, and the script, voice and music are made for you." },
+        { k: "Filming yourself", t: "No camera, no retakes, no editing." },
+        { k: "Hiring an editor", t: "No fee per video. $30 once, unlimited reels." },
+        { k: "Template apps", t: "No monthly plan, and the script, voice and music are made for you." },
       ],
     },
 
     before: {
       title: "What you need.",
       needs: [
-        { t: "Claude Code", d: "Studio runs inside it. Your Claude plan is not included in the $30." },
+        { t: "Claude Code", d: "Studio runs inside it, on your own Claude plan (not included in the $30). A reel uses a lot of it." },
         { t: "A computer: macOS, Windows or Linux", d: "Not a phone. Heavier 3D styles run better with a GPU." },
       ],
       promise: "It makes the reel. It can't promise views or sales.",
       faq: [
         {
           q: "What if it doesn't work on my machine?",
-          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel on your machine within 7 days, DM @kaiships.ai on Instagram for a refund.",
+          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel, message @kaiships.ai on Instagram within 7 days and you get your money back.",
           cta: { label: "Join the Discord", href: "https://discord.gg/MAAJmghmrA", event: "discord-click" },
         },
         { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up: it downloads about 900 MB of tools into the Studio folder, so it needs internet." },
         { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run also downloads the tools before it starts." },
-        { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
+        { q: "Is there a monthly fee?", a: "No. $30 once, no subscription, no upsell. Studio runs on your own Claude plan." },
         { q: "Can I use the reels for my business?", a: "Yes. Unlimited reels, personal or commercial, with no watermark. Please don't share or resell Studio itself." },
         { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
         { q: "Will my reel get views?", a: "It makes the reel. It can't promise views or sales." },
