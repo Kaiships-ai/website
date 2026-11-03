@@ -31,7 +31,8 @@ while IFS='|' read -r family axes keep file; do
   src="$TMP/$(echo "$family" | tr -d ' ').woff2"
   [ -f "$src" ] || curl -fsS -o "$src" "$(latin_url "$family" "$axes")"
   python3 -m fontTools.varLib.instancer "$src" "wght=$keep" -q -o "$TMP/cut.ttf"
-  flavor=$([ "${file##*.}" = woff2 ] && echo "--flavor=woff2" || true)
-  python3 -m fontTools.subset "$TMP/cut.ttf" --unicodes="$LATIN" --layout-features='*' $flavor --output-file="$OUT/$file"
+  # The instancer keeps the woff2 wrapper; next/og (Satori) only reads plain TTF.
+  flavor=$([ "${file##*.}" = woff2 ] && echo woff2 || echo none)
+  python3 -m fontTools.subset "$TMP/cut.ttf" --unicodes="$LATIN" --layout-features='*' --flavor="$flavor" --output-file="$OUT/$file"
   echo "$file $(wc -c < "$OUT/$file") bytes"
 done <<< "$FONTS"
