@@ -1766,6 +1766,26 @@
 .foot p {
   max-width: 560px;
 }
+/* Who makes it and how to reach him. Inline links, 44 px tall to the thumb. */
+.footMaker {
+  color: var(--ink-2);
+}
+.footMaker a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: -12px 0;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .footMaker a:hover {
+    text-decoration-color: currentColor;
+  }
+}
 .foot p + p {
   margin-top: 6px;
 }
