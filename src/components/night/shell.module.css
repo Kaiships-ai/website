@@ -25,7 +25,8 @@
   width: 100%;
   scroll-margin-top: var(--nav-h);
 }
-.main a {
+/* Plain links in the text only: classed links (the buy button) keep their own colour. */
+.main a:not([class]) {
   color: inherit;
 }
 
