@@ -133,9 +133,10 @@
   /* Land with the eyebrow just under the sticky nav, not 140 px of padding. */
   scroll-margin-top: calc(var(--nav-h) + 28px - 140px);
 }
+/* A sentence, so body size (≥16 px), not a mono label. */
 .src {
   color: var(--dim);
-  font: 400 12px/1.6 var(--mono);
+  font: 400 16px/1.5 var(--text);
   margin-top: 14px;
 }
 
@@ -937,6 +938,13 @@
   margin: 6px 0 0;
   color: var(--ink);
 }
+/* The buy moment right after the proof. */
+.madeBuy {
+  margin-top: 28px;
+}
+.madeBuy .btnNote {
+  margin-top: 12px;
+}
 
 /* ————— 5 · what people told me ————— */
 /* The paying buyer leads, big; three shorter quotes stack beside it. */
@@ -1151,7 +1159,10 @@
 }
 .insteadWrap {
   max-width: 1000px;
-  margin: 48px auto 0;
+  margin: 56px auto 0;
+}
+.insteadWrap + .plan {
+  margin-top: 40px;
 }
 .instead {
   display: grid;
@@ -1362,7 +1373,7 @@
   border-top: 1px solid var(--line);
   padding: 32px 0 56px;
   color: var(--dim);
-  font-size: 14px;
+  font-size: 16px;
 }
 .footIn {
   display: flex;
@@ -1508,6 +1519,12 @@
   .madePhone {
     max-width: 260px;
     margin: 0 auto;
+  }
+  .madeBuy .btn {
+    width: 100%;
+  }
+  .madeBuy .btnNote {
+    text-align: center;
   }
   .facts {
     grid-template-columns: 1fr;

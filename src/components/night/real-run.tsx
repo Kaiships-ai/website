@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site.config";
+import { BuyButton } from "./buy-button";
 import { LazyVideo } from "./lazy-video";
 import s from "./night.module.css";
 
@@ -8,6 +9,7 @@ const run = studio.realRun;
 /*
  * 4 · Proof the buyer can check: the whole session, then the reel it made.
  * Both players start only when the visitor presses play, with sound.
+ * A buy button sits right after the proof, where belief peaks.
  */
 export function RealRun() {
   return (
@@ -60,6 +62,10 @@ export function RealRun() {
                 </div>
               ))}
             </dl>
+            <div className={s.madeBuy}>
+              <BuyButton />
+              <p className={s.btnNote}>{studio.buyNote}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -6,8 +6,9 @@ const { studio } = siteConfig;
 const p = studio.pricing;
 
 /*
- * 6 · One card that puts the value next to the whole cost (money, effort,
- * time, risk), one button, and what it replaces.
+ * 6 · What it replaces first, so the price is read against the buyer's real
+ * alternatives; then one card with the value next to the whole cost (money,
+ * effort, time, risk). The section ends on its button.
  */
 export function Pricing() {
   return (
@@ -24,6 +25,20 @@ export function Pricing() {
           <p className={s.lead}>{p.lead}</p>
         </div>
 
+        <div className={s.insteadWrap}>
+          <span className={s.eyebrow}>
+            <i aria-hidden />
+            Instead of
+          </span>
+          <ul className={s.instead}>
+            {p.insteadOf.map((x) => (
+              <li key={x.k}>
+                <b>{x.k}</b>
+                <span>{x.t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className={s.plan}>
           <div className={s.planHead}>
             <h3>{p.plan}</h3>
@@ -65,20 +80,6 @@ export function Pricing() {
           </div>
         </div>
 
-        <div className={s.insteadWrap}>
-          <span className={s.eyebrow}>
-            <i aria-hidden />
-            Instead of
-          </span>
-          <ul className={s.instead}>
-            {p.insteadOf.map((x) => (
-              <li key={x.k}>
-                <b>{x.k}</b>
-                <span>{x.t}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );
