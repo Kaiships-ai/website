@@ -5,7 +5,7 @@ const { footer } = siteConfig;
 
 export function NightFooter() {
   return (
-    <footer className={s.foot}>
+    <footer className={s.foot} data-bar-off="">
       <div className={`${s.wrap} ${s.footIn}`}>
         <div>
           <p>© 2026 Kaiships</p>

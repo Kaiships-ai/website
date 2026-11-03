@@ -12,13 +12,15 @@ type Props = {
 };
 
 /**
- * Sticky nav. The buy button is always reachable (phone included); it stays
- * quiet while another buy button is on screen and turns orange when it is
- * the only one, so each screen has one primary action.
+ * Sticky nav plus, on phones, a bottom buy bar under the thumb. Both watch the
+ * page's own buy buttons (`data-buy`): the nav button stays quiet while one is
+ * on screen and turns orange when it is the only one; the bar shows only when
+ * nothing else to buy with, or to read under it (`data-bar-off`), is on screen.
  */
 export function NightNav({ name, cta, price, checkout, links }: Props) {
   const [solid, setSolid] = useState(false);
   const [alone, setAlone] = useState(false);
+  const [bar, setBar] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 20);
@@ -32,12 +34,14 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
           if (e.isIntersecting) visible.add(e.target);
           else visible.delete(e.target);
         }
-        setAlone(visible.size === 0);
+        const buyOnScreen = [...visible].some((el) => el.hasAttribute("data-buy"));
+        setAlone(!buyOnScreen);
+        setBar(visible.size === 0);
       },
       // Ignore the strip under the nav itself.
       { rootMargin: "-68px 0px 0px 0px" },
     );
-    document.querySelectorAll("main [data-buy]").forEach((el) => io.observe(el));
+    document.querySelectorAll("main [data-buy], main [data-bar-off]").forEach((el) => io.observe(el));
     return () => {
       window.removeEventListener("scroll", onScroll);
       io.disconnect();
@@ -45,29 +49,37 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
   }, []);
 
   return (
-    <header className={`${s.nav} ${solid ? s.navSolid : ""}`}>
-      <div className={`${s.wrap} ${s.navIn}`}>
-        <a className={s.logo} href="#top" aria-label="Kaiships Studio, back to top">
-          <i aria-hidden />
-          {name}
-        </a>
-        <nav aria-label="Sections">
-          <ul className={s.navLinks}>
-            {links.map((l) => (
-              <li key={l.href}>
-                <a href={l.href}>{l.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <a
-          href={checkout}
-          className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost}`}
-          data-umami-event="buy-click"
-        >
+    <>
+      <header className={`${s.nav} ${solid ? s.navSolid : ""}`}>
+        <div className={`${s.wrap} ${s.navIn}`}>
+          <a className={s.logo} href="#top" aria-label="Kaiships Studio, back to top">
+            <i aria-hidden />
+            {name}
+          </a>
+          <nav aria-label="Sections">
+            <ul className={s.navLinks}>
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <a
+            href={checkout}
+            className={`${s.btn} ${s.navCta} ${alone ? s.primary : s.ghost}`}
+            data-umami-event="buy-click"
+          >
+            {cta} · {price}
+          </a>
+        </div>
+      </header>
+      {/* Outside the header: its backdrop-filter would pin a fixed child to the header. */}
+      <div className={`${s.bar} ${bar ? s.barOn : ""}`}>
+        <a href={checkout} className={`${s.btn} ${s.primary}`} data-umami-event="buy-click">
           {cta} · {price}
         </a>
       </div>
-    </header>
+    </>
   );
 }

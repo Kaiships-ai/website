@@ -38,7 +38,7 @@ export function BeforeYouBuy() {
               </summary>
               <p>{f.a}</p>
               {"cta" in f ? (
-                <div className={s.faqHelp}>
+                <div className={s.faqHelp} data-bar-off="">
                   <a
                     className={`${s.btn} ${s.ghost} ${s.faqCta}`}
                     href={f.cta.href}
