@@ -1,5 +1,5 @@
+import localFont from "next/font/local";
 import {
-  JetBrains_Mono,
   Newsreader,
   Permanent_Marker,
   Shantell_Sans,
@@ -34,9 +34,15 @@ export const serif = Newsreader({
   preload: false,
 });
 
-export const mono = JetBrains_Mono({
-  subsets: ["latin"],
+// JetBrains Mono is self-hosted: Google's latin subset cut to weights 400-700
+// (29 KB instead of 41 KB), from scripts/subset-fonts.sh. Night paints its
+// labels with it, so its size counts against the first paint.
+export const mono = localFont({
+  src: "../assets/fonts/JetBrainsMono-wght400-700-latin.woff2",
+  weight: "400 700",
+  style: "normal",
   variable: "--font-mono",
   display: "swap",
   preload: false,
+  fallback: ["ui-monospace", "monospace"],
 });

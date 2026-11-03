@@ -83,9 +83,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <CheckoutUtm />
-        <noscript>
-          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
-        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
@@ -94,11 +91,12 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer footer={siteConfig.footer} />
         <ExitIntent />
-        <Analytics />
+        {/* Only Vercel serves /_vercel/insights; elsewhere the script 404s. */}
+        {process.env.VERCEL && <Analytics />}
         <Script
           src="https://kstats-kaiships.vercel.app/stats.js"
           data-website-id="a11d08a4-7f99-420e-aafc-5aa471b7ca6e"
-          data-domains="kai-ships-ai-website.vercel.app"
+          data-domains={new URL(siteConfig.url).hostname}
           strategy="afterInteractive"
         />
       </body>
