@@ -38,14 +38,14 @@ export function Quotes() {
   return (
     <section className={s.sec} id="users" aria-labelledby="users-title">
       <div className={s.wrap}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
           What people told me
         </span>
-        <h2 id="users-title" className={`${s.h2} ${s.grad}`}>
+        <h2 id="users-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
           {studio.users.title}
         </h2>
-        <p className={s.lead}>{studio.users.lead}</p>
+        <p className={`${s.lead} ${s.arrive}`}>{studio.users.lead}</p>
         <div className={s.users}>
           <Quote u={featured} big />
           <div className={s.usersRest}>

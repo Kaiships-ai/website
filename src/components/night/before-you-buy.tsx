@@ -11,11 +11,11 @@ export function BeforeYouBuy() {
     <section className={s.sec} id="faq" aria-labelledby="faq-title">
       <div className={`${s.wrap} ${s.faqGrid}`}>
         <div>
-          <span className={s.eyebrow}>
+          <span className={`${s.eyebrow} ${s.arrive}`}>
             <i aria-hidden />
             Before you buy
           </span>
-          <h2 id="faq-title" className={`${s.h2} ${s.grad}`}>
+          <h2 id="faq-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
             {b.title}
           </h2>
           <ol className={s.req}>

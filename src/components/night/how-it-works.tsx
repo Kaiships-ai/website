@@ -95,16 +95,16 @@ export function HowItWorks({ how, bean, prompt, reel }: Props) {
   return (
     <section className={s.sec} id="how" aria-labelledby="how-title" ref={sectionRef}>
       <div className={s.wrap}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
           How it works
         </span>
-        <h2 id="how-title" className={`${s.h2} ${s.grad}`}>
+        <h2 id="how-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
           {how.title[0]}
           <br />
           {how.title[1]}
         </h2>
-        <p className={s.lead}>{how.lead}</p>
+        <p className={`${s.lead} ${s.arrive}`}>{how.lead}</p>
 
         <div className={s.story}>
           <ol className={s.steps} ref={stepsRef}>

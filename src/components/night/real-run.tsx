@@ -15,16 +15,16 @@ export function RealRun() {
   return (
     <section className={s.sec} id="real-run" aria-labelledby="run-title">
       <div className={s.wrap}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
           {run.eyebrow}
         </span>
-        <h2 id="run-title" className={`${s.h2} ${s.grad}`}>
+        <h2 id="run-title" className={`${s.h2} ${s.grad} ${s.arrive}`}>
           {run.title[0]}
           <br />
           {run.title[1]}
         </h2>
-        <p className={s.lead}>{run.lead}</p>
+        <p className={`${s.lead} ${s.arrive}`}>{run.lead}</p>
 
         <div className={s.made}>
           <div className={s.madePhone}>

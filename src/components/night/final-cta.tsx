@@ -20,11 +20,11 @@ export function FinalCta() {
         ))}
       </div>
       <div className={s.finalIn}>
-        <span className={s.eyebrow}>
+        <span className={`${s.eyebrow} ${s.arrive}`}>
           <i aria-hidden />
           {f.eyebrow}
         </span>
-        <h2 id="final-title" className={`${s.finalH2} ${s.grad}`}>
+        <h2 id="final-title" className={`${s.finalH2} ${s.grad} ${s.arrive}`}>
           <span>{f.title[0]}</span>
           <span>
             <span className={s.hot}>{f.title[1]}</span> {f.title[2]}
