@@ -23,8 +23,9 @@ export function NightPage() {
       <div className={s.grain} aria-hidden />
       <NightNav name={studio.name} cta={studio.cta} price={studio.price} checkout={studio.checkout} links={studio.nav} />
       <Hero />
-      <HowItWorks how={studio.how} prompt={studio.prompt} reel={studio.reels[0]} />
+      {/* Proof first, as in the approved wireframe: see it work, then how. */}
       <RealRun />
+      <HowItWorks how={studio.how} prompt={studio.prompt} reel={studio.reels[0]} />
       <Quotes />
       <Pricing />
       <BeforeYouBuy />

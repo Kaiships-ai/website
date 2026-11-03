@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import s from "./night.module.css";
 
 type Source = { src: string; media?: string };
 
@@ -17,15 +18,19 @@ export function LazyVideo({
   width,
   height,
   label,
+  playLabel,
 }: {
   sources: readonly Source[];
   poster: string;
   width: number;
   height: number;
   label: string;
+  /** Big play button over the poster; the visitor still starts it, with sound. */
+  playLabel?: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [near, setNear] = useState(false);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -43,7 +48,7 @@ export function LazyVideo({
     return () => io.disconnect();
   }, []);
 
-  return (
+  const video = (
     <video
       ref={ref}
       controls
@@ -53,10 +58,23 @@ export function LazyVideo({
       width={width}
       height={height}
       aria-label={label}
+      onPlay={() => setStarted(true)}
     >
       {near
         ? sources.map((x) => <source key={x.src} src={x.src} media={x.media} type="video/mp4" />)
         : null}
     </video>
+  );
+  if (!playLabel) return video;
+  return (
+    <div className={s.vwrap}>
+      {video}
+      {started ? null : (
+        <button type="button" className={s.playBig} onClick={() => ref.current?.play().catch(() => {})}>
+          <i aria-hidden />
+          <span>{playLabel}</span>
+        </button>
+      )}
+    </div>
   );
 }

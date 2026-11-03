@@ -19,6 +19,8 @@ export const siteConfig = {
     x: "https://x.com/kaiships",
     youtube: "https://youtube.com/@kaiships",
     email: "kai@kaiships.ai",
+    // "Kai Ship AI Community", invite never expires (checked 2026-11-03).
+    discord: "https://discord.gg/MAAJmghmrA",
   },
 
   // The one paid product. Every fact here comes from the settled offer
@@ -33,13 +35,16 @@ export const siteConfig = {
       "https://buy.polar.sh/polar_cl_yqXEKmmPW7SvfiYAfeDll5InhQ2jiUaJp8UtZ2GvObZ",
     headline: "You built it with Claude Code. Nobody knows yet.",
     sub: "Type what it does. Claude Code makes the reel on your machine: script, voice, scenes, captions and music. No camera.",
-    buyNote: "One payment. 7-day refund.",
+    // The refund condition, said where the money decision happens (offer:
+    // "Không ra được reel: hoàn tiền trong 7 ngày").
+    // Non-breaking spaces keep the refund sentence on one line on a phone.
+    buyNote: "One payment. Can't\u00a0make\u00a0a\u00a0reel\u00a0in\u00a07\u00a0days?\u00a0Refund.",
     // Every buy button says the outcome, then the price (no surprise at checkout).
     cta: "Make my reel",
     prompt: "/studio a promo for my app",
     nav: [
-      { label: "How it works", href: "#how" },
       { label: "Real run", href: "#real-run" },
+      { label: "How it works", href: "#how" },
       { label: "Pricing", href: "#pricing" },
       { label: "FAQ", href: "#faq" },
     ],
@@ -89,6 +94,7 @@ export const siteConfig = {
         { src: "/proof/tutorial-720.mp4" },
       ],
       poster: "/proof/tutorial-poster.jpg",
+      playLabel: "Watch the real run · 9:38",
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
         video: "/proof/studio-fall.mp4",
@@ -100,7 +106,7 @@ export const siteConfig = {
         { k: "Time", t: "About 50 minutes for two fast-preview reels." },
         { k: "Machine", t: "My Mac, with the setup already downloaded." },
         { k: "Your first time", t: "The setup downloads about 900 MB first." },
-        { k: "Hook score", t: "Its review gave both hooks 7/10, under the 8/10 bar." },
+        { k: "Its own review", t: "Flagged both hooks at 7/10, under the 8/10 bar." },
       ],
     },
 
@@ -115,7 +121,7 @@ export const siteConfig = {
 
     pricing: {
       title: "Pay once. Keep it.",
-      lead: "What you get, next to what it costs you.",
+      lead: "What it replaces, what you get, and everything it costs you.",
       plan: "Kaiships Studio",
       note: "Polar emails you the download link.",
       gets: [
@@ -149,12 +155,16 @@ export const siteConfig = {
       ],
       promise: "It makes the reel. It can't promise views or sales.",
       faq: [
-        { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
+        {
+          q: "What if it doesn't work on my machine?",
+          a: "Ask in the Discord and I'll help you get it running. If you still can't make a reel on your machine within 7 days, DM @kaiships.ai on Instagram for a refund.",
+          cta: { label: "Join the Discord", href: "https://discord.gg/MAAJmghmrA", event: "discord-click" },
+        },
         { q: "What happens after I pay?", a: "Polar emails you the download, about 180 MB. Unzip it, open the folder in Claude Code and type /studio. The first run sets everything up: it downloads about 900 MB of tools into the Studio folder, so it needs internet." },
         { q: "How long does a reel take?", a: "My real run made two fast-preview reels in about 50 minutes on my Mac, with the setup already downloaded. Your first run also downloads the tools before it starts." },
         { q: "Is there a monthly fee?", a: "Not from me. $30 once, no subscription, no upsell. You use your own Claude plan." },
         { q: "Can I use the reels for my business?", a: "Yes. Unlimited reels, personal or commercial, with no watermark. Please don't share or resell Studio itself." },
-        { q: "What if it doesn't work on my machine?", a: "DM @kaiships.ai on Instagram. If you can't make a reel on your machine within 7 days, you get a refund." },
+        { q: "Do I need to film or edit anything?", a: "No. Claude writes the script, makes the voiceover, draws every scene in code, adds captions, music and sound effects, and exports the MP4." },
         { q: "Will my reel get views?", a: "It makes the reel. It can't promise views or sales." },
       ],
     },
