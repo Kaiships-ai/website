@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Renders every Bean pose in src/components/night/bean-poses.json to
 // public/bean/<key>.webp, all cropped to one shared box so poses line up
-// when the page crossfades them, then writes that box size back to the JSON.
+// when the page crossfades them, then writes that box size, plus the camera and
+// crop the live Bean (bean-live.ts) reuses to frame itself, back to the JSON.
 // Needs: git, agent-browser, magick, cwebp. Run: node scripts/render-bean.mjs
 import { execFile, execFileSync } from "node:child_process";
 import { promisify } from "node:util";
@@ -18,6 +19,7 @@ const CANVAS = 640;
 const PAD = 8;
 // The source frames Bean for a card; pull back so props (magnifier, arms) fit.
 const CAM_Z = 8;
+const LOOK_Y = 0.2;
 const HEIGHT = 240;
 const SESSION = "bean-render";
 
@@ -36,7 +38,7 @@ window.__snap = ({ pose, expr, gaze }) => {
   hero.gazeTarget = gaze ?? { x: 0, y: 0 }; hero.yawTarget = 0;
   hero.happyUntil = -1; hero.bounceAt = -99; hero.popAt = -99;
   heroR.setPixelRatio(1); heroR.setSize(${CANVAS}, ${CANVAS}, false);
-  heroCam.aspect = 1; heroCam.position.set(0, 0.42, ${CAM_Z}); heroCam.lookAt(0, 0.2, 0); heroCam.updateProjectionMatrix();
+  heroCam.aspect = 1; heroCam.position.set(0, 0.42, ${CAM_Z}); heroCam.lookAt(0, ${LOOK_Y}, 0); heroCam.updateProjectionMatrix();
   for (let i = 0; i < 6; i++) hero.update(1000 + i, 0.016);
   if (hero.conf) hero.conf.visible = false;
   heroR.render(heroScene, heroCam);
@@ -100,6 +102,7 @@ for (const key of Object.keys(poses)) {
 
 const reg = JSON.parse(readFileSync(REGISTRY, "utf8"));
 reg.size = { w: outW, h: HEIGHT };
+reg.frame = { canvas: CANVAS, camZ: CAM_Z, lookY: LOOK_Y, crop: { x, y, w, h } };
 writeFileSync(REGISTRY, JSON.stringify(reg, null, 2) + "\n");
 console.log(`crop ${w}x${h}+${x}+${y} -> ${outW}x${HEIGHT}, raw PNGs in ${tmp}`);
 for (const [k, b] of Object.entries(sizes)) console.log(`${k.padEnd(10)} ${b} B`);
