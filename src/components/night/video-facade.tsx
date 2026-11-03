@@ -39,7 +39,18 @@ export function VideoFacade({
 
   if (on) {
     return (
-      <video ref={video} controls autoPlay playsInline poster={posterSrc} width={poster.width} height={poster.height} aria-label={label}>
+      <video
+        ref={video}
+        controls
+        autoPlay
+        playsInline
+        poster={posterSrc}
+        width={poster.width}
+        height={poster.height}
+        aria-label={label}
+        // One player at a time: starting this one pauses any other.
+        onPlay={(e) => document.querySelectorAll("video[controls]").forEach((v) => v !== e.currentTarget && (v as HTMLVideoElement).pause())}
+      >
         {sources.map((x) => (
           <source key={x.src} src={x.src} media={x.media} type="video/mp4" />
         ))}

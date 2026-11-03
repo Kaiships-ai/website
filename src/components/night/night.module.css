@@ -2207,6 +2207,7 @@
 
 /* A · hero: stands right of the prompt pill, bottom-aligned with it. */
 .heroBean {
+  --bh: 80px;
   position: absolute;
   left: 100%;
   bottom: 0;
