@@ -984,10 +984,9 @@
   color: var(--ok);
 }
 
-/* ————— 4 · real run ————— */
+/* ————— 2 · see it work ————— */
 .player {
-  margin: var(--gap-content) 0 0;
-  scroll-margin-top: calc(var(--nav-h) + 16px);
+  margin: 28px 0 0;
   border-radius: var(--r-lg);
   border: 1px solid var(--line-2);
   background: #05060d;
@@ -996,7 +995,8 @@
     0 0 0 6px rgba(255, 255, 255, 0.025),
     var(--lift);
 }
-.player video {
+.player video,
+.player img {
   display: block;
   width: 100%;
   height: auto;
@@ -1014,7 +1014,7 @@
   grid-template-columns: minmax(0, 300px) 1fr;
   gap: 64px;
   align-items: center;
-  margin-top: 72px;
+  margin-top: var(--gap-content);
   padding: 40px 56px 40px 40px;
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
@@ -1032,7 +1032,8 @@
     0 0 0 1px var(--line-2),
     0 30px 60px -20px #000;
 }
-.madePhone video {
+.madePhone video,
+.madePhone img {
   display: block;
   width: 100%;
   height: auto;
@@ -1079,10 +1080,37 @@
   margin-top: 12px;
 }
 
-/* Big play button on the real-run poster. Light, not orange: orange is the
-   buy colour. Centred above the native control bar. */
-.vwrap {
+/* The whole session, for people who want it. */
+.session {
+  margin-top: 96px;
+}
+.session h3 {
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.session > p:not(.caption) {
+  color: var(--dim);
+  margin-top: 12px;
+}
+
+/* Poster plus one play control (a link to the MP4 until JS takes over).
+   Light, not orange: orange is the buy colour. */
+.facade {
+  display: block;
   position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.facadeIn {
+  display: block;
+}
+.facade:focus-visible {
+  outline: none;
+}
+.facade:focus-visible .playBig {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
 }
 .playBig {
   position: absolute;
@@ -1110,15 +1138,11 @@
     transform 160ms var(--ease-out),
     background-color 150ms ease;
 }
-.playBig:focus-visible {
-  outline-color: #fff;
-  outline-offset: 4px;
-}
-.playBig:active {
+.facade:active .playBig {
   transform: translate(-50%, -50%) scale(0.97);
 }
 @media (hover: hover) and (pointer: fine) {
-  .playBig:hover {
+  .facade:hover .playBig {
     background: #fff;
   }
 }
@@ -1140,7 +1164,20 @@
   border-bottom: 8px solid transparent;
 }
 
-/* Small players (phones): a round icon only, so it doesn't cover the poster. */
+/* Small players (the phone reel, and phones): a round icon only, so it
+   doesn't cover the poster. */
+.playIcon {
+  gap: 0;
+  padding: 9px;
+}
+.playIcon span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
 @media (max-width: 600px) {
   .playBig {
     gap: 0;
@@ -1819,7 +1856,6 @@
     grid-template-columns: 1fr;
     gap: 28px;
     padding: 28px 20px 24px;
-    margin-top: 48px;
     border-radius: var(--r-lg);
     background:
       radial-gradient(90% 40% at 50% 0%, rgba(240, 135, 79, 0.08), transparent 70%),
@@ -1828,6 +1864,9 @@
   .madePhone {
     max-width: 260px;
     margin: 0 auto;
+  }
+  .session {
+    margin-top: 64px;
   }
   .madeBuy .btn {
     width: 100%;

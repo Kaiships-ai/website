@@ -48,7 +48,7 @@ export const siteConfig = {
     cta: "Make my reel",
     prompt: "/studio a promo for my app",
     nav: [
-      { label: "Real run", href: "#real-run" },
+      { label: "See it work", href: "#real-run" },
       { label: "How it works", href: "#how" },
       { label: "Pricing", href: "#pricing" },
       { label: "FAQ", href: "#faq" },
@@ -89,23 +89,36 @@ export const siteConfig = {
       output: "studio-fall.mp4",
     },
 
+    // The 30-second reel first (cheap proof), then the whole session for
+    // people who want it.
     realRun: {
-      title: ["One real run,", "start to finish."],
-      lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. About 50 minutes of real time in a 9:38 video.",
-      // 1440p master for wide screens, 720p for phones. Both stream only
-      // when the visitor presses play.
+      eyebrow: "See it work",
+      title: ["One real run.", "Here's what it made."],
+      lead: "My Mac, one session: I say what Studio is, it suggests styles, writes, renders and reviews. First one of the two reels it made, then the whole session.",
+      session: {
+        title: "Want the whole session?",
+        lead: "About 50 minutes of real time in a 9:38 video.",
+      },
+      // 1440p master for wide screens, 720p for phones (also the no-JS link).
+      // Both stream only when the visitor presses play.
       sources: [
         { src: "/proof/tutorial-1440.mp4", media: "(min-width: 901px)" },
         { src: "/proof/tutorial-720.mp4" },
       ],
-      poster: "/proof/tutorial-poster.jpg",
+      poster: {
+        src: "/proof/tutorial-poster.jpg",
+        srcSet: "/proof/tutorial-poster-800.webp 800w, /proof/tutorial-poster-1280.webp 1280w",
+        width: 1600,
+        height: 900,
+      },
       playLabel: "Watch the real run · 9:38",
       caption: "One real run, waits sped up and labelled. The clock shows real time.",
       reel: {
         video: "/proof/studio-fall.mp4",
-        poster: "/proof/studio-fall-poster.jpg",
+        poster: { src: "/proof/studio-fall-poster.jpg", srcSet: "/proof/studio-fall-poster.webp 540w", width: 540, height: 960 },
+        playLabel: "Play the reel · 0:30",
         title: "The reel from this run",
-        text: "30 seconds, made about itself. A fast preview, not the final render. Turn the sound on.",
+        text: "30 seconds, made about itself. Turn the sound on. A fast preview, not the final render.",
       },
       facts: [
         { k: "Time", t: "About 50 minutes for two fast-preview reels." },
