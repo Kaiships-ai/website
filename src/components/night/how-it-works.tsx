@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { SiteConfig } from "@/lib/site.config";
+import { BeanStack, type BeanPose } from "./bean";
 import s from "./night.module.css";
 
 type Studio = SiteConfig["studio"];
-type Props = { how: Studio["how"]; prompt: string; reel: Studio["reels"][number] };
+type Props = { how: Studio["how"]; bean: readonly BeanPose[]; prompt: string; reel: Studio["reels"][number] };
 
 const WAVE = Array.from({ length: 22 }, (_, k) => +(0.25 + Math.abs(Math.sin(k * 1.7)) * 0.75).toFixed(2));
 const HITS = new Set([0, 3, 6, 8, 11, 14, 16, 19, 22, 24, 27, 30]);
@@ -17,7 +18,7 @@ const pad = (i: number) => String(i + 1).padStart(2, "0");
  * drives the terminal and the phone. Scenes crossfade (opacity only), so a
  * fast scroll just retargets the fade instead of queueing animations.
  */
-export function HowItWorks({ how, prompt, reel }: Props) {
+export function HowItWorks({ how, bean, prompt, reel }: Props) {
   const CAP_WORDS = how.caption.split(" ");
   const capCount = CAP_WORDS.length;
   const [active, setActive] = useState(0);
@@ -128,16 +129,21 @@ export function HowItWorks({ how, prompt, reel }: Props) {
                 <div className={s.cmd}>
                   <b>❯</b> {prompt}
                 </div>
-                <ul>
-                  {how.steps.map((st, j) => (
-                    <li
-                      key={st.k}
-                      className={j < active || (active === 5 && j === 5) ? s.done : j === active ? s.now : ""}
-                    >
-                      {st.k}
-                    </li>
-                  ))}
-                </ul>
+                <div className={s.monJobs}>
+                  <ul>
+                    {how.steps.map((st, j) => (
+                      <li
+                        key={st.k}
+                        className={j < active || (active === 5 && j === 5) ? s.done : j === active ? s.now : ""}
+                      >
+                        {st.k}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className={`${s.bean} ${s.monBean}`}>
+                    <BeanStack poses={near ? bean : []} pose={bean[active]} />
+                  </span>
+                </div>
                 <div className={`${s.out} ${active === 5 ? s.outOn : ""}`}>
                   <p className={s.warn}>! {how.review}</p>
                   <p className={s.okText}>→ {how.output}</p>

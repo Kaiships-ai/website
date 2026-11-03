@@ -1,0 +1,56 @@
+{
+  "size": {
+    "w": 280,
+    "h": 240
+  },
+  "poses": {
+    "idle": {
+      "pose": "floating",
+      "expr": "normal"
+    },
+    "read": {
+      "pose": "floating",
+      "expr": "focused",
+      "gaze": {
+        "x": -0.75,
+        "y": -0.4
+      }
+    },
+    "hi": {
+      "pose": "greeting",
+      "expr": "happy"
+    },
+    "think": {
+      "pose": "thinking",
+      "expr": "thinking"
+    },
+    "talk": {
+      "pose": "floating",
+      "expr": "happy"
+    },
+    "find": {
+      "pose": "finding",
+      "expr": "curious"
+    },
+    "work": {
+      "pose": "working",
+      "expr": "focused"
+    },
+    "excited": {
+      "pose": "floating",
+      "expr": "excited"
+    },
+    "surprised": {
+      "pose": "floating",
+      "expr": "surprised"
+    },
+    "curious": {
+      "pose": "floating",
+      "expr": "curious"
+    },
+    "cheer": {
+      "pose": "cheering",
+      "expr": "celebrating"
+    }
+  }
+}

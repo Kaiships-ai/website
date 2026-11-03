@@ -25,7 +25,7 @@ export function NightPage() {
       <Hero />
       {/* Proof first, as in the approved wireframe: see it work, then how. */}
       <RealRun />
-      <HowItWorks how={studio.how} prompt={studio.prompt} reel={studio.reels[0]} />
+      <HowItWorks how={studio.how} bean={studio.bean.how} prompt={studio.prompt} reel={studio.reels[0]} />
       <Quotes />
       <Pricing />
       <BeforeYouBuy />

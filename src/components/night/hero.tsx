@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site.config";
+import { HeroBean } from "./bean";
 import { BuyButton } from "./buy-button";
 import { ReelStrip } from "./reel-strip";
 import { Spotlight } from "./spotlight";
@@ -41,6 +42,7 @@ export function Hero() {
         </span>
         <span className={s.caret} aria-hidden />
         <small aria-hidden>Claude Code</small>
+        <HeroBean say={studio.bean.hero.say} />
       </div>
       <ReelStrip reels={studio.reels} source={studio.reelsSource} />
     </section>

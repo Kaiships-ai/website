@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { siteConfig } from "@/lib/site.config";
+import { FinalBean } from "./bean";
 import { BuyButton } from "./buy-button";
 import s from "./night.module.css";
 
@@ -29,8 +30,9 @@ export function FinalCta() {
             <span className={s.hot}>{f.title[1]}</span> {f.title[2]}
           </span>
         </h2>
-        <div className={s.ctas}>
+        <div className={`${s.ctas} ${s.finalCtas}`}>
           <BuyButton />
+          <FinalBean />
         </div>
         <p className={s.btnNote}>{studio.buyNote}</p>
       </div>
