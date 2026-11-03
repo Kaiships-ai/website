@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { BuySpot } from "./buy-button";
+import { ThemeToggle } from "./theme-toggle";
 import s from "./night.module.css";
 
 type Props = {
@@ -103,6 +104,7 @@ export function NightNav({ name, cta, price, checkout, links }: Props) {
           >
             {cta} · {price}
           </a>
+          <ThemeToggle />
         </div>
       </header>
       {/* Outside the header: its backdrop-filter would pin a fixed child to the header. */}

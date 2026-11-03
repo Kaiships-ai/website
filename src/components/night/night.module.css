@@ -5,7 +5,14 @@
  * custom ease-out, press feedback, hover only on fine pointers).
  */
 
-.night {
+/* Theme tokens. Dark is the default; the light block below redefines the
+   same names, so every rule reads one token and works in both. A few things
+   stay a dark device in either theme (the How it works monitor, the chips
+   over video posters): they take the dark tokens back. */
+.night,
+.mon,
+.tag {
+  color-scheme: dark;
   --bg: #0a0c17;
   --bg-2: #0f1222;
   --card: #121528;
@@ -19,6 +26,212 @@
   --or: #f0874f;
   --or-2: #e0662c;
   --ok: #8fd19e;
+  /* Headline white, hover white. */
+  --ink-hi: #fff;
+  /* Orange as text (the prompt chevron): never the buy colour's job. */
+  --or-ink: var(--or);
+  --focus: var(--or);
+  /* Cards and panels that sit above the page. */
+  --raise: var(--bg-2);
+  --field: rgba(19, 22, 43, 0.85);
+  --pill: rgba(19, 22, 43, 0.7);
+  --ghost: rgba(255, 255, 255, 0.03);
+  --ghost-hover: rgba(255, 255, 255, 0.06);
+  --tint: rgba(255, 255, 255, 0.05);
+  --sheen: rgba(255, 255, 255, 0.04);
+  --halo: rgba(255, 255, 255, 0.025);
+  --glass: rgba(10, 12, 23, 0.78);
+  --glass-bar: rgba(10, 12, 23, 0.86);
+  --step-h: #6f6c8c;
+  --step-p: #7f7c9b;
+  --step-p-on: #a9a6c4;
+  --grad: linear-gradient(180deg, #fff 30%, #9c98bc);
+  --hot: linear-gradient(180deg, #ffb27f, var(--or-2));
+  --buy-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 10px 36px -10px rgba(240, 135, 79, 0.75);
+  --buy-shadow-hover:
+    0 1px 0 rgba(255, 255, 255, 0.45) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 12px 44px -8px rgba(240, 135, 79, 0.95);
+  --logo-glow: rgba(240, 135, 79, 0.5);
+  --hero-glow:
+    radial-gradient(closest-side, rgba(240, 135, 79, 0.3), rgba(240, 135, 79, 0.08) 60%, transparent),
+    radial-gradient(40% 30% at 50% 62%, rgba(255, 196, 150, 0.1), transparent);
+  --spot: radial-gradient(circle, rgba(240, 135, 79, 0.16), rgba(240, 135, 79, 0) 60%);
+  --warm-07: rgba(240, 135, 79, 0.07);
+  --warm-08: rgba(240, 135, 79, 0.08);
+  --plan-line: rgba(240, 135, 79, 0.45);
+  --plan-glow: rgba(240, 135, 79, 0.13);
+  --plan-halo: rgba(240, 135, 79, 0.04);
+  --plan-lift: 0 50px 110px -50px rgba(240, 135, 79, 0.45);
+  /* The final poster wall and the pool that keeps its headline readable. */
+  --wall-opacity: 0.3;
+  --pool-0: rgba(10, 12, 23, 0);
+  --pool-40: rgba(10, 12, 23, 0.4);
+  --pool-70: rgba(10, 12, 23, 0.7);
+  --pool-94: rgba(10, 12, 23, 0.94);
+  --grain: 0.07;
+  /* Which set of Bean stills shows (bean.tsx renders both, lazy). */
+  --bean-dark: block;
+  --bean-light: none;
+  /* A confetti colour. */
+  --sun: #ffd69e;
+  /* Light from above: a 1 px top highlight separates dark surfaces by tone. */
+  --hi: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+/* Shadows fall on the page, so a dark device on a light page casts a light
+   page's shadow: these two stay out of the dark island above. */
+.night {
+  --shade: #000;
+  --lift: 0 40px 100px -40px #000;
+}
+.mon,
+.tag {
+  color: var(--ink);
+  /* Read by theme-toggle.tsx: what is in here never changes theme. */
+  --scheme-fixed: dark;
+}
+
+/* Night Light, from the approved prototype: a cool neutral ground, not
+   cream. Every text colour is AA on its ground; orange stays the buy colour
+   (it is 2.35:1 on this ground, so the focus ring turns ink). The same block
+   twice: chosen with the toggle, or from the system with JavaScript off. */
+:root[data-theme="light"] .night {
+  color-scheme: light;
+  --bg: #f5f6fa;
+  --bg-2: #eceef5;
+  --card: #ffffff;
+  --line: #e2e5ee;
+  --line-2: #cfd3e1;
+  --line-3: #8a8fa8;
+  --ink: #0f1222;
+  --ink-2: #3a3e58;
+  --dim: #5c607c;
+  --ok: #1f7a45;
+  --ink-hi: #0f1222;
+  --or-ink: #b4441a;
+  --focus: var(--ink);
+  --raise: #ffffff;
+  --field: #ffffff;
+  --pill: rgba(255, 255, 255, 0.8);
+  --ghost: #ffffff;
+  --ghost-hover: #ffffff;
+  --tint: rgba(15, 18, 34, 0.04);
+  --sheen: rgba(240, 135, 79, 0.035);
+  --halo: rgba(15, 18, 34, 0.04);
+  --glass: rgba(245, 246, 250, 0.82);
+  --glass-bar: rgba(245, 246, 250, 0.9);
+  --shade: rgba(26, 30, 60, 0.3);
+  --step-h: #72768f;
+  --step-p: #62667f;
+  --step-p-on: #3a3e58;
+  --grad: linear-gradient(180deg, #0f1222 30%, #5a5e7c);
+  --hot: linear-gradient(180deg, #d65b22, #b8481a);
+  --buy-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 0 0 1px rgba(160, 70, 20, 0.22) inset,
+    0 1px 2px rgba(120, 50, 10, 0.18),
+    0 10px 28px -12px rgba(224, 102, 44, 0.55);
+  --buy-shadow-hover:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 0 0 1px rgba(160, 70, 20, 0.25) inset,
+    0 1px 2px rgba(120, 50, 10, 0.2),
+    0 12px 32px -10px rgba(224, 102, 44, 0.7);
+  --logo-glow: rgba(240, 135, 79, 0.35);
+  --hero-glow:
+    radial-gradient(closest-side, rgba(240, 135, 79, 0.1), rgba(240, 135, 79, 0.03) 55%, transparent),
+    radial-gradient(60% 100% at 50% 0%, #e6e9f4, rgba(245, 246, 250, 0) 70%);
+  --spot: radial-gradient(circle, rgba(240, 135, 79, 0.07), rgba(240, 135, 79, 0) 60%);
+  --warm-07: rgba(240, 135, 79, 0.06);
+  --warm-08: rgba(240, 135, 79, 0.06);
+  --plan-line: rgba(224, 102, 44, 0.4);
+  --plan-glow: rgba(240, 135, 79, 0.09);
+  --plan-halo: rgba(240, 135, 79, 0.06);
+  --plan-lift: 0 50px 110px -50px rgba(224, 102, 44, 0.35);
+  --wall-opacity: 0.28;
+  --pool-0: rgba(245, 246, 250, 0);
+  --pool-40: rgba(245, 246, 250, 0.45);
+  --pool-70: rgba(245, 246, 250, 0.84);
+  --pool-94: rgba(245, 246, 250, 0.96);
+  --grain: 0;
+  --bean-dark: none;
+  --bean-light: block;
+  --sun: #f2b04f;
+  --hi: inset 0 1px 0 #ffffff, 0 1px 2px rgba(15, 18, 34, 0.04);
+  --lift: 0 40px 100px -40px rgba(26, 30, 60, 0.35);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .night {
+    color-scheme: light;
+    --bg: #f5f6fa;
+    --bg-2: #eceef5;
+    --card: #ffffff;
+    --line: #e2e5ee;
+    --line-2: #cfd3e1;
+    --line-3: #8a8fa8;
+    --ink: #0f1222;
+    --ink-2: #3a3e58;
+    --dim: #5c607c;
+    --ok: #1f7a45;
+    --ink-hi: #0f1222;
+    --or-ink: #b4441a;
+    --focus: var(--ink);
+    --raise: #ffffff;
+    --field: #ffffff;
+    --pill: rgba(255, 255, 255, 0.8);
+    --ghost: #ffffff;
+    --ghost-hover: #ffffff;
+    --tint: rgba(15, 18, 34, 0.04);
+    --sheen: rgba(240, 135, 79, 0.035);
+    --halo: rgba(15, 18, 34, 0.04);
+    --glass: rgba(245, 246, 250, 0.82);
+    --glass-bar: rgba(245, 246, 250, 0.9);
+    --shade: rgba(26, 30, 60, 0.3);
+    --step-h: #72768f;
+    --step-p: #62667f;
+    --step-p-on: #3a3e58;
+    --grad: linear-gradient(180deg, #0f1222 30%, #5a5e7c);
+    --hot: linear-gradient(180deg, #d65b22, #b8481a);
+    --buy-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.4) inset,
+      0 0 0 1px rgba(160, 70, 20, 0.22) inset,
+      0 1px 2px rgba(120, 50, 10, 0.18),
+      0 10px 28px -12px rgba(224, 102, 44, 0.55);
+    --buy-shadow-hover:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 0 0 1px rgba(160, 70, 20, 0.25) inset,
+      0 1px 2px rgba(120, 50, 10, 0.2),
+      0 12px 32px -10px rgba(224, 102, 44, 0.7);
+    --logo-glow: rgba(240, 135, 79, 0.35);
+    --hero-glow:
+      radial-gradient(closest-side, rgba(240, 135, 79, 0.1), rgba(240, 135, 79, 0.03) 55%, transparent),
+      radial-gradient(60% 100% at 50% 0%, #e6e9f4, rgba(245, 246, 250, 0) 70%);
+    --spot: radial-gradient(circle, rgba(240, 135, 79, 0.07), rgba(240, 135, 79, 0) 60%);
+    --warm-07: rgba(240, 135, 79, 0.06);
+    --warm-08: rgba(240, 135, 79, 0.06);
+    --plan-line: rgba(224, 102, 44, 0.4);
+    --plan-glow: rgba(240, 135, 79, 0.09);
+    --plan-halo: rgba(240, 135, 79, 0.06);
+    --plan-lift: 0 50px 110px -50px rgba(224, 102, 44, 0.35);
+    --wall-opacity: 0.28;
+    --pool-0: rgba(245, 246, 250, 0);
+    --pool-40: rgba(245, 246, 250, 0.45);
+    --pool-70: rgba(245, 246, 250, 0.84);
+    --pool-94: rgba(245, 246, 250, 0.96);
+    --grain: 0;
+    --bean-dark: none;
+    --bean-light: block;
+    --sun: #f2b04f;
+    --hi: inset 0 1px 0 #ffffff, 0 1px 2px rgba(15, 18, 34, 0.04);
+    --lift: 0 40px 100px -40px rgba(26, 30, 60, 0.35);
+  }
+}
+
+.night {
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   /* Radius scale, by role: xs thumbs/code, sm buttons/small boxes,
@@ -28,9 +241,6 @@
   --r-md: 16px;
   --r-lg: 20px;
   --r-xl: 28px;
-  /* Light from above: a 1 px top highlight separates dark surfaces by tone. */
-  --hi: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  --lift: 0 40px 100px -40px #000;
   /* Section rhythm: header to its content, the same everywhere. */
   --gap-content: 64px;
   --nav-h: 68px;
@@ -53,7 +263,7 @@
   color: #160b05;
 }
 .night :focus-visible {
-  outline: 2px solid var(--or);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 .night h1,
@@ -91,19 +301,19 @@
   inset: 0;
   pointer-events: none;
   z-index: 90;
-  opacity: 0.07;
+  opacity: var(--grain);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 /* ————— type ————— */
 .grad {
-  background: linear-gradient(180deg, #fff 30%, #9c98bc);
+  background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .hot {
-  background: linear-gradient(180deg, #ffb27f, var(--or-2));
+  background: var(--hot);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -188,29 +398,21 @@
 .primary {
   background-color: var(--or);
   color: #160b05;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.35) inset,
-    0 0 0 1px rgba(255, 255, 255, 0.12) inset,
-    0 1px 2px rgba(0, 0, 0, 0.4),
-    0 10px 36px -10px rgba(240, 135, 79, 0.75);
+  box-shadow: var(--buy-shadow);
 }
 .ghost {
   border: 1px solid var(--line-2);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--ghost);
   color: var(--ink);
 }
 @media (hover: hover) and (pointer: fine) {
   .primary:hover {
     background-color: #f39662;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.45) inset,
-      0 0 0 1px rgba(255, 255, 255, 0.18) inset,
-      0 1px 2px rgba(0, 0, 0, 0.4),
-      0 12px 44px -8px rgba(240, 135, 79, 0.95);
+    box-shadow: var(--buy-shadow-hover);
   }
   .ghost:hover {
     border-color: var(--line-3);
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--ghost-hover);
   }
 }
 .btnNote {
@@ -252,7 +454,7 @@
     border-color 200ms ease;
 }
 .navSolid {
-  background: rgba(10, 12, 23, 0.78);
+  background: var(--glass);
   -webkit-backdrop-filter: blur(14px) saturate(1.3);
   backdrop-filter: blur(14px) saturate(1.3);
   border-color: var(--line);
@@ -282,7 +484,7 @@
   background: radial-gradient(circle at 40% 40%, var(--or) 34%, transparent 37%);
   box-shadow:
     0 0 0 1px var(--line-2) inset,
-    0 0 18px rgba(240, 135, 79, 0.5);
+    0 0 18px var(--logo-glow);
 }
 .navLinks {
   display: flex;
@@ -302,8 +504,84 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .navLinks a:hover {
-    color: #fff;
+    color: var(--ink-hi);
   }
+}
+/* Section links centred in the free space, the buy button and the theme
+   toggle together at the right. */
+.navIn > nav,
+.navCta {
+  margin-left: auto;
+}
+/* Theme toggle: 44 px round, quiet. The icon and the name say what a click
+   switches to (a sun while dark, a moon while light). No JavaScript, no
+   toggle: with JS off the system theme applies and there is nothing to do. */
+.themeBtn {
+  flex: none;
+  margin-left: -8px;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--dim);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 160ms var(--ease-out),
+    color 150ms ease,
+    background-color 150ms ease;
+}
+.themeBtn:active {
+  transform: scale(0.94);
+}
+.themeBtn:focus-visible {
+  outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .themeBtn:hover {
+    color: var(--ink-hi);
+    background-color: var(--tint);
+  }
+}
+.themeBtn svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.themeBtn [data-to="dark"],
+:root[data-theme="light"] .themeBtn [data-to="light"] {
+  display: none;
+}
+:root[data-theme="light"] .themeBtn [data-to="dark"] {
+  display: block;
+}
+:root:not([data-theme]) .themeBtn {
+  display: none;
+}
+/* The new icon turns in after a click; the page itself swaps at once. */
+.themeBtn[data-flipped] svg {
+  animation: themeIcon 220ms var(--ease-out);
+}
+@keyframes themeIcon {
+  from {
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.8);
+  }
+}
+/* One frame with no transitions while the theme flips (theme-toggle.tsx). */
+:root[data-theme-switch] .night *,
+:root[data-theme-switch] .night *::before,
+:root[data-theme-switch] .night *::after {
+  transition: none !important;
 }
 .navCta {
   min-height: 44px;
@@ -338,7 +616,7 @@
     bottom: 0;
     z-index: 60;
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(10, 12, 23, 0.86);
+    background: var(--glass-bar);
     -webkit-backdrop-filter: blur(14px) saturate(1.3);
     backdrop-filter: blur(14px) saturate(1.3);
     border-top: 1px solid var(--line);
@@ -365,6 +643,11 @@
     transition: none;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .themeBtn[data-flipped] svg {
+    animation: none;
+  }
+}
 
 /* ————— 1 · hero ————— */
 .hero {
@@ -381,7 +664,7 @@
   height: 1000px;
   margin: -500px 0 0 -500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240, 135, 79, 0.16), rgba(240, 135, 79, 0) 60%);
+  background: var(--spot);
   pointer-events: none;
   will-change: transform;
   opacity: 0;
@@ -397,9 +680,7 @@
   width: min(1200px, 180vw);
   height: 820px;
   transform: translateX(-50%);
-  background:
-    radial-gradient(closest-side, rgba(240, 135, 79, 0.3), rgba(240, 135, 79, 0.08) 60%, transparent),
-    radial-gradient(40% 30% at 50% 62%, rgba(255, 196, 150, 0.1), transparent);
+  background: var(--hero-glow);
   pointer-events: none;
 }
 .pill {
@@ -407,7 +688,7 @@
   gap: 10px;
   align-items: center;
   border: 1px solid var(--line-2);
-  background: rgba(19, 22, 43, 0.7);
+  background: var(--pill);
   box-shadow: var(--hi);
   border-radius: 999px;
   padding: 7px 15px;
@@ -422,7 +703,7 @@
   background: var(--ink-2);
 }
 .pill b {
-  color: #fff;
+  color: var(--ink-hi);
   font-weight: 500;
 }
 .h1 {
@@ -470,7 +751,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(19, 22, 43, 0.85);
+  background: var(--field);
   border: 1px solid var(--line-2);
   border-radius: var(--r-md);
   padding: 15px 18px;
@@ -478,11 +759,11 @@
   font: 500 15px/1.5 var(--mono);
   box-shadow:
     var(--hi),
-    0 20px 60px -20px #000;
+    0 20px 60px -20px var(--shade);
   position: relative;
 }
 .term .or {
-  color: var(--or);
+  color: var(--or-ink);
 }
 .typed {
   display: inline-block;
@@ -591,7 +872,7 @@
   position: relative;
   border: 1px solid var(--line-2);
   background: var(--card);
-  box-shadow: 0 30px 60px -20px #000;
+  box-shadow: 0 30px 60px -20px var(--shade);
   transition: transform 250ms var(--ease-out);
 }
 /* Inner hairline on top of the picture: the edge reads on light posters too. */
@@ -666,7 +947,7 @@
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--line-2);
-  background: rgba(19, 22, 43, 0.85);
+  background: var(--field);
   color: var(--ink);
   cursor: pointer;
   transition:
@@ -728,20 +1009,20 @@
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin-top: 12px;
-  color: #6f6c8c;
+  color: var(--step-h);
   transition: color 250ms ease;
 }
 .step p {
-  color: #7f7c9b;
+  color: var(--step-p);
   margin: 14px 0 0;
   max-width: 30em;
   transition: color 250ms ease;
 }
 .stepOn h3 {
-  color: #fff;
+  color: var(--ink-hi);
 }
 .stepOn p {
-  color: #a9a6c4;
+  color: var(--step-p-on);
 }
 .monWrap {
   position: sticky;
@@ -847,7 +1128,7 @@
   background: #151931;
   box-shadow:
     0 0 0 1px var(--line-2),
-    0 24px 60px -24px #000;
+    0 24px 60px -24px var(--shade);
   position: relative;
   overflow: hidden;
 }
@@ -1045,7 +1326,7 @@
   background: #05060d;
   overflow: hidden;
   box-shadow:
-    0 0 0 6px rgba(255, 255, 255, 0.025),
+    0 0 0 6px var(--halo),
     var(--lift);
 }
 .player video,
@@ -1072,8 +1353,8 @@
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
   background:
-    radial-gradient(60% 80% at 0% 50%, rgba(240, 135, 79, 0.07), transparent 70%),
-    linear-gradient(180deg, var(--bg-2), var(--bg));
+    radial-gradient(60% 80% at 0% 50%, var(--warm-07), transparent 70%),
+    linear-gradient(180deg, var(--raise), var(--bg));
   box-shadow: var(--hi);
 }
 .madePhone {
@@ -1083,7 +1364,7 @@
   background: #05060d;
   box-shadow:
     0 0 0 1px var(--line-2),
-    0 30px 60px -20px #000;
+    0 30px 60px -20px var(--shade);
 }
 .madePhone video,
 .madePhone img {
@@ -1270,7 +1551,7 @@
   flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--r-md);
-  background: var(--bg-2);
+  background: var(--raise);
   box-shadow: var(--hi);
 }
 .quote blockquote {
@@ -1322,7 +1603,7 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .who a:hover {
-    color: #fff;
+    color: var(--ink-hi);
   }
 }
 /* The paying buyer: the one card that differs (Von Restorff). Tag and the
@@ -1336,14 +1617,14 @@
   border-color: var(--line-2);
   border-radius: var(--r-xl);
   background:
-    radial-gradient(120% 70% at 0% 0%, rgba(255, 255, 255, 0.04), transparent 60%),
-    var(--bg-2);
+    radial-gradient(120% 70% at 0% 0%, var(--sheen), transparent 60%),
+    var(--raise);
 }
 .quoteBig blockquote {
   max-width: 25em;
   font: 600 clamp(23px, 2.45vw, 34px) / 1.28 var(--display);
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--ink-hi);
 }
 .quoteBig figcaption {
   grid-column: 2;
@@ -1378,16 +1659,16 @@
 .plan {
   max-width: 1000px;
   margin: var(--gap-content) auto 0;
-  border: 1px solid rgba(240, 135, 79, 0.45);
+  border: 1px solid var(--plan-line);
   border-radius: var(--r-xl);
   padding: 40px 48px 44px;
   background:
-    radial-gradient(120% 70% at 50% 0%, rgba(240, 135, 79, 0.13), transparent 60%),
-    var(--bg-2);
+    radial-gradient(120% 70% at 50% 0%, var(--plan-glow), transparent 60%),
+    var(--raise);
   box-shadow:
     var(--hi),
-    0 0 0 6px rgba(240, 135, 79, 0.04),
-    0 50px 110px -50px rgba(240, 135, 79, 0.45);
+    0 0 0 6px var(--plan-halo),
+    var(--plan-lift);
 }
 .planHead {
   display: flex;
@@ -1411,7 +1692,7 @@
   font: 800 72px/1 var(--display);
   letter-spacing: -0.045em;
   font-variant-numeric: tabular-nums;
-  color: #fff;
+  color: var(--ink-hi);
 }
 .pr span {
   color: var(--dim);
@@ -1564,7 +1845,7 @@
   padding: 18px 20px 18px 22px;
   border: 1px solid var(--line-2);
   border-radius: var(--r-sm);
-  background: var(--bg-2);
+  background: var(--raise);
   box-shadow: var(--hi);
   font-weight: 600;
 }
@@ -1592,7 +1873,7 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .faq summary:hover {
-    color: #fff;
+    color: var(--ink-hi);
   }
   .faq summary:hover i {
     border-color: var(--line-3);
@@ -1638,7 +1919,7 @@
 .faq details[open] summary i {
   transform: rotate(45deg);
   border-color: var(--line-3);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--tint);
 }
 .faq details p {
   padding: 0 48px 22px 0;
@@ -1692,7 +1973,7 @@
   grid-template-columns: repeat(8, 1fr);
   gap: 14px;
   transform: rotate(-8deg) scale(1.15);
-  opacity: 0.3;
+  opacity: var(--wall-opacity);
   align-content: center;
 }
 .wall div {
@@ -1716,9 +1997,9 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(var(--bg), rgba(10, 12, 23, 0) 30%, rgba(10, 12, 23, 0) 70%, var(--bg)),
-    radial-gradient(52% 50% at 50% 50%, rgba(10, 12, 23, 0.94), rgba(10, 12, 23, 0.7) 60%, rgba(10, 12, 23, 0.4)),
-    radial-gradient(40% 30% at 50% 60%, rgba(240, 135, 79, 0.08), transparent);
+    linear-gradient(var(--bg), var(--pool-0) 30%, var(--pool-0) 70%, var(--bg)),
+    radial-gradient(52% 50% at 50% 50%, var(--pool-94), var(--pool-70) 60%, var(--pool-40)),
+    radial-gradient(40% 30% at 50% 60%, var(--warm-08), transparent);
 }
 .finalIn {
   position: relative;
@@ -1764,7 +2045,7 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .foot nav a:hover {
-    color: #fff;
+    color: var(--ink-hi);
   }
 }
 .foot p {
@@ -1947,7 +2228,7 @@
   .player {
     border-radius: var(--r-md);
     box-shadow:
-      0 0 0 4px rgba(255, 255, 255, 0.025),
+      0 0 0 4px var(--halo),
       var(--lift);
   }
   .made {
@@ -1956,8 +2237,8 @@
     padding: 28px 20px 24px;
     border-radius: var(--r-lg);
     background:
-      radial-gradient(90% 40% at 50% 0%, rgba(240, 135, 79, 0.08), transparent 70%),
-      linear-gradient(180deg, var(--bg-2), var(--bg));
+      radial-gradient(90% 40% at 50% 0%, var(--warm-08), transparent 70%),
+      linear-gradient(180deg, var(--raise), var(--bg));
   }
   .madePhone {
     max-width: 260px;
@@ -2137,6 +2418,12 @@
 .beanStack img[data-on] {
   opacity: 1;
 }
+.beanStack img[data-theme-img="dark"] {
+  display: var(--bean-dark);
+}
+.beanStack img[data-theme-img="light"] {
+  display: var(--bean-light);
+}
 .beanBtn {
   display: block;
   min-width: 44px;
@@ -2202,7 +2489,7 @@
   transition: opacity 200ms var(--ease-out);
 }
 .beanSay span:first-child {
-  color: #fff;
+  color: var(--ink-hi);
   font-weight: 600;
 }
 .beanSay[data-on] {

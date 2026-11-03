@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-// Renders every Bean pose in src/components/night/bean-poses.json to
-// public/bean/<key>.webp, all cropped to one shared box so poses line up
-// when the page crossfades them, then writes that box size, plus the camera and
-// crop the live Bean (bean-live.ts) reuses to frame itself, back to the JSON.
+// Renders every Bean pose in src/components/night/bean-poses.json, once per
+// theme, to public/bean/<key>.webp (dark) and public/bean/light/<key>.webp
+// (the source's ?theme=light: no rim glow, a stronger contact shadow). All are
+// cropped to one shared box so poses and themes line up when the page
+// crossfades them, then writes that box size, plus the camera and crop the live
+// Bean (bean-live.ts) reuses to frame itself, back to the JSON.
 // Needs: git, agent-browser, magick, cwebp. Run: node scripts/render-bean.mjs
 import { execFile, execFileSync } from "node:child_process";
 import { promisify } from "node:util";
@@ -14,6 +16,7 @@ import { join, resolve } from "node:path";
 const ROOT = resolve(import.meta.dirname, "..");
 const REGISTRY = join(ROOT, "src/components/night/bean-poses.json");
 const OUT = join(ROOT, "public/bean");
+const THEMES = { dark: OUT, light: join(OUT, "light") };
 const CROWSNEST = process.env.CROWSNEST ?? "/Users/kienbeovl/Desktop/kaiships/crowsnest";
 const CANVAS = 640;
 const PAD = 8;
@@ -60,44 +63,50 @@ const tmp = mkdtempSync(join(tmpdir(), "bean-"));
 const html = buildPage();
 const server = createServer((_, res) => res.writeHead(200, { "content-type": "text/html" }).end(html));
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
-const url = `http://127.0.0.1:${server.address().port}/?theme=dark`;
+const raw = (theme, key) => join(tmp, `${theme}-${key}.png`);
 
 try {
   await ab("set", "viewport", String(CANVAS + 200), String(CANVAS + 200));
-  await ab("set", "media", "dark", "reduced-motion");
-  await ab("open", url);
-  await ab("wait", "--fn", "window.__ready === true");
-  for (const [key, spec] of Object.entries(poses)) {
-    const js = Buffer.from(`window.__snap(${JSON.stringify(spec)})`).toString("base64");
-    const out = JSON.parse(await ab("--json", "eval", "-b", js));
-    const data = out.data?.result ?? out.result ?? out.data;
-    if (typeof data !== "string" || !data.startsWith("data:image/png;base64,")) throw new Error(`${key}: no PNG from __snap: ${JSON.stringify(out).slice(0, 200)}`);
-    writeFileSync(join(tmp, `${key}.png`), Buffer.from(data.split(",")[1], "base64"));
+  for (const theme of Object.keys(THEMES)) {
+    await ab("set", "media", theme, "reduced-motion");
+    await ab("open", `http://127.0.0.1:${server.address().port}/?theme=${theme}`);
+    await ab("wait", "--fn", "window.__ready === true");
+    for (const [key, spec] of Object.entries(poses)) {
+      const js = Buffer.from(`window.__snap(${JSON.stringify(spec)})`).toString("base64");
+      const out = JSON.parse(await ab("--json", "eval", "-b", js));
+      const data = out.data?.result ?? out.result ?? out.data;
+      if (typeof data !== "string" || !data.startsWith("data:image/png;base64,")) throw new Error(`${theme} ${key}: no PNG from __snap: ${JSON.stringify(out).slice(0, 200)}`);
+      writeFileSync(raw(theme, key), Buffer.from(data.split(",")[1], "base64"));
+    }
   }
 } finally {
   await ab("close");
   server.close();
 }
 
-// One union box over every pose's visible pixels, so crossfades don't jump.
+// One union box over every pose's visible pixels in both themes, so
+// crossfades and theme switches don't jump.
 let box = { x0: CANVAS, y0: CANVAS, x1: 0, y1: 0 };
-for (const key of Object.keys(poses)) {
-  const g = run("magick", [join(tmp, `${key}.png`), "-alpha", "extract", "-threshold", "4%", "-format", "%@", "info:"]).trim();
-  const [, w, h, x, y] = g.match(/(\d+)x(\d+)\+(\d+)\+(\d+)/).map(Number);
-  box = { x0: Math.min(box.x0, x), y0: Math.min(box.y0, y), x1: Math.max(box.x1, x + w), y1: Math.max(box.y1, y + h) };
-}
+for (const theme of Object.keys(THEMES))
+  for (const key of Object.keys(poses)) {
+    const g = run("magick", [raw(theme, key), "-alpha", "extract", "-threshold", "4%", "-format", "%@", "info:"]).trim();
+    const [, w, h, x, y] = g.match(/(\d+)x(\d+)\+(\d+)\+(\d+)/).map(Number);
+    box = { x0: Math.min(box.x0, x), y0: Math.min(box.y0, y), x1: Math.max(box.x1, x + w), y1: Math.max(box.y1, y + h) };
+  }
 const x = Math.max(0, box.x0 - PAD), y = Math.max(0, box.y0 - PAD);
 const w = Math.min(CANVAS, box.x1 + PAD) - x, h = Math.min(CANVAS, box.y1 + PAD) - y;
 const outW = Math.round((w * HEIGHT) / h);
 
-mkdirSync(OUT, { recursive: true });
 const sizes = {};
-for (const key of Object.keys(poses)) {
-  const png = join(tmp, `${key}.crop.png`);
-  run("magick", [join(tmp, `${key}.png`), "-crop", `${w}x${h}+${x}+${y}`, "+repage", "-resize", `${outW}x${HEIGHT}!`, png]);
-  const webp = join(OUT, `${key}.webp`);
-  run("cwebp", ["-quiet", "-q", "80", "-alpha_q", "80", "-m", "6", png, "-o", webp]);
-  sizes[key] = statSync(webp).size;
+for (const [theme, dir] of Object.entries(THEMES)) {
+  mkdirSync(dir, { recursive: true });
+  for (const key of Object.keys(poses)) {
+    const png = join(tmp, `${theme}-${key}.crop.png`);
+    run("magick", [raw(theme, key), "-crop", `${w}x${h}+${x}+${y}`, "+repage", "-resize", `${outW}x${HEIGHT}!`, png]);
+    const webp = join(dir, `${key}.webp`);
+    run("cwebp", ["-quiet", "-q", "80", "-alpha_q", "80", "-m", "6", png, "-o", webp]);
+    sizes[`${theme} ${key}`] = statSync(webp).size;
+  }
 }
 
 const reg = JSON.parse(readFileSync(REGISTRY, "utf8"));
@@ -105,4 +114,4 @@ reg.size = { w: outW, h: HEIGHT };
 reg.frame = { canvas: CANVAS, camZ: CAM_Z, lookY: LOOK_Y, crop: { x, y, w, h } };
 writeFileSync(REGISTRY, JSON.stringify(reg, null, 2) + "\n");
 console.log(`crop ${w}x${h}+${x}+${y} -> ${outW}x${HEIGHT}, raw PNGs in ${tmp}`);
-for (const [k, b] of Object.entries(sizes)) console.log(`${k.padEnd(10)} ${b} B`);
+for (const [k, b] of Object.entries(sizes)) console.log(`${k.padEnd(16)} ${b} B`);
